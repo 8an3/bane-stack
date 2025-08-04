@@ -1,0 +1,69 @@
+{
+  "tasks": {
+      "ls": {
+      "command": "ls"
+    },
+    "i": {
+      "command": "pnpm install"
+    },
+    "dev": {
+      "command": "pnpm run dev"
+    },
+    "fromScratch": {
+      "tasks": [
+        "i",
+        "db:all",
+        "build",
+        "dev"
+      ]
+    },
+    "build": {
+      "command": "pnpm run build"
+    },
+    "start": {
+      "command": "pnpm start"
+    },
+    "test": {
+      "command": "pnpm test"
+    },
+    "lint": {
+      "command": "pnpm run lint"
+    },
+    "clean": {
+      "command": "foreach ($path in @('.pnpm-cache','.pnpm-cache', 'node_modules', 'pnpm-lock.yaml', '.cache', 'public\\build', 'build')) { if (Test-Path $path) { Remove-Item -Path $path -Recurse -Force -ErrorAction SilentlyContinue } }"
+    },
+    "config:eslint": {
+      "command": "foreach ($path in @('node_modules', 'pnpm-lock.yaml', '.cache', 'public\\build', 'build')) { if (Test-Path $path) { Remove-Item -Path $path -Recurse -Force -ErrorAction SilentlyContinue } }"
+    },
+    "config:tailwind": {
+      "command": "foreach ($path in @('node_modules', 'pnpm-lock.yaml', '.cache', 'public\\build', 'build')) { if (Test-Path $path) { Remove-Item -Path $path -Recurse -Force -ErrorAction SilentlyContinue } }"
+    },
+    "config:presets": {
+      "command": "foreach ($path in @('node_modules', 'pnpm-lock.yaml', '.cache', 'public\\build', 'build')) { if (Test-Path $path) { Remove-Item -Path $path -Recurse -Force -ErrorAction SilentlyContinue } }"
+    },
+    "i:shadCN": {
+      "command": "pnpm dlx shadcn@latest init"
+    },
+    "i:component": {
+      "command": "pnpm dlx shadcn@latest add"
+    },
+    "patch": {
+      "command": "git add * && git commit -m \"Cleaning w/ push\" && git push && pnpm version patch && git push && git push --tags"
+    },
+    "push": {
+      "command": "git add * && git commit -m \"Cleaning w/ push\" && git push"
+    },
+    "db:all": {
+      "command": "pnpm run db:all"
+    },
+    "db:seed": {
+      "command": "pnpm run db:seed"
+    },
+    "db:studio": {
+      "command": "npx prisma studio"
+    },
+    "db:gen": {
+      "command": "pnpm run db:gen"
+    }
+  }
+}
