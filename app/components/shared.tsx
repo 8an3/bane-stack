@@ -1,15 +1,16 @@
 import axios from "axios";
 import { rankItem, compareItems, RankingInfo, } from "@tanstack/match-sorter-utils";
-import { getSortedRowModel, getFacetedRowModel, getFacetedUniqueValues, getFacetedMinMaxValues, sortingFns, ColumnFiltersState, FilterFn, SortingState, VisibilityState, Column, ExpandedState, useReactTable, getCoreRowModel, getPaginationRowModel, getFilteredRowModel, getExpandedRowModel, ColumnDef, flexRender, } from "@tanstack/react-table";
+import { getSortedRowModel, getFacetedRowModel, getFacetedUniqueValues, getFacetedMinMaxValues, sortingFns, ColumnFiltersState, FilterFn, SortingState, VisibilityState, Column, ExpandedState, useReactTable, getCoreRowModel, getPaginationRowModel, getFilteredRowModel, getExpandedRowModel, ColumnDef, flexRender,SortingFn,RowData,RowModel   } from "@tanstack/react-table";
 import { Button, Input, Separator, Checkbox, PopoverTrigger, PopoverContent, Popover, Select, SelectGroup, SelectLabel, SelectContent, SelectItem, SelectTrigger, SelectValue, ButtonLoading, PaginationButton, Badge, } from "~/components/ui/index";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "~/components/ui/table";
 import React, { useState, useReducer, useEffect, forwardRef, useRef, memo, useCallback, } from "react";
 import { flushSync } from "react-dom";
-import { Check, Clipboard, ClipboardCheck, Copy, X, UploadIcon, GalleryVerticalEnd, CalendarIcon, MessageSquare, Mail, PlusCircle, ChevronsUpDown, ArrowUp, ArrowDown, EyeOff, MoreHorizontal, ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight, Search, CarFront } from "lucide-react";
+import { Check, Clipboard, ClipboardCheck, Copy, X, UploadIcon, GalleryVerticalEnd, CalendarIcon, MessageSquare, Mail, PlusCircle, ChevronsUpDown, ArrowUp, ArrowDown, EyeOff, MoreHorizontal, ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight, Search, CarFront, AlertCircle } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "~/components/ui/utils";
 import { Tooltip, TooltipContent, TooltipTrigger, } from "~/components/ui/tooltip"
 import { useNavigate } from "@remix-run/react";
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, } from "~/components/ui/pagination"
 
 export const DEVSTACK_URL = "http://127.0.0.1:3666"
 
@@ -53,7 +54,7 @@ export function LoadingPage({ text = 'Loading page...', size = 12, color = 'bord
         </div>
     );
 }
-export function LoadErrorPage({ text = 'Failed to Load Page...', size = 12,  loadError }) {
+export function LoadErrorPage({ text = 'Failed to Load Page...', size = 12, loadError }) {
     const nav = useNavigate()
     return (
         <div className="min-h-screen bg-background flex items-center justify-center">
@@ -71,3 +72,83 @@ export function LoadErrorPage({ text = 'Failed to Load Page...', size = 12,  loa
         </div>
     );
 }
+
+export const DebouncedInput: React.FC<Props> = ({ value: initialValue, onChange, debounce = 500, ...props }) => {
+    const [value, setValue] = useState<number | string>(initialValue)
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)
+
+    useEffect(() => {
+        setValue(initialValue)
+    }, [initialValue])
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            onChange(value)
+        }, debounce)
+        return () => clearTimeout(timeout)
+    }, [value])
+
+    return <Input {...props} value={value} onChange={handleInputChange} />
+}
+export const fuzzyFilter = (
+    row,
+    columnId,
+    value,
+    addMeta
+) => {
+    // Rank the item
+    const itemRank = rankItem(row.getValue(columnId), value)
+
+    // Store the ranking info
+    addMeta(itemRank)
+
+    // Return if the item should be filtered in/out
+    return itemRank.passed
+}
+
+export const fuzzySort = (rowA, rowB, columnId) => {
+    let dir = 0
+
+    // Only sort by rank if the column has ranking information
+    if (rowA.columnFiltersMeta[columnId]) {
+        dir = compareItems(
+            rowA.columnFiltersMeta[columnId]! as RankingInfo,
+            rowB.columnFiltersMeta[columnId]! as RankingInfo
+        )
+    }
+
+    // Provide an alphanumeric fallback for when the item ranks are equal
+    return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir
+}
+
+type Props2 = {
+    value: string | number
+    onChange: (value: string | number) => void
+    debounce?: number
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>
+
+type Props<T extends RowData> = {
+    getSelectedRowModel: () => RowModel<T>
+    hasNextPage: boolean
+    hasPreviousPage: boolean
+    nextPage: () => void
+    pageCount: number
+    pageIndex: number
+    pageSize: number
+    previousPage: () => void
+    refreshData: () => void
+    rerender: () => void
+    rowSelection: Object
+    setPageIndex: (index: number) => void
+    setPageSize: (size: number) => void
+    totalRows: number
+}
+
+
+
+
+
+
+
+

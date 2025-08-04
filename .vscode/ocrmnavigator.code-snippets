@@ -118,7 +118,7 @@
     ]
   },
   "map_function": {
-    "prefix": "map-function",
+    "prefix": "map_function",
     "description": "Custom snippet from map-function.snippet.tsx",
     "scope": "typescript,typescriptreact",
     "body": [
