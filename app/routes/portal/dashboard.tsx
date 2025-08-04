@@ -1,10 +1,10 @@
 import { React, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { NavLink, Outlet, useActionData, useFetcher, useLoaderData, useLocation, useNavigate, useNavigation, useParams, useRouteLoaderData, useSearchParams, useSubmit } from '@remix-run/react';
 import { eP } from '~/utils/ext';
-import { authSessionStorage } from '~/sessions/session';
+import { authSessionStorage } from "~/modules/auth/auth_session";
 import { axios } from 'axios';
 import { ActionArgs, defer, json, redirect, type ActionArgs, type LoaderArgs } from '@remix-run/node';
-import { prisma } from "~/libs";
+import { prisma } from "~/modules/libs";
 import { AlertCircle, CarFront, Link } from 'lucide-react';
 import { ButtonStyled } from '~/components/ui/button-loading';
 import { Label } from '~/components/ui/label';
