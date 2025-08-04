@@ -4,7 +4,7 @@ import { NavLink, Outlet, useActionData, useFetcher, useLoaderData, useLocation,
 import { authSessionStorage } from "~/modules/auth/auth_session";
 import { axios } from 'axios';
 import { ActionArgs, defer, json, redirect, type ActionArgs, type LoaderArgs } from '@remix-run/node';
-import { prisma } from "~/modules/libs";
+import { prisma } from "~/modules/libs/prisma";
 import { CarFront, Link } from 'lucide-react';
 import { ButtonStyled } from '~/components/ui/button-loading';
 import { Label } from '~/components/ui/label';

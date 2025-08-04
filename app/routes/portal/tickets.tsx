@@ -10,13 +10,13 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuRadioG
 import { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, flexRender, getCoreRowModel, getFacetedRowModel, getFacetedUniqueValues, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable, Row, Table as ReactTable, getFacetedMinMaxValues, Column } from "@tanstack/react-table"
 import { Avatar, AvatarFallback, AvatarImage, } from "~/components/ui/avatar"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "~/components/ui/table"
-import { Check,EllipsisVertical ,ArrowDown, ArrowUp, CaretSort, EyeClosed , PlusCircle,CirclePlus, Clipboard, ClipboardCheck, Copy, X, UploadIcon, Phone, ArrowDown, ArrowRight, ArrowUp, CheckCircle, Circle, CircleOff, HelpCircle, Timer, Plus,Columns2, ChevronsUpDown, EyeOff, Settings2, Search, MoreHorizontal, ChevronRight, ChevronLeft, ChevronsLeft, ChevronsRight, Icon } from "lucide-react";
+import { Check,EllipsisVertical ,Funnel, EyeClosed , PlusCircle,CirclePlus, Clipboard, ClipboardCheck, Copy, X, UploadIcon, Phone, ArrowDown, ArrowRight, ArrowUp, CheckCircle, Circle, CircleOff, HelpCircle, Timer, Plus,Columns2, ChevronsUpDown, EyeOff, Settings2, Search, MoreHorizontal, ChevronRight, ChevronLeft, ChevronsLeft, ChevronsRight, Icon } from "lucide-react";
 import Filter from "~/components/filter"
 import { DebouncedInput, fuzzyFilter } from "~/components/shared"
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, } from "~/components/ui/pagination"
 import { eP } from '~/utils/ext';
 import { authSessionStorage } from "~/modules/auth/auth_session";
-import { prisma } from "~/modules/libs";
+import { prisma } from "~/modules/libs/prisma";
 import { NavLink, Outlet, useActionData, useFetcher, useLoaderData, useLocation, useNavigate, useNavigation, useParams, useRouteLoaderData, useSearchParams, useSubmit } from '@remix-run/react';
 import React, { useState } from "react"
 
@@ -666,7 +666,7 @@ export function DataTableColumnHeader<TData, TValue>({
                         ) : column.getIsSorted() === "asc" ? (
                             <ArrowUp className="ml-2 h-4 w-4" />
                         ) : (
-                            <CaretSort className="ml-2 h-4 w-4" />
+                            <Funnel className="ml-2 h-4 w-4" />
                         )}
                     </Button>
                 </DropdownMenuTrigger>
