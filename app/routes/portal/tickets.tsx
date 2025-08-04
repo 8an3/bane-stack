@@ -10,7 +10,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuRadioG
 import { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, flexRender, getCoreRowModel, getFacetedRowModel, getFacetedUniqueValues, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable, Row, Table as ReactTable, getFacetedMinMaxValues, Column } from "@tanstack/react-table"
 import { Avatar, AvatarFallback, AvatarImage, } from "~/components/ui/avatar"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "~/components/ui/table"
-import { Check,EllipsisVertical ,Funnel, EyeClosed , PlusCircle,CirclePlus, Clipboard, ClipboardCheck, Copy, X, UploadIcon, Phone, ArrowDown, ArrowRight, ArrowUp, CheckCircle, Circle, CircleOff, HelpCircle, Timer, Plus,Columns2, ChevronsUpDown, EyeOff, Settings2, Search, MoreHorizontal, ChevronRight, ChevronLeft, ChevronsLeft, ChevronsRight, Icon } from "lucide-react";
+import { Check, EllipsisVertical, Funnel, EyeClosed, PlusCircle, CirclePlus, Clipboard, ClipboardCheck, Copy, X, UploadIcon, Phone, ArrowDown, ArrowRight, ArrowUp, CheckCircle, Circle, CircleOff, HelpCircle, Timer, Plus, Columns2, ChevronsUpDown, EyeOff, Settings2, Search, MoreHorizontal, ChevronRight, ChevronLeft, ChevronsLeft, ChevronsRight, Icon } from "lucide-react";
 import Filter from "~/components/filter"
 import { DebouncedInput, fuzzyFilter } from "~/components/shared"
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, } from "~/components/ui/pagination"
@@ -30,7 +30,7 @@ export async function loader({ request }: LoaderArgs) {
     if (!user) { return redirect(import.meta.env.VITE_LOGIN); }
 
     const data = []
-    return json({ user,data })
+    return json({ user, data })
 }
 
 
@@ -498,7 +498,7 @@ export function DataTableRowActions<TData>({
                     variant="ghost"
                     className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
                 >
-                    <EllipsisVertical  className="h-4 w-4" />
+                    <EllipsisVertical className="h-4 w-4" />
                     <span className="sr-only">Open menu</span>
                 </Button>
             </DropdownMenuTrigger>
@@ -540,7 +540,7 @@ export function DataTableFacetedFilter<TData, TValue>({
         <Popover>
             <PopoverTrigger asChild>
                 <Button variant="outline" size="sm" className="h-8 border-dashed">
-                    <CirclePlus  className="mr-2 h-4 w-4" />
+                    <CirclePlus className="mr-2 h-4 w-4" />
                     {title}
                     {selectedValues?.size > 0 && (
                         <>
@@ -681,7 +681,7 @@ export function DataTableColumnHeader<TData, TValue>({
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-                        <EyeClosed  className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+                        <EyeClosed className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
                         Hide
                     </DropdownMenuItem>
                 </DropdownMenuContent>
