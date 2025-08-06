@@ -1,31 +1,40 @@
-import { React, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { NavLink, Outlet, useActionData, useFetcher, useLoaderData, useLocation, useNavigate, useNavigation, useParams, useRouteLoaderData, useSearchParams, useSubmit } from '@remix-run/react';
-import { eP } from '~/utils/ext';
+import { useEffect, useState } from 'react';
+import { useLoaderData, } from '@remix-run/react';
+import eP from '~/utils/ext';
 import { authSessionStorage } from "~/modules/auth/auth_session";
-import { axios } from 'axios';
-import { ActionArgs, defer, json, redirect, type ActionArgs, type LoaderArgs } from '@remix-run/node';
+import { ActionArgs, json, redirect, type ActionArgs, type LoaderArgs } from '@remix-run/node';
 import { prisma } from "~/modules/libs/prisma";
-import { AlertCircle, CarFront, Link } from 'lucide-react';
-import { ButtonStyled } from '~/components/ui/button-loading';
-import { Label } from '~/components/ui/label';
-import { Button } from '~/components/ui/button';
-import { LoadErrorPage, LoadingPage } from '~/components/shared';
-
-
+import { LoadingPage } from '~/components/customUi/loadingPage';
+import { LoadErrorPage } from '~/components/customUi/loadErrorPage';
+import { ChartAreaInteractive, data, DataTable, SectionCards } from '../blocks/sidebar/one';
 
 export default function Dashboard() {
 	const { user } = useLoaderData()
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 	const [loadError, setLoadError] = useState(null);
 
+	useEffect(() => {
+		try {
+			if (!user) {
+				setLoadError("No user found. Please log in.");
+				setIsLoading(false);
+				return;
+			}
+			setIsLoading(false);
+		} catch (error) {
+			setLoadError(error.message || "An error occurred");
+			setIsLoading(false);
+		}
+	}, [user]);
 
-
-	const nav = useNavigate()
+			
 	if (isLoading) { return (<LoadingPage />); }
 	if (loadError) { return (<LoadErrorPage />); }
 	return (
 		<div className="flex flex-col justify-center gap-3">
-
+			<div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+	
+			</div>
 		</div>
 	)
 }
@@ -74,15 +83,15 @@ export async function action({ request }: ActionArgs) {
 export async function loader({ request }: LoaderArgs) {
 	const session = await authSessionStorage.getSession(request.headers.get("Cookie"));
 	const email = session.get("email");
-	const user = await eP.user.all(email)
+	console.log(email,'email')
+	const user = await  eP.user.all(email)
 	if (!user) { return redirect(import.meta.env.VITE_LOGIN); }
-
 	return json({ user })
 }
 
 export const meta: MetaFunction = () => {
 	return [
-		{ title: "Dashboard - Catalyst" },
-		{ name: "description", content: "Catalyst software dashboard." },
+		{ title: "Dashboard - Bane" },
+		{ name: "description", content: "" },
 	];
 };

@@ -2,21 +2,34 @@ import { Textarea } from '~/components/ui/textarea';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { NavLink, Outlet, useActionData, useFetcher, useLoaderData, useLocation, useNavigate, useNavigation, useParams, useRouteLoaderData, useSearchParams, useSubmit } from '@remix-run/react';
 import { authSessionStorage } from "~/modules/auth/auth_session";
-import { axios } from 'axios';
 import { ActionArgs, defer, json, redirect, type ActionArgs, type LoaderArgs } from '@remix-run/node';
 import { prisma } from "~/modules/libs/prisma";
-import { CarFront, Link } from 'lucide-react';
-import { ButtonStyled } from '~/components/ui/button-loading';
-import { Label } from '~/components/ui/label';
-import { LoadErrorPage, LoadingPage } from '~/components/shared';
-
+import { LoadingPage } from '~/components/customUi/loadingPage';
+import { LoadErrorPage } from '~/components/customUi/loadErrorPage';
+import eP from '~/utils/ext'
 
 
 export default function Dashboard() {
-    const { user } = useLoaderData()
+   const { user } = useLoaderData()
     const [isLoading, setIsLoading] = useState(true);
     const [loadError, setLoadError] = useState(null);
+    useEffect(() => {
+        try {
+            if (!user) {
+                setLoadError("No user found. Please log in.");
+                setIsLoading(false);
+                return;
+            }
+            // If user exists, continue with your logic
+            // Your other initialization code here
+          
 
+            setIsLoading(false);
+        } catch (error) {
+            setLoadError(error.message || "An error occurred");
+            setIsLoading(false);
+        }
+    }, [user]);
     if (isLoading) { return (<LoadingPage />); }
     if (loadError) { return (<LoadErrorPage />); }
     return (
@@ -69,8 +82,8 @@ export async function action({ request }: ActionArgs) {
 
 export async function loader({ request }: LoaderArgs) {
     const session = await authSessionStorage.getSession(request.headers.get("Cookie"));
-    const email = session.get("email");
-    const user = await eP.user.all(email)
+   const email = session.get("email");
+   const user = await eP.user.all(email)
     if (!user) { return redirect(import.meta.env.VITE_LOGIN); }
 
     return json({ user })
@@ -78,7 +91,7 @@ export async function loader({ request }: LoaderArgs) {
 
 export const meta: MetaFunction = () => {
     return [
-        { title: "Dashboard - Catalyst" },
-        { name: "description", content: "Catalyst software dashboard." },
+        { title: "Dashboard - Bane" },
+        { name: "description", content: "Bane" },
     ];
 }

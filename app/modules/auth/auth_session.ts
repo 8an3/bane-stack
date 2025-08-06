@@ -1,9 +1,7 @@
 import { createCookieSessionStorage } from "@remix-run/node";
 
-const sessionSecret = process.env.SESSION_SECRET;
-if (!sessionSecret) {
-  throw new Error("SESSION_SECRET must be set");
-}
+const sessionSecret = import.meta.env.VITE_SESSION_SECRET;
+if (!sessionSecret) { throw new Error("VITE_SESSION_SECRET must be set"); }
 
 export const authSessionStorage = createCookieSessionStorage({
   cookie: {
@@ -17,9 +15,7 @@ export const authSessionStorage = createCookieSessionStorage({
 });
 
 export async function getAuthSession(request: Request) {
-  const session = await authSessionStorage.getSession(
-    request.headers.get("Cookie")
-  );
+  const session = await authSessionStorage.getSession(request.headers.get("Cookie"));
   return {
     session,
     headers: {
@@ -27,7 +23,7 @@ export async function getAuthSession(request: Request) {
     },
   };
 }
-  
+
 export const clientSession = createCookieSessionStorage({
   cookie: {
     name: '_client_auth',
