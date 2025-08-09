@@ -3628,5 +3628,13 @@
     ],
     "description": "",
     "scope": "jsx / tsx"
+  },
+  "get_set_localstorage": {
+    "prefix": "get_set_localstorage",
+    "body": [
+      "const [config, setConfig] = useState(\"cols/left\")\r\n\r\n  useEffect(() => {\r\n    const savedConfig = localStorage.getItem(\"config\")\r\n    if (savedConfig) {\r\n      setConfig(savedConfig)\r\n    }\r\n  }, [])\r\n\r\n  useEffect(() => {\r\n    localStorage.setItem(\"config\", config)\r\n  }, [config])"
+    ],
+    "description": "",
+    "scope": "jsx / tsx"
   }
 }

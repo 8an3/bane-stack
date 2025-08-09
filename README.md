@@ -1,6 +1,7 @@
 
 Bane Stack
-The file.io-Android-Client project offers a seamless solution for secure file uploads on Android devices. Key features include easy file sharing, encrypted URLs, and notification alerts. This open-source project caters to developers seeking a reliable and privacy-focused file transfer solution for their mobile applications.
+
+Remix single project config stack, will soon create a mono repo with its base apps being remix-run
       
 TOC
 I.  Overview
@@ -15,15 +16,15 @@ VIII.  Acknowledgments
 ---
 
 Tech
-[x] Radix ui / shadCN components
-[x] v1 route convention
-[x] Superuser Task Runner
-[x] TanStack Tables
-[x] React Day Picker 
-[x] Remix Auth
-[x] Contains default route template
-[x] pre-made sidebar with header and footer dropdowns
-[x] Clean pre configured tanstack table, one for any type of data, and another designed for a ticketing system
+- [x] Radix ui / shadCN components
+- [x] v1 route convention
+- [x] Superuser Task Runner
+- [x] TanStack Tables
+- [x] React Day Picker 
+- [x] Remix Auth
+- [x] Contains default route template
+- [x] pre-made sidebar with header and footer dropdowns
+- [x] Clean pre configured tanstack table, one for any type of data, and another designed for a ticketing system
  
 ---
  Project Structure

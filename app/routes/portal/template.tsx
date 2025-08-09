@@ -15,23 +15,14 @@ export default function Dashboard() {
     const [loadError, setLoadError] = useState(null);
     useEffect(() => {
         try {
-            if (!user) {
-                setLoadError("No user found. Please log in.");
-                setIsLoading(false);
-                return;
-            }
-            // If user exists, continue with your logic
-            // Your other initialization code here
-          
-
             setIsLoading(false);
         } catch (error) {
             setLoadError(error.message || "An error occurred");
             setIsLoading(false);
         }
-    }, [user]);
-    if (isLoading) { return (<LoadingPage />); }
-    if (loadError) { return (<LoadErrorPage />); }
+    }, []);
+    if (isLoading) { return (<LoadingPage  text='Loading page...'  />); }
+    if (loadError) { return (<LoadErrorPage text='Failed to load page...' loadError={loadError} />); }
     return (
         <div className="flex flex-col justify-center gap-3">
 
