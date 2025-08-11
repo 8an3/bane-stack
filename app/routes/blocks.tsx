@@ -9,7 +9,7 @@ import { BookOpen, SquareTerminal, Wrench, User2, Mail, Shirt, Landmark, Star, D
 import eP from '~/utils/ext';
 import { Button } from '~/components/ui/button';
 import { useState } from "react";
-import { SiteHeader } from "~/components/site-header";
+import { SiteHeader } from "~/components/site/site-header";
 import { IconInnerShadowTop } from "@tabler/icons-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuCheckboxItem, } from "~/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage, } from "~/components/ui/avatar";

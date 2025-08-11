@@ -28,7 +28,7 @@ import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy, }
 import { CSS, } from "@dnd-kit/utilities";
 import { toast, } from "sonner";
 
-import { useIsMobile, } from "~/hooks/use-mobile";
+import { useIsMobile, } from "~/modules/hooks/use-mobile";
 
 
 const data = {
