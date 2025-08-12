@@ -12,6 +12,14 @@ export function NotificationsForm() {
   const fetcher = useFetcher()
 
   return (
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-medium">Notifications</h3>
+        <p className="text-sm text-muted-foreground">
+          Configure how you receive notifications.
+        </p>
+      </div>
+      <Separator />
     <fetcher.Form 
       method="post"
       className="space-y-8"
@@ -119,5 +127,7 @@ export function NotificationsForm() {
 
       <Button type="submit">Update notifications</Button>
     </fetcher.Form>
+    </div>
+   
   )
 }

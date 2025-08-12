@@ -28,6 +28,12 @@ const examples = [
     hidden: false,
   },
       {
+    name: "Components Editor",
+    href: "/blocks/examples/editor/components",
+    code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/dashboard",
+    hidden: false,
+  },
+      {
     name: "Forms",
     href: "/blocks/examples/forms/profile",
     code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/authentication",

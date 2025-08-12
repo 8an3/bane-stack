@@ -1,13 +1,11 @@
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, useSidebar, } from "~/components/ui/sidebar"
 import eP from '~/utils/ext'
-import { IconInnerShadowTop, } from "@tabler/icons-react";
-import { SquareTerminal, DollarSign, Car, Settings, ClipboardPlus, GalleryVerticalEnd, NotepadTextDashed, Construction, Map, Phone, Printer, CarFront, ClipboardList, Info, Calendar, Zap, } from "lucide-react";
+import {   GalleryVerticalEnd,  Zap, } from "lucide-react";
 import eP from '~/utils/ext';
 import { SiteHeader } from "~/components/site/site-header";
 import { NavMain } from "~/components/customUi/nav-main";
 import { NavUser } from "~/components/customUi/nav-user";
-import { cn } from "~/components/ui/utils";
 
 export const navItems = {
 		navMain: [
@@ -136,12 +134,7 @@ export async function loader({ request, params }: LoaderFunction) {
 	const email = session.get("email");
 	const user = await eP.user.all(email)
 	if (!user) return redirect(import.meta.env.LOGIN) */
-
- 
-
 	//	const s = eP.parentStore.one()
-
-	
 	return null
 }
 export default function ProviderRoute() {
@@ -150,12 +143,12 @@ export default function ProviderRoute() {
 		<div className='bg-[#11827] w-[100vw] h-[100vh] overflow-hidden'>
 			<SidebarProvider >
 				<AppSidebar variant="inset" data={navItems} />
-				<Quote />
+				<PortalRoute />
 			</SidebarProvider>
 		</div>
 	)
 }
-export function Quote() {
+export function PortalRoute() {
 	const {
 		state,
 		open,
@@ -178,7 +171,6 @@ export function Quote() {
 		</SidebarInset>
 	);
 }
-
 export function AppSidebar({ data, ...props }: React.ComponentProps<typeof Sidebar>) {
 	const user = {
 		name: "shadcn",

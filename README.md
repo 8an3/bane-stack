@@ -51,15 +51,6 @@
 
 >Using this as I was coding, I got really annoyed that I either had to go to github or open the project locally to get the code after looking at it. So I started to add an editor for each component with its corresponding code. I made the editor so you can make edits before copying without having to leave the page. I will come back to finish this off and add all the sections. I might even do it for all the useable code you might want, have a page named editor in blocks, with a drop down, selecting and item, it just inserts the code for any components that either doesn't display well if at all... but anyways, just a thought but you can now stand it up with a personal deployment and treat it like any other components library and visit it when you need it. You can do that for free on vercel. or I might say fuck it... add a section to the web ui of devstack to include this... sigh, I'll probably end up doing that since devstack gets so much use... god damnit, trying to NOT increase my workload, lol
 
->I'm sure there is a way, but with the time I have I couldn't think of a solution. But the copy code needed to be sanitized of backticks and ${} so that it would copy into the clipboard correctly search for these two and fix them when pasted
-
-```sh
-{'
-```
-```sh
-$ {
-```
-
 ## Blocks Route
 
 >Examples and sidebar are there for you to view, along with their children examples. Each section will either have 1 or many code examples to view. The following items code is in components/blocks
