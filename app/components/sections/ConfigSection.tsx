@@ -14,3 +14,9 @@ export const ConfigSection = ({ title, items, className = "" }) => (
         </ul>
     </div>
 );
+
+export function ConfigDemo() {
+    return (
+          <ConfigSection title="Global snippets file location" items={["AppData/Roaming/Code - Insiders/User/globalStorage/skyler.ocrmnav/ocrmnavigator.code-snippets"]} />
+    )
+}

@@ -17,9 +17,24 @@ export const FeatureSection = ({ title, items, className = "" }) => (
     </div>
 );
 
+export function FeatureSectionDemo() {
+  return(
+    <FeatureSection
+                        title="Files"
+                        items={[
+                            "Quick access to your most-used files.",
+                            "Add files to custom folders and subfolders.",
+                            "Edit display labels for files.",
+                            "Remove files from the navigation pane.",
+                            "Copy file paths with a single click.",
+                            "Reveal files in your system’s file explorer.",
+                            "Add multiple files to the quick access pane at once.",
+                        ]}
+                    />
+  )
+}
 
-
-export default function FeaturesSection({
+export   function FeaturesSection2({
   subtitle = "Deploy faster",
   title = "A better workflow",
   description = "Streamline your development process with our powerful tools designed to help teams ship faster and more reliably.",

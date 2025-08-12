@@ -59,7 +59,7 @@ const mockCartItems = [
 ];
 
 // Cart Item Component
-const CartItem = ({ item, onUpdateQuantity, onRemove, onMoveToWishlist }) => {
+export function CartItem   ({ item, onUpdateQuantity, onRemove, onMoveToWishlist })  {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
@@ -135,7 +135,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemove, onMoveToWishlist }) => {
 };
 
 // Order Summary Component
-const OrderSummary = ({ items, showCheckoutButton = true, onCheckout }) => {
+export function OrderSummary  ({ items, showCheckoutButton = true, onCheckout }) {
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const shipping = 15;
   const tax = subtotal * 0.08;
@@ -196,7 +196,7 @@ const OrderSummary = ({ items, showCheckoutButton = true, onCheckout }) => {
 };
 
 // Promo Code Component
-const PromoCode = () => {
+export function PromoCode   ()   {
   const [promoCode, setPromoCode] = useState('');
   const [isApplied, setIsApplied] = useState(false);
 
@@ -244,7 +244,7 @@ const PromoCode = () => {
 };
 
 // Recommended Products Component
-const RecommendedProducts = () => {
+export function RecommendedProducts  ()  {
   const recommendations = [
     { id: 1, name: 'Phone Case', price: 25, image: '📱' },
     { id: 2, name: 'Wireless Charger', price: 45, image: '🔋' },
@@ -274,7 +274,7 @@ const RecommendedProducts = () => {
 };
 
 // Shopping Cart Page Component
-const ShoppingCartPage = () => {
+export function ShoppingCartPage  ()   {
   const [cartItems, setCartItems] = useState(mockCartItems);
   const [showCheckout, setShowCheckout] = useState(false);
 
@@ -416,5 +416,3 @@ const ShoppingCartPage = () => {
     </div>
   );
 };
-
-export default ShoppingCartPage;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { ChevronRight, Package, Truck, CheckCircle, Clock, Calendar, CreditCard, MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { ChevronRight, Package, Truck, CheckCircle, Clock, Calendar, CreditCard, MapPin, } from 'lucide-react';
+import { Button, } from '~/components/ui/button';
+import { Badge, } from '~/components/ui/badge';
 
-const OrderSummaries = () => {
+export function OrderSummaries   ()   {
   const orders = [
     {
       id: 'WU88191111',
@@ -282,5 +282,3 @@ const OrderSummaries = () => {
     </div>
   );
 };
-
-export default OrderSummaries;

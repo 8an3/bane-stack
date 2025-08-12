@@ -81,3 +81,24 @@ export function TsxSection({ code, title = "TypeScript Code", note = null, noteI
         </div>
     );
 }
+
+export function TsxFunctionDemo() {
+    return (
+        <TsxSection
+                        code={`import { configureStore } from '@reduxjs/toolkit';
+import calculatorReducer from 'finance-calculator-auto-dealers/calculator-slice';
+
+const store = configureStore({
+  reducer: {
+    calculator: calculatorReducer,
+    // your other reducers...
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;`}
+                        title="Add the Calculator Slice to Your Store"
+                        language="tsx"
+                    />
+    )
+}

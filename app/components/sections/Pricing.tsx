@@ -126,7 +126,7 @@ export function  PricingSection1Card({
   )
 }
 
-export default function PricingSection2Cards({ 
+export   function PricingSection2Cards({ 
   title = "Choose the right plan for you",
   subtitle = "Pricing", 
   description = "Choose an affordable plan that's packed with the best features for engaging your audience, creating customer loyalty, and driving sales.",

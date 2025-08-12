@@ -17,7 +17,7 @@ const callsToAction = [
   { name: 'Contact sales', href: '#', icon: Phone },
 ]
 
-export default function HeadersSection() {
+export   function HeadersSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (

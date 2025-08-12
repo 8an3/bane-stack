@@ -1,7 +1,7 @@
 import { cn } from "~/components/ui/utils"
 import { Button } from "~/components/ui/button"
 
-export default function CTASection({
+export   function CTASection({
   title = "Boost your productivity. Start using our app today.",
   description = "Transform your workflow with our powerful tools designed to help you achieve more in less time.",
   primaryCTA = { text: "Get started", href: "#" },
@@ -12,9 +12,8 @@ export default function CTASection({
     width: 1824,
     height: 1080
   },
-  showGradient = true,
+  showGradient = false,
   layout = "side-by-side", // "side-by-side" or "centered"
-  containerBg = "bg-gray-900",
   className,
   containerClassName,
   titleClassName,
@@ -25,9 +24,8 @@ export default function CTASection({
     <section className={cn("bg-background", className)}>
       <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
         <div className={cn(
-          "relative isolate overflow-hidden px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:px-24",
+          "relative isolate overflow-hidden px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:px-2 bg-background4",
           layout === "side-by-side" ? "lg:flex lg:gap-x-20 lg:pt-0" : "text-center lg:pt-16",
-          containerBg,
           containerClassName
         )}>
           

@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 // Simple Activity Feed
-const SimpleActivityFeed = () => {
+export function  SimpleActivityFeed   ()   {
   const activities = [
     {
       id: 1,
@@ -94,7 +94,7 @@ const SimpleActivityFeed = () => {
 };
 
 // Social Media Feed
-const SocialMediaFeed = () => {
+export function  SocialMediaFeed  ()   {
   const posts = [
     {
       id: 1,
@@ -196,7 +196,7 @@ const SocialMediaFeed = () => {
 };
 
 // News Feed with Rich Content
-const NewsFeed = () => {
+export function  NewsFeed   ()  {
   const articles = [
     {
       id: 1,
@@ -297,7 +297,7 @@ const NewsFeed = () => {
 };
 
 // Timeline Feed
-const TimelineFeed = () => {
+export function  TimelineFeed  ()   {
   const events = [
     {
       id: 1,
@@ -395,7 +395,7 @@ const TimelineFeed = () => {
 };
 
 // Main component showcasing all feed types
-const FeedsDemo = () => {
+export function FeedsDemo  ()  {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
@@ -422,5 +422,3 @@ const FeedsDemo = () => {
     </div>
   );
 };
-
-export default FeedsDemo;

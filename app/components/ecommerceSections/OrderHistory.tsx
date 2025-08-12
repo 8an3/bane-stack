@@ -1,9 +1,9 @@
 import React from 'react';
-import { ChevronRight, Package, Truck, CheckCircle, Clock } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { ChevronRight, Package, Truck, CheckCircle, Clock, } from 'lucide-react';
+import { Button, } from '~/components/ui/button';
+import { Badge, } from '~/components/ui/badge';
 
-const OrderHistory = () => {
+export function OrderHistory   ()  {
   const orders = [
     {
       id: 'WU88191111',
@@ -215,5 +215,3 @@ const OrderHistory = () => {
     </div>
   );
 };
-
-export default OrderHistory;

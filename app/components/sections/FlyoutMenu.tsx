@@ -14,7 +14,7 @@ const callsToAction = [
   { name: 'Contact sales', href: '#', icon: Phone },
 ]
 
-export default function FlyoutMenu() {
+export   function FlyoutMenu() {
   return (
     <NavigationMenu>
       <NavigationMenuList>

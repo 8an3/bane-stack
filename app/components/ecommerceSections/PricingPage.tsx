@@ -4,7 +4,7 @@ import { Check, X } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 
-export default function PricingPage() {
+export   function PricingPage() {
   const plans = [
     {
       name: "Free",
@@ -232,3 +232,4 @@ export default function PricingPage() {
     </div>
   );
 }
+

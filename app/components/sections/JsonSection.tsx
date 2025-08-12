@@ -101,3 +101,14 @@ export function JsonSection({ items, title = "Configuration", note = null, noteI
         </div>
     );
 }
+
+export function JsonSectionDemo() {
+   const sequencerConfig = {
+    "label": "Auto Push",
+    "path": "add, commit, push",
+    "type": "chain"
+};
+    return (
+        <JsonSection items={sequencerConfig} title='Chain Cmds' />
+    )
+}

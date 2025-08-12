@@ -173,8 +173,7 @@ export function SuccessSectionWithDismissalButton({
   )
 }
 
-// Demo component to show all notifications
-export default function NotificationDemo() {
+export  function NotificationDemo() {
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
       <h1 className="text-2xl font-bold text-gray-900 mb-8">Notification Components</h1>

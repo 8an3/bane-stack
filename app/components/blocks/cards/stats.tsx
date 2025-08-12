@@ -1,4 +1,4 @@
-"use client"
+
 
 import { Bar, BarChart, Line, LineChart } from "recharts"
 
@@ -7,8 +7,8 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card"
-import { ChartConfig, ChartContainer } from "@/registry/new-york/ui/chart"
+} from "~/components/ui/card"
+import { ChartContainer } from "~/components/ui/chart"
 
 const data = [
   {

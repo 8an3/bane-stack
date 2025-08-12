@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Star, ThumbsUp, ChevronDown, Filter } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Star, ThumbsUp, ChevronDown, Filter, } from 'lucide-react';
+import { Button, } from '~/components/ui/button';
+import { Badge, } from '~/components/ui/badge';
 
-const Reviews = () => {
+export function ReviewsSection   ()   {
   const [sortBy, setSortBy] = useState('most-helpful');
   const [showFilters, setShowFilters] = useState(false);
 
@@ -281,5 +281,3 @@ const Reviews = () => {
     </div>
   );
 };
-
-export default Reviews;

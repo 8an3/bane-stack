@@ -22,7 +22,7 @@ const callouts = [
   },
 ]
 
-export default function Example() {
+export   function CategoryPreviewsSection() {
   return (
     <div className="bg-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

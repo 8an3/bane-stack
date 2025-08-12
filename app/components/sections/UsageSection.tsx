@@ -13,3 +13,17 @@ export const UsageSection = ({ title, items, className = "" }) => (
         </ul>
     </div>
 );
+
+export function UseSectionDemo() {
+    return (
+        <UsageSection
+                                        title="Getting Started"
+                                        items={[
+                                            "Download and install Catalyst Editor from the official website",
+                                            "Open your first project using File > Open Folder or drag and drop",
+                                            "Configure your preferred settings through the Settings panel",
+                                            "Install language extensions from the Extension Marketplace",
+                                        ]}
+                                    />
+    )
+}

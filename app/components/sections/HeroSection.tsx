@@ -1,7 +1,12 @@
 import { cn } from "~/components/ui/utils";
 import { Button } from "~/components/ui/button"
 
-export default function HeroSection({ title, desc, className, className2 }) {
+export   function HeroSection({ 
+  title= "Theme Builder" ,
+   desc ="Build VSCode themes visually without hunting down property names. Because life's too short for endless documentation searches.",
+    className = {`text-foreground bg-background`},
+     className2 = {`text-muted-foreground `}
+     }) {
     return (
         <div className="sticky top-0 z-10 bg-background backdrop-blur supports-[backdrop-filter]:bg-background pb-4 pt-8">
             <div className="text-center">
@@ -15,10 +20,10 @@ export default function HeroSection({ title, desc, className, className2 }) {
         </div>
     )
 }
+ 
 
 
-
-export default function HeroStatsSection2({
+export   function HeroStatsSection({
   title = "Work with us",
   description = "Join our team and help build the future of technology. We're looking for passionate individuals to grow with our company.",
   backgroundImage = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply",

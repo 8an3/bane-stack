@@ -1,6 +1,6 @@
-import { PaperClipIcon } from '@heroicons/react/20/solid'
+import { Paperclip } from 'lucide-react'
 
-export default function Example() {
+export   function DescriptionList() {
   return (
     <div>
       <div className="px-4 sm:px-0">
@@ -39,7 +39,7 @@ export default function Example() {
               <ul role="list" className="divide-y divide-white/5 rounded-md border border-white/10">
                 <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm/6">
                   <div className="flex w-0 flex-1 items-center">
-                    <PaperClipIcon aria-hidden="true" className="size-5 shrink-0 text-gray-500" />
+                    <Paperclip aria-hidden="true" className="size-5 shrink-0 text-gray-500" />
                     <div className="ml-4 flex min-w-0 flex-1 gap-2">
                       <span className="truncate font-medium text-white">resume_back_end_developer.pdf</span>
                       <span className="shrink-0 text-gray-500">2.4mb</span>
@@ -53,7 +53,7 @@ export default function Example() {
                 </li>
                 <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm/6">
                   <div className="flex w-0 flex-1 items-center">
-                    <PaperClipIcon aria-hidden="true" className="size-5 shrink-0 text-gray-500" />
+                    <Paperclip aria-hidden="true" className="size-5 shrink-0 text-gray-500" />
                     <div className="ml-4 flex min-w-0 flex-1 gap-2">
                       <span className="truncate font-medium text-white">coverletter_back_end_developer.pdf</span>
                       <span className="shrink-0 text-gray-500">4.5mb</span>

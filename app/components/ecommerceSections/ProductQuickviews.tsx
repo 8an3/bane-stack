@@ -1,4 +1,3 @@
-'use client'
 
 import { useState } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react'
@@ -34,7 +33,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export   function ProductQuickviewsSection() {
   const [open, setOpen] = useState(false)
 
   return (

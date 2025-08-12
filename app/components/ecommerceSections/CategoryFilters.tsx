@@ -1,20 +1,28 @@
-'use client'
-
 import { useState } from 'react'
 import {
   Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '@/components/ui'
+import { 
+  X, 
+  ChevronDown, 
+  Filter, 
+  Plus, 
+  Minus, 
+  Grid2X2 
+} from 'lucide-react'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -68,99 +76,62 @@ const filters = [
   },
 ]
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export function CategoryFiltersSection() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
   return (
     <div className="bg-white">
       <div>
         {/* Mobile filter dialog */}
-        <Dialog open={mobileFiltersOpen} onClose={setMobileFiltersOpen} className="relative z-40 lg:hidden">
-          <DialogBackdrop
-            transition
-            className="fixed inset-0 bg-black/25 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
-          />
+        <Dialog open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
+          <DialogContent className="sm:max-w-xs h-full ml-auto p-0">
+            <DialogHeader className="px-4 pt-4">
+              <DialogTitle className="text-lg font-medium text-gray-900">Filters</DialogTitle>
+              <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                <X className="h-6 w-6" />
+                <span className="sr-only">Close</span>
+              </DialogClose>
+            </DialogHeader>
 
-          <div className="fixed inset-0 z-40 flex">
-            <DialogPanel
-              transition
-              className="relative ml-auto flex size-full max-w-xs transform flex-col overflow-y-auto bg-white pb-6 pt-4 shadow-xl transition duration-300 ease-in-out data-[closed]:translate-x-full"
-            >
-              <div className="flex items-center justify-between px-4">
-                <h2 className="text-lg font-medium text-gray-900">Filters</h2>
-                <button
-                  type="button"
-                  onClick={() => setMobileFiltersOpen(false)}
-                  className="relative -mr-2 flex size-10 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <span className="absolute -inset-0.5" />
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIcon aria-hidden="true" className="size-6" />
-                </button>
-              </div>
+            {/* Filters */}
+            <form className="mt-4 border-t border-gray-200 h-[calc(100%-60px)] overflow-y-auto">
+              <h3 className="sr-only">Categories</h3>
+              <ul role="list" className="px-2 py-3 font-medium text-gray-900">
+                {subCategories.map((category) => (
+                  <li key={category.name}>
+                    <a href={category.href} className="block px-2 py-3">
+                      {category.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
 
-              {/* Filters */}
-              <form className="mt-4 border-t border-gray-200">
-                <h3 className="sr-only">Categories</h3>
-                <ul role="list" className="px-2 py-3 font-medium text-gray-900">
-                  {subCategories.map((category) => (
-                    <li key={category.name}>
-                      <a href={category.href} className="block px-2 py-3">
-                        {category.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-
-                {filters.map((section) => (
-                  <Disclosure key={section.id} as="div" className="border-t border-gray-200 px-4 py-6">
-                    <h3 className="-mx-2 -my-3 flow-root">
-                      <DisclosureButton className="group flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
-                        <span className="font-medium text-gray-900">{section.name}</span>
-                        <span className="ml-6 flex items-center">
-                          <PlusIcon aria-hidden="true" className="size-5 group-data-[open]:hidden" />
-                          <MinusIcon aria-hidden="true" className="size-5 group-[:not([data-open])]:hidden" />
-                        </span>
-                      </DisclosureButton>
-                    </h3>
-                    <DisclosurePanel className="pt-6">
+              {filters.map((section) => (
+                <Accordion key={section.id} type="single" collapsible className="border-t border-gray-200 px-4 py-6">
+                  <AccordionItem value={section.id} className="border-0">
+                    <AccordionTrigger className="group flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500 [&[data-state=open]>svg:last-child]:hidden [&[data-state=closed]>svg:first-child]:hidden">
+                      <span className="font-medium text-gray-900">{section.name}</span>
+                      <div className="ml-6 flex items-center">
+                        <Plus className="h-5 w-5" />
+                        <Minus className="h-5 w-5 hidden" />
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-6">
                       <div className="space-y-6">
                         {section.options.map((option, optionIdx) => (
-                          <div key={option.value} className="flex gap-3">
-                            <div className="flex h-5 shrink-0 items-center">
-                              <div className="group grid size-4 grid-cols-1">
-                                <input
-                                  defaultValue={option.value}
-                                  id={`filter-mobile-${section.id}-${optionIdx}`}
-                                  name={`${section.id}[]`}
-                                  type="checkbox"
-                                  className="col-start-1 row-start-1 appearance-none rounded border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-                                />
-                                <svg
-                                  fill="none"
-                                  viewBox="0 0 14 14"
-                                  className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25"
-                                >
-                                  <path
-                                    d="M3 8L6 11L11 3.5"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="opacity-0 group-has-[:checked]:opacity-100"
-                                  />
-                                  <path
-                                    d="M3 7H11"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="opacity-0 group-has-[:indeterminate]:opacity-100"
-                                  />
-                                </svg>
-                              </div>
+                          <div key={option.value} className="flex items-center gap-3">
+                            <div className="flex h-5 items-center">
+                              <input
+                                defaultValue={option.value}
+                                id={`filter-mobile-${section.id}-${optionIdx}`}
+                                name={`${section.id}[]`}
+                                type="checkbox"
+                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              />
                             </div>
                             <label
                               htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
@@ -171,12 +142,12 @@ export default function Example() {
                           </div>
                         ))}
                       </div>
-                    </DisclosurePanel>
-                  </Disclosure>
-                ))}
-              </form>
-            </DialogPanel>
-          </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              ))}
+            </form>
+          </DialogContent>
         </Dialog>
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -184,40 +155,33 @@ export default function Example() {
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
 
             <div className="flex items-center">
-              <Menu as="div" className="relative inline-block text-left">
-                <MenuButton className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                   Sort
-                  <ChevronDownIcon
-                    aria-hidden="true"
-                    className="-mr-1 ml-1 size-5 shrink-0 text-gray-400 group-hover:text-gray-500"
+                  <ChevronDown
+                    className="-mr-1 ml-1 h-5 w-5 shrink-0 text-gray-400 group-hover:text-gray-500"
                   />
-                </MenuButton>
-
-                <MenuItems
-                  transition
-                  className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-                >
-                  <div className="py-1">
-                    {sortOptions.map((option) => (
-                      <MenuItem key={option.name}>
-                        <a
-                          href={option.href}
-                          className={classNames(
-                            option.current ? 'font-medium text-gray-900' : 'text-gray-500',
-                            'block px-4 py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none',
-                          )}
-                        >
-                          {option.name}
-                        </a>
-                      </MenuItem>
-                    ))}
-                  </div>
-                </MenuItems>
-              </Menu>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-40">
+                  {sortOptions.map((option) => (
+                    <DropdownMenuItem key={option.name}>
+                      <a
+                        href={option.href}
+                        className={classNames(
+                          option.current ? 'font-medium text-gray-900' : 'text-gray-500',
+                          'block w-full px-4 py-2 text-sm'
+                        )}
+                      >
+                        {option.name}
+                      </a>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
 
               <button type="button" className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
                 <span className="sr-only">View grid</span>
-                <Squares2X2Icon aria-hidden="true" className="size-5" />
+                <Grid2X2 className="h-5 w-5" />
               </button>
               <button
                 type="button"
@@ -225,7 +189,7 @@ export default function Example() {
                 className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
               >
                 <span className="sr-only">Filters</span>
-                <FunnelIcon aria-hidden="true" className="size-5" />
+                <Filter className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -248,60 +212,38 @@ export default function Example() {
                 </ul>
 
                 {filters.map((section) => (
-                  <Disclosure key={section.id} as="div" className="border-b border-gray-200 py-6">
-                    <h3 className="-my-3 flow-root">
-                      <DisclosureButton className="group flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
+                  <Accordion key={section.id} type="single" collapsible className="border-b border-gray-200 py-6">
+                    <AccordionItem value={section.id} className="border-0">
+                      <AccordionTrigger className="group flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500 [&[data-state=open]>svg:last-child]:hidden [&[data-state=closed]>svg:first-child]:hidden">
                         <span className="font-medium text-gray-900">{section.name}</span>
-                        <span className="ml-6 flex items-center">
-                          <PlusIcon aria-hidden="true" className="size-5 group-data-[open]:hidden" />
-                          <MinusIcon aria-hidden="true" className="size-5 group-[:not([data-open])]:hidden" />
-                        </span>
-                      </DisclosureButton>
-                    </h3>
-                    <DisclosurePanel className="pt-6">
-                      <div className="space-y-4">
-                        {section.options.map((option, optionIdx) => (
-                          <div key={option.value} className="flex gap-3">
-                            <div className="flex h-5 shrink-0 items-center">
-                              <div className="group grid size-4 grid-cols-1">
+                        <div className="ml-6 flex items-center">
+                          <Plus className="h-5 w-5" />
+                          <Minus className="h-5 w-5 hidden" />
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pt-6">
+                        <div className="space-y-4">
+                          {section.options.map((option, optionIdx) => (
+                            <div key={option.value} className="flex items-center gap-3">
+                              <div className="flex h-5 items-center">
                                 <input
                                   defaultValue={option.value}
                                   defaultChecked={option.checked}
                                   id={`filter-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
                                   type="checkbox"
-                                  className="col-start-1 row-start-1 appearance-none rounded border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
-                                <svg
-                                  fill="none"
-                                  viewBox="0 0 14 14"
-                                  className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25"
-                                >
-                                  <path
-                                    d="M3 8L6 11L11 3.5"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="opacity-0 group-has-[:checked]:opacity-100"
-                                  />
-                                  <path
-                                    d="M3 7H11"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="opacity-0 group-has-[:indeterminate]:opacity-100"
-                                  />
-                                </svg>
                               </div>
+                              <label htmlFor={`filter-${section.id}-${optionIdx}`} className="text-sm text-gray-600">
+                                {option.label}
+                              </label>
                             </div>
-                            <label htmlFor={`filter-${section.id}-${optionIdx}`} className="text-sm text-gray-600">
-                              {option.label}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    </DisclosurePanel>
-                  </Disclosure>
+                          ))}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 ))}
               </form>
 

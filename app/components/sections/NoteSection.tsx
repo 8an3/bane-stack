@@ -24,3 +24,15 @@ export const NoteSection = ({ items, className = "", icon = null, title = "NOTE"
         </Card>
     </div>
 );
+
+export function NoteSectionDemo() {
+    return (
+        <NoteSection
+                icon={<Info />}
+                items={[
+                    "A VSCode workspace is required in order to interact with most of the web ui, any function that needs data from vscode / config file data, will not work if it doesn't have access to a workspace. ",
+                    "Pages like lucide icons, color wheel, md reference sheet, vscode cmds reference, exmaple configs and the theme builder will still work if no workspace is open",
+                ]}
+            />
+    )
+}

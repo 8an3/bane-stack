@@ -8,7 +8,7 @@ const stats = [
   { id: 3, name: 'New users annually', value: '46,000' },
 ]
 
-export default function Stats() {
+export   function Stats() {
   return (
     <div className="bg-gray-900 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

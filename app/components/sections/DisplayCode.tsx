@@ -44,3 +44,16 @@ export function DisplayCode({ title, code, note = null }) {
     )
 }
 
+export function DisplayCodeDemo() {
+        const openWorkspace = {
+        "label": "CRM",
+        "path": "code-insiders -n f:/workspace",
+        "type": "powershellCommand"
+    };
+    return (
+      <DisplayCode
+                        title='Open workspace in new window'
+                        code={openWorkspace}
+                    />    
+    )
+}

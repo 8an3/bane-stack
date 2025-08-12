@@ -1,7 +1,7 @@
 import type { LoaderFunctionArgs, ActionFunctionArgs } from '@remix-run/node'
 									import { Form, NavLink, useLoaderData, useNavigation } from '@remix-run/react'
 									import { json, redirect } from '@remix-run/node'
-									import { authenticator } from '~/modules/otp/client-auth.server'
+									import { authenticator } from '~/modules/otp/client-auth'
 									import { getSession, commitSession } from '~/sessions/auth-session.server'
 									import { Card, Separator, Input, Label, CardHeader, CardTitle, CardDescription, CardContent, ButtonLoading, ButtonStyled } from '~/components'
 									import { OptiInput } from "~/components/shared/shared";

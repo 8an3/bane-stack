@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { CreditCard, Lock, Truck, Gift, Tag, Info } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { CreditCard, Lock, Truck, Gift, Tag, Info, } from 'lucide-react';
+import { Button, } from '~/components/ui/button';
+import { Badge, } from '~/components/ui/badge';
 
-const CheckoutForm = () => {
+export function CheckoutForm   ()   {
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
@@ -615,5 +615,3 @@ const CheckoutForm = () => {
     </div>
   );
 };
-
-export default CheckoutForm;

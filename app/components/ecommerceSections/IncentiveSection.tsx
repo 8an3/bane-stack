@@ -260,7 +260,7 @@ export function CompactIncentives() {
 }
 
 // Demo component showing all variations
-export default function IncentiveDemo() {
+export   function IncentiveDemo() {
   return (
     <div className="space-y-0">
       <div className="py-8">

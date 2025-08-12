@@ -3,7 +3,7 @@ import { Card, CardContent } from "~/components/ui/card"
 import { Badge } from "~/components/ui/badge"
 import { LinkedinIcon, TwitterIcon, MailIcon } from "lucide-react"
 
-export default function TeamSection({
+export   function TeamSection({
   title = "Meet our leadership",
   subtitle = "Our Team",
   description = "We're a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.",
