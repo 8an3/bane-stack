@@ -45,7 +45,6 @@ const examples = [
     code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/authentication",
     hidden: false,
   },
-
   {
     name: "Playground",
     href: "/blocks/examples/playground",
@@ -67,6 +66,12 @@ const examples = [
     {
     name: "Tasks",
     href: "/blocks/examples/tasks",
+    code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/tasks",
+    hidden: false,
+  },
+     {
+    name: "Hooks",
+    href: "/blocks/examples/hooks",
     code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/tasks",
     hidden: false,
   },

@@ -1,10 +1,11 @@
 # Bane - Remix-Run Stack
 
->The goal? Starting off with a project, that already has the recources to complete everything you need to code. From hero sections, to sidebars, to pre configured tables... That way your not off wondering the internet looking for ideas, components, reading docs or looking for code / examples, thus wasting a huge amount of time. 
+>Start with a project that already includes all the resources you need to build complete features—hero sections, sidebars, pre-configured tables, and more. This eliminates the time-consuming cycle of searching the internet for inspiration, hunting down components, reading documentation, or looking for code examples.
 
->Intentionally leaving the core of the stack, the default remix stack w/ vite, unchanged as most of the time this is one of the items that seems to take the least amount of time because your only doing it once for the project, not 1-10 times per route
+>The core stack intentionally remains the default Remix with Vite setup. I've found that the real time sink isn't in the initial framework configuration—it's in the endless cycle of designing layouts, testing them with users, redesigning based on feedback, and iterating until you get it right.
+>By keeping the core stack simple and focusing on providing ready-to-use components and layouts, you can cut down time where you have the most impact doing so.
 
->Remix single project config stack, will soon create a mono repo with its base apps being remix-run, and will eventually be converted to react-router. Will not be devoting the 
+>[8an3/bane Monorepo](https://github.com/8an3/bane-stack-monorepo.git)
 
 
 ## TOC
@@ -44,8 +45,20 @@
 - input-otp
 - react-day-picker
 - recharts
+- monaco editor
 
 ## Included Components
+
+>Using this as I was coding, I got really annoyed that I either had to go to github or open the project locally to get the code after looking at it. So I started to add an editor for each component with its corresponding code. I made the editor so you can make edits before copying without having to leave the page. I will come back to finish this off and add all the sections. I might even do it for all the useable code you might want, have a page named editor in blocks, with a drop down, selecting and item, it just inserts the code for any components that either doesn't display well if at all... but anyways, just a thought but you can now stand it up with a personal deployment and treat it like any other components library and visit it when you need it. You can do that for free on vercel. or I might say fuck it... add a section to the web ui of devstack to include this... sigh, I'll probably end up doing that since devstack gets so much use... god damnit, trying to NOT increase my workload, lol
+
+>I'm sure there is a way, but with the time I have I couldn't think of a solution. But the copy code needed to be sanitized of backticks and ${} so that it would copy into the clipboard correctly search for these two and fix them when pasted
+
+```sh
+{'
+```
+```sh
+$ {
+```
 
 ## Blocks Route
 

@@ -31,7 +31,7 @@ export function PageHeaderFunction({
   announcement = "More content coming soon",
   aLink = "#",
   nav1 = "Blocks",
-  nav1To = '/blocks/examples/ecommerce/viewer',
+  nav1To = '/blocks/examples/ecommerce',
   nav2 = "Sidebar",
   nav2To = '/blocks/sidebar/one',
     nav3 = "Login",
