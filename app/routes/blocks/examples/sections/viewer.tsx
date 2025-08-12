@@ -26,7 +26,7 @@ import { DisplayInstallCodeArray } from "~/components/sections/DisplayInstallCod
 import { FeatureSectionDemo, FeaturesGridSection, FeaturesSection2 } from "~/components/sections/FeatureSection";
 import { FlyoutMenu } from "~/components/sections/FlyoutMenu";
 import { HeadersSection } from "~/components/sections/Headers";
-import { HeroCTASection, HeroSection } from "~/components/sections/HeroSection";
+import { HeroCTASection, HeroSection, HeroStatsSection } from "~/components/sections/HeroSection";
 import { ImageSection } from "~/components/sections/ImageSection";
 import { JsonSectionDemo } from "~/components/sections/JsonSection";
 import { NewsletterSection } from "~/components/sections/Newsletter";
@@ -42,9 +42,11 @@ import { TsxFunctionDemo } from "~/components/sections/TsxSection";
 import { UseSectionDemo } from "~/components/sections/UsageSection";
 import { StackedLayoutsSection } from "~/components/ecommerceSections/StackedLayouts";
 import { LoFi } from "~/components/lo-fi";
+import MonacoEditor from "../editor";
+import { UseageSectionNoDashDemo } from "~/components/sections/UsageSectionNoDash";
 
 export default function Dashboard() {
-	const [sel, setSel] = useState("Alerts");
+	const [sel, setSel] = useState("NotificationDemo");
 	const sections = [
 		{ name: "Alerts", value: "Alerts" },
 		{ name: "Lofi", value: "Lofi" },
@@ -75,6 +77,7 @@ export default function Dashboard() {
 		{ name: "NoteSection", value: "NoteSection" },
 		{ name: "PageHeader", value: "PageHeader" },
 		{ name: "PageNav", value: "PageNav" },
+		{ name: "PageHeaderFunction", value: "PageHeaderFunction" },
 		{ name: "Pricing", value: "Pricing" },
 		{ name: "Pricing2", value: "Pricing2" },
 		{ name: "Pricing3", value: "Pricing3" },
@@ -90,134 +93,189 @@ export default function Dashboard() {
 		{ name: "UsageSectionNoDash", value: "UsageSectionNoDash" },
 	];
 	let viewSelected;
+	let selectedCode = ``;
 	switch (sel) {
-		case "Alerts":
+		case "NotificationDemo":
 			viewSelected = <NotificationDemo />;
+			selectedCode = NotificationDemo;
 			break;
 		case "Lofi":
 			viewSelected = <LoFi />;
+			selectedCode = LoFi;
 			break;
 		case "Banner":
 			viewSelected = <BannerSection />;
+			selectedCode = BannerSection;
 			break;
 		case "BentoGrid":
 			viewSelected = <BentoDemo />;
+			selectedCode = BentoDemo;
 			break;
 		case "Blog":
 			viewSelected = <BlogSection />;
+			selectedCode = BlogSection;
 			break;
 		case "Changelog":
 			viewSelected = <ChangelogDemo />;
+			selectedCode = ChangelogDemo;
 			break;
 		case "ConfigSection":
 			viewSelected = <ConfigDemo />;
+			selectedCode = ConfigDemo;
 			break;
 		case "Contact":
 			viewSelected = <ContactSection />;
+			selectedCode = ContactSection;
 			break;
 		case "CTA":
 			viewSelected = <CTASection />;
+			selectedCode = CTASection;
 			break;
 		case "DescriptionList":
 			viewSelected = <DescriptionList />;
+			selectedCode = DescriptionList;
 			break;
 		case "DisplayCode":
 			viewSelected = <DisplayCodeDemo />;
+			selectedCode = DisplayCodeDemo;
 			break;
 		case "DisplayGithubInstall":
 			viewSelected = <DisplayGithubInstall />;
+			selectedCode = DisplayGithubInstall;
 			break;
 		case "DisplayInstallCode":
 			viewSelected = <DisplayInstallCode />;
+			selectedCode = DisplayInstallCode;
 			break;
 		case "DisplayInstallCodeArray":
 			viewSelected = <DisplayInstallCodeArray />;
+			selectedCode = DisplayInstallCodeArray;
 			break;
 		case "FeatureSection":
 			viewSelected = <FeatureSectionDemo />;
+			selectedCode = FeatureSectionDemo;
 			break;
 		case "FeatureSection2":
 			viewSelected = <FeaturesSection2 />;
+			selectedCode = FeaturesSection2;
 			break;
 		case "FeatureSection3":
 			viewSelected = <FeaturesGridSection />;
+			selectedCode = FeaturesGridSection;
 			break;
 		case "FlyoutMenu":
 			viewSelected = <FlyoutMenu />;
+			selectedCode = FlyoutMenu;
 			break;
 		case "Headers":
 			viewSelected = <HeadersSection />;
-			break;
-		case "HeroSection":
-			viewSelected = <HeroSection />;
-			break;
-		case "HeroSection2":
-			viewSelected = <HeroStatsSection />;
-			break;
-		case "HeroSection3":
-			viewSelected = <HeroCTASection />;
-			break;
-		case "ImageSection":
-			viewSelected = <ImageSection />;
-			break;
-		case "JsonSection":
-			viewSelected = <JsonSectionDemo />;
-			break;
-		case "Newsletter":
-			viewSelected = <NewsletterSection />;
-			break;
-		case "NoteSection":
-			viewSelected = <NoteSectionDemo />;
-			break;
-		case "PageHeader":
-			viewSelected = <UseHeader />;
-			break;
-		case "PageNav":
-			viewSelected = <PageNavDemo />;
-			break;
-		case "Pricing":
-			viewSelected = <PricingSection1Card />;
-			break;
-		case "Pricing2":
-			viewSelected = <PricingSection2Cards />;
-			break;
-		case "Pricing3":
-			viewSelected = <PricingSection3Cards />;
-			break;
-		case "SectionTitle":
-			viewSelected = <SectionTitle />;
+			selectedCode = HeadersSection;
 			break;
 		case "StackedLayouts":
 			viewSelected = <StackedLayoutsSection />;
+			selectedCode = StackedLayoutsSection;
 			break;
 		case "Stats":
 			viewSelected = <StatsSection />;
+			selectedCode = StatsSection;
 			break;
 		case "Stats2":
 			viewSelected = <StatsCardSection />;
+			selectedCode = StatsCardSection;
 			break;
 		case "Team":
 			viewSelected = <TeamSection />;
+			selectedCode = TeamSection;
 			break;
 		case "Testimonial":
 			viewSelected = <TestimonialSection />;
+			selectedCode = TestimonialSection;
 			break;
 		case "Testimonial2":
 			viewSelected = <TestimonialsGridSection />;
+			selectedCode = TestimonialsGridSection;
 			break;
 		case "TsxSection":
 			viewSelected = <TsxFunctionDemo />;
+			selectedCode = TsxFunctionDemo;
 			break;
 		case "UsageSection":
 			viewSelected = <UseSectionDemo />;
+			selectedCode = UseSectionDemo;
 			break;
 		case "UsageSectionNoDash":
-			viewSelected = <UsageSectionNoDash />;
+			viewSelected = <UseageSectionNoDashDemo />;
+			selectedCode = UseageSectionNoDashDemo;
+			break;
+		case "PageHeaderFunction":
+			viewSelected = <PageHeaderFunction />;
+			selectedCode = PageHeaderFunction;
+			break;
+		case "HeroSection":
+			viewSelected = <HeroSection />;
+			selectedCode = HeroSection;
+			break;
+		case "HeroSection2":
+			viewSelected = <HeroStatsSection />;
+			selectedCode = HeroStatsSection;
+			break;
+		case "HeroSection3":
+			viewSelected = <HeroCTASection />;
+			selectedCode = HeroCTASection;
+			break;
+		case "ImageSection":
+			viewSelected = <ImageSection />;
+			selectedCode = ImageSection;
+			break;
+		case "JsonSection":
+			viewSelected = <JsonSectionDemo />;
+			selectedCode = JsonSectionDemo;
+			break;
+		case "Newsletter":
+			viewSelected = <NewsletterSection />;
+			selectedCode = NewsletterSection;
+			break;
+		case "NoteSection":
+			viewSelected = <NoteSectionDemo />;
+			selectedCode = NoteSectionDemo;
+			break;
+		case "PageHeader":
+			viewSelected = <UseHeader />;
+			selectedCode = UseHeader;
+			break;
+		case "PageNav":
+			viewSelected = <PageNavDemo />;
+			selectedCode = PageNavDemo;
+			break;
+		case "Pricing":
+			viewSelected = <PricingSection1Card />;
+			selectedCode = PricingSection1Card;
+			break;
+		case "Pricing2":
+			viewSelected = <PricingSection2Cards />;
+			selectedCode = PricingSection2Cards;
+			break;
+		case "Pricing3":
+			viewSelected = <PricingSection3Cards />;
+			selectedCode = PricingSection3Cards;
+			break;
+		case "SectionTitle":
+			viewSelected = <SectionTitle />;
+			selectedCode = SectionTitle;
 			break;
 		default:
-			viewSelected = <Alerts />;
+			viewSelected = <NotificationDemo />;
+			selectedCode = NotificationDemo;
 			break;
 	}
+	return (
+		<div className="flex flex-col justify-center gap-4">
+			<MonacoEditor code={selectedCode} renderComp={<Page sel={sel} setSel={setSel} sections={sections} viewSelected={viewSelected} />} />
+		</div>
+	);
+}
+
+function Page({ sel, setSel, sections, viewSelected }) {
 	return (
 		<div className="flex flex-col justify-center gap-3 w-full">
 			<div className="grid w-full max-w-sm items-center gap-1.5 mt-[25px] mx-auto">

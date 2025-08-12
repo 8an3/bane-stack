@@ -1,18 +1,24 @@
-import { Separator } from "~/components/ui/separator"
+import MonacoEditor from "../../editor";
 import { AppearanceForm } from "./appearance-form"
 
-export default function SettingsAppearancePage() {
-  return (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-medium">Appearance</h3>
-        <p className="text-sm text-muted-foreground">
-          Customize the appearance of the app. Automatically switch between day
-          and night themes.
-        </p>
-      </div>
-      <Separator />
-      <AppearanceForm />
-    </div>
-  )
+
+export default  function UserAuthForm() {
+	return (
+		<div className="flex flex-col justify-center gap-4">
+			<MonacoEditor code={AppearanceForm} renderComp={<AppearanceForm />} />
+		</div>
+	);
+}
+
+export function Scaffolding() {
+	return (
+		<div className="bg-background rounded-[15px] m-[15px] overflow-hidden h-[calc(100vh-54px)] flex flex-col w-full justify-center items-center">
+			<div className="flex  py-[100px]  ">
+				<PageHeader>
+					<PageHeaderHeading className="max-w-4xl">Scaffolding</PageHeaderHeading>
+					<PageHeaderDescription>The remaining code in order to make it work.</PageHeaderDescription>
+				</PageHeader>
+			</div>
+		</div>
+	);
 }

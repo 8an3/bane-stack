@@ -265,3 +265,4 @@ export async function loader({ request }: LoaderArgs) {
 export const meta: MetaFunction = () => {
 	return [{ title: "E-Commerce - 8an3/Bane" }, { name: "description", content: "8an3/Bane Remix Stack" }];
 };
+	

@@ -1,146 +1,52 @@
- 
-import { PlusCircle } from "lucide-react"
-
-import { Button } from "~/components/ui"
-import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area"
-import { Separator } from "~/components/ui/separator"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "~/components/ui/tabs"
-
-import { AlbumArtwork } from "./components/album-artwork"
-import { Menu } from "./components/menu"
-import { PodcastEmptyPlaceholder } from "./components/podcast-empty-placeholder"
-import { Sidebar } from "./components/sidebar"
-import { listenNowAlbums, madeForYouAlbums } from "./data/albums"
-import { playlists } from "./data/playlists"
-
-export const meta: MetaFunction = () => {
-	return [
-		{ title: "Music - 8an3/Bane" },
-		{ name: "description", content: "8an3/Bane Remix Stack" },
-	];
-};
-export default function MusicPage() {
-  return (
-    <>
- 
-      <div className="hidden md:block">
-        <Menu />
-        <div className="border-t">
-          <div className="bg-background">
-            <div className="grid lg:grid-cols-5">
-              <Sidebar playlists={playlists} className="hidden lg:block" />
-              <div className="col-span-3 lg:col-span-4 lg:border-l">
-                <div className="h-full px-4 py-6 lg:px-8">
-                  <Tabs defaultValue="music" className="h-full space-y-6">
-                    <div className="space-between flex items-center">
-                      <TabsList>
-                        <TabsTrigger value="music" className="relative">
-                          Music
-                        </TabsTrigger>
-                        <TabsTrigger value="podcasts">Podcasts</TabsTrigger>
-                        <TabsTrigger value="live" disabled>
-                          Live
-                        </TabsTrigger>
-                      </TabsList>
-                      <div className="ml-auto mr-4">
-                        <Button>
-                          <PlusCircle />
-                          Add music
-                        </Button>
-                      </div>
-                    </div>
-                    <TabsContent
-                      value="music"
-                      className="border-none p-0 outline-none"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-1">
-                          <h2 className="text-2xl font-semibold tracking-tight">
-                            Listen Now
-                          </h2>
-                          <p className="text-sm text-muted-foreground">
-                            Top picks for you. Updated daily.
-                          </p>
-                        </div>
-                      </div>
-                      <Separator className="my-4" />
-                      <div className="relative">
-                        <ScrollArea>
-                          <div className="flex space-x-4 pb-4">
-                            {listenNowAlbums.map((album) => (
-                              <AlbumArtwork
-                                key={album.name}
-                                album={album}
-                                className="w-[250px]"
-                                aspectRatio="portrait"
-                                width={250}
-                                height={330}
-                              />
-                            ))}
-                          </div>
-                          <ScrollBar orientation="horizontal" />
-                        </ScrollArea>
-                      </div>
-                      <div className="mt-6 space-y-1">
-                        <h2 className="text-2xl font-semibold tracking-tight">
-                          Made for You
-                        </h2>
-                        <p className="text-sm text-muted-foreground">
-                          Your personal playlists. Updated daily.
-                        </p>
-                      </div>
-                      <Separator className="my-4" />
-                      <div className="relative">
-                        <ScrollArea>
-                          <div className="flex space-x-4 pb-4">
-                            {madeForYouAlbums.map((album) => (
-                              <AlbumArtwork
-                                key={album.name}
-                                album={album}
-                                className="w-[150px]"
-                                aspectRatio="square"
-                                width={150}
-                                height={150}
-                              />
-                            ))}
-                          </div>
-                          <ScrollBar orientation="horizontal" />
-                        </ScrollArea>
-                      </div>
-                    </TabsContent>
-                    <TabsContent
-                      value="podcasts"
-                      className="h-full flex-col border-none p-0 data-[state=active]:flex"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-1">
-                          <h2 className="text-2xl font-semibold tracking-tight">
-                            New Episodes
-                          </h2>
-                          <p className="text-sm text-muted-foreground">
-                            Your favorite podcasts. Updated daily.
-                          </p>
-                        </div>
-                      </div>
-                      <Separator className="my-4" />
-                      <PodcastEmptyPlaceholder />
-                    </TabsContent>
-                  </Tabs>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  )
-}
+import MonacoEditor from "../editor";
+import MusicPage from "./MusicPage";
+import albumartwork from './components/album-artwork.tsx'
+import menu from './components/menu.tsx'
+import podcastemptyplaceholder from './components/podcast-empty-placeholder.tsx'
+import sidebar from './components/sidebar.tsx'
+import album from './data/albums.ts'
+import playlists from './data/playlists.ts'
 
 export async function loader({ request }: LoaderArgs) {
-  return null
+	return null;
+}
+
+export default  function UserAuthForm() {
+  const ScaffoldingCode =`
+  // components/album-artwork.tsx
+  ${albumartwork}
+
+  // components/menu.tsx
+    ${menu}
+
+  // components/podcast-empty-placeholder.tsx
+    ${podcastemptyplaceholder}
+
+  // components/sidebar.tsx
+    ${sidebar}
+
+  // data/album.ts
+    ${album}
+
+  // data/playlists.ts
+    ${playlists}`
+	return (
+		<div className="flex flex-col justify-center gap-4">
+			<MonacoEditor code={MusicPage} renderComp={<MusicPage />} />
+			<MonacoEditor code={ScaffoldingCode} renderComp={<Scaffolding />} />
+		</div>
+	);
+}
+
+export function Scaffolding() {
+	return (
+		<div className="bg-background rounded-[15px] m-[15px] overflow-hidden h-[calc(100vh-54px)] flex flex-col w-full justify-center items-center">
+			<div className="flex  py-[100px]  ">
+				<PageHeader>
+					<PageHeaderHeading className="max-w-4xl">Scaffolding</PageHeaderHeading>
+					<PageHeaderDescription>The remaining code in order to make it work.</PageHeaderDescription>
+				</PageHeader>
+			</div>
+		</div>
+	);
 }
