@@ -9,8 +9,8 @@ export function Announcement({
 }) {
   return (
     <Badge asChild variant="secondary" className="rounded-full">
-      <NavLink to={link}>
-        {announcement} <ArrowRightIcon />
+      <NavLink to={link} className='flex items-center gap-3'>
+        <span>{announcement}</span> <ArrowRightIcon />
       </NavLink>
     </Badge>
   )

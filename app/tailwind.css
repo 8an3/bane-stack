@@ -140,3 +140,29 @@
 .geist-text {
   font-family: 'geist', sans-serif;
 }
+
+
+
+
+
+
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: oklch(var(--muted));
+  border-radius: 0.25rem;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: oklch(var(--primary) / 0.3);
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: oklch(var(--primary));
+}

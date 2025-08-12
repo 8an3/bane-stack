@@ -4,8 +4,8 @@ import { Button } from "~/components/ui/button"
 export   function HeroSection({ 
   title= "Theme Builder" ,
    desc ="Build VSCode themes visually without hunting down property names. Because life's too short for endless documentation searches.",
-    className = {`text-foreground bg-background`},
-     className2 = {`text-muted-foreground `}
+    className = `text-foreground bg-background`,
+     className2 = `text-muted-foreground `
      }) {
     return (
         <div className="sticky top-0 z-10 bg-background backdrop-blur supports-[backdrop-filter]:bg-background pb-4 pt-8">

@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
-import { buttonVariants } from "~/components";
-import { cn } from "~/utils";
+import { buttonVariants } from "~/components/ui/button";
+import { cn } from "~/components/ui/utils";
 
 import type { VariantProps } from "class-variance-authority";
 

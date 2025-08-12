@@ -1,6 +1,6 @@
-import { Button, buttonVariants } from "~/components";
+import { Button, buttonVariants } from "~/components/ui";
 import { NavLink, useLocation, useNavigation, useResolvedPath } from "@remix-run/react";
-import { cn } from "~/utils";
+import { cn } from "~/components/ui/utils";
 
 
 export const NavButtonStyled = ({

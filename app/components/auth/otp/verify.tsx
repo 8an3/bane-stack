@@ -1,48 +1,41 @@
-import type { LoaderFunctionArgs, ActionFunctionArgs } from '@remix-run/node'
-									import { Form, NavLink, useLoaderData, useNavigation } from '@remix-run/react'
-									import { json, redirect } from '@remix-run/node'
-									import { authenticator } from '~/modules/otp/client-auth'
-									import { getSession, commitSession } from '~/sessions/auth-session.server'
-									import { Card, Separator, Input, Label, CardHeader, CardTitle, CardDescription, CardContent, ButtonLoading, ButtonStyled } from '~/components'
-									import { OptiInput } from "~/components/shared/shared";
-									import { redirectSessionStorage } from '~/sessions/auth-session.server'
-									import {
-									InputOTP,
-									InputOTPGroup,
-									InputOTPSeparator,
-									InputOTPSlot,
-									} from "~/components/ui/input-otp"
-									import { cn } from '~/components/ui/utils'
-									import { CarFront } from 'lucide-react'
-									import { prisma } from '~/libs'
+import type { LoaderFunctionArgs, ActionFunctionArgs } from "@remix-run/node";
+import { Form, NavLink, useLoaderData, useNavigation } from "@remix-run/react";
+import { json, redirect } from "@remix-run/node";
+import { authenticator } from "~/modules/otp/client-auth";
+import { getSession, commitSession } from "~/sessions/auth-session.server";
+import { Card, Separator, Input, Label, CardHeader, CardTitle, CardDescription, CardContent, ButtonLoading, ButtonStyled } from "~/components";
+import { OptiInput } from "~/components/shared/shared";
+import { redirectSessionStorage } from "~/sessions/auth-session.server";
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "~/components/ui/input-otp";
+import { cn } from "~/components/ui/utils";
+import { CarFront } from "lucide-react";
+import { prisma } from "~/libs";
 
+export async function loader({ request }: LoaderFunctionArgs) {
+	await authenticator.isAuthenticated(request, {
+		successRedirect: "/dealer/home",
+	});
 
-									export async function loader({ request }: LoaderFunctionArgs) {
-									await authenticator.isAuthenticated(request, {
-										successRedirect: '/dealer/home',
-									})
+	const cookie = await getSession(request.headers.get("cookie"));
+	const authEmail = cookie.get("auth:email");
+	const authError = cookie.get(authenticator.sessionErrorKey);
 
-									const cookie = await getSession(request.headers.get('cookie'))
-									const authEmail = cookie.get('auth:email')
-									const authError = cookie.get(authenticator.sessionErrorKey)
-
-									if (!authEmail) return redirect('/client/auth/login')
-									const d = await prisma.dealer.findUnique({
-										where: { id: 1 },
-										select: {
-										dealerName: true,
-										metaDesc: true,
-
-										}
-									});
-									// Commit session to clear any error message.
-									return json({ authEmail, authError,d  } as const, {
-										headers: {
-										'set-cookie': await commitSession(cookie),
-										},
-									})
-									}
-									/**export async function loader({ request }: LoaderFunctionArgs) {
+	if (!authEmail) return redirect("/client/auth/login");
+	const d = await prisma.dealer.findUnique({
+		where: { id: 1 },
+		select: {
+			dealerName: true,
+			metaDesc: true,
+		},
+	});
+	// Commit session to clear any error message.
+	return json({ authEmail, authError, d } as const, {
+		headers: {
+			"set-cookie": await commitSession(cookie),
+		},
+	});
+}
+/**export async function loader({ request }: LoaderFunctionArgs) {
 									const redirectCookie = await redirectSessionStorage.getSession(request.headers.get('cookie'))
 									const redirectTo = redirectCookie.get('redirectTo') || '/client/portal/dashboard'
 
@@ -82,26 +75,26 @@ import type { LoaderFunctionArgs, ActionFunctionArgs } from '@remix-run/node'
 									}
 									*/
 
-									export async function action({ request }: ActionFunctionArgs) {
-									const url = new URL(request.url)
-									let currentPath = url.pathname
+export async function action({ request }: ActionFunctionArgs) {
+	const url = new URL(request.url);
+	let currentPath = url.pathname;
 
-									const redirectCookie = await redirectSessionStorage.getSession(request.headers.get('cookie'))
-									const cookieUrl = redirectCookie.get('redirectTo')
+	const redirectCookie = await redirectSessionStorage.getSession(request.headers.get("cookie"));
+	const cookieUrl = redirectCookie.get("redirectTo");
 
-									if (cookieUrl) {
-										currentPath = cookieUrl
-									}
-									try {
-										return await authenticator.authenticate('TOTP', request, {
-										successRedirect: currentPath,
-										failureRedirect: currentPath,
-										})
-									} finally {
-										await redirectSessionStorage.destroySession(redirectCookie);
-									}
-									}
-									/**export async function action({ request }: Route.ActionArgs) {
+	if (cookieUrl) {
+		currentPath = cookieUrl;
+	}
+	try {
+		return await authenticator.authenticate("TOTP", request, {
+			successRedirect: currentPath,
+			failureRedirect: currentPath,
+		});
+	} finally {
+		await redirectSessionStorage.destroySession(redirectCookie);
+	}
+}
+/**export async function action({ request }: Route.ActionArgs) {
 									try {
 										return await authenticator.authenticate('TOTP', request)
 									} catch (error) {
@@ -125,83 +118,69 @@ import type { LoaderFunctionArgs, ActionFunctionArgs } from '@remix-run/node'
 									}
 									}
 									*/
-									export default function Verify() {
-									const { authEmail, authError,d } = useLoaderData<typeof loader>()
-									return (
-										<div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
-										<div className="w-full max-w-sm">
-											<div className={cn("flex flex-col gap-6")} >
-											<div className="flex flex-col gap-6">
-												<div className="flex flex-col items-center gap-2">
-												<NavLink
-													to='/dealer/home'
-													className="flex flex-col items-center gap-2 font-medium"
-												>
-													<div className="flex h-8 w-8 items-center justify-center rounded-md">
-													<CarFront className="size-6" />
-													</div>
-													<span className="sr-only">{d?.dealerName}</span>
-												</NavLink>
-												<h1 className="text-xl font-bold">{d?.dealerName}</h1>
-												<div className="text-center text-sm">
-													Client Portal - Verify OTP
-												</div>
-												<p className='text-muted-foreground'>
-													Please check your inbox.
-												</p>
-												<p className='text-muted-foreground'>
-													We've sent you a OTP link email.
-												</p>
-												</div>
-												<div className="grid gap-4">
-												<Form method="post" autoComplete="off" className="flex w-full flex-col gap-2">
-													<Label htmlFor="code" className="sr-only">
-													Code
-													</Label>
-													<InputOTP maxLength={6} name="code"className='mx-auto mb-3'>
-													<InputOTPGroup>
-														<InputOTPSlot index={0} />
-														<InputOTPSlot index={1} />
-														<InputOTPSlot index={2} />
-													</InputOTPGroup>
-													<InputOTPSeparator />
-													<InputOTPGroup>
-														<InputOTPSlot index={3} />
-														<InputOTPSlot index={4} />
-														<InputOTPSlot index={5} />
-													</InputOTPGroup>
-													</InputOTP>
-												{/**   <Input
+export default function Verify() {
+	const { authEmail, authError, d } = useLoaderData<typeof loader>();
+	return (
+		<div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
+			<div className="w-full max-w-sm">
+				<div className={cn("flex flex-col gap-6")}>
+					<div className="flex flex-col gap-6">
+						<div className="flex flex-col items-center gap-2">
+							<NavLink to="/dealer/home" className="flex flex-col items-center gap-2 font-medium">
+								<div className="flex h-8 w-8 items-center justify-center rounded-md">
+									<CarFront className="size-6" />
+								</div>
+								<span className="sr-only">{d?.dealerName}</span>
+							</NavLink>
+							<h1 className="text-xl font-bold">{d?.dealerName}</h1>
+							<div className="text-center text-sm">Client Portal - Verify OTP</div>
+							<p className="text-muted-foreground">Please check your inbox.</p>
+							<p className="text-muted-foreground">We've sent you a OTP link email.</p>
+						</div>
+						<div className="grid gap-4">
+							<Form method="post" autoComplete="off" className="flex w-full flex-col gap-2">
+								<Label htmlFor="code" className="sr-only">
+									Code
+								</Label>
+								<InputOTP maxLength={6} name="code" className="mx-auto mb-3">
+									<InputOTPGroup>
+										<InputOTPSlot index={0} />
+										<InputOTPSlot index={1} />
+										<InputOTPSlot index={2} />
+									</InputOTPGroup>
+									<InputOTPSeparator />
+									<InputOTPGroup>
+										<InputOTPSlot index={3} />
+										<InputOTPSlot index={4} />
+										<InputOTPSlot index={5} />
+									</InputOTPGroup>
+								</InputOTP>
+								{/**   <Input
 													type="text"
 													name="code"
 													placeholder="Enter code..."
 													required
 													className=" w-full text-foreground bg-background border border-border mb-3"
 													/>  */}
-													<ButtonStyled loadingText="Verfiying code..."  >
-													<p className="">Verify Code</p>
-													</ButtonStyled>
-												</Form>
-												<Separator className="border-border" />
-												<Form method="POST" autoComplete="off" className="flex w-full flex-col gap-2">
-													<ButtonStyled loadingText="Requesting new code...">
-													<span className="text-sm font-semibold text-black">Request New Code</span>
-													</ButtonStyled>
-												</Form>
-												{/* Errors Handling. */}
-												{authEmail && authError && (
-													<span className="font-semibold text-red-400">{authError?.message}</span>
-												)}
-												</div>
-											</div>
-											<p className="text-center text-xs leading-relaxed text-gray-400">
-												By continuing, you agree to our{' '}
-												<span className="clickable underline">Terms of Service</span>
-											</p>
-											</div>
-										</div>
-										</div>
-
-									)
-									}
-									
+								<ButtonStyled loadingText="Verfiying code...">
+									<p className="">Verify Code</p>
+								</ButtonStyled>
+							</Form>
+							<Separator className="border-border" />
+							<Form method="POST" autoComplete="off" className="flex w-full flex-col gap-2">
+								<ButtonStyled loadingText="Requesting new code...">
+									<span className="text-sm font-semibold text-black">Request New Code</span>
+								</ButtonStyled>
+							</Form>
+							{/* Errors Handling. */}
+							{authEmail && authError && <span className="font-semibold text-red-400">{authError?.message}</span>}
+						</div>
+					</div>
+					<p className="text-center text-xs leading-relaxed text-gray-400">
+						By continuing, you agree to our <span className="clickable underline">Terms of Service</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	);
+}

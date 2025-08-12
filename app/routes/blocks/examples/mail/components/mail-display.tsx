@@ -27,7 +27,7 @@ import { Calendar } from "~/components/ui"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
-} from "@/registry/new-york/ui/dropdown-menu"
+} from "~/components/ui/dropdown-menu"
 import { Label } from "~/components/ui/label"
 import {
   Popover,

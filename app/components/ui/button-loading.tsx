@@ -1,12 +1,11 @@
 import { forwardRef } from "react";
 
-import { Button, buttonVariants } from "~/components";
-import { cn } from "~/utils";
+import { Button, buttonVariants } from "~/components/ui";
+import { cn } from "~/components/ui/utils";
 
 import type { VariantProps } from "class-variance-authority";
 import { LoaderCircle } from "lucide-react";
 import { NavLink, useLocation, useNavigation, useResolvedPath } from "@remix-run/react";
-import Finance from "~/routes/portal/user/dashboard.finance";
 
 
 

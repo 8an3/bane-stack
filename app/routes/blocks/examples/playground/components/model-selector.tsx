@@ -5,7 +5,7 @@ import { PopoverProps } from "@radix-ui/react-popover"
 import { Check, ChevronsUpDown } from "lucide-react"
 
 import { cn } from "~/components/ui/utils"
-import { useMutationObserver } from "@/hooks/use-mutation-observer"
+import { useMutationObserver } from "~/modules/hooks/use-mutation-observer"
 import { Button } from "~/components/ui"
 import {
   Command,
@@ -19,7 +19,7 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/registry/new-york/ui/hover-card"
+} from "~/components/ui/hover-card"
 import { Label } from "~/components/ui/label"
 import {
   Popover,

@@ -12,3 +12,7 @@ export const meta: MetaFunction = () => {
 		{ name: "description", content: "8an3/Bane Remix Stack" },
 	];
 };
+
+export async function loader({ request }: LoaderArgs) {
+  return null
+}

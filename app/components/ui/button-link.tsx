@@ -1,6 +1,6 @@
-import { buttonVariants, RemixLink } from "~/components";
-import { cn } from "~/utils";
-
+import { buttonVariants  } from "~/components/ui/button";
+import { cn } from "~/components/ui/utils";
+import { Link, useSubmit, useNavigate, useLoaderData, useNavigation, Form, NavLink, useFetcher } from "@remix-run/react";
 import type { RemixLinkProps } from "@remix-run/react/dist/components";
 import type { VariantProps } from "class-variance-authority";
 
@@ -26,7 +26,7 @@ export const ButtonLink = ({
   ...props
 }: ButtonLinkProps) => {
   return (
-    <RemixLink
+    <NavLink
       to={to}
       className={cn(
         buttonVariants({
@@ -42,7 +42,7 @@ export const ButtonLink = ({
       {...props}
     >
       {children}
-    </RemixLink>
+    </NavLink>
   );
 };
 ButtonLink.displayName = "ButtonLink";
@@ -64,7 +64,7 @@ export const ButtonNavLink = ({
   ...props
 }: ButtonNavLinkProps) => {
   return (
-    <RemixLink
+    <NavLink
       to={to}
       className={cn(
         buttonVariants({
@@ -80,7 +80,7 @@ export const ButtonNavLink = ({
       {...props}
     >
       {children}
-    </RemixLink>
+    </NavLink>
   );
 };
 ButtonNavLink.displayName = "ButtonNavLink";
@@ -101,7 +101,7 @@ export const ButtonLinkIcon = ({
   ...props
 }: ButtonLinkIconProps) => {
   return (
-    <RemixLink
+    <NavLink
       to={to}
       className={cn(
         buttonVariants({
@@ -117,7 +117,7 @@ export const ButtonLinkIcon = ({
       {...props}
     >
       {children}
-    </RemixLink>
+    </NavLink>
   );
 };
 ButtonLinkIcon.displayName = "ButtonLinkIcon";

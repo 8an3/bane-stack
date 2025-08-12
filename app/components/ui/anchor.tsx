@@ -1,4 +1,4 @@
-import { cn } from "~/utils";
+import { cn } from "~/components/ui/utils";
 
 import type { ReactNode } from "react";
 

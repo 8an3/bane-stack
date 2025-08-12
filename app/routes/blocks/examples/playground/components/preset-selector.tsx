@@ -1,7 +1,6 @@
 
 
 import * as React from "react"
-import { useRouter } from "next/navigation"
 import { PopoverProps } from "@radix-ui/react-popover"
 import { Check, ChevronsUpDown } from "lucide-react"
 
@@ -30,7 +29,6 @@ interface PresetSelectorProps extends PopoverProps {
 export function PresetSelector({ presets, ...props }: PresetSelectorProps) {
   const [open, setOpen] = React.useState(false)
   const [selectedPreset, setSelectedPreset] = React.useState<Preset>()
-  const router = useRouter()
 
   return (
     <Popover open={open} onOpenChange={setOpen} {...props}>
@@ -73,7 +71,7 @@ export function PresetSelector({ presets, ...props }: PresetSelectorProps) {
               ))}
             </CommandGroup>
             <CommandGroup className="pt-0">
-              <CommandItem onSelect={() => router.push("/examples")}>
+              <CommandItem >
                 More examples
               </CommandItem>
             </CommandGroup>

@@ -1,44 +1,28 @@
 import { Announcement, } from "~/components/customUi/announcement";
-import { ExamplesNav, } from "~/components/examples-nav";
-import { PageActions, PageHeader, PageHeaderDescription, PageHeaderHeading, } from "~/components/page-header";
-import { Button, } from "~/registry/new-york/ui/button";
+import { PageActions, PageHeader, PageHeaderDescription, PageHeaderFunction, PageHeaderHeading, } from "~/components/customUi/page-header";
+import { Button, } from "~/components/ui/button";
 import { NavLink, Outlet, } from "@remix-run/react";
+import { ExamplesNav } from "./examples/examples-nav";
+
 
 
 export default function ExamplesLayout() {
+  // <PageHeaderFunction title="E-Commerce Component Viewer" description="View each item before implementation" announcement="More sections coming soon!" />
   return (
-    <>
-      <PageHeader>
-        <Announcement />
-        <PageHeaderHeading>Build your component library</PageHeaderHeading>
-        <PageHeaderDescription>
-          A set of beautifully-designed, accessible components and a code
-          distribution platform. Works with your favorite frameworks. Open
-          Source. Open Code.
-        </PageHeaderDescription>
-        <PageActions>
-          <Button asChild size="sm">
-            <NavLink href="/docs">Get Started</NavLink>
-          </Button>
-          <Button asChild size="sm" variant="ghost">
-            <NavLink href="/blocks">Browse Blocks</NavLink>
-          </Button>
-        </PageActions>
-      </PageHeader>
-      <div className="border-grid border-b">
-        <div className="container-wrapper">
-          <div className="container py-4">
-            <ExamplesNav />
-          </div>
+    <div className='min-h-screen flex flex-col items-center'>
+      <div className=" flex items-center justify-center w-full">
+        <PageHeaderFunction />
+      </div>
+      
+      <div className="border-grid border-b flex-shrink-0 w-full">
+        <div className="container py-4 flex justify-center">
+          <ExamplesNav />
         </div>
       </div>
-      <div className="container-wrapper">
-        <div className="container py-6">
-          <section className="overflow-hidden rounded-[0.5rem] border bg-background shadow">
-            <Outlet />
-          </section>
-        </div>
+      
+      <div className="container-wrapper flex-1 w-full">
+         <Outlet />
       </div>
-    </>
+    </div>
   )
 }

@@ -1,6 +1,6 @@
 import { Link as RemixLink, NavLink as RemixNavLink } from "@remix-run/react";
 
-import { cn } from "~/utils";
+import { cn } from "~/components/ui/utils";
 
 import type { RemixLinkProps } from "@remix-run/react/dist/components";
 

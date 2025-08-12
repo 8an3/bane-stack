@@ -74,3 +74,7 @@ export default function CardsPage() {
     </>
   )
 }
+
+export async function loader({ request }: LoaderArgs) {
+  return null
+}

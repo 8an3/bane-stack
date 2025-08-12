@@ -56,7 +56,7 @@ export function Mail({
   navCollapsedSize,
 }: MailProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed)
-  const [mail, setMail] = useState(mails)
+  const [mail, setMail] = React.useState(mails)
 
   return (
     <TooltipProvider delayDuration={0}>

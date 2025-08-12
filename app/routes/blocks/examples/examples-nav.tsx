@@ -1,4 +1,4 @@
-import { NavLink, usePathname } from "@remix-run/react";
+import { NavLink, useNavigation } from "@remix-run/react";
 import { cn, } from "~/components/ui/utils";
 import { ScrollArea, ScrollBar, } from "~/components/ui/scroll-area";
 
@@ -23,13 +23,13 @@ const examples = [
   },
     {
     name: "E-Commerce",
-    href: "/blocks/examples/ecommerce/viewer",
+    href: "/blocks/examples/ecommerce",
     code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/dashboard",
     hidden: false,
   },
       {
     name: "Forms",
-    href: "/blocks/examples/forms",
+    href: "/blocks/examples/forms/profile",
     code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/authentication",
     hidden: false,
   },
@@ -76,7 +76,8 @@ export function ExamplesNav({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const pathname = usePathname()
+    const nav = useNavigation()
+  const pathname = nav.location?.pathname
 
   return (
     <div className={cn("flex items-center", className)} {...props}>

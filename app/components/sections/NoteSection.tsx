@@ -1,5 +1,5 @@
 import { Info } from "lucide-react";
-import { Badge, Button, Card, CardContent, CardHeader, CardTitle, Label, Separator, Switch } from "~/components";
+import { Badge, Button, Card, CardContent, CardHeader, CardTitle, Label, Separator, Switch } from "~/components/ui";
 
 
 export const NoteSection = ({ items, className = "", icon = null, title = "NOTE" }) => (

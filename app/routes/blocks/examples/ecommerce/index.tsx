@@ -4,7 +4,7 @@ import { eP } from "~/utils/ext";
 import { authSessionStorage } from "~/sessions/session";
 import { axios } from "axios";
 import { ActionArgs, defer, json, redirect, type ActionArgs, type LoaderArgs } from "@remix-run/node";
-import { prisma } from "~/libs";
+import { prisma } from "~/modules/libs/prisma";
 import { CarFront, Link } from "lucide-react";
 import { ButtonStyled } from "~/components/ui/button-loading";
 import { Label } from "~/components/ui/label";
@@ -43,7 +43,7 @@ import { StoreNavSection } from "~/components/ecommerceSections/StoreNav";
 import { ProductPage } from "~/components/ecommerceSections/ProductPages";
 
 export default function Dashboard() {
-	const [sel, setSel] = useState('LandingPage');
+	const [sel, setSel] = useState("LandingPage");
 	const sections = [
 		{ name: "CategoryFilters", value: "CategoryFilters" },
 		{ name: "CategoryPage", value: "CategoryPage" },
@@ -77,99 +77,99 @@ export default function Dashboard() {
 		{ name: "StorefrontPages", value: "StorefrontPages" },
 		{ name: "StoreNav", value: "StoreNav" },
 	];
-    let viewSelected
- 	switch (sel) {
-		case 'CategoryFilters':
+	let viewSelected;
+	switch (sel) {
+		case "CategoryFilters":
 			viewSelected = <CategoryFiltersSection />;
 			break;
-		case 'CategoryPage':
+		case "CategoryPage":
 			viewSelected = <CategoryPage />;
 			break;
-		case 'CategoryPreviews':
+		case "CategoryPreviews":
 			viewSelected = <CategoryPreviewsSection />;
 			break;
-		case 'CheckoutForm':
+		case "CheckoutForm":
 			viewSelected = <CheckoutForm />;
 			break;
-		case 'CheckoutPage':
+		case "CheckoutPage":
 			viewSelected = <CheckoutPage />;
 			break;
-		case 'DetailsScreen':
+		case "DetailsScreen":
 			viewSelected = <DetailsScreen />;
 			break;
-		case 'FeedComponents':
+		case "FeedComponents":
 			viewSelected = <FeedsDemo />;
 			break;
-		case 'GridLists':
+		case "GridLists":
 			viewSelected = <GridLists />;
 			break;
-		case 'HomeScreen':
+		case "HomeScreen":
 			viewSelected = <HomePageSection />;
 			break;
-		case 'IncentiveSection':
+		case "IncentiveSection":
 			viewSelected = <IncentiveDemo />;
 			break;
-		case 'LandingPage':
+		case "LandingPage":
 			viewSelected = <LandingPageSection />;
 			break;
-		case 'OrderDetailsPage':
+		case "OrderDetailsPage":
 			viewSelected = <OrderDetailsPage />;
 			break;
-		case 'OrderHistory':
+		case "OrderHistory":
 			viewSelected = <OrderHistory />;
 			break;
-		case 'OrdersSummaries':
+		case "OrdersSummaries":
 			viewSelected = <OrderSummaries />;
 			break;
-		case 'PageHeadings':
+		case "PageHeadings":
 			viewSelected = <PageHeadingsSection />;
 			break;
-		case 'PricingPage':
+		case "PricingPage":
 			viewSelected = <PricingPage />;
 			break;
-		case 'ProductLists':
+		case "ProductLists":
 			viewSelected = <ProductListPage />;
 			break;
-		case 'ProductOverviews':
+		case "ProductOverviews":
 			viewSelected = <ProductOverviews />;
 			break;
-		case 'ProductPages':
+		case "ProductPages":
 			viewSelected = <ProductPage />;
 			break;
-		case 'ProductQuickviews':
+		case "ProductQuickviews":
 			viewSelected = <ProductQuickviewsSection />;
 			break;
-		case 'ProductsFeatures':
+		case "ProductsFeatures":
 			viewSelected = <ProductsFeaturesSection />;
 			break;
-		case 'PromoSection':
+		case "PromoSection":
 			viewSelected = <PromoSection />;
 			break;
-		case 'ReviewsSection':
+		case "ReviewsSection":
 			viewSelected = <ReviewsSection />;
 			break;
-		case 'SectionHeadings':
+		case "SectionHeadings":
 			viewSelected = <SectionHeadings />;
 			break;
-		case 'SettingsScreen':
+		case "SettingsScreen":
 			viewSelected = <SettingsScreen />;
 			break;
-		case 'ShoppingCart':
+		case "ShoppingCart":
 			viewSelected = <ShoppingCartSection />;
 			break;
-		case 'ShoppingCartPage':
+		case "ShoppingCartPage":
 			viewSelected = <ShoppingCartPage />;
 			break;
-		case 'StackedLayouts':
+		case "StackedLayouts":
 			viewSelected = <StackedLayoutsSection />;
 			break;
-		case 'StackedLists':
+		case "StackedLists":
 			viewSelected = <StackedListsSection />;
 			break;
-		case 'StorefrontPages':
+		case "StorefrontPages":
 			viewSelected = <StorefrontPage />;
 			break;
-		case 'StoreNav':
+		case "StoreNav":
 			viewSelected = <StoreNavSection />;
 			break;
 		default:
@@ -177,43 +177,30 @@ export default function Dashboard() {
 			break;
 	}
 	return (
-		<div className="flex flex-col justify-center gap-3">
-			<PageHeaderFunction title="E-Commerce Component Viewer" description="View each item before implementation" announcement="More sections coming soon!" />
-			<div className="border-grid border-b">
-				<div className="container-wrapper">
-					<div className="container py-4 flex justify-center">
-						<div className="grid w-full max-w-sm items-center gap-1.5">
-							<Label>E-Commerce Sections</Label>
-							<Select
-								value={sel}
-								onValueChange={(value) => {
-									setSel(value);
-								}}
-							>
-								<SelectTrigger>
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{sections.map((item, index) => {
-										return (
-											<SelectItem key={index} value={item.value}>
-												{item.name}
-											</SelectItem>
-										);
-									})}
-								</SelectContent>
-							</Select>
-						</div>
-					</div>
-				</div>
+		<div className="flex flex-col justify-center gap-3 w-full">
+			<div className="grid w-full max-w-sm items-center gap-1.5 mt-[25px] mx-auto">
+				<Label>E-Commerce Sections</Label>
+				<Select
+					value={sel}
+					onValueChange={(value) => {
+						setSel(value);
+					}}
+				>
+					<SelectTrigger>
+						<SelectValue />
+					</SelectTrigger>
+					<SelectContent>
+						{sections.map((item, index) => {
+							return (
+								<SelectItem key={index} value={item.value}>
+									{item.name}
+								</SelectItem>
+							);
+						})}
+					</SelectContent>
+				</Select>
 			</div>
-			<div className="container-wrapper">
-				<div className="container py-6">
-					<section className="overflow-hidden rounded-[0.5rem] border bg-background shadow">
-						{viewSelected}
-					</section>
-				</div>
-			</div>
+			<section className="overflow-hidden rounded-[0.5rem] border bg-background shadow">{viewSelected}</section>
 		</div>
 	);
 }
@@ -223,8 +210,5 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 export const meta: MetaFunction = () => {
-	return [
-		{ title: "E-Commerce - 8an3/Bane" },
-		{ name: "description", content: "8an3/Bane Remix Stack" },
-	];
+	return [{ title: "E-Commerce - 8an3/Bane" }, { name: "description", content: "8an3/Bane Remix Stack" }];
 };

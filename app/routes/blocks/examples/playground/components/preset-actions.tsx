@@ -13,7 +13,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/registry/new-york/ui/alert-dialog"
+} from "~/components/ui/alert-dialog"
 import { Button } from "~/components/ui"
 import {
   DialogContent,
@@ -21,14 +21,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/registry/new-york/ui/dialog"
+} from "~/components/ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/registry/new-york/ui/dropdown-menu"
+} from "~/components/ui/dropdown-menu"
 import { Label } from "~/components/ui/label"
 import { Switch } from "~/components/ui/switch"
 

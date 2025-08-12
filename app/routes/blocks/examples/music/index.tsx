@@ -140,3 +140,7 @@ export default function MusicPage() {
     </>
   )
 }
+
+export async function loader({ request }: LoaderArgs) {
+  return null
+}

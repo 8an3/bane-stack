@@ -8,3 +8,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export async function action({ request }: ActionFunctionArgs) {
 	return await authenticator.logout(request, { redirectTo: "/client/auth/login" });
 }
+
+export const meta: MetaFunction = () => {
+	return [
+		{ title: "8an3/Bane" },
+		{ name: "description", content: "8an3/Bane Remix Stack" },
+	];
+};

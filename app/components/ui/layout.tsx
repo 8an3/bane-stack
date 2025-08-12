@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-import { cn } from "~/utils";
+import { cn } from "~/components/ui/utils";
 
 import type { VariantProps } from "class-variance-authority";
 

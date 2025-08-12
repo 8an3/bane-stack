@@ -1,11 +1,6 @@
-
-
-import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns"
 import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
+import { useFetcher } from "@remix-run/react"
 import { cn } from "~/components/ui/utils"
 import { toast } from "sonner"
 import { Button } from "~/components/ui"
@@ -18,15 +13,7 @@ import {
   CommandItem,
   CommandList,
 } from "~/components/ui/command"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/registry/new-york/ui/form"
+import { Label } from "~/components/ui/label"
 import { Input } from "~/components/ui/input"
 import {
   Popover,
@@ -46,38 +33,22 @@ const languages = [
   { label: "Chinese", value: "zh" },
 ] as const
 
-const accountFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, {
-      message: "Name must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Name must not be longer than 30 characters.",
-    }),
-  dob: z.date({
-    required_error: "A date of birth is required.",
-  }),
-  language: z.string({
-    required_error: "Please select a language.",
-  }),
-})
-
-type AccountFormValues = z.infer<typeof accountFormSchema>
-
-// This can come from your database or API.
-const defaultValues: Partial<AccountFormValues> = {
-  // name: "Your name",
-  // dob: new Date("2023-01-23"),
-}
-
 export function AccountForm() {
-  const form = useForm<AccountFormValues>({
-    resolver: zodResolver(accountFormSchema),
-    defaultValues,
-  })
+  const fetcher = useFetcher()
 
-  function onSubmit(data: AccountFormValues) {
+  // Handle form submission
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    
+    // You can add validation here if needed
+    const data = {
+      name: formData.get("name") as string,
+      dob: formData.get("dob") as string,
+      language: formData.get("language") as string,
+    }
+
+    // Display the form data (replace with actual submission logic)
     toast({
       title: "You submitted the following values:",
       description: (
@@ -89,134 +60,122 @@ export function AccountForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
+    <fetcher.Form method="post" onSubmit={handleSubmit} className="space-y-8">
+      <div className="space-y-2">
+        <Label htmlFor="name">Name</Label>
+        <Input
+          id="name"
           name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your name" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is the name that will be displayed on your profile and in
-                emails.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
+          placeholder="Your name"
+          minLength={2}
+          maxLength={30}
         />
-        <FormField
-          control={form.control}
-          name="dob"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Date of birth</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
+        <p className="text-sm text-muted-foreground">
+          This is the name that will be displayed on your profile and in emails.
+        </p>
+      </div>
+
+      <div className="flex flex-col space-y-2">
+        <Label>Date of birth</Label>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className={cn(
+                "w-[240px] pl-3 text-left font-normal",
+                !fetcher.formData?.get("dob") && "text-muted-foreground"
+              )}
+            >
+              {fetcher.formData?.get("dob") ? (
+                format(new Date(fetcher.formData.get("dob") as string), "PPP")
+              ) : (
+                <span>Pick a date</span>
+              )}
+              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={
+                fetcher.formData?.get("dob")
+                  ? new Date(fetcher.formData.get("dob") as string)
+                  : undefined
+              }
+              onSelect={(date) => {
+                // You'd need to handle the date selection here
+                // This might require a hidden input field and some state management
+              }}
+              disabled={(date) =>
+                date > new Date() || date < new Date("1900-01-01")
+              }
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
+        <input type="hidden" name="dob" value={fetcher.formData?.get("dob")?.toString() || ""} />
+        <p className="text-sm text-muted-foreground">
+          Your date of birth is used to calculate your age.
+        </p>
+      </div>
+
+      <div className="flex flex-col space-y-2">
+        <Label>Language</Label>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              role="combobox"
+              className={cn(
+                "w-[200px] justify-between",
+                !fetcher.formData?.get("language") && "text-muted-foreground"
+              )}
+            >
+              {fetcher.formData?.get("language")
+                ? languages.find(
+                    (language) => language.value === fetcher.formData?.get("language")
+                  )?.label
+                : "Select language"}
+              <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-[200px] p-0">
+            <Command>
+              <CommandInput placeholder="Search language..." />
+              <CommandList>
+                <CommandEmpty>No language found.</CommandEmpty>
+                <CommandGroup>
+                  {languages.map((language) => (
+                    <CommandItem
+                      key={language.value}
+                      onSelect={() => {
+                        // You'd need to handle the language selection here
+                        // This might require a hidden input field and some state management
+                      }}
                     >
-                      {field.value ? (
-                        format(field.value, "PPP")
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                Your date of birth is used to calculate your age.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="language"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Language</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        "w-[200px] justify-between",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value
-                        ? languages.find(
-                            (language) => language.value === field.value
-                          )?.label
-                        : "Select language"}
-                      <ChevronsUpDown className="opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
-                  <Command>
-                    <CommandInput placeholder="Search language..." />
-                    <CommandList>
-                      <CommandEmpty>No language found.</CommandEmpty>
-                      <CommandGroup>
-                        {languages.map((language) => (
-                          <CommandItem
-                            value={language.label}
-                            key={language.value}
-                            onSelect={() => {
-                              form.setValue("language", language.value)
-                            }}
-                          >
-                            <Check
-                              className={cn(
-                                "mr-2",
-                                language.value === field.value
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                            {language.label}
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                This is the language that will be used in the dashboard.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Update account</Button>
-      </form>
-    </Form>
+                      <Check
+                        className={cn(
+                          "mr-2 h-4 w-4",
+                          language.value === fetcher.formData?.get("language")
+                            ? "opacity-100"
+                            : "opacity-0"
+                        )}
+                      />
+                      {language.label}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
+        <input type="hidden" name="language" value={fetcher.formData?.get("language")?.toString() || ""} />
+        <p className="text-sm text-muted-foreground">
+          This is the language that will be used in the dashboard.
+        </p>
+      </div>
+
+      <Button type="submit">Update account</Button>
+    </fetcher.Form>
   )
 }

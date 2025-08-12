@@ -1,7 +1,9 @@
 
-import { Mail } from "./components/mail"
-import { accounts, mails } from "./data"
-import Sidebar9 from "~/components/blocks/sidebars/sidebar-09/page"
+import { Mail, } from "./components/mail";
+import { accounts, mails, } from "./data";
+import Sidebar9 from "~/components/blocks/sidebars/sidebar-09";
+import { Tabs, TabsContent, TabsList, TabsTrigger, } from "~/components/ui/tabs";
+
 
 export default function MailPage() {
   const layout = null
@@ -12,7 +14,7 @@ export default function MailPage() {
 
   return (
     <>
-      <div className="flex-col md:flex">
+      <div className="flex-col md:flex mt-5">
         <Tabs defaultValue="Mail 01">
   <TabsList>
     <TabsTrigger value="Mail 01">Mail 01</TabsTrigger>
@@ -42,3 +44,6 @@ export const meta: MetaFunction = () => {
 		{ name: "description", content: "8an3/Bane Remix Stack" },
 	];
 };
+export async function loader({ request }: LoaderArgs) {
+  return null
+}

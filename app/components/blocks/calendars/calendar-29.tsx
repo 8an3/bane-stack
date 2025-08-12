@@ -1,7 +1,7 @@
 
 
 import * as React from "react"
-import { parseDate } from "chrono-node"
+ 
 import { CalendarIcon } from "lucide-react"
 
 import { Button } from "~/components/ui/button"
@@ -13,6 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover"
+import { options } from "~/components/customUi/options"
 
 function formatDate(date: Date | undefined) {
   if (!date) {
@@ -30,7 +31,7 @@ export default function Calendar29() {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("In 2 days")
   const [date, setDate] = React.useState<Date | undefined>(
-    parseDate(value) || undefined
+    new Date(value).toLocaleString("en-US", options) || undefined
   )
   const [month, setMonth] = React.useState<Date | undefined>(date)
 
@@ -89,7 +90,7 @@ export default function Calendar29() {
       </div>
       <div className="text-muted-foreground px-1 text-sm">
         Your post will be published on{" "}
-        <span className="font-medium">{formatDate(date)}</span>.
+        <span className="font-medium">{new Date(date).toLocaleString("en-US", options) }</span>.
       </div>
     </div>
   )

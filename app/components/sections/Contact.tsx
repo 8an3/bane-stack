@@ -11,30 +11,37 @@ import { useFetcher } from "@remix-run/react";
 export function ContactSection({ 
   title = "Get in touch", 
   subtitle = "We'd love to hear from you. Send us a message and we'll respond as soon as possible.", 
-  handleSubmit= {
-    const fetcher = useFetcher();
-    const onFormSubmit = async (e) => {
-		e.preventDefault();
-			const formData = new FormData(e.target);
-			const data = {
-				firstName: formData.get("firstName"),
-				lastName: formData.get("lastName"),
-				company: formData.get("company"),
-				email: formData.get("email"),
-				country: selectedCountry,
-				phone: formData.get("phone"),
-				message: formData.get("message"),
-				agreedToTerms: agreedToTerms,
-				intent: 'contactUsForm',
-			};
-fetcher.submit(data, { method: "post" });
-	};}
+  handleSubmit
  }) {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [selectedCountry, setSelectedCountry] = useState("");
 	const [agreedToTerms, setAgreedToTerms] = useState(false);
-			
-
+			const fetcher = useFetcher()
+const defaultHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      company: formData.get("company"),
+      email: formData.get("email"),
+      country: selectedCountry,
+      phone: formData.get("phone"),
+      message: formData.get("message"),
+      agreedToTerms: agreedToTerms,
+      intent: 'contactUsForm',
+    }
+    
+    if (handleSubmit) {
+      handleSubmit(data)
+    } else {
+      fetcher.submit(data, { method: "post" })
+    }
+    
+    setIsSubmitting(false)
+  }
 	return (
 		<section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
 			<div className="mx-auto max-w-2xl">
@@ -45,7 +52,7 @@ fetcher.submit(data, { method: "post" });
 				</div>
 
 				{/* Form */}
-				<form onSubmit={onFormSubmit} className="space-y-6">
+				<fetcher.Form onSubmit={defaultHandleSubmit} className="space-y-6">
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
 						{/* First Name */}
 						<div className="space-y-2">
@@ -122,7 +129,7 @@ fetcher.submit(data, { method: "post" });
 							</>
 						)}
 					</Button>
-				</form>
+				</fetcher.Form>
 			</div>
 		</section>
 	);

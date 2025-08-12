@@ -1,4 +1,4 @@
-import { AppSidebar, } from "./app-sidebar";
+import { AppSidebar, } from "./one-app-sidebar";
 import { ChartAreaInteractive, } from "./chart-area-interactive";
 import { DataTable, } from "./data-table";
 import { SectionCards, } from "./section-cards";

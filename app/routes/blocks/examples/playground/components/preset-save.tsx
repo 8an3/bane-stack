@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/new-york/ui/dialog"
+} from "~/components/ui/dialog"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
 

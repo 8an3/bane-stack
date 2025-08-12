@@ -1,4 +1,4 @@
-import PageOne from "~/components/blocks/one/page";
+import PageOne from "~/components/blocks/one";
 
 export default function Page() {
     return (

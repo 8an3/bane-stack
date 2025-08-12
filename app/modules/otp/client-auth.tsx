@@ -1,8 +1,8 @@
 import { Authenticator } from "remix-auth";
 import { TOTPStrategy } from "remix-auth-totp";
-import { prisma } from "~/libs";
+import { prisma } from "~/modules/libs/prisma";
 import type { Clientfile } from "@prisma/client";
-import { authSessionStorage } from "~/sessions/auth-session.server";
+import { authSessionStorage } from "~/modules/otp/auth-session";
 import { sendAuthEmail } from "~/modules/otp/email";
 
 export let authenticator = new Authenticator<Clientfile>(authSessionStorage, { throwOnError: true });

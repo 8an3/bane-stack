@@ -12,7 +12,7 @@ export function SiteHeader() {
                 <div className="ml-auto flex items-center gap-2">
                     <div className="flex items-center space-x-3 -mt-2 mb-2">
                         <span className="text-2xl font-bold text-muted-foreground ">
-                            Bane
+                           8an3/Bane
                         </span>
                         <div className="w-9 h-9 bg-transparent rounded-[0px] flex items-center justify-center">
                             <Zap className="w-6 h-6 text-primary" />

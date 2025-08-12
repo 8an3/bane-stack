@@ -62,9 +62,9 @@ export default function LoginPage() {
                   <div className="flex size-8 items-center justify-center rounded-md">
                     <Zap color="#155dfc" />
                   </div>
-                  <span className="sr-only">Bane.</span>
+                  <span className="sr-only">8an3/Bane.</span>
                 </a>
-                <h1 className="text-xl font-bold">Welcome to Bane</h1>
+                <h1 className="text-xl font-bold">Welcome to 8an3/Bane</h1>
                 <div className="text-center text-sm">
                   Don&apos;t have an account?{" "}
                   <a href="#" className="underline underline-offset-4">

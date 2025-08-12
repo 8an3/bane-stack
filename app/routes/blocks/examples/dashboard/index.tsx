@@ -195,3 +195,7 @@ export default function DashboardPage() {
     </>
   )
 }
+
+export async function loader({ request }: LoaderArgs) {
+  return null
+}

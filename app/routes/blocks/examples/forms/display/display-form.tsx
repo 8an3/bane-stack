@@ -1,21 +1,9 @@
-
-
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
+import { useFetcher } from "@remix-run/react"
+import { useState } from "react"
 import { toast } from "sonner"
 import { Button } from "~/components/ui"
 import { Checkbox } from "~/components/ui/checkbox"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/registry/new-york/ui/form"
+import { Label } from "~/components/ui/label"
 
 const items = [
   {
@@ -44,89 +32,101 @@ const items = [
   },
 ] as const
 
-const displayFormSchema = z.object({
-  items: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one item.",
-  }),
-})
-
-type DisplayFormValues = z.infer<typeof displayFormSchema>
-
-// This can come from your database or API.
-const defaultValues: Partial<DisplayFormValues> = {
-  items: ["recents", "home"],
-}
+// Default selected items
+const defaultItems = ["recents", "home"]
 
 export function DisplayForm() {
-  const form = useForm<DisplayFormValues>({
-    resolver: zodResolver(displayFormSchema),
-    defaultValues,
-  })
+  const fetcher = useFetcher()
+  const [selectedItems, setSelectedItems] = useState<string[]>(defaultItems)
+  const [error, setError] = useState<string>("")
 
-  function onSubmit(data: DisplayFormValues) {
+  const handleCheckboxChange = (itemId: string, checked: boolean) => {
+    setSelectedItems(prev => {
+      if (checked) {
+        return [...prev, itemId]
+      } else {
+        return prev.filter(id => id !== itemId)
+      }
+    })
+    // Clear error when user makes a selection
+    if (error && selectedItems.length === 0 && checked) {
+      setError("")
+    }
+  }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    // Validate that at least one item is selected
+    if (selectedItems.length === 0) {
+      event.preventDefault()
+      setError("You have to select at least one item.")
+      return
+    }
+
+    setError("")
+    
+    // Show success toast
     toast({
       title: "You submitted the following values:",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          <code className="text-white">
+            {JSON.stringify({ items: selectedItems }, null, 2)}
+          </code>
         </pre>
       ),
     })
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="items"
-          render={() => (
-            <FormItem>
-              <div className="mb-4">
-                <FormLabel className="text-base">Sidebar</FormLabel>
-                <FormDescription>
-                  Select the items you want to display in the sidebar.
-                </FormDescription>
-              </div>
-              {items.map((item) => (
-                <FormField
-                  key={item.id}
-                  control={form.control}
+    <fetcher.Form onSubmit={handleSubmit} className="space-y-8">
+      <div>
+        <div className="mb-4">
+          <Label className="text-base">Sidebar</Label>
+          <p className="text-sm text-muted-foreground">
+            Select the items you want to display in the sidebar.
+          </p>
+        </div>
+        
+        <div className="space-y-3">
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="flex flex-row items-start space-x-3 space-y-0"
+            >
+              <Checkbox
+                id={item.id}
+                name="items"
+                value={item.id}
+                checked={selectedItems.includes(item.id)}
+                onCheckedChange={(checked) => 
+                  handleCheckboxChange(item.id, checked === true)
+                }
+              />
+              <Label htmlFor={item.id} className="font-normal">
+                {item.label}
+              </Label>
+              {/* Hidden input to ensure selected values are submitted */}
+              {selectedItems.includes(item.id) && (
+                <input
+                  type="hidden"
                   name="items"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item.id}
-                        className="flex flex-row items-start space-x-3 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(item.id)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, item.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== item.id
-                                    )
-                                  )
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          {item.label}
-                        </FormLabel>
-                      </FormItem>
-                    )
-                  }}
+                  value={item.id}
                 />
-              ))}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Update display</Button>
-      </form>
-    </Form>
+              )}
+            </div>
+          ))}
+        </div>
+        
+        {error && (
+          <p className="text-sm font-medium text-destructive mt-2">
+            {error}
+          </p>
+        )}
+      </div>
+      
+      <Button type="submit" disabled={fetcher.state === "submitting"}>
+        {fetcher.state === "submitting" ? "Updating..." : "Update display"}
+      </Button>
+    </fetcher.Form>
   )
 }

@@ -1,6 +1,6 @@
 import { cn } from "~/components/ui/utils"
 import { Button } from "~/components/ui"
-import { ScrollArea } from "@/registry/new-york/ui/scroll-area"
+import { ScrollArea } from "~/components/ui/scroll-area"
 
 import { Playlist } from "../data/playlists"
 

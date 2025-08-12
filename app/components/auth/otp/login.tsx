@@ -2,19 +2,17 @@ import type { LoaderFunctionArgs, ActionFunctionArgs } from "@remix-run/node";
 import { Link, useSubmit, useNavigate, useLoaderData, useNavigation, Form, NavLink, useFetcher } from "@remix-run/react";
 import { json, redirect } from "@remix-run/node";
 import { authenticator } from "~/modules/otp/client-auth";
-import { getSession, commitSession, sessionStorage } from "~/sessions/auth-session.server";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
-import { Button } from "~/components/ui/button";
-import { Separator } from "~/components/ui/separator";
+import { getSession, commitSession, sessionStorage } from "~/modules/otp/auth-session";
 import { Input } from "~/components/ui/input";
-import { ButtonLoading, ButtonStyled, Label } from "~/components";
+import {  Label } from "~/components/ui";
 import { OptiInput } from "~/components/shared/shared";
 import { CarFront, GalleryVerticalEnd, Zap } from "lucide-react";
-import { prisma } from "~/libs";
+import { prisma } from "~/modules/libs/prisma";
 import { cn } from "~/components/ui/utils";
-import { redirectSessionStorage } from "~/sessions/auth-session.server";
+import { redirectSessionStorage } from "~/modules/otp/auth-session";
+import { ButtonStyled } from "~/components/customUi/ButtonStyled";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+/**export async function loader({ request }: LoaderFunctionArgs) {
 	const redirectCookie = await redirectSessionStorage.getSession(request.headers.get("cookie"));
 	let redirectTo = redirectCookie.get("redirectTo");
 	redirectTo = redirectTo ? redirectTo : "/client/portal/dashboard";
@@ -38,21 +36,24 @@ export async function loader({ request }: LoaderFunctionArgs) {
 		},
 	});
 }
-
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-	const { d } = data;
-	return [{ title: `Client Login - ${d.dealerName}` }, { name: "description", keywords: "Automotive Sales, dealership sales, automotive CRM, Service Center, Parts Department, Accessories Department, CRM, Dealership.", content: d.metaDesc }];
-};
-
 export async function action({ request }: ActionFunctionArgs) {
 	await authenticator.authenticate("TOTP", request, {
 		successRedirect: "/client/auth/verify",
 		failureRedirect: "/client/auth/login",
 	});
-}
+} */
+export const meta: MetaFunction = () => {
+	return [
+		{ title: "8an3/Bane" },
+		{ name: "description", content: "8an3/Bane Remix Stack" },
+	];
+};
+
+
 
 export default function OTPLogin() {
-	const {   authError,  } = useLoaderData<typeof loader>();
+//	const {   authError,  } = useLoaderData<typeof loader>();
+const authError = false
 	const fetcher = useFetcher();
 	return (
 		<div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">

@@ -313,3 +313,7 @@ export default function PlaygroundPage() {
     </>
   )
 }
+
+export async function loader({ request }: LoaderArgs) {
+  return null
+}

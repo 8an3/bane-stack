@@ -18,3 +18,7 @@ export default function AuthenticationPage() {
     </>
   )
 }
+
+export async function loader({ request }: LoaderArgs) {
+  return null
+}

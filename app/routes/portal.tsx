@@ -9,24 +9,7 @@ import { NavMain } from "~/components/customUi/nav-main";
 import { NavUser } from "~/components/customUi/nav-user";
 import { cn } from "~/components/ui/utils";
 
-export async function loader({ request, params }: LoaderFunction) {
-	/**const session = await authSessionStorage.getSession(request.headers.get("Cookie"));
-	const email = session.get("email");
-	const user = await eP.user.all(email)
-	if (!user) return redirect(import.meta.env.LOGIN) */
-
-	/**	const URLS = {
-			VITE_APP_URL: import.meta.env.VITE_APP_URL,
-			LOGIN: import.meta.env.VITE_LOGIN,
-			LOGOUT: import.meta.env.VITE_LOGOUT,
-			PO: import.meta.env.VITE_PO,
-			TICKETS: import.meta.env.VITE_TICKETS,
-	
-		}; */
-
-	//	const s = eP.parentStore.one()
-
-	const navItems = {
+export const navItems = {
 		navMain: [
 			{
 				title: "Portal",
@@ -40,10 +23,7 @@ export async function loader({ request, params }: LoaderFunction) {
 						title: "Template",
 						url: "/portal/template",
 					},
-					{
-						title: "Tickets",
-						url: "/portal/tickets",
-					},
+			
 				],
 			},
 			{
@@ -51,43 +31,78 @@ export async function loader({ request, params }: LoaderFunction) {
 				url: "#",
 				items: [
 					{
+						title: "Authentication",
+						url: "/blocks/examples/authentication",
+					},
+							{
+						title: "Cards",
+						url: "/blocks/examples/cards",
+					},
+							{
+						title: "Dashboard",
+						url: "/blocks/examples/dashboard",
+					},
+							{
+						title: "E-Commerce",
+						url: "/blocks/examples/ecommerce",
+					},
+							{
+						title: "Forms",
+						url: "/blocks/examples/forms",
+					},
+							{
+						title: "Mail",
+						url: "/blocks/examples/mail",
+					},
+							{
+						title: "Music",
+						url: "/blocks/examples/music",
+					},
+							{
+						title: "Playground",
+						url: "/blocks/examples/playground",
+					},
+							{
+						title: "Products",
+						url: "/blocks/examples/products",
+					},
+							{
+						title: "Sections",
+						url: "/blocks/examples/sections/viewer",
+					},
+							{
+						title: "Tasks",
+						url: "/blocks/examples/tasks",
+					},
+							{
+						title: "Tickets",
+						url: "/blocks/tickets",
+					},
+				],
+			},
+			{
+				title: "Sidebars",
+				url: "#",
+				items: [
+					{
 						title: "Featured",
 						url: "/blocks/sidebar/one",
 					},
-					{
-						title: "Sidebar 2",
-						url: "/blocks/sidebar/two",
-					},
-					{
-						title: "Sidebar 3",
-						url: "/blocks/sidebar/three",
-					},
-					{
-						title: "Sidebar 4",
-						url: "/blocks/sidebar/four",
-					},
-				],
-			},
-			{
-				title: "Charts",
-				url: "#",
-				items: [
-					{
-						title: "Charts",
-						url: "/blocks/charts/one",
-					},
 
 				],
 			},
 			{
-				title: "Architecture",
+				title: "Auth",
 				url: "#",
 				items: [
 					{
-						title: "Accessibility",
-						url: "#",
+						title: "Login",
+						url: "/login",
 					},
-
+{
+						title: "Logout",
+						url: "/logout",
+					},
 				],
 			},
 		],
@@ -115,25 +130,25 @@ export async function loader({ request, params }: LoaderFunction) {
 		],
 
 	}
-	return {
-		//	s,
-		//URLS,
-		//user,
-		navItems
-	};
+
+export async function loader({ request, params }: LoaderFunction) {
+	/**const session = await authSessionStorage.getSession(request.headers.get("Cookie"));
+	const email = session.get("email");
+	const user = await eP.user.all(email)
+	if (!user) return redirect(import.meta.env.LOGIN) */
+
+ 
+
+	//	const s = eP.parentStore.one()
+
+	
+	return null
 }
 export default function ProviderRoute() {
-	const { navItems } = useLoaderData()
+//	const { navItems } = useLoaderData()
 	return (
 		<div className='bg-[#11827] w-[100vw] h-[100vh] overflow-hidden'>
-			<SidebarProvider
-				style={
-					{
-						"--sidebar-width": "calc(var(--spacing) * 72)",
-						"--header-height": "calc(var(--spacing) * 12)",
-					} as React.CSSProperties
-				}
-			>
+			<SidebarProvider >
 				<AppSidebar variant="inset" data={navItems} />
 				<Quote />
 			</SidebarProvider>
@@ -171,7 +186,7 @@ export function AppSidebar({ data, ...props }: React.ComponentProps<typeof Sideb
 		avatar: "/avatars/shadcn.jpg",
 	}
 	return (
-		<Sidebar collapsible="offcanvas" className='-ml-2' {...props}>
+		<Sidebar collapsible="offcanvas" className='-ml-2 w-[16rem]' {...props}>
 			<SidebarHeader>
 				<SidebarMenu>
 					<SidebarMenuItem>
@@ -181,7 +196,7 @@ export function AppSidebar({ data, ...props }: React.ComponentProps<typeof Sideb
 						>
 							<a href="#">
 								<Zap className="!size-5 text-primary" />
-								<span className="text-base font-semibold">Bane</span>
+								<span className="text-base font-semibold">8an3/Bane</span>
 							</a>
 						</SidebarMenuButton>
 					</SidebarMenuItem>

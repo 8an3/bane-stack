@@ -1,4 +1,4 @@
-import { Badge, Button, Card, CardContent, CardHeader, CardTitle, Label, Separator, Switch } from "~/components";
+import { Badge, Button, Card, CardContent, CardHeader, CardTitle, Label, Separator, Switch } from "~/components/ui";
 import { ArrowRight, Check, ChevronDown, Code, Copy, Download, Info, MessageCircleWarning, Rocket, Settings } from "lucide-react";
 import { useEffect, useRef, useState } from 'react';
 

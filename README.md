@@ -1,6 +1,6 @@
 # Bane - Remix-Run Stack
 
->The goal? Starting off with a project, that already has the recources to complete everything you need to code. From hero sections, to sidebars, to pre configured tables... That way your not off wondering the internet looking for ideas, components or code, thus wasting a huge amount of time. 
+>The goal? Starting off with a project, that already has the recources to complete everything you need to code. From hero sections, to sidebars, to pre configured tables... That way your not off wondering the internet looking for ideas, components, reading docs or looking for code / examples, thus wasting a huge amount of time. 
 
 >Intentionally leaving the core of the stack, the default remix stack w/ vite, unchanged as most of the time this is one of the items that seems to take the least amount of time because your only doing it once for the project, not 1-10 times per route
 
@@ -26,12 +26,24 @@
 ## Getting Started
 
 ## Tech
-- [x] Radix ui / shadCN components
-- [x] v1 route convention
-- [x] Superuser Task Runner
-- [x] TanStack Tables
-- [x] React Day Picker 
-- [x] Remix Auth
+- @remix-run
+- @radix-ui / ShadCN 
+- @remix-run/v1-route-convention
+- superuser-task-runner
+- @tanstack/react-table
+- react-day-picker
+- remix-auth
+- @faker-js/faker
+- remix-auth-totp
+- sonner
+- tailwindcss
+- vite
+- @tabler/icons-react
+- lucide-react
+- @prisma/client
+- input-otp
+- react-day-picker
+- recharts
 
 ## Included Components
 
