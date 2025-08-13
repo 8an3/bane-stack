@@ -1,19 +1,9 @@
-import { Menu, Bell, X, ChevronDown } from "lucide-react"
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from "~/components/ui/navigation-menu"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet"
-import { Button } from "~/components/ui/button"
-import { cn } from "~/lib/utils"
+import { Menu, Bell, X, ChevronDown, } from "lucide-react";
+import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, } from "~/components/ui/navigation-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, } from "~/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger, } from "~/components/ui/sheet";
+import { Button, } from "~/components/ui/button";
+import { cn, } from "~/lib/utils";
 
 const user = {
   name: 'Tom Cook',

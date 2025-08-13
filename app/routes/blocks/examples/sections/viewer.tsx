@@ -42,57 +42,57 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import MonacoEditor from "../editor/components2";
 
 export default function Dashboard() {
-	const [sel, setSel] = useState("NotificationDemo");
 	const [selectedCode, setSelectedCode] = useState("");
-		const [name, setName] = useState("AccountForm");
+		const [code, setCode] = useState("");
+		const [name, setName] = useState("NotificationDemo");
 	const sections = [
-		{ name: "Alerts", value: "Alerts", path: "/exmaples/sections/Alerts.tsx.txt" },
-		{ name: "Lofi", value: "Lofi", path: "/exmaples/lo-fi/index.tsx.txt" },
-		{ name: "Lofi - Alert", value: "Lofi - Alert", path: "/exmaples/lo-fi/index.tsx.txt" },
-		{ name: "Lofi - Accordian", value: "Lofi - Accordian", path: "/exmaples/lo-fi/index.tsx.txt" },
-		{ name: "Lofi - Atom", value: "Lofi - Atom", path: "/exmaples/lo-fi/index.tsx.txt" },
-		{ name: "Lofi - Component", value: "Lofi - Component", path: "/exmaples/lo-fi/index.tsx.txt" },
-		{ name: "Banner", value: "Banner", path: "/exmaples/sections/Banner.tsx.txt" },
-		{ name: "BentoGrid", value: "BentoGrid", path: "/exmaples/sections/BentoGrid.tsx.txt" },
-		{ name: "Blog", value: "Blog", path: "/exmaples/sections/Blog.tsx.txt" },
-		{ name: "Changelog", value: "Changelog", path: "/exmaples/sections/Changelog.tsx.txt" },
-		{ name: "ConfigSection", value: "ConfigSection", path: "/exmaples/sections/ConfigSection.tsx.txt" },
-		{ name: "Contact", value: "Contact", path: "/exmaples/sections/Contact.tsx.txt" },
-		{ name: "Content", value: "Content", path: "/exmaples/sections/Content.tsx.txt" },
-		{ name: "CTA", value: "CTA", path: "/exmaples/sections/CTA.tsx.txt" },
-		{ name: "DescriptionList", value: "DescriptionList", path: "/exmaples/sections/DescriptionList.tsx.txt" },
-		{ name: "DisplayCode", value: "DisplayCode", path: "/exmaples/sections/DisplayCode.tsx.txt" },
-		{ name: "DisplayGithubInstall", value: "DisplayGithubInstall", path: "/exmaples/sections/DisplayGithubInstall.tsx.txt" },
-		{ name: "DisplayInstallCode", value: "DisplayInstallCode", path: "/exmaples/sections/DisplayInstallCode.tsx.txt" },
-		{ name: "DisplayInstallCodeArray", value: "DisplayInstallCodeArray", path: "/exmaples/sections/DisplayInstallCodeArray.tsx.txt" },
-		{ name: "FeatureSection", value: "FeatureSection", path: "/exmaples/sections/FeatureSection.tsx.txt" },
-		{ name: "FeatureSection2", value: "FeatureSection2", path: "/exmaples/sections/FeatureSection.tsx.txt" },
-		{ name: "FeatureSection3", value: "FeatureSection3", path: "/exmaples/sections/FeatureSection.tsx.txt" },
-		{ name: "FlyoutMenu", value: "FlyoutMenu", path: "/exmaples/sections/FlyoutMenu.tsx.txt" },
-		{ name: "Headers", value: "Headers", path: "/exmaples/sections/Headers.tsx.txt" },
-		{ name: "HeroSection", value: "HeroSection", path: "/exmaples/sections/HeroSection.tsx.txt" },
-		{ name: "HeroSection2", value: "HeroSection2", path: "/exmaples/sections/HeroSection.tsx.txt" },
-		{ name: "HeroSection3", value: "HeroSection3", path: "/exmaples/sections/HeroSection.tsx.txt" },
-		{ name: "ImageSection", value: "ImageSection", path: "/exmaples/sections/ImageSection.tsx.txt" },
-		{ name: "JsonSection", value: "JsonSection", path: "/exmaples/sections/JsonSection.tsx.txt" },
-		{ name: "Newsletter", value: "Newsletter", path: "/exmaples/sections/Newsletter.tsx.txt" },
-		{ name: "NoteSection", value: "NoteSection", path: "/exmaples/sections/NoteSection.tsx.txt" },
-		{ name: "PageHeader", value: "PageHeader", path: "/exmaples/sections/PageHeader.tsx.txt" },
-		{ name: "PageNav", value: "PageNav", path: "/exmaples/sections/PageNav.tsx.txt" },
-		{ name: "PageHeaderFunction", value: "PageHeaderFunction", path: "/exmaples/sections/" },
-		{ name: "Pricing", value: "Pricing", path: "/exmaples/sections/Pricing.tsx.txt" },
-		{ name: "Pricing2", value: "Pricing2", path: "/exmaples/sections/Pricing.tsx.txt" },
-		{ name: "Pricing3", value: "Pricing3", path: "/exmaples/sections/Pricing.tsx.txt" },
-		{ name: "SectionTitle", value: "SectionTitle", path: "/exmaples/sections/SectionTitle.tsx.txt" },
-		{ name: "StackedLayouts", value: "StackedLayouts", path: "/exmaples/sections/StackedLayouts.tsx.txt" },
-		{ name: "Stats", value: "Stats", path: "/exmaples/sections/Stats.tsx.txt" },
-		{ name: "Stats2", value: "Stats2", path: "/exmaples/sections/Stats.tsx.txt" },
-		{ name: "Team", value: "Team", path: "/exmaples/sections/Team.tsx.txt" },
-		{ name: "Testimonial", value: "Testimonial", path: "/exmaples/sections/Testimonial.tsx.txt" },
-		{ name: "Testimonial2", value: "Testimonial2", path: "/exmaples/sections/Testimonial.tsx.txt" },
-		{ name: "TsxSection", value: "TsxSection", path: "/exmaples/sections/TsxSection.tsx.txt" },
-		{ name: "UsageSection", value: "UsageSection", path: "/exmaples/sections/UsageSection.tsx.txt" },
-		{ name: "UsageSectionNoDash", value: "UsageSectionNoDash", path: "/exmaples/sections/UsageSectionNoDash.tsx.txt" },
+		{ name: "Alerts", value: "Alerts", path: "/examples/sections/Alerts.tsx.txt" },
+		{ name: "Lofi", value: "Lofi", path: "/examples/lo-fi/index.tsx.txt" },
+		{ name: "Lofi - Alert", value: "Lofi - Alert", path: "/examples/lo-fi/index.tsx.txt" },
+		{ name: "Lofi - Accordian", value: "Lofi - Accordian", path: "/examples/lo-fi/index.tsx.txt" },
+		{ name: "Lofi - Atom", value: "Lofi - Atom", path: "/examples/lo-fi/index.tsx.txt" },
+		{ name: "Lofi - Component", value: "Lofi - Component", path: "/examples/lo-fi/index.tsx.txt" },
+		{ name: "Banner", value: "Banner", path: "/examples/sections/Banner.tsx.txt" },
+		{ name: "BentoGrid", value: "BentoGrid", path: "/examples/sections/BentoGrid.tsx.txt" },
+		{ name: "Blog", value: "Blog", path: "/examples/sections/Blog.tsx.txt" },
+		{ name: "Changelog", value: "Changelog", path: "/examples/sections/Changelog.tsx.txt" },
+		{ name: "ConfigSection", value: "ConfigSection", path: "/examples/sections/ConfigSection.tsx.txt" },
+		{ name: "Contact", value: "Contact", path: "/examples/sections/Contact.tsx.txt" },
+		{ name: "Content", value: "Content", path: "/examples/sections/Content.tsx.txt" },
+		{ name: "CTA", value: "CTA", path: "/examples/sections/CTA.tsx.txt" },
+		{ name: "DescriptionList", value: "DescriptionList", path: "/examples/sections/DescriptionList.tsx.txt" },
+		{ name: "DisplayCode", value: "DisplayCode", path: "/examples/sections/DisplayCode.tsx.txt" },
+		{ name: "DisplayGithubInstall", value: "DisplayGithubInstall", path: "/examples/sections/DisplayGithubInstall.tsx.txt" },
+		{ name: "DisplayInstallCode", value: "DisplayInstallCode", path: "/examples/sections/DisplayInstallCode.tsx.txt" },
+		{ name: "DisplayInstallCodeArray", value: "DisplayInstallCodeArray", path: "/examples/sections/DisplayInstallCodeArray.tsx.txt" },
+		{ name: "FeatureSection", value: "FeatureSection", path: "/examples/sections/FeatureSection.tsx.txt" },
+		{ name: "FeatureSection2", value: "FeatureSection2", path: "/examples/sections/FeatureSection.tsx.txt" },
+		{ name: "FeatureSection3", value: "FeatureSection3", path: "/examples/sections/FeatureSection.tsx.txt" },
+		{ name: "FlyoutMenu", value: "FlyoutMenu", path: "/examples/sections/FlyoutMenu.tsx.txt" },
+		{ name: "Headers", value: "Headers", path: "/examples/sections/Headers.tsx.txt" },
+		{ name: "HeroSection", value: "HeroSection", path: "/examples/sections/HeroSection.tsx.txt" },
+		{ name: "HeroSection2", value: "HeroSection2", path: "/examples/sections/HeroSection.tsx.txt" },
+		{ name: "HeroSection3", value: "HeroSection3", path: "/examples/sections/HeroSection.tsx.txt" },
+		{ name: "ImageSection", value: "ImageSection", path: "/examples/sections/ImageSection.tsx.txt" },
+		{ name: "JsonSection", value: "JsonSection", path: "/examples/sections/JsonSection.tsx.txt" },
+		{ name: "Newsletter", value: "Newsletter", path: "/examples/sections/Newsletter.tsx.txt" },
+		{ name: "NoteSection", value: "NoteSection", path: "/examples/sections/NoteSection.tsx.txt" },
+		{ name: "PageHeader", value: "PageHeader", path: "/examples/sections/PageHeader.tsx.txt" },
+		{ name: "PageNav", value: "PageNav", path: "/examples/sections/PageNav.tsx.txt" },
+		{ name: "PageHeaderFunction", value: "PageHeaderFunction", path: "/examples/sections/" },
+		{ name: "Pricing", value: "Pricing", path: "/examples/sections/Pricing.tsx.txt" },
+		{ name: "Pricing2", value: "Pricing2", path: "/examples/sections/Pricing.tsx.txt" },
+		{ name: "Pricing3", value: "Pricing3", path: "/examples/sections/Pricing.tsx.txt" },
+		{ name: "SectionTitle", value: "SectionTitle", path: "/examples/sections/SectionTitle.tsx.txt" },
+		{ name: "StackedLayouts", value: "StackedLayouts", path: "/examples/sections/StackedLayouts.tsx.txt" },
+		{ name: "Stats", value: "Stats", path: "/examples/sections/Stats.tsx.txt" },
+		{ name: "Stats2", value: "Stats2", path: "/examples/sections/Stats.tsx.txt" },
+		{ name: "Team", value: "Team", path: "/examples/sections/Team.tsx.txt" },
+		{ name: "Testimonial", value: "Testimonial", path: "/examples/sections/Testimonial.tsx.txt" },
+		{ name: "Testimonial2", value: "Testimonial2", path: "/examples/sections/Testimonial.tsx.txt" },
+		{ name: "TsxSection", value: "TsxSection", path: "/examples/sections/TsxSection.tsx.txt" },
+		{ name: "UsageSection", value: "UsageSection", path: "/examples/sections/UsageSection.tsx.txt" },
+		{ name: "UsageSectionNoDash", value: "UsageSectionNoDash", path: "/examples/sections/UsageSectionNoDash.tsx.txt" },
 	];
 	let viewSelected;
 	switch (name) {
@@ -237,10 +237,10 @@ export default function Dashboard() {
 				const response = await fetch(url);
 				if (!response.ok) throw new Error(`HTTP ${response.status}`);
 				const codeContent = await response.text();
-				setSelectedCode(codeContent);
+				setCode(codeContent);
 			} catch (error) {
 				console.error(`Failed to load ${url}:`, error);
-				setSelectedCode(`// Failed to load ${url}\n// Error: ${error.message}`);
+				setCode(`// Failed to load ${url}\n// Error: ${error.message}`);
 			}
 		};
 
@@ -248,7 +248,7 @@ export default function Dashboard() {
 	}, [selectedCode]);
 	return (
 		<div className="flex flex-col justify-center gap-4">
-		<MonacoEditor viewSelected={viewSelected} code={selectedCode} sections={sections} setName={setName} name={name} />
+		<MonacoEditor viewSelected={viewSelected} code={code} sections={sections} setName={setName} name={name} />
 		</div>
 	);
 }
@@ -268,7 +268,7 @@ function Page({ setSel, setSelectedCode, sections, viewSelected }) {
 										key={index}
 										onSelect={() => {
 											setSelectedCode(item.path);
-											setSel(item.value);
+											setName(item.value);
 										}}
 									>
 										{item.name}

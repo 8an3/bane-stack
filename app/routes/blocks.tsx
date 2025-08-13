@@ -24,7 +24,7 @@ export default function Quote() {
 					data={navData}
 					variant="inset" />
 				<SidebarInset>
-					<div className='bg-background rounded-[15px] m-[15px] overflow-hidden h-[calc(100vh-54px)] flex-1 flex-col'>
+					<div className=' rounded-[15px] m-[15px] overflow-hidden h-[calc(100vh-54px)] flex-1 flex-col'>
 						<SiteHeader />
 						<div className="flex-1 ml-2 mr-2 mb-2 lg:mt-[25px] min-h-0 overflow-y-auto">
 							<Outlet />

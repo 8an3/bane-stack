@@ -1,4 +1,3 @@
-import * as React from "react";
 import { closestCenter, DndContext, KeyboardSensor, MouseSensor, TouchSensor, useSensor, useSensors, type DragEndEvent, type UniqueIdentifier } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
@@ -22,7 +21,6 @@ import {
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import { toast } from "sonner";
 import { z } from "zod";
-
 import { useIsMobile } from "~/modules/hooks/use-mobile";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
@@ -145,6 +143,7 @@ import Calendar07 from "../calendars/calendar-07";
 import Calendar06 from "../calendars/calendar-06";
 import Calendar05 from "../calendars/calendar-05";
 import Calendar04 from "../calendars/calendar-04";
+import { useId, useMemo, useState } from "react";
 
 export const schema = z.object({
 	id: z.number(),
@@ -321,9 +320,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
 ];
 
 function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
-	const { transform, transition, setNodeRef, isDragging } = useSortable({
-		id: row.original.id,
-	});
+	const { transform, transition, setNodeRef, isDragging } = useSortable({ id: row.original.id, });
 
 	return (
 		<TableRow
@@ -344,19 +341,19 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
 }
 
 export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[] }) {
-	const [data, setData] = React.useState(() => initialData);
-	const [rowSelection, setRowSelection] = React.useState({});
-	const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-	const [sorting, setSorting] = React.useState<SortingState>([]);
-	const [pagination, setPagination] = React.useState({
+	const [data, setData] = useState(() => initialData);
+	const [rowSelection, setRowSelection] = useState({});
+	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+	const [sorting, setSorting] = useState<SortingState>([]);
+	const [pagination, setPagination] =  useState({
 		pageIndex: 0,
 		pageSize: 10,
 	});
-	const sortableId = React.useId();
+	const sortableId = useId();
 	const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
 
-	const dataIds = React.useMemo<UniqueIdentifier[]>(() => data?.map(({ id }) => id) || [], [data]);
+	const dataIds = useMemo<UniqueIdentifier[]>(() => data?.map(({ id }) => id) || [], [data]);
 
 	const table = useReactTable({
 		data,
@@ -850,6 +847,23 @@ switch (selCalendar) {
     viewCalendar = <Calendar01 />;
     break;
 }
+	useEffect(() => {
+		if (!selectedCode) return;
+
+		const loadHookCode = async (url) => {
+			try {
+				const response = await fetch(url);
+				if (!response.ok) throw new Error(`HTTP ${response.status}`);
+				const codeContent = await response.text();
+				setSelectedCode(codeContent);
+			} catch (error) {
+				console.error(`Failed to load ${url}:`, error);
+				setSelectedCode(`// Failed to load ${url}\n// Error: ${error.message}`);
+			}
+		};
+
+		loadHookCode(selectedCode);
+	}, [selectedCode]);
 	return (
 		<Tabs defaultValue="outline" className="w-full flex-col justify-start gap-6">
 			<div className="flex items-center justify-between px-4 lg:px-6">

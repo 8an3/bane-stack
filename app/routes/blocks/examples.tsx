@@ -8,15 +8,14 @@ import { ExamplesNav } from "./examples/examples-nav";
 
 export default function ExamplesLayout() {
   // <PageHeaderFunction title="E-Commerce Component Viewer" description="View each item before implementation" announcement="More sections coming soon!" />
+  /** <div className=" flex items-center justify-center w-full">
+        <PageHeaderFunction />
+      </div> */
   return (
     <div className='min-h-screen flex flex-col items-center'>
-      <div className=" flex items-center justify-center w-full">
-        <PageHeaderFunction />
-      </div>
-      
-      <div className="border-grid border-b flex-shrink-0 w-full">
-        <div className="container py-4 flex justify-center">
-          <ExamplesNav />
+      <div className="border-grid  flex-shrink-0 w-full">
+        <div className="container flex justify-center">
+          
         </div>
       </div>
       

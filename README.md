@@ -47,6 +47,76 @@
 - recharts
 - monaco editor
 
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates, 
+
+ from this page please  
+
+
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates, ooter list( tyhis is the first one ), Full-width ( this is the second ) ,   from this page please   https://tailwindcss.com/plus/ui-blocks/marketing/elements/flyout-menus
+
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates,  On dark ( this is the first ),  Left-aligned ( this is the second ) , Bottom aligned
+  (  this is the third), Floating at bottom centered( this is the fourth), Privacy notice right-aligned (5) , Privacy notice full width(6)  from this page please  https://tailwindcss.com/plus/ui-blocks/marketing/elements/banners
+
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates, With banner image(1), With meta and actions(2), With avatar and actions(3), from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/headings/page-headings
+
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates, With description(1),With input group(2)   from this page please    https://tailwindcss.com/plus/ui-blocks/application-ui/headings/section-headings
+
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates,  Narrow with hidden labels  from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/data-display/description-lists
+
+
+
+## Add to files, have not added to UI
+- heros section
+  - BorderedAppHero
+  - HeroWithAppScreenShot
+
+- feature section
+  - FeatureSectionWithScreenshot
+  - OffsetFeatureSection
+
+- bento section
+  - BentoGridTwoRowSecondRow
+
+- pricing section
+  - ThreeTiersAndFeatureComparison
+  - SinglePriceDetails
+  - PricingComparison
+
+- header section
+  - CenteredHeaderWithEyebrow
+  - SimpleHeader
+
+- stats section
+  - StatsWithDescription
+
+- testimonials section
+  - SubtleGridTestimonials
+  - GridTestimonials
+
+- blog section
+  - SingleColumnBlog
+  - BlogWithFeaturedPost
+  - ThreeColumnBlogWithImages
+
+- contact section
+  - FourColumnContactSection
+
+- content sections
+  - TwoColumnWithScreenshot
+  - CenteredContent
+  - SplitWithImage
+
+- FAQ section
+  - CenteredAccordionFAQ
+  - SideBySideFAQ
+  - ThreeColumnFAQ
+
+- Footer
+  - FourColumnMissionFooter
+  - FourColumnSimpleFooter
+  - FourColumnNewsletterFooter
+  - SimpleCenteredFooter
+
 ## Included Components
 
 >With each viewer there is an editor where you can make changes before you copy / export the code without having to leave the page. 
@@ -250,7 +320,6 @@ Editor Useage
       - An inset sidebar with secondary navigation
       - 
 ---
-
 ## portal Route
 - Dashbord
 - Default template route
@@ -268,7 +337,6 @@ Editor Useage
   - dashboard
 
 ---
-
 
 ## Auth
 

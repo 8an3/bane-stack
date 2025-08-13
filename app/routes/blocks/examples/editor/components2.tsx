@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
-import { Save, FileText, Eye,Code as CodeLucide,EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor, X } from "lucide-react";
+import { Save, FileText, Eye,Code as CodeLucide,EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor, X, Search } from "lucide-react";
 import { LoadingPage } from "~/components/customUi/loadingPage";
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "~/components/ui/command";
@@ -243,7 +243,9 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 
 				<ExportFile code={code} filename={`${name}.tsx`} />
 				<CopyText code={code} />
-
+	<Button variant="ghost" size="icon" onClick={resetSelection} className="text-muted-foreground hover:text-foreground">
+					<Search className="h-4 w-4   " />
+				</Button>
 				<Button variant="outline" size="icon" onClick={toggleFullscreen}>
 					<Maximize2 className="h-4 w-4" />
 				</Button>

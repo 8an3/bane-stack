@@ -43,6 +43,10 @@ export const navItems = {
 					url: "/blocks/examples/ecommerce",
 				},
 				{
+					title: "Custom UI",
+					url: "/blocks/examples/editor/components",
+				},
+				{
 					title: "Forms",
 					url: "/blocks/examples/forms",
 				},
@@ -82,6 +86,18 @@ export const navItems = {
 			items: [
 				{
 					title: "Featured",
+					url: "/blocks/sidebar/one",
+				},
+				{
+					title: "Email",
+					url: "/blocks/sidebar/one",
+				},
+				{
+					title: "Left",
+					url: "/blocks/sidebar/one",
+				},
+				{
+					title: "Left Right",
 					url: "/blocks/sidebar/one",
 				},
 			],
@@ -140,15 +156,15 @@ export default function ProviderRoute() {
 			<SidebarProvider>
 				<AppSidebar variant="inset" data={navItems} />
 				<SidebarInset>
-			<div className={`${open ? "" : ""}`}>
-				<SiteHeader />
-				<div className="flex flex-1 flex-col m-3">
-					<div className="@container/main flex flex-1 flex-col gap-2">
-						<Outlet />
+					<div>
+						<SiteHeader />
+						<div className="flex flex-1 flex-col m-3">
+							<div className="@container/main flex flex-1 flex-col gap-2">
+								<Outlet />
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-		</SidebarInset>
+				</SidebarInset>
 			</SidebarProvider>
 		</div>
 	);

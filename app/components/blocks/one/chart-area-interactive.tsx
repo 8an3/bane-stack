@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, } from "recharts";
 
 import { useIsMobile, } from "~/modules/hooks/use-mobile";
@@ -6,6 +5,7 @@ import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle, 
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, } from "~/components/ui/chart";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "~/components/ui/select";
 import { ToggleGroup, ToggleGroupItem, } from "~/components/ui/toggle-group";
+import { useEffect, useState } from "react";
 
 export const description = "An interactive area chart"
 
@@ -119,9 +119,9 @@ const chartConfig = {
 
 export function ChartAreaInteractive() {
   const isMobile = useIsMobile()
-  const [timeRange, setTimeRange] = React.useState("90d")
+  const [timeRange, setTimeRange] = useState("90d")
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isMobile) {
       setTimeRange("7d")
     }

@@ -35,11 +35,9 @@ export default function Dashboard() {
 		return <LoadErrorPage />;
 	}
 	return (
-		<div className="flex flex-col justify-center gap-3">
-			<div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-				<PageHeaderFunction description="Dashboard" />
-			</div>
-		</div>
+		    <div className="bg-background rounded-[15px] m-[15px] overflow-hidden h-[calc(100vh-54px)] flex flex-col w-full justify-center items-center">
+            <PageHeaderFunction />
+        </div>
 	);
 }
 
