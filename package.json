@@ -120,7 +120,7 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "version": "0.0.14",
+  "version": "0.0.15",
   "prisma": {
     "seed": "tsx prisma/seed.cjs"
   }
