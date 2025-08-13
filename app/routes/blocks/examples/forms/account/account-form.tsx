@@ -3,7 +3,7 @@ import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react";
 import { useFetcher } from "@remix-run/react";
 import { cn } from "~/components/ui/utils";
 import { toast } from "sonner";
-import { Button } from "~/components/ui";
+import { Button, Separator } from "~/components/ui";
 import { Calendar } from "~/components/ui";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "~/components/ui/command";
 import { Label } from "~/components/ui/label";

@@ -51,6 +51,12 @@
 
 >With each viewer there is an editor where you can make changes before you copy / export the code without having to leave the page. 
 
+Editor Useage
+- Whenver you are finished with the current item, to return to the search, just click on the X in the top right corner.
+- to the left is maximize, converting to a full screen layout
+- then A copy button, taking whatever is in the editor and placing it in your clipboard
+- export file, downloading to your default download folder,
+
 >Components editor, is the catch all for anything that doesn't display well, if at all. For example, included are hooks or icon buttons that use hooks, this would look terrible taking up half a page for a button that is 15 pixels in h/w. Everything was put into the blocks route, so whenever your done the project, just move / delete the route. 
 
 >You can either stand the project up on a personal deployment and visit whenever you like, adding your own code to build upon your resource ( or send it to me and I'll build a users folder within examples ), or if you have devStack, this will be on there as well since I treat that as a personal deployment. I should get back to one of my clients projects, but I'll probably just bang that out right now, as it should be pretty clear cut, with copy / paste
@@ -74,78 +80,81 @@
     │   ├── Cards/
     │   ├── Dashboard/
     │   └── Ecommerce/
-    │       ├── CategoryFilters/
-    │       ├── CategoryPage/
-    │       ├── CategoryPreviews/
-    │       ├── CheckoutForm/
-    │       ├── CheckoutPage/
-    │       ├── DetailsScreen/
-    │       ├── FeedComponents/
-    │       ├── GridLists/
-    │       ├── HomeScreen/
-    │       ├── IncentiveSection/
-    │       ├── LandingPage/
-    │       ├── OrderDetailsPage/
-    │       ├── OrderHistory/
-    │       ├── OrderSummaries/
-    │       ├── PageHeadings/
-    │       ├── PricingPage/
-    │       ├── ProductLists/
-    │       ├── ProductOverviews/
-    │       ├── ProductPages/
-    │       ├── ProductQuickviews/
-    │       ├── ProductsFeatures/
-    │       ├── PromoSection/
-    │       ├── ReviewsSection/
-    │       ├── SectionHeadings/
-    │       ├── SettingsScreen/
-    │       ├── ShoppingCart/
-    │       ├── ShoppingCartPage/
-    │       ├── StackedLayouts/
-    │       ├── StackedLists/
-    │       ├── StorefrontPages/
-    │       └── StoreNav/
+    │       ├── CategoryFilters
+    │       ├── CategoryPage
+    │       ├── CategoryPreviews
+    │       ├── CheckoutForm
+    │       ├── CheckoutPage
+    │       ├── DetailsScreen
+    │       ├── FeedComponents
+    │       ├── GridLists
+    │       ├── HomeScreen
+    │       ├── IncentiveSection
+    │       ├── LandingPage
+    │       ├── OrderDetailsPage
+    │       ├── OrderHistory
+    │       ├── OrderSummaries
+    │       ├── PageHeadings
+    │       ├── PricingPage
+    │       ├── ProductLists
+    │       ├── ProductOverviews
+    │       ├── ProductPages
+    │       ├── ProductQuickviews
+    │       ├── ProductsFeatures
+    │       ├── PromoSection
+    │       ├── ReviewsSection
+    │       ├── SectionHeadings
+    │       ├── SettingsScreen
+    │       ├── ShoppingCart
+    │       ├── ShoppingCartPage
+    │       ├── StackedLayouts
+    │       ├── StackedLists
+    │       ├── StorefrontPages
+    │       └── StoreNav
     ├── Editor/
     │   ├── index/
     │   ├── component/
     │   │   ├── custom-ui/
-    │   │   │   ├── announcement/
-    │   │   │   ├── app-sidebar/
-    │   │   │   ├── ButtonStyled/
-    │   │   │   ├── callout/
-    │   │   │   ├── copyText/
-    │   │   │   ├── data/
-    │   │   │   ├── debouncedInput/
-    │   │   │   ├── exportFile/
-    │   │   │   ├── filter/
-    │   │   │   ├── fuzzyFilter/
-    │   │   │   ├── fuzzySort/
-    │   │   │   ├── incId/
-    │   │   │   ├── loadErrorPage/
-    │   │   │   ├── loading/
-    │   │   │   ├── loadingPage/
-    │   │   │   ├── nav-main/
-    │   │   │   ├── nav-projects/
-    │   │   │   ├── nav-user/
-    │   │   │   ├── NavButton/
-    │   │   │   ├── NavButtonStyled/
-    │   │   │   ├── option/
-    │   │   │   ├── page-header/
-    │   │   │   ├── PaginationButton/
-    │   │   │   ├── scaffolding/
-    │   │   │   ├── smallTable/
-    │   │   │   ├── team-switcher/
-    │   │   │   ├── theme-selector/
-    │   │   │   └── tooltipButton/
-    │   │   └── hooks/
-    │   │       ├── use-copy-to-clipboard/
-    │   │       ├── use-mobile/
-    │   │       ├── use-mounted/
-    │   │       ├── use-mutation-observer/
-    │   │       ├── useExportMarkdown/
-    │   │       ├── useExportTsx/
-    │   │       ├── useFuzzySearch/
-    │   │       └── useMediaQuery/
+    │   │   │   ├── announcement
+    │   │   │   ├── app-sidebar
+    │   │   │   ├── ButtonStyled
+    │   │   │   ├── callout
+    │   │   │   ├── copyText
+    │   │   │   ├── data
+    │   │   │   ├── debouncedInput
+    │   │   │   ├── exportFile
+    │   │   │   ├── filter
+    │   │   │   ├── fuzzyFilter
+    │   │   │   ├── fuzzySort
+    │   │   │   ├── incId
+    │   │   │   ├── loadErrorPage
+    │   │   │   ├── loading
+    │   │   │   ├── loadingPage
+    │   │   │   ├── nav-main
+    │   │   │   ├── nav-projects
+    │   │   │   ├── nav-user
+    │   │   │   ├── NavButton
+    │   │   │   ├── NavButtonStyled
+    │   │   │   ├── option
+    │   │   │   ├── page-header
+    │   │   │   ├── PaginationButton
+    │   │   │   ├── scaffolding
+    │   │   │   ├── smallTable
+    │   │   │   ├── team-switcher
+    │   │   │   ├── theme-selector
+    │   │   │   └── tooltipButton
+    │   │   ├── hooks/
+    │   │   │   ├── use-copy-to-clipboard
+    │   │   │   ├── use-mobile
+    │   │   │   ├── use-mounted
+    │   │   │   ├── use-mutation-observer
+    │   │   │   ├── useExportMarkdown
+    │   │   │   ├── useExportTsx
+    │   │   │   ├── useFuzzySearch
+    │   │   │   └── useMediaQuery
+    │   │   └── utils/
+    │   │       ├── client-only
+    │   │       └── client-only
     │   ├── Editor/
     │   ├── Other/
     │   ├── lo-fi/

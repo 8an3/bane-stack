@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
-import { Save, FileText, Eye, EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor } from "lucide-react";
+import { Save, FileText, Eye, Code as CodeLucide, EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor } from "lucide-react";
 import { LoadingPage } from "~/components/customUi/loadingPage";
 
 import { Button } from "~/components/ui/button";
@@ -281,12 +281,12 @@ const MonacoEditor = ({
 
 				<Button variant="outline" size="sm" onClick={() => setIsSplitView(!isSplitView)}>
 					<Split className="h-4 w-4 mr-1" />
-					Split
+					Toggle Renderer
 				</Button>
 
 				<Button variant="outline" size="sm" onClick={() => setIsPreview(!isPreview)}>
-					{isPreview ? <EyeOff className="h-4 w-4 mr-1" /> : <Eye className="h-4 w-4 mr-1" />}
-					{isPreview ? "Edit" : "Preview"}
+					{isPreview ? <CodeLucide className="h-4 w-4 mr-1" /> : <Monitor className="h-4 w-4 mr-1" />}
+					{isPreview ? "Code" : "View Page Section"}
 				</Button>
 
 				<Button size="sm" onClick={handleManualSave} disabled={!isDirty}>

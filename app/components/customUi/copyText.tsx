@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "~/components/ui/button";
 
 export function CopyText({ code }) {
-	const [copiedText, setCopiedText] = useState("");
+	const [copiedText, setCopiedText] = useState(null);
 	const timerRef = useRef(0);
 	const copyText = (text) => {
 		navigator.clipboard

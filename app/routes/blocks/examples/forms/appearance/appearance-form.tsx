@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { Button, buttonVariants } from "~/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "~/components/ui/radio-group";
 import { cn } from "~/components/ui/utils";
+import { Separator } from "~/components/ui";
 
 export function AppearanceForm() {
 	const fetcher = useFetcher();
@@ -17,7 +18,7 @@ export function AppearanceForm() {
           and night themes.
         </p>
       </div>
-      <Separator />
+      <Separator/>
       <fetcher.Form
 			method="post"
 			className="space-y-8"

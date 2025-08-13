@@ -1,7 +1,7 @@
 import { useFetcher } from "@remix-run/react"
 import { useState } from "react"
 import { toast } from "sonner"
-import { Button } from "~/components/ui"
+import { Button, Separator } from "~/components/ui"
 import { Checkbox } from "~/components/ui/checkbox"
 import { Label } from "~/components/ui/label"
 

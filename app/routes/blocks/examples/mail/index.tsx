@@ -1,7 +1,6 @@
 import { Mail } from "./components/mail";
 import Sidebar9 from "~/components/blocks/sidebars/sidebar-09";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { AccountForm } from "./account-form";
 import { useEffect, useState } from "react";
 import { Scaffolding } from "~/components/customUi/scaffolding";
 import MonacoEditor from "../editor/components2";
@@ -240,7 +239,7 @@ export default function DefaultPage() {
   let viewSelected;
   switch (name) {
     case "MailPage":
-      viewSelected = <AccountForm />;
+      viewSelected = <MailPage />;
       break;
         case "data":
       viewSelected = <Scaffolding title="data" />;

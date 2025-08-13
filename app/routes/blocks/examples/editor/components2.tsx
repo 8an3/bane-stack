@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
-import { Save, FileText, Eye, EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor, X } from "lucide-react";
+import { Save, FileText, Eye,Code as CodeLucide,EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor, X } from "lucide-react";
 import { LoadingPage } from "~/components/customUi/loadingPage";
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "~/components/ui/command";
@@ -11,7 +11,7 @@ import { ExportFile } from "~/components/customUi/exportFile";
 // Lazy load Monaco Editor to avoid SSR issues
 const Editor = lazy(() => import("@monaco-editor/react"));
 
-export default function MonacoEditor({ code, sections, name = null, setName, viewSelected=null }) {
+export default function MonacoEditor({ code, sections, name = null, setName, viewSelected = null }) {
 	const [isClient, setIsClient] = useState(false);
 	const [selectedCode, setSelectedCode] = useState(null);
 	const [content, setContent] = useState(code);
@@ -237,8 +237,8 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 				</Button>
 
 				<Button variant="outline" size="sm" onClick={() => setIsPreview(!isPreview)}>
-					{isPreview ? <EyeOff className="h-4 w-4 mr-1" /> : <Eye className="h-4 w-4 mr-1" />}
-					{isPreview ? "Edit" : "Preview"}
+					{isPreview ? <CodeLucide className="h-4 w-4 mr-1" /> : <Monitor className="h-4 w-4 mr-1" />}
+					{isPreview ? "Code" : "View Page Section"}
 				</Button>
 
 				<ExportFile code={code} filename={`${name}.tsx`} />
@@ -282,7 +282,7 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 
 	useEffect(() => {
 		if (name && viewSelected) {
-		setShowCommand(false);	
+			setShowCommand(false);
 		}
 	}, []);
 

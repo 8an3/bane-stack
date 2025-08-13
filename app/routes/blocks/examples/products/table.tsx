@@ -2,6 +2,7 @@ import ProductsPage from "~/components/blocks/products/products-01/page";
 import productstable from "~/components/blocks/products/products-01/components/products-table";
 import { useEffect, useState } from "react";
 import MonacoEditor from "../editor/components2";
+import { Scaffolding } from "~/components/customUi/scaffolding";
 
 export const meta: MetaFunction = () => {
 	return [{ title: "Products - 8an3/Bane" }, { name: "description", content: "8an3/Bane Remix Stack" }];

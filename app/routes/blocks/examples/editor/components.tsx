@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
-import { Save, FileText, Eye, EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor } from "lucide-react";
+import { Save, FileText, Eye, Code as CodeLucide, EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor } from "lucide-react";
 import { LoadingPage } from "~/components/customUi/loadingPage";
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "~/components/ui/command";
@@ -368,6 +368,9 @@ export default function MonacoEditor() {
 		{ name: "Other - Icons", value: "Icons", path: "/examples/other/icons.tsx.txt" },
 		{ name: "Other - Site Header", value: "SiteHeader", path: "/examples/other/site-header.tsx.txt" },
 		{ name: "Other - tailwind", value: "tailwindCode", path: "/examples/css/tailwind.css.txt" },
+
+		{ name: "Utils - client-only", value: "client-only", path: "/examples/utils/client-only.tsx.txt" },
+		{ name: "Utils - use-hydrated", value: "use-hydrated", path: "/examples/utils/use-hydrated.ts.txt" },
 	];
 	useEffect(() => {
 		if (!selectedCode) return;

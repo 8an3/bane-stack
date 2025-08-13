@@ -47,7 +47,11 @@ export default function Dashboard() {
 		const [name, setName] = useState("AccountForm");
 	const sections = [
 		{ name: "Alerts", value: "Alerts", path: "/exmaples/sections/Alerts.tsx.txt" },
-		{ name: "Lofi", value: "Lofi", path: "/exmaples/sections/" },
+		{ name: "Lofi", value: "Lofi", path: "/exmaples/lo-fi/index.tsx.txt" },
+		{ name: "Lofi - Alert", value: "Lofi - Alert", path: "/exmaples/lo-fi/index.tsx.txt" },
+		{ name: "Lofi - Accordian", value: "Lofi - Accordian", path: "/exmaples/lo-fi/index.tsx.txt" },
+		{ name: "Lofi - Atom", value: "Lofi - Atom", path: "/exmaples/lo-fi/index.tsx.txt" },
+		{ name: "Lofi - Component", value: "Lofi - Component", path: "/exmaples/lo-fi/index.tsx.txt" },
 		{ name: "Banner", value: "Banner", path: "/exmaples/sections/Banner.tsx.txt" },
 		{ name: "BentoGrid", value: "BentoGrid", path: "/exmaples/sections/BentoGrid.tsx.txt" },
 		{ name: "Blog", value: "Blog", path: "/exmaples/sections/Blog.tsx.txt" },
