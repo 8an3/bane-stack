@@ -49,73 +49,80 @@
 
 im using shadcn components lucide react tailwind css and remix run can you recreate the templates, 
 
- from this page please  
+ from this page please 
+
+
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates, Sidebar(1), stacked(2) from this page please https://tailwindcss.com/plus/ui-blocks/application-ui/page-examples/settings-screens
+
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates,  Sidebar(1), Stacked(2) from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/page-examples/detail-screens
+
 
 
 im using shadcn components lucide react tailwind css and remix run can you recreate the templates, ooter list( tyhis is the first one ), Full-width ( this is the second ) ,   from this page please   https://tailwindcss.com/plus/ui-blocks/marketing/elements/flyout-menus
 
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates,  On dark ( this is the first ),  Left-aligned ( this is the second ) , Bottom aligned
-  (  this is the third), Floating at bottom centered( this is the fourth), Privacy notice right-aligned (5) , Privacy notice full width(6)  from this page please  https://tailwindcss.com/plus/ui-blocks/marketing/elements/banners
 
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates, With banner image(1), With meta and actions(2), With avatar and actions(3), from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/headings/page-headings
 
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates, With description(1),With input group(2)   from this page please    https://tailwindcss.com/plus/ui-blocks/application-ui/headings/section-headings
 
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates,  Narrow with hidden labels  from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/data-display/description-lists
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates, Simple(1)  from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/data-display/stats
 
+
+im using shadcn components lucide react tailwind css and remix run can you recreate the templates, Narrow with badges(1), Narrow with small avatars(2),   Full width with links(3) , With badges, button, and actions menu(4), With inline links and actions menu(5), With links(6) from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/lists/stacked-lists
 
 
 ## Add to files, have not added to UI
-- heros section
-  - BorderedAppHero
-  - HeroWithAppScreenShot
+- sections
+ 
+  - testimonials section
+    - SubtleGridTestimonials
+    - GridTestimonials
+  - blog section
+    - SingleColumnBlog
+    - BlogWithFeaturedPost
+    - ThreeColumnBlogWithImages
+  - contact section
+    - FourColumnContactSection
+  - content sections
+    - TwoColumnWithScreenshot
+    - CenteredContent
+    - SplitWithImage
+  - FAQ section
+    - CenteredAccordionFAQ
+    - SideBySideFAQ
+    - ThreeColumnFAQ
+  - Footer
+    - FourColumnMissionFooter
+    - FourColumnSimpleFooter
+    - FourColumnNewsletterFooter
+    - SimpleCenteredFooter
+  - home page
+    - simple
+    - stacked
+  - settings page
+    - simple
+    - stacked
+  - details page
+    - simple
+    - stacked
+  - Card Heading
+    - CardHeadingWithAvatar
+    - CardHeadingWithDescription
+  - Team Section
+    - TeamWithLargeImages
+    - TeamWithRoundImages
+    - LargeTeamGrid
+    - TeamWithMediumImages
+  - stats section
+    - SimpleStatsGrid
+  - DescriptionList
+    - NarrowDescriptionList
+  - Section Headings
+    - SectionHeadingWithDescription
+    - SectionHeadingWithInputGroup
+  - Feed Lists
+    - MultipleItemTypesFeed
+    - SimpleFeedWithIcons
+- E-Commerce
 
-- feature section
-  - FeatureSectionWithScreenshot
-  - OffsetFeatureSection
-
-- bento section
-  - BentoGridTwoRowSecondRow
-
-- pricing section
-  - ThreeTiersAndFeatureComparison
-  - SinglePriceDetails
-  - PricingComparison
-
-- header section
-  - CenteredHeaderWithEyebrow
-  - SimpleHeader
-
-- stats section
-  - StatsWithDescription
-
-- testimonials section
-  - SubtleGridTestimonials
-  - GridTestimonials
-
-- blog section
-  - SingleColumnBlog
-  - BlogWithFeaturedPost
-  - ThreeColumnBlogWithImages
-
-- contact section
-  - FourColumnContactSection
-
-- content sections
-  - TwoColumnWithScreenshot
-  - CenteredContent
-  - SplitWithImage
-
-- FAQ section
-  - CenteredAccordionFAQ
-  - SideBySideFAQ
-  - ThreeColumnFAQ
-
-- Footer
-  - FourColumnMissionFooter
-  - FourColumnSimpleFooter
-  - FourColumnNewsletterFooter
-  - SimpleCenteredFooter
 
 ## Included Components
 

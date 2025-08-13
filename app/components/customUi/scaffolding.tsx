@@ -1,7 +1,5 @@
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "~/components/customUi/page-header";
 
-
-
 export function Scaffolding({ title }) {
 	return (
 		<div className="bg-background rounded-[15px] m-[15px] overflow-hidden h-[calc(20vh-54px)] flex flex-col w-full justify-center items-center">
