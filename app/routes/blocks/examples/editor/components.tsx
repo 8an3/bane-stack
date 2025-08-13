@@ -347,6 +347,7 @@ export default function MonacoEditor() {
 
 		{ name: "Editor - Sections Editor", value: "SectionsEditor", path: "/examples/editor/SectionsEditor.tsx.txt" },
 		{ name: "Editor - Comp Editor (the one currently on page)", value: "componentEditor", path: "/examples/editor/componentEditor.tsx.txt" },
+		{ name: "Editor - On Route Scaffolding", value: "editorOnRouteScaffolding", path: "/examples/editor/editorOnRouteScaffolding.tsx.txt" },
 		{ name: "Editor - md Editor from DevStack - Index", value: "componentEditor", path: "/examples/editor/editor.index.tsx" },
 		{ name: "Editor - codemirror-editor", value: "componentEditor", path: "/examples/editor/codemirror-editor.tsx" },
 		{ name: "Editor - lexical-editor", value: "componentEditor", path: "/examples/editor/lexical-editor.tsx" },

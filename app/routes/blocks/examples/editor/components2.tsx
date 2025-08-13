@@ -248,7 +248,7 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 					<Maximize2 className="h-4 w-4" />
 				</Button>
 				<Button variant="ghost" size="icon" onClick={resetSelection} className="text-muted-foreground hover:text-foreground">
-					<X className="h-4 w-4 mr-2 text-red-500" />
+					<X className="h-4 w-4   text-red-500" />
 				</Button>
 			</div>
 		);
