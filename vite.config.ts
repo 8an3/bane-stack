@@ -4,7 +4,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { createRoutesFromFolders } from "@remix-run/v1-route-convention"
 import tailwindcss from '@tailwindcss/vite'
 
-
 declare module "@remix-run/node" {
   interface Future {
     v3_singleFetch: true;
@@ -30,6 +29,5 @@ export default defineConfig({
     }),
     tsconfigPaths(),
     tailwindcss(),
-
   ],
 });

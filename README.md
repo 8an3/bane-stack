@@ -49,89 +49,197 @@
 
 ## Included Components
 
->With each viewer there is an editor where you can make changes before you copy / export the code without having to leave the page. Components editor, is the catch all for anything that doesn't display well, if at all. For example, included are hooks or icon buttons that use hooks, this would look terrible taking up half a page for a button that is 15 pixels in h/w. Everything was put into the blocks route, so whenever your done the project, just move / delete the route. 
+>With each viewer there is an editor where you can make changes before you copy / export the code without having to leave the page. 
 
->You can either stand the project up on a personal deployment and visit whenever you like, or if you have devStack this will be on there as well since I treat that as a personal deployment. I should get back to one of my projects clients, but I'll probably just bang that out right now, as it should be pretty clear cut, with copy / paste
+>Components editor, is the catch all for anything that doesn't display well, if at all. For example, included are hooks or icon buttons that use hooks, this would look terrible taking up half a page for a button that is 15 pixels in h/w. Everything was put into the blocks route, so whenever your done the project, just move / delete the route. 
+
+>You can either stand the project up on a personal deployment and visit whenever you like, adding your own code to build upon your resource ( or send it to me and I'll build a users folder within examples ), or if you have devStack, this will be on there as well since I treat that as a personal deployment. I should get back to one of my clients projects, but I'll probably just bang that out right now, as it should be pretty clear cut, with copy / paste
+
+
 
 ## Blocks Route
 
 >Examples and sidebar are there for you to view, along with their children examples. Each section will either have 1 or many code examples to view. The following items code is in components/blocks
 
-- Sidebars 
-  - Calendars
-  - Charts
-  - Dashboards
-- Examples 
-  - Authentication
-    - OTP Login and Sign Up pages
-  - Cards
-  - Dashboard
-  - Ecommerce ( some examples have more than one )
-    - CategoryFilters
-    - CategoryPage
-    - CategoryPreviews
-    - CheckoutForm
-    - CheckoutPage
-    - DetailsScreen
-    - FeedComponents
-    - GridLists
-    - HomeScreen
-    - IncentiveSection
-    - LandingPage
-    - OrderDetailsPage
-    - OrderHistory
-    - OrdersSummaries
-    - PageHeadings
-    - PricingPage
-    - ProductLists
-    - ProductOverviews
-    - ProductPages
-    - ProductQuickviews
-    - ProductsFeatures
-    - PromoSection
-    - ReviewsSection
-    - SectionHeadings
-    - SettingsScreen
-    - ShoppingCart
-    - ShoppingCartPage
-    - StackedLists
-    - StorefrontPages
-    - StoreNav
-  - Forms
-  - Mail
-  - Music
-  - Playground
-  - Sections
-    - BentoGrid
-    - Blog
-    - Changelog
-    - ConfigSection
-    - Contact
-    - Content
-    - CTA
-    - DisplayCode
-    - DisplayGithubInstall
-    - DisplayInstallCode
-    - DisplayInstallCodeArray
-    - FeatureSection
-    - HeroSection
-    - ImageSection
-    - JsonSection
-    - Newsletter
-    - NoteSection
-    - PageHeader
-    - PageNav
-    - Pricing
-    - SectionTitle
-    - Stats
-    - Team
-    - Testimonial
-    - TsxSection
-    - UsageSection
-    - UsageSectionNoDash
-  - Tasks
-- Tickets
+```sh
+└── Project/
+    ├── Sidebars/
+    │   ├── featured/
+    │   ├── email/
+    │   ├── left-sb-1-and-right-sb/
+    │   └── left-sb-2/
+    ├── Examples/
+    │   ├── Authentication/
+    │   │   └── OTP-Login-and-Sign-Up-pages/
+    │   ├── Cards/
+    │   ├── Dashboard/
+    │   └── Ecommerce/
+    │       ├── CategoryFilters/
+    │       ├── CategoryPage/
+    │       ├── CategoryPreviews/
+    │       ├── CheckoutForm/
+    │       ├── CheckoutPage/
+    │       ├── DetailsScreen/
+    │       ├── FeedComponents/
+    │       ├── GridLists/
+    │       ├── HomeScreen/
+    │       ├── IncentiveSection/
+    │       ├── LandingPage/
+    │       ├── OrderDetailsPage/
+    │       ├── OrderHistory/
+    │       ├── OrderSummaries/
+    │       ├── PageHeadings/
+    │       ├── PricingPage/
+    │       ├── ProductLists/
+    │       ├── ProductOverviews/
+    │       ├── ProductPages/
+    │       ├── ProductQuickviews/
+    │       ├── ProductsFeatures/
+    │       ├── PromoSection/
+    │       ├── ReviewsSection/
+    │       ├── SectionHeadings/
+    │       ├── SettingsScreen/
+    │       ├── ShoppingCart/
+    │       ├── ShoppingCartPage/
+    │       ├── StackedLayouts/
+    │       ├── StackedLists/
+    │       ├── StorefrontPages/
+    │       └── StoreNav/
+    ├── Editor/
+    │   ├── index/
+    │   ├── component/
+    │   │   ├── custom-ui/
+    │   │   │   ├── announcement/
+    │   │   │   ├── app-sidebar/
+    │   │   │   ├── ButtonStyled/
+    │   │   │   ├── callout/
+    │   │   │   ├── copyText/
+    │   │   │   ├── data/
+    │   │   │   ├── debouncedInput/
+    │   │   │   ├── exportFile/
+    │   │   │   ├── filter/
+    │   │   │   ├── fuzzyFilter/
+    │   │   │   ├── fuzzySort/
+    │   │   │   ├── incId/
+    │   │   │   ├── loadErrorPage/
+    │   │   │   ├── loading/
+    │   │   │   ├── loadingPage/
+    │   │   │   ├── nav-main/
+    │   │   │   ├── nav-projects/
+    │   │   │   ├── nav-user/
+    │   │   │   ├── NavButton/
+    │   │   │   ├── NavButtonStyled/
+    │   │   │   ├── option/
+    │   │   │   ├── page-header/
+    │   │   │   ├── PaginationButton/
+    │   │   │   ├── scaffolding/
+    │   │   │   ├── smallTable/
+    │   │   │   ├── team-switcher/
+    │   │   │   ├── theme-selector/
+    │   │   │   └── tooltipButton/
+    │   │   └── hooks/
+    │   │       ├── use-copy-to-clipboard/
+    │   │       ├── use-mobile/
+    │   │       ├── use-mounted/
+    │   │       ├── use-mutation-observer/
+    │   │       ├── useExportMarkdown/
+    │   │       ├── useExportTsx/
+    │   │       ├── useFuzzySearch/
+    │   │       └── useMediaQuery/
+    │   ├── Editor/
+    │   ├── Other/
+    │   ├── lo-fi/
+    │   ├── card/
+    │   ├── login/
+    │   └── component2/
+    ├── Forms/
+    ├── Mail/
+    ├── Music/
+    ├── Playground/
+    ├── Products/
+    ├── Sections/
+    │   ├── Alerts/
+    │   ├── Banner/
+    │   ├── BentoGrid/
+    │   ├── Blog/
+    │   ├── Changelog/
+    │   ├── ConfigSection/
+    │   ├── Contact/
+    │   ├── Content/
+    │   ├── CTA/
+    │   ├── DescriptionList/
+    │   ├── DisplayCode/
+    │   ├── DisplayGithubInstall/
+    │   ├── DisplayInstallCode/
+    │   ├── DisplayInstallCodeArray/
+    │   ├── FeatureSection/
+    │   ├── FlyoutMenu/
+    │   ├── Headers/
+    │   ├── HeroSection/
+    │   ├── ImageSection/
+    │   ├── JsonSection/
+    │   ├── Newsletter/
+    │   ├── NoteSection/
+    │   ├── PageHeader/
+    │   ├── PageNav/
+    │   ├── Pricing/
+    │   ├── SectionTitle/
+    │   ├── StackedLayouts/
+    │   ├── Stats/
+    │   ├── Team/
+    │   ├── Testimonial/
+    │   ├── TsxSection/
+    │   ├── UsageSection/
+    │   └── UsageSectionNoDash/
+    ├── Tasks/
+    └── Tickets/
+```
 
+---
+
+#### Still needs completing
+- sidebars, instead of creating 23 side bars, create 4 ( theres only 4 base variants ), in each of the 4 place the variety of layout / nav configs just so your not wasting time or space 
+- the right sidebar will also have a left side bar showcasing that ui
+- As for the editor and copying / exporting the code, it will not follow what is on the ui, like the rest of the sections, to make it easier for you, each sidebar config will be its own sidebar so you don't have to deconstruct and waste time on the ones I built. That way your not trying to figure out which nav menu / layout is what
+
+
+- sidebar configs
+  - email 
+    - collasible - icon
+    - collapsible - none
+    - variant - inset
+    - variant - sidebar
+  - right sb
+    - variant - inset
+    - layouts
+      - A left and right sidebar
+      - A sidebar with a sticky site header
+      - A sidebar with submenus as dropdowns
+      - A sidebar with a calendar
+      - news letter form in footer
+  - left sb 1
+    - dropdown - top and bot
+    - variant - floating
+    - collapsible - off-canvas
+    - layouts
+        - A sidebar with collapsible sections
+        - A simple sidebar with navigation grouped by section
+        - A sidebar with a collapsible file tree
+        - A sidebar in a dialog
+        - A left and right sidebar
+  - left sb 2
+    - dropdown - top 
+    - footer will hold newsletter sub form
+    - variant - inset
+    - collapsible - none
+    - layouts
+      - A sidebar with submenus
+      - A sidebar in a popover
+      - A floating sidebar with submenus
+      - A sidebar with collapsible submenus
+      - A sidebar that collapses to icons
+      - An inset sidebar with secondary navigation
+      - 
 ---
 
 ## portal Route
@@ -152,40 +260,11 @@
 
 ---
 
-## Custom UI Components
-- announcement
-- app-sidebar
-- ButtonStyled
-- callout
-- data
-- debouncedInput
-- filter
-- fuzzyFilter
-- fuzzySort
-- incId
-- loadErrorPage
-- loading
-- loadingPage
-- nav-main
-- nav-projects
-- nav-user
-- NavButton
-- NavButtonStyled
-- options.ts
-- page-header
-- PaginationButton
-- smallTable
-- team-switcher
-- theme-selector
-- tooltipButton
-
- 
----
 
 ## Auth
 
->user: testuser@example.com
->password: password123
+>user: johnwick@thecontinental.com
+>password: daisy
 
 - Remix auth login ( this one is being used as the current auth config )
 - Remix auth logout ( ^ )

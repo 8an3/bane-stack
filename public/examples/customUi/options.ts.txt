@@ -6,3 +6,5 @@ export const options = {
   hour: "2-digit",
   minute: "2-digit",
 };
+
+{new Date(dateValue).toLocaleDateString("en-US", options)}
