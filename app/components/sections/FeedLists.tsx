@@ -65,7 +65,6 @@ export function FeedListSimpleFeedWithIcons({ items }: { items: FeedItem[] }) {
 }
 
 
-import { SimpleFeedWithIcons, MultipleItemTypesFeed } from "~/components/feeds";
 
 export default function FeedPage() {
   const simpleItems = [

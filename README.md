@@ -47,80 +47,21 @@
 - recharts
 - monaco editor
 
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates, 
-
- from this page please 
-
-
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates, Sidebar(1), stacked(2) from this page please https://tailwindcss.com/plus/ui-blocks/application-ui/page-examples/settings-screens
-
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates,  Sidebar(1), Stacked(2) from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/page-examples/detail-screens
-
-
-
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates, ooter list( tyhis is the first one ), Full-width ( this is the second ) ,   from this page please   https://tailwindcss.com/plus/ui-blocks/marketing/elements/flyout-menus
 
 
 
 
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates, Simple(1)  from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/data-display/stats
 
-
-im using shadcn components lucide react tailwind css and remix run can you recreate the templates, Narrow with badges(1), Narrow with small avatars(2),   Full width with links(3) , With badges, button, and actions menu(4), With inline links and actions menu(5), With links(6) from this page please  https://tailwindcss.com/plus/ui-blocks/application-ui/lists/stacked-lists
 
 
 ## Add to files, have not added to UI
 - sections
- 
-  - testimonials section
-    - SubtleGridTestimonials
-    - GridTestimonials
-  - blog section
-    - SingleColumnBlog
-    - BlogWithFeaturedPost
-    - ThreeColumnBlogWithImages
-  - contact section
-    - FourColumnContactSection
-  - content sections
-    - TwoColumnWithScreenshot
-    - CenteredContent
-    - SplitWithImage
-  - FAQ section
-    - CenteredAccordionFAQ
-    - SideBySideFAQ
-    - ThreeColumnFAQ
-  - Footer
-    - FourColumnMissionFooter
-    - FourColumnSimpleFooter
-    - FourColumnNewsletterFooter
-    - SimpleCenteredFooter
-  - home page
-    - simple
-    - stacked
-  - settings page
-    - simple
-    - stacked
-  - details page
-    - simple
-    - stacked
-  - Card Heading
-    - CardHeadingWithAvatar
-    - CardHeadingWithDescription
-  - Team Section
-    - TeamWithLargeImages
-    - TeamWithRoundImages
-    - LargeTeamGrid
-    - TeamWithMediumImages
-  - stats section
-    - SimpleStatsGrid
-  - DescriptionList
-    - NarrowDescriptionList
-  - Section Headings
-    - SectionHeadingWithDescription
-    - SectionHeadingWithInputGroup
-  - Feed Lists
-    - MultipleItemTypesFeed
-    - SimpleFeedWithIcons
+StackedListsFullWidthWithLinks.tsx
+StackedListsNarrowWithBadges.tsx
+StackedListsNarrowWithSmallAvatars.tsx
+StackedListsWithBadgesButtonAndActions.tsx
+StackedListsWithInlineLinksAndActions.tsx
+StackedListsWithLinks.tsx
 - E-Commerce
 
 
