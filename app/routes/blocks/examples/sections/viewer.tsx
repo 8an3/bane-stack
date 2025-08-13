@@ -4,12 +4,7 @@ import { eP } from "~/utils/ext";
 import { authSessionStorage } from "~/sessions/session";
 import { axios } from "axios";
 import { ActionArgs, defer, json, redirect, type ActionArgs, type LoaderArgs } from "@remix-run/node";
-import { prisma } from "~/modules/libs/prisma";
-import { CarFront, Link } from "lucide-react";
-import { ButtonStyled } from "~/components/ui/button-loading";
-import { Label } from "~/components/ui/label";
 import { PageHeaderFunction } from "~/components/customUi/page-header";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { NotificationDemo } from "~/components/sections/Alerts";
 import { BannerSection } from "~/components/sections/Banner";
 import { BentoDemo } from "~/components/sections/BentoGrid";
@@ -42,263 +37,243 @@ import { TsxFunctionDemo } from "~/components/sections/TsxSection";
 import { UseSectionDemo } from "~/components/sections/UsageSection";
 import { StackedLayoutsSection } from "~/components/ecommerceSections/StackedLayouts";
 import { LoFi } from "~/components/lo-fi";
-import MonacoEditor from "../editor";
 import { UseageSectionNoDashDemo } from "~/components/sections/UsageSectionNoDash";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "~/components/ui/command";
+import MonacoEditor from "../editor/components2";
 
 export default function Dashboard() {
 	const [sel, setSel] = useState("NotificationDemo");
+	const [selectedCode, setSelectedCode] = useState("");
+		const [name, setName] = useState("AccountForm");
 	const sections = [
-		{ name: "Alerts", value: "Alerts" },
-		{ name: "Lofi", value: "Lofi" },
-		{ name: "Banner", value: "Banner" },
-		{ name: "BentoGrid", value: "BentoGrid" },
-		{ name: "Blog", value: "Blog" },
-		{ name: "Changelog", value: "Changelog" },
-		{ name: "ConfigSection", value: "ConfigSection" },
-		{ name: "Contact", value: "Contact" },
-		{ name: "Content", value: "Content" },
-		{ name: "CTA", value: "CTA" },
-		{ name: "DescriptionList", value: "DescriptionList" },
-		{ name: "DisplayCode", value: "DisplayCode" },
-		{ name: "DisplayGithubInstall", value: "DisplayGithubInstall" },
-		{ name: "DisplayInstallCode", value: "DisplayInstallCode" },
-		{ name: "DisplayInstallCodeArray", value: "DisplayInstallCodeArray" },
-		{ name: "FeatureSection", value: "FeatureSection" },
-		{ name: "FeatureSection2", value: "FeatureSection2" },
-		{ name: "FeatureSection3", value: "FeatureSection3" },
-		{ name: "FlyoutMenu", value: "FlyoutMenu" },
-		{ name: "Headers", value: "Headers" },
-		{ name: "HeroSection", value: "HeroSection" },
-		{ name: "HeroSection2", value: "HeroSection2" },
-		{ name: "HeroSection3", value: "HeroSection3" },
-		{ name: "ImageSection", value: "ImageSection" },
-		{ name: "JsonSection", value: "JsonSection" },
-		{ name: "Newsletter", value: "Newsletter" },
-		{ name: "NoteSection", value: "NoteSection" },
-		{ name: "PageHeader", value: "PageHeader" },
-		{ name: "PageNav", value: "PageNav" },
-		{ name: "PageHeaderFunction", value: "PageHeaderFunction" },
-		{ name: "Pricing", value: "Pricing" },
-		{ name: "Pricing2", value: "Pricing2" },
-		{ name: "Pricing3", value: "Pricing3" },
-		{ name: "SectionTitle", value: "SectionTitle" },
-		{ name: "StackedLayouts", value: "StackedLayouts" },
-		{ name: "Stats", value: "Stats" },
-		{ name: "Stats2", value: "Stats2" },
-		{ name: "Team", value: "Team" },
-		{ name: "Testimonial", value: "Testimonial" },
-		{ name: "Testimonial2", value: "Testimonial2" },
-		{ name: "TsxSection", value: "TsxSection" },
-		{ name: "UsageSection", value: "UsageSection" },
-		{ name: "UsageSectionNoDash", value: "UsageSectionNoDash" },
+		{ name: "Alerts", value: "Alerts", path: "/exmaples/sections/Alerts.tsx.txt" },
+		{ name: "Lofi", value: "Lofi", path: "/exmaples/sections/" },
+		{ name: "Banner", value: "Banner", path: "/exmaples/sections/Banner.tsx.txt" },
+		{ name: "BentoGrid", value: "BentoGrid", path: "/exmaples/sections/BentoGrid.tsx.txt" },
+		{ name: "Blog", value: "Blog", path: "/exmaples/sections/Blog.tsx.txt" },
+		{ name: "Changelog", value: "Changelog", path: "/exmaples/sections/Changelog.tsx.txt" },
+		{ name: "ConfigSection", value: "ConfigSection", path: "/exmaples/sections/ConfigSection.tsx.txt" },
+		{ name: "Contact", value: "Contact", path: "/exmaples/sections/Contact.tsx.txt" },
+		{ name: "Content", value: "Content", path: "/exmaples/sections/Content.tsx.txt" },
+		{ name: "CTA", value: "CTA", path: "/exmaples/sections/CTA.tsx.txt" },
+		{ name: "DescriptionList", value: "DescriptionList", path: "/exmaples/sections/DescriptionList.tsx.txt" },
+		{ name: "DisplayCode", value: "DisplayCode", path: "/exmaples/sections/DisplayCode.tsx.txt" },
+		{ name: "DisplayGithubInstall", value: "DisplayGithubInstall", path: "/exmaples/sections/DisplayGithubInstall.tsx.txt" },
+		{ name: "DisplayInstallCode", value: "DisplayInstallCode", path: "/exmaples/sections/DisplayInstallCode.tsx.txt" },
+		{ name: "DisplayInstallCodeArray", value: "DisplayInstallCodeArray", path: "/exmaples/sections/DisplayInstallCodeArray.tsx.txt" },
+		{ name: "FeatureSection", value: "FeatureSection", path: "/exmaples/sections/FeatureSection.tsx.txt" },
+		{ name: "FeatureSection2", value: "FeatureSection2", path: "/exmaples/sections/FeatureSection.tsx.txt" },
+		{ name: "FeatureSection3", value: "FeatureSection3", path: "/exmaples/sections/FeatureSection.tsx.txt" },
+		{ name: "FlyoutMenu", value: "FlyoutMenu", path: "/exmaples/sections/FlyoutMenu.tsx.txt" },
+		{ name: "Headers", value: "Headers", path: "/exmaples/sections/Headers.tsx.txt" },
+		{ name: "HeroSection", value: "HeroSection", path: "/exmaples/sections/HeroSection.tsx.txt" },
+		{ name: "HeroSection2", value: "HeroSection2", path: "/exmaples/sections/HeroSection.tsx.txt" },
+		{ name: "HeroSection3", value: "HeroSection3", path: "/exmaples/sections/HeroSection.tsx.txt" },
+		{ name: "ImageSection", value: "ImageSection", path: "/exmaples/sections/ImageSection.tsx.txt" },
+		{ name: "JsonSection", value: "JsonSection", path: "/exmaples/sections/JsonSection.tsx.txt" },
+		{ name: "Newsletter", value: "Newsletter", path: "/exmaples/sections/Newsletter.tsx.txt" },
+		{ name: "NoteSection", value: "NoteSection", path: "/exmaples/sections/NoteSection.tsx.txt" },
+		{ name: "PageHeader", value: "PageHeader", path: "/exmaples/sections/PageHeader.tsx.txt" },
+		{ name: "PageNav", value: "PageNav", path: "/exmaples/sections/PageNav.tsx.txt" },
+		{ name: "PageHeaderFunction", value: "PageHeaderFunction", path: "/exmaples/sections/" },
+		{ name: "Pricing", value: "Pricing", path: "/exmaples/sections/Pricing.tsx.txt" },
+		{ name: "Pricing2", value: "Pricing2", path: "/exmaples/sections/Pricing.tsx.txt" },
+		{ name: "Pricing3", value: "Pricing3", path: "/exmaples/sections/Pricing.tsx.txt" },
+		{ name: "SectionTitle", value: "SectionTitle", path: "/exmaples/sections/SectionTitle.tsx.txt" },
+		{ name: "StackedLayouts", value: "StackedLayouts", path: "/exmaples/sections/StackedLayouts.tsx.txt" },
+		{ name: "Stats", value: "Stats", path: "/exmaples/sections/Stats.tsx.txt" },
+		{ name: "Stats2", value: "Stats2", path: "/exmaples/sections/Stats.tsx.txt" },
+		{ name: "Team", value: "Team", path: "/exmaples/sections/Team.tsx.txt" },
+		{ name: "Testimonial", value: "Testimonial", path: "/exmaples/sections/Testimonial.tsx.txt" },
+		{ name: "Testimonial2", value: "Testimonial2", path: "/exmaples/sections/Testimonial.tsx.txt" },
+		{ name: "TsxSection", value: "TsxSection", path: "/exmaples/sections/TsxSection.tsx.txt" },
+		{ name: "UsageSection", value: "UsageSection", path: "/exmaples/sections/UsageSection.tsx.txt" },
+		{ name: "UsageSectionNoDash", value: "UsageSectionNoDash", path: "/exmaples/sections/UsageSectionNoDash.tsx.txt" },
 	];
 	let viewSelected;
-	let selectedCode = ``;
-	switch (sel) {
+	switch (name) {
+		case "Alerts":
+			viewSelected = <NotificationDemo />;
+			break;
 		case "NotificationDemo":
 			viewSelected = <NotificationDemo />;
-			selectedCode = NotificationDemo;
 			break;
 		case "Lofi":
 			viewSelected = <LoFi />;
-			selectedCode = LoFi;
 			break;
 		case "Banner":
 			viewSelected = <BannerSection />;
-			selectedCode = BannerSection;
 			break;
 		case "BentoGrid":
 			viewSelected = <BentoDemo />;
-			selectedCode = BentoDemo;
 			break;
 		case "Blog":
 			viewSelected = <BlogSection />;
-			selectedCode = BlogSection;
 			break;
 		case "Changelog":
 			viewSelected = <ChangelogDemo />;
-			selectedCode = ChangelogDemo;
 			break;
 		case "ConfigSection":
 			viewSelected = <ConfigDemo />;
-			selectedCode = ConfigDemo;
 			break;
 		case "Contact":
 			viewSelected = <ContactSection />;
-			selectedCode = ContactSection;
 			break;
 		case "CTA":
 			viewSelected = <CTASection />;
-			selectedCode = CTASection;
 			break;
 		case "DescriptionList":
 			viewSelected = <DescriptionList />;
-			selectedCode = DescriptionList;
 			break;
 		case "DisplayCode":
 			viewSelected = <DisplayCodeDemo />;
-			selectedCode = DisplayCodeDemo;
 			break;
 		case "DisplayGithubInstall":
 			viewSelected = <DisplayGithubInstall />;
-			selectedCode = DisplayGithubInstall;
 			break;
 		case "DisplayInstallCode":
 			viewSelected = <DisplayInstallCode />;
-			selectedCode = DisplayInstallCode;
 			break;
 		case "DisplayInstallCodeArray":
 			viewSelected = <DisplayInstallCodeArray />;
-			selectedCode = DisplayInstallCodeArray;
 			break;
 		case "FeatureSection":
 			viewSelected = <FeatureSectionDemo />;
-			selectedCode = FeatureSectionDemo;
 			break;
 		case "FeatureSection2":
 			viewSelected = <FeaturesSection2 />;
-			selectedCode = FeaturesSection2;
 			break;
 		case "FeatureSection3":
 			viewSelected = <FeaturesGridSection />;
-			selectedCode = FeaturesGridSection;
 			break;
 		case "FlyoutMenu":
 			viewSelected = <FlyoutMenu />;
-			selectedCode = FlyoutMenu;
 			break;
 		case "Headers":
 			viewSelected = <HeadersSection />;
-			selectedCode = HeadersSection;
 			break;
 		case "StackedLayouts":
 			viewSelected = <StackedLayoutsSection />;
-			selectedCode = StackedLayoutsSection;
 			break;
 		case "Stats":
 			viewSelected = <StatsSection />;
-			selectedCode = StatsSection;
 			break;
 		case "Stats2":
 			viewSelected = <StatsCardSection />;
-			selectedCode = StatsCardSection;
 			break;
 		case "Team":
 			viewSelected = <TeamSection />;
-			selectedCode = TeamSection;
 			break;
 		case "Testimonial":
 			viewSelected = <TestimonialSection />;
-			selectedCode = TestimonialSection;
 			break;
 		case "Testimonial2":
 			viewSelected = <TestimonialsGridSection />;
-			selectedCode = TestimonialsGridSection;
 			break;
 		case "TsxSection":
 			viewSelected = <TsxFunctionDemo />;
-			selectedCode = TsxFunctionDemo;
 			break;
 		case "UsageSection":
 			viewSelected = <UseSectionDemo />;
-			selectedCode = UseSectionDemo;
 			break;
 		case "UsageSectionNoDash":
 			viewSelected = <UseageSectionNoDashDemo />;
-			selectedCode = UseageSectionNoDashDemo;
 			break;
 		case "PageHeaderFunction":
 			viewSelected = <PageHeaderFunction />;
-			selectedCode = PageHeaderFunction;
 			break;
 		case "HeroSection":
 			viewSelected = <HeroSection />;
-			selectedCode = HeroSection;
 			break;
 		case "HeroSection2":
 			viewSelected = <HeroStatsSection />;
-			selectedCode = HeroStatsSection;
 			break;
 		case "HeroSection3":
 			viewSelected = <HeroCTASection />;
-			selectedCode = HeroCTASection;
 			break;
 		case "ImageSection":
 			viewSelected = <ImageSection />;
-			selectedCode = ImageSection;
 			break;
 		case "JsonSection":
 			viewSelected = <JsonSectionDemo />;
-			selectedCode = JsonSectionDemo;
 			break;
 		case "Newsletter":
 			viewSelected = <NewsletterSection />;
-			selectedCode = NewsletterSection;
 			break;
 		case "NoteSection":
 			viewSelected = <NoteSectionDemo />;
-			selectedCode = NoteSectionDemo;
 			break;
 		case "PageHeader":
 			viewSelected = <UseHeader />;
-			selectedCode = UseHeader;
 			break;
 		case "PageNav":
 			viewSelected = <PageNavDemo />;
-			selectedCode = PageNavDemo;
 			break;
 		case "Pricing":
 			viewSelected = <PricingSection1Card />;
-			selectedCode = PricingSection1Card;
 			break;
 		case "Pricing2":
 			viewSelected = <PricingSection2Cards />;
-			selectedCode = PricingSection2Cards;
 			break;
 		case "Pricing3":
 			viewSelected = <PricingSection3Cards />;
-			selectedCode = PricingSection3Cards;
 			break;
 		case "SectionTitle":
 			viewSelected = <SectionTitle />;
-			selectedCode = SectionTitle;
 			break;
 		default:
 			viewSelected = <NotificationDemo />;
-			selectedCode = NotificationDemo;
 			break;
 	}
+		useEffect(() => {
+		if (!selectedCode) return;
+
+		const loadHookCode = async (url) => {
+			try {
+				const response = await fetch(url);
+				if (!response.ok) throw new Error(`HTTP ${response.status}`);
+				const codeContent = await response.text();
+				setSelectedCode(codeContent);
+			} catch (error) {
+				console.error(`Failed to load ${url}:`, error);
+				setSelectedCode(`// Failed to load ${url}\n// Error: ${error.message}`);
+			}
+		};
+
+		loadHookCode(selectedCode);
+	}, [selectedCode]);
 	return (
 		<div className="flex flex-col justify-center gap-4">
-			<MonacoEditor code={selectedCode} renderComp={<Page sel={sel} setSel={setSel} sections={sections} viewSelected={viewSelected} />} />
+		<MonacoEditor viewSelected={viewSelected} code={selectedCode} sections={sections} setName={setName} name={name} />
 		</div>
 	);
 }
 
-function Page({ sel, setSel, sections, viewSelected }) {
+function Page({ setSel, setSelectedCode, sections, viewSelected }) {
 	return (
 		<div className="flex flex-col justify-center gap-3 w-full">
 			<div className="grid w-full max-w-sm items-center gap-1.5 mt-[25px] mx-auto">
-				<Label>Sections</Label>
-				<Select
-					value={sel}
-					onValueChange={(value) => {
-						setSel(value);
-					}}
-				>
-					<SelectTrigger>
-						<SelectValue />
-					</SelectTrigger>
-					<SelectContent>
-						{sections.map((item, index) => {
-							return (
-								<SelectItem key={index} value={item.value}>
-									{item.name}
-								</SelectItem>
-							);
-						})}
-					</SelectContent>
-				</Select>
+				<Command className="rounded-lg border shadow-md md:min-w-[450px]">
+					<CommandInput placeholder="Search..." />
+					<CommandList>
+						<CommandEmpty>No results found.</CommandEmpty>
+						<CommandGroup heading="Sections">
+							{sections.map((item, index) => {
+								return (
+									<CommandItem
+										key={index}
+										onSelect={() => {
+											setSelectedCode(item.path);
+											setSel(item.value);
+										}}
+									>
+										{item.name}
+									</CommandItem>
+								);
+							})}
+						</CommandGroup>
+					</CommandList>
+				</Command>
 			</div>
 			<section className="overflow-hidden rounded-[0.5rem] border bg-background shadow">{viewSelected}</section>
 		</div>

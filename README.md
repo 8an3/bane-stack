@@ -49,7 +49,9 @@
 
 ## Included Components
 
->Using this as I was coding, I got really annoyed that I either had to go to github or open the project locally to get the code after looking at it. So I started to add an editor for each component with its corresponding code. I made the editor so you can make edits before copying without having to leave the page. I will come back to finish this off and add all the sections. I might even do it for all the useable code you might want, have a page named editor in blocks, with a drop down, selecting and item, it just inserts the code for any components that either doesn't display well if at all... but anyways, just a thought but you can now stand it up with a personal deployment and treat it like any other components library and visit it when you need it. You can do that for free on vercel. or I might say fuck it... add a section to the web ui of devstack to include this... sigh, I'll probably end up doing that since devstack gets so much use... god damnit, trying to NOT increase my workload, lol
+>With each viewer there is an editor where you can make changes before you copy / export the code without having to leave the page. Components editor, is the catch all for anything that doesn't display well, if at all. For example, included are hooks or icon buttons that use hooks, this would look terrible taking up half a page for a button that is 15 pixels in h/w. Everything was put into the blocks route, so whenever your done the project, just move / delete the route. 
+
+>You can either stand the project up on a personal deployment and visit whenever you like, or if you have devStack this will be on there as well since I treat that as a personal deployment. I should get back to one of my projects clients, but I'll probably just bang that out right now, as it should be pretty clear cut, with copy / paste
 
 ## Blocks Route
 

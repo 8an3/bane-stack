@@ -1,0 +1,267 @@
+import React, { useEffect, useState } from "react"
+import { LexicalComposer } from "@lexical/react/LexicalComposer"
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin"
+import { ContentEditable } from "@lexical/react/LexicalContentEditable"
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin"
+import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin"
+import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary"
+import { TablePlugin } from "@lexical/react/LexicalTablePlugin"
+import { HeadingNode, QuoteNode } from "@lexical/rich-text"
+import { TableCellNode, TableNode, TableRowNode } from "@lexical/table"
+import { ListItemNode, ListNode } from "@lexical/list"
+import { CodeHighlightNode, CodeNode } from "@lexical/code"
+import { AutoLinkNode, LinkNode } from "@lexical/link"
+import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin"
+import { ListPlugin } from "@lexical/react/LexicalListPlugin"
+import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin"
+import { TRANSFORMERS } from "@lexical/markdown"
+import ToolbarPlugin from "./plugins/ToolbarPlugin"
+//import TablePlugin from './plugins/TablePlugin';
+import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin"
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin"
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
+import { $convertFromMarkdownString } from "@lexical/markdown"
+import { $getRoot, $createParagraphNode, $createTextNode, $getSelection, TextNode } from "lexical"
+import { $convertToMarkdownString } from "@lexical/markdown"
+
+import { $getSelection, $isRangeSelection, COMMAND_PRIORITY_HIGH, PASTE_COMMAND } from "lexical"
+import { $createHorizontalRuleNode, HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode"
+
+const theme = {
+  text: {
+    bold: "font-bold",
+    italic: "italic",
+    underline: "underline",
+    strikethrough: "line-through",
+    underlineStrikethrough: "underline line-through",
+  },
+  heading: {
+    h1: "text-3xl font-bold mt-6 mb-4",
+    h2: "text-2xl font-bold mt-5 mb-3",
+    h3: "text-xl font-bold mt-4 mb-2",
+  },
+  link: "text-blue-600 hover:underline",
+  quote: "border-l-4 border-gray-300 pl-4 text-gray-600 italic my-2",
+  code: "font-mono bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5",
+  codeHighlight: {
+    atrule: "text-purple-600",
+    attr: "text-green-600",
+    boolean: "text-blue-600",
+    builtin: "text-yellow-600",
+    cdata: "text-gray-500",
+    char: "text-yellow-600",
+    class: "text-blue-600",
+    "class-name": "text-teal-600",
+    comment: "text-gray-400 italic",
+    constant: "text-purple-600",
+    deleted: "text-red-600",
+    doctype: "text-gray-500",
+    entity: "text-red-600",
+    function: "text-blue-600",
+    important: "text-red-600",
+    inserted: "text-green-600",
+    keyword: "text-purple-600",
+    namespace: "text-purple-600",
+    number: "text-blue-600",
+    operator: "text-gray-600",
+    prolog: "text-gray-500",
+    property: "text-green-600",
+    punctuation: "text-gray-600",
+    regex: "text-yellow-600",
+    selector: "text-red-600",
+    string: "text-green-600",
+    symbol: "text-purple-600",
+    tag: "text-red-600",
+    url: "text-blue-600",
+    variable: "text-red-600",
+  },
+}
+
+function MyCustomAutoFocusPlugin() {
+  const [editor] = useLexicalComposerContext()
+
+  useEffect(() => {
+    // Focus the editor when the effect fires!
+    editor.focus()
+  }, [editor])
+
+  return null
+}
+
+function PlainTextPastePlugin() {
+  const [editor] = useLexicalComposerContext()
+
+  useEffect(() => {
+    return editor.registerCommand(
+      PASTE_COMMAND,
+      (event) => {
+        const clipboardData = event.clipboardData
+        if (clipboardData) {
+          event.preventDefault()
+          const text = clipboardData.getData("text/plain")
+
+          editor.update(() => {
+            const selection = $getSelection()
+            if ($isRangeSelection(selection)) {
+              selection.insertText(text)
+            }
+          })
+          return true
+        }
+        return false
+      },
+      COMMAND_PRIORITY_HIGH
+    )
+  }, [editor])
+
+  return null
+}
+function onError(error) {
+  console.error(error)
+}
+
+function HorizontalRulePlugin() {
+  const [editor] = useLexicalComposerContext();
+
+  useEffect(() => {
+    return editor.registerNodeTransform(TextNode, (textNode) => {
+      const text = textNode.getTextContent();
+      if (text.trim() === "---") {
+        editor.update(() => {
+          // Create hidden text node with ---
+          const hiddenText = $createTextNode("---");
+         // hiddenText.setStyle("display: none");
+          hiddenText.setStyle("color: transparent");
+          
+          // Create horizontal rule
+          const hr = $createHorizontalRuleNode();
+          
+          // Replace original with hidden text + visible HR
+          textNode.replace(hiddenText);
+          hiddenText.insertAfter(hr);
+        });
+      }
+    });
+  }, [editor]);
+
+  return null;
+}
+
+export function LexicalEditor({ onChange, content, onSave, setWhichEditor, setFilename, filename, setOpen, setShowPreview, onExport, fileInputRef, setMarkdown, open }) {
+  const initialConfig = {
+    namespace: "catalyst_software",
+    theme: {
+      root: "p-4  rounded-lg bg-background text-foreground font-mono text-sm h-full focus:outline-none",
+      link: "text-primary hover:underline",
+      text: {
+        bold: "font-bold",
+        italic: "italic",
+        underline: "underline",
+        strikethrough: "line-through",
+        underlineStrikethrough: "underline line-through",
+        code: "bg-muted rounded px-1 font-mono",
+      },
+      heading: {
+        h1: "text-3xl font-bold text-primary my-4",
+        h2: "text-2xl font-bold text-primary my-3",
+        h3: "text-xl font-bold text-primary my-2",
+      },
+      quote: "border-l-4 border-border pl-4 text-muted-foreground italic my-2",
+      list: {
+        nested: {
+          listitem: "list-none",
+        },
+        ol: "list-decimal pl-6",
+        ul: "list-disc pl-6",
+        listitem: "my-1",
+      },
+      table: "border border-border w-full my-4 EditorTheme__table",
+      tableCell: {
+        header: "bg-muted font-bold p-2 border border-border",
+        cell: "p-2 border border-border",
+      },
+      code: "bg-muted rounded-md p-4 font-mono block my-2 overflow-x-auto",
+      codeHighlight: {
+        atrule: "text-purple-500",
+        attr: "text-green-500",
+        boolean: "text-blue-500",
+        builtin: "text-yellow-500",
+        char: "text-yellow-500",
+        class: "text-blue-500",
+        "class-name": "text-teal-500",
+        comment: "text-muted-foreground italic",
+        function: "text-blue-500",
+        keyword: "text-purple-500",
+        operator: "text-foreground",
+        property: "text-green-500",
+        string: "text-green-500",
+        tag: "text-red-500",
+        variable: "text-red-500",
+      },
+
+      focus: "focus-mode-active",
+    },
+    nodes: [HorizontalRuleNode, HeadingNode, ListNode, ListItemNode, QuoteNode, CodeNode, CodeHighlightNode, TableNode, TableCellNode, TableRowNode, AutoLinkNode, LinkNode],
+    onError,
+    editorState: (editor) => {
+      if (content) {
+        try {
+          // Check if content is serialized Lexical state
+          if (typeof content === "string" && content.startsWith('{"root":')) {
+            const editorState = editor.parseEditorState(content)
+            editor.setEditorState(editorState)
+          }
+          // Handle plain text content
+          else if (typeof content === "string") {
+            editor.update(() => {
+              if (typeof content === "string") {
+                $convertFromMarkdownString(content, TRANSFORMERS)
+              }
+            })
+            /**editor.update(() => {
+                            $getRoot().clear();
+                            const paragraph = $createParagraphNode();
+                            paragraph.append($createTextNode(content));
+                            $getRoot().append(paragraph);
+                        }); */
+          }
+        } catch (error) {
+          console.error("Error parsing editor content:", error)
+          // Fallback to empty editor
+          editor.update(() => {
+            $getRoot().clear()
+            $getRoot().append($createParagraphNode())
+          })
+        }
+      }
+    },
+  }
+
+  function onLexicalChange(editorState) {
+    editorState.read(() => {
+      const markdown = $convertToMarkdownString(TRANSFORMERS)
+      onChange(markdown)
+    })
+  }
+
+  return (
+    <LexicalComposer initialConfig={initialConfig}>
+      <div className="editor-container ">
+        <ToolbarPlugin setWhichEditor={setWhichEditor} setShowPreview={setShowPreview} setOpen={setOpen} setFilename={setFilename} filename={filename} onSave={onSave} onExport={onExport} fileInputRef={fileInputRef} setMarkdown={setMarkdown} open={open} />
+        <div className="editor-inner">
+          <RichTextPlugin contentEditable={<ContentEditable className="editor-input" />} ErrorBoundary={LexicalErrorBoundary} />
+          <OnChangePlugin onChange={onLexicalChange} />
+          <HistoryPlugin />
+          <MyCustomAutoFocusPlugin />
+          <TablePlugin />
+          <HorizontalRulePlugin />
+          <AutoFocusPlugin />
+          <ListPlugin />
+          <LinkPlugin />
+          <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+          <PlainTextPastePlugin />
+        </div>
+      </div>
+    </LexicalComposer>
+  )
+}

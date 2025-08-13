@@ -1,9 +1,11 @@
-import { useLoaderData } from "@remix-run/react";
+import { NavLink, useLoaderData } from "@remix-run/react";
 import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
 import { UserNav } from "./components/user-nav";
 import { authSessionStorage } from "~/modules/auth/auth_session";
 import eP from "~/utils/ext";
+import { NavButton } from "~/components/customUi/NavButton";
+import { NavButtonStyled } from "~/components/customUi/NavButtonStyled";
 
 export const meta: MetaFunction = () => {
 	return [{ title: "Tasks - 8an3/Bane" }, { name: "description", content: "8an3/Bane Remix Stack" }];
@@ -17,6 +19,12 @@ export async function loader({ request }: LoaderArgs) {
 	if (!user) {
 		return redirect(import.meta.env.VITE_LOGIN);
 	}
+
+	return  { user  } 
+}
+
+export default  function TaskPage() {
+//	const { tasks } = useLoaderData();
 	const tasks = [
 		{
 			id: "TASK-8782",
@@ -719,12 +727,6 @@ export async function loader({ request }: LoaderArgs) {
 			priority: "low",
 		},
 	];
-	return  { user, tasks } 
-}
-
-export default  function TaskPage() {
-	const { tasks } = useLoaderData();
-
 	return (
 		<>
 			<div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
@@ -733,6 +735,7 @@ export default  function TaskPage() {
 						<h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
 						<p className="text-muted-foreground">Here&apos;s a list of your tasks for this month!</p>
 					</div>
+                     
 					<div className="flex items-center space-x-2">
 						<UserNav />
 					</div>

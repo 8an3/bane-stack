@@ -1,0 +1,629 @@
+import { useEffect, useRef, useState } from 'react';
+import { EditorView, highlightActiveLineGutter, keymap, lineNumbers, highlightActiveLineGutter } from "@codemirror/view";
+import {    autocompletion, } from "@codemirror/autocomplete"
+import { EditorState, Prec  } from "@codemirror/state";
+import { basicSetup } from "codemirror"
+import { javascript } from "@codemirror/lang-javascript"
+import { markdown } from "@codemirror/lang-markdown";
+import { defaultKeymap, insertNewlineAndIndent } from "@codemirror/commands";
+import { history, historyKeymap } from "@codemirror/history";
+import { Bold, BookOpen, BookOpenText, CheckSquare, Code, FileOutput, FilePlus, Focus, Heading1, Heading2, Heading3, Heading4, Heading5, ImageIcon, Italic, Link, List, ListOrdered, Menu, Monitor, PanelRight, Quote, Save, ScanLine, Sidebar, SquareSplitHorizontal, Strikethrough, Table } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger, } from "~/components/ui/popover"
+import { button, ButtonStyled, Input, Label, Separator } from "../ui";
+import { HighlightStyle, syntaxHighlighting, foldGutter, } from "@codemirror/language";
+import { tags } from "@lezer/highlight";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "~/components/ui/dialog"
+import { WebrtcProvider } from "y-webrtc";
+import { yCollab } from "y-codemirror.next";
+import * as Y from "yjs";
+import { DEVSTACK_URL, TooltipButton } from "~/components/shared";
+
+
+
+
+
+const customTheme = EditorView.theme({
+    "&": {
+        color: "var(--foreground)",
+        backgroundColor: "var(--background)",
+        height: "100%"
+    },
+    ".cm-content": {
+        caretColor: "var(--foreground)",
+        fontFamily: "var(--font-mono)",
+        fontSize: "0.875rem",
+        lineHeight: "1.5",
+        padding: "0.5rem 0"
+    },
+    ".cm-gutters": {
+        backgroundColor: "var(--background)",
+        color: "var(--foreground)",
+        borderRight: "1px solid var(--border)",
+        paddingRight: "0.5rem"
+    },
+    ".cm-lineNumbers .cm-gutterElement": {
+        color: "var(--muted-foreground)",
+        padding: "0 0.5rem"
+    },
+    ".cm-activeLineGutter": {
+        backgroundColor: "var(--muted)",
+        color: "var(--foreground)"
+    },
+    ".cm-activeLine": {
+        backgroundColor: "var(--muted)",
+    },
+
+    "&.cm-editor.cm-focused": {
+        outline: "none"
+    },
+    // Headers
+    ".cm-header-1": {
+        color: "var(--primary)",
+        fontSize: "1.5rem",
+        fontWeight: "bold"
+    },
+    ".cm-header-2": {
+        color: "var(--primary)",
+        fontSize: "1.25rem",
+        fontWeight: "bold"
+    },
+    ".cm-header-3": {
+        color: "var(--primary)",
+        fontSize: "1.125rem",
+        fontWeight: "bold"
+    },
+    ".cm-header-4": {
+        color: "var(--primary)",
+        fontSize: "1rem",
+        fontWeight: "bold"
+    },
+    // Emphasis
+    ".cm-strong": {
+        color: "var(--primary)",
+        fontWeight: "bold"
+    },
+    ".cm-em": {
+        color: "var(--secondary)",
+        fontStyle: "italic"
+    },
+    // Links
+    ".cm-link": {
+        color: "var(--primary)",
+        textDecoration: "underline"
+    },
+    // Quotes
+    ".cm-quote": {
+        color: "var(--muted-foreground)",
+        fontStyle: "italic",
+        borderLeft: "3px solid var(--border)",
+        paddingLeft: "0.5rem"
+    },
+    // Tables
+    ".cm-tableHeader": {
+        fontWeight: "bold",
+        color: "var(--primary)",
+        backgroundColor: "var(--muted)"
+    },
+    // Tables
+    ".cm-tableHeader, .cm-tableHeader > .cm-markdownTableRow > .cm-markdownTableCell": {
+        fontWeight: "bold",
+        color: "var(--primary)",
+        backgroundColor: "var(--muted)",
+        padding: "0.25rem 0.5rem",
+        border: "1px solid var(--border)"
+    },
+    ".cm-markdownTableRow > .cm-markdownTableCell": {
+        padding: "0.25rem 0.5rem",
+        border: "1px solid var(--border)"
+    },
+    // Lists
+    ".cm-task.cm-property": {
+        color: "var(--primary)"
+    },
+    ".cm-task.cm-property.cm-checked": {
+        backgroundColor: "var(--primary)",
+        color: "var(--primary-foreground)",
+        borderRadius: "2px"
+    },
+    // Task Lists (Checkmarks)
+    ".cm-formatting-task": {
+        color: "var(--muted-foreground)"
+    },
+    ".cm-formatting-task.cm-property": {
+        color: "var(--primary)"
+    },
+    ".cm-formatting-task.cm-checked": {
+        color: "var(--primary-foreground)",
+        backgroundColor: "var(--primary)",
+        borderRadius: "2px",
+        padding: "0 1px"
+    },
+    ".cm-formatting-list.cm-list-1.cm-formatting-task.cm-checked": {
+        // Specific styling for checked items in ordered lists
+        backgroundColor: "var(--primary)",
+        color: "var(--primary-foreground)"
+    },
+    ".cm-formatting-list.cm-list-2.cm-formatting-task.cm-checked": {
+        // Specific styling for checked items in unordered lists
+        backgroundColor: "var(--primary)",
+        color: "var(--primary-foreground)"
+    },
+    // Code blocks
+    ".cm-code": {
+        backgroundColor: "var(--muted)",
+        padding: "0.125rem 0.25rem",
+        borderRadius: "0.25rem"
+    },
+    ".cm-codeBlock": {
+        backgroundColor: "var(--muted)",
+        border: "1px solid var(--border)",
+        borderRadius: "0.375rem",
+        padding: "0.5rem"
+    },
+    // Horizontal rule
+    ".cm-hr": {
+        borderTop: "1px solid var(--border)",
+        margin: "0.5rem 0"
+    },
+    ".cm-selectionBackground": {
+        backgroundColor: "var(--primary) !important",
+        opacity: "0.3"
+    },
+    ".cm-focused .cm-selectionBackground": {
+        backgroundColor: "var(--primary) !important",
+        opacity: "0.4"
+    },
+    ".cm-selectionMatch": {
+        backgroundColor: "var(--muted)",
+        outline: "1px solid var(--border)"
+    }
+}, { dark: true });
+const customHighlightStyle = HighlightStyle.define([
+    { tag: tags.heading, color: "var(--primary)" },
+    { tag: tags.comment, color: "var(--muted-foreground)" },
+    { tag: tags.keyword, color: "var(--primary)" },
+    { tag: tags.string, color: "var(--secondary)" }
+]);
+
+export default function MDEditor({ setOpen, setFilename, setWhichEditor, filename, togglePreview, initialValue = "", onChange, onSave, setShowPreview, onExport, fileInputRef, onOpen, editorRef, viewRef, onNew, open }) {
+    // Toolbar commands
+    const insertFormat = (syntax: string) => {
+        const view = viewRef.current;
+        if (!view) return;
+
+        const { from, to } = view.state.selection.main;
+        const selectedText = view.state.sliceDoc(from, to);
+
+        view.dispatch({
+            changes: {
+                from,
+                to,
+                insert: syntax.replace('{}', selectedText || 'text')
+            },
+            selection: { anchor: from + syntax.indexOf('}') }
+        });
+        view.focus();
+    };
+
+const customKeymap = keymap.of([
+    {
+        key: "Enter",
+        run: (view) => {
+            const { from } = view.state.selection.main;
+            const line = view.state.doc.lineAt(from);
+            const lineText = line.text;
+            
+            console.log("DEBUG - Full line:", JSON.stringify(lineText));
+            
+            // Check for list patterns
+            const checklistMatch = lineText.match(/^(\s*)([-*+]\s+\[[ xX]\]\s+)(.*)$/);
+            const unorderedMatch = lineText.match(/^(\s*)([-*+]\s+)(.*)$/);
+            const orderedMatch = lineText.match(/^(\s*)(\d+\.\s+)(.*)$/);
+            
+            let insert = "\n";
+            if (checklistMatch) {
+    const [, indent, marker, content] = checklistMatch;
+    if (content.trim() === "") {
+        // Empty checklist - just plain newline
+        insert = "\n";
+    } else {
+        // Continue checklist with existing indentation only
+        insert += indent; // Preserve existing indentation
+        const listChar = marker.charAt(indent.length); // Get the -, *, or +
+        insert += `${listChar} [ ] `;
+    }
+}
+            // Handle unordered lists
+           else if (unorderedMatch) {
+                const [, indent, marker, content] = unorderedMatch;
+                if (content.trim() === "") {
+                    // Empty list item - just plain newline, no continuation
+                    insert = "\n";
+                } else {
+                    // Continue list BUT only preserve indentation if line was already indented
+                    insert += indent; // This preserves existing indentation only
+                    insert += marker; // Add the list marker
+                }
+            }
+            // Handle ordered lists  
+            else if (orderedMatch) {
+                const [, indent, marker, content] = orderedMatch;
+                const currentNum = parseInt(marker);
+                if (content.trim() === "") {
+                    // Empty list item - just plain newline
+                    insert = "\n";
+                } else {
+                    // Continue list with existing indentation only
+                    insert += indent; // Preserve existing indentation
+                    insert += `${currentNum + 1}. `;
+                }
+            }
+            // Handle checklists
+         
+            // For non-list lines: NEVER add indentation
+            // Just plain newline always
+            
+            view.dispatch({
+                changes: { from, insert },
+                selection: { anchor: from + insert.length }
+            });
+            
+            return true;
+        }
+    },
+    ...defaultKeymap,
+    ...historyKeymap
+]);
+
+    useEffect(() => {
+        if (!editorRef.current) return;
+
+        // Create extensions outside the state creation
+        const extensions = [
+           // customKeymap,
+              Prec.highest(customKeymap),
+            javascript(),
+            basicSetup,
+            markdown(),
+            lineNumbers(),
+            customTheme,
+            syntaxHighlighting(customHighlightStyle),
+            foldGutter(),
+            EditorState.allowMultipleSelections.of(true),
+            autocompletion(),
+            highlightActiveLineGutter(),
+            EditorView.lineWrapping,
+            EditorView.updateListener.of((update) => {
+                if (update.docChanged && onChange) {
+                    onChange(update.state.doc.toString());
+                }
+            }),
+
+        ];
+
+        let startState = EditorState.create({
+            doc: initialValue,
+            extensions: extensions,
+        })
+
+        const view = new EditorView({
+            state: startState,
+            parent: editorRef.current
+        });
+
+        viewRef.current = view;
+        return () => view.destroy();
+    }, []);
+
+    const [focus, setFocus] = useState(false);
+    const [initCollab, setInitCollab] = useState(false);
+    const [showControls, setShowControls] = useState(true)
+    const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
+
+
+
+    useEffect(() => {
+
+        const initializeCollab = async () => {
+            const ydoc = new Y.Doc();
+            const provider = new WebrtcProvider("catalyst_software_codemirror", ydoc);
+
+
+            const extensions = [
+                javascript(),
+                basicSetup,
+                markdown(),
+                lineNumbers(),
+                // history(),
+                // highlightActiveLineGutter(),
+                customTheme,
+                syntaxHighlighting(customHighlightStyle),
+                keymap.of([...defaultKeymap, ...historyKeymap]),
+                EditorView.updateListener.of((update) => {
+                    if (update.docChanged && onChange) {
+                        onChange(update.state.doc.toString());
+                    }
+                }),
+                yCollab(doc, provider.awareness, {
+                    colors: [
+                        { color: '#30bced', light: '#30bced33' },
+                        { color: '#6eeb83', light: '#6eeb8333' },
+                        { color: '#ffbc42', light: '#ffbc4233' },
+                        { color: '#ecd444', light: '#ecd44433' },
+                        { color: '#ee6352', light: '#ee635233' },
+                        { color: '#9ac2c9', light: '#9ac2c933' },
+                        { color: '#8acb88', light: '#8acb8833' },
+                        { color: '#1be7ff', light: '#1be7ff33' }
+                    ] // User cursor colors
+                }),
+                EditorView.lineWrapping
+            ];
+
+            const view = new EditorView({
+                state: EditorState.create({
+                    doc: "Start collaborating...",
+                    extensions
+                }),
+                parent: editorRef.current!
+            });
+
+            return () => {
+                view.destroy();
+                provider.destroy();
+            };
+        };
+
+        if (initCollab) initializeCollab();
+    }, [initCollab]);
+
+    // Handle controls visibility
+    const handleMouseEnter = () => {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout)
+            setHoverTimeout(null)
+        }
+        setShowControls(true)
+    }
+
+    const handleMouseLeave = () => {
+        const timeout = setTimeout(() => {
+            setShowControls(false)
+        }, 2000)
+        setHoverTimeout(timeout)
+    }
+
+    return (
+        <div className=" overflow-hidden bg-background rounded-[15px] p-3" >
+
+            <div
+                className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-40 transition-opacity duration-300 bg-background  w-[92vw] top-[25px] h-[25px]  ${showControls ? 'opacity-100' : 'opacity-0'}  ${open === true ? 'ml-[260px]' : ''}`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                <div className="flex flex-wrap  items-center overflow-hidden justify-center gap-1 bg-background/90 backdrop-blur-sm  rounded-lg ">
+                    {/* Headings */}
+                    <div className='flex items-center  gap-3'  >
+                        <button variant='ghost' size='icon' className='toolbar-button format-active' value="h1" onClick={() => insertFormat('# {}')} aria-label="Heading 1" >
+                            <Heading1 />
+                        </button>
+                        <button variant='ghost' size='icon' className='toolbar-button format-active' value="h2" onClick={() => insertFormat('## {}')} aria-label="Heading 2">
+                            <Heading2 />
+                        </button>
+                        <button variant='ghost' size='icon' className='toolbar-button format-active' value="h3" onClick={() => insertFormat('### {}')} aria-label="Heading 3">
+                            <Heading3 />
+                        </button>
+                        <button variant='ghost' size='icon' className='toolbar-button format-active' value="h4" onClick={() => insertFormat('#### {}')} aria-label="Heading 4">
+                            <Heading4 />
+                        </button>
+                        <button variant='ghost' size='icon' className='toolbar-button format-active' value="h5" onClick={() => insertFormat('##### {}')} aria-label="Heading 5">
+                            <Heading5 />
+                        </button>
+                    </div>
+                    <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4 border-border " />
+                    {/* Text Formatti   ng */}
+                    <div className='flex items-center   gap-3'  >
+                        <button variant='ghost' size='icon' className='toolbar-button format-active' value="bold" onClick={() => insertFormat('**{}**')} aria-label="Bold">
+                            <Bold />
+                        </button>
+                        <button variant='ghost' size='icon' className='toolbar-button format-active' value="italic" onClick={() => insertFormat('*{}*')} aria-label="Italic">
+                            <Italic />
+                        </button>
+                        <button variant='ghost' size='icon' className='toolbar-button format-active' value="strikethrough" onClick={() => insertFormat('~~{}~~')} aria-label="Strikethrough">
+                            <Strikethrough />
+                        </button>
+                    </div>
+                    <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4  " />
+                    {/* Lists */}
+                    <div className='flex items-center   gap-3'  >
+                        <TooltipButton
+                            icon={<List />}
+                            onClick={() => insertFormat('- {}')}
+                            content='Bullet List'
+                        />
+                        <TooltipButton
+                            icon={<ListOrdered />}
+                            onClick={() => insertFormat('1. {}')}
+                            content='Numbered List'
+                        />
+                        <TooltipButton
+                            icon={<CheckSquare />}
+                            onClick={() => insertFormat('- [ ] {}')}
+                            content='Checklist'
+                        />
+                        <TooltipButton
+                            icon={<Quote />}
+                            onClick={() => insertFormat('> {}')}
+                            content='Blockquote'
+                        />
+                    </div>
+                    <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4  " />
+                    {/* Code & Links */}
+                    <div className='flex items-center   gap-3'  >
+                        <TooltipButton
+                            icon={<Code />}
+                            onClick={() => insertFormat('```\n{}\n```')}
+                            content='Code Block'
+                        />
+                        <TooltipButton
+                            icon={<Link />}
+                            onClick={() => insertFormat('[{}](url)')}
+                            content='Link'
+                        />
+                    </div>
+                    <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4  " />
+                    {/* Tables */}
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <TooltipButton
+                                icon={<Table />}
+                                content='Insert Table'
+                            />
+                        </PopoverTrigger>
+                        <PopoverContent className="w-80">
+                            <div className="grid gap-4">
+                                <div className="space-y-2">
+                                    <h4 className="font-medium leading-none">Insert Table</h4>
+                                    <p className="text-sm text-muted-foreground">
+                                        Select table dimensions
+                                    </p>
+                                </div>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {[2, 3, 4].map((cols) => (
+                                        <button
+                                            key={cols}
+                                            variant="outline"
+                                            onClick={() => insertFormat(
+                                                `| ${Array(cols).fill('Header').join(' | ')} |\n` +
+                                                `|${Array(cols).fill('---').join('|')}|\n` +
+                                                `| ${Array(cols).fill('{}').join(' | ')} |`
+                                            )}
+                                        >
+                                            {cols}x3
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
+                    <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4  " />
+                    {/* Code & Links */}
+                    <div className='flex items-center  gap-3'  >
+                        <TooltipButton
+                            icon={<Monitor />}
+                            onClick={togglePreview}
+                            content='Toggle Preview'
+                        />
+                        <TooltipButton
+                            icon={<ScanLine />}
+                            onClick={() => {
+                                setWhichEditor('inline');
+                                setShowPreview(false);
+                            }}
+                            content='Inline Renderer'
+                        />
+                        <TooltipButton
+                            icon={<Focus />}
+                            onClick={() => {
+                                setFocus((prev) => !prev)
+                            }}
+                            content='Focus Mode'
+                        />
+                        <TooltipButton
+                            icon={<PanelRight />}
+                            onClick={() => {
+                                setOpen((prev) => !prev)
+                            }}
+                            content='Open / Close Sidebar'
+                        />
+                        <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4  " />
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <TooltipButton
+                                    icon={<Save />}
+                                    content='Save'
+                                />
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle>Saving md file...</DialogTitle>
+                                </DialogHeader>
+                                <div className="grid w-full max-w-sm items-center gap-1.5">
+                                    <Label>Filename</Label>
+                                    <Input value={filename} onChange={(e) => {
+                                        setFilename(e.currentTarget.value)
+                                    }} />
+                                </div>
+                                <DialogFooter>
+                                    <DialogClose asChild>
+                                        <ButtonStyled primary={false} variant="outline">Cancel</ButtonStyled>
+                                    </DialogClose>
+
+                                    <ButtonStyled disabled={!filename.trim()} onClick={() => onSave()} >Save </ButtonStyled>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
+
+                        <TooltipButton
+                            icon={<BookOpenText />}
+                            onClick={() => fileInputRef.current?.click()}
+                            content='Open File'
+                        />
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept=".md"
+                            onChange={onOpen}
+                            style={{ display: 'none' }}
+                        />
+                        <TooltipButton
+                            icon={<FileOutput />}
+                            onClick={onExport}
+                            content='Export .md'
+                        />
+                        <TooltipButton
+                            icon={<FilePlus />}
+                            onClick={onNew}
+                            content='New File'
+                        />
+                    </div>
+                </div>
+            </div>
+            <div
+                ref={editorRef}
+                className="max-h-[90vh] h-full overflow-y-auto  p-4 "
+                style={{
+                    // Ensures CSS variables are applied
+                    color: "#ffffff",
+                    backgroundColor: "#020817",
+
+                    // CSS variables for theming
+                    "--background": "#020817", // Dark blue-black
+                    "--foreground": "#faf9f3", // White text
+                    "--primary": "#3b82f6",    // Blue-500
+                    "--primary-foreground": "#faf9f3", // White
+                    "--secondary": "#10b981",  // Emerald-500
+                    "--muted": "#1e293b",      // Dark slate
+                    "--muted-foreground": "#9ca3af", // Gray-400
+                    "--border": "#1f2937",     // Dark slate border
+
+                    // Ensures variables are inherited
+                    all: "inherit",
+
+                    // Better text rendering
+                    WebkitFontSmoothing: "antialiased",
+                    MozOsxFontSmoothing: "grayscale",
+
+                    // Minimum sizing defaults
+                    minWidth: 0,
+                    minHeight: 0,
+
+                    // Ensures proper stacking context
+                    isolation: "isolate",
+
+                    // Smooth scrolling for editor content
+                    scrollBehavior: "smooth"
+                }}
+            />
+        </div >
+    );
+}

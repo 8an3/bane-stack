@@ -9,6 +9,7 @@ import { Search, } from "./components/search";
 import TeamSwitcher from "./components/team-switcher";
 import { UserNav, } from "./components/user-nav";
 import MonacoEditor from "../editor";
+import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "~/components/customUi/page-header";
 
 export const meta: MetaFunction = () => {
 	return [

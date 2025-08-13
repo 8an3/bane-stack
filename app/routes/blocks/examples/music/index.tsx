@@ -1,52 +1,80 @@
-import MonacoEditor from "../editor";
+import { useEffect, useState } from "react";
+import MonacoEditor from "../editor/components2";
 import MusicPage from "./MusicPage";
-import albumartwork from './components/album-artwork.tsx'
-import menu from './components/menu.tsx'
-import podcastemptyplaceholder from './components/podcast-empty-placeholder.tsx'
-import sidebar from './components/sidebar.tsx'
-import album from './data/albums.ts'
-import playlists from './data/playlists.ts'
+import { AlbumArtwork } from "./components/album-artwork";
+import { Sidebar } from "./components/sidebar";
+import { PodcastEmptyPlaceholder } from "./components/podcast-empty-placeholder";
+import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "~/components/customUi/page-header";
+import { Scaffolding } from "~/components/customUi/scaffolding";
 
 export async function loader({ request }: LoaderArgs) {
 	return null;
 }
 
-export default  function UserAuthForm() {
-  const ScaffoldingCode =`
-  // components/album-artwork.tsx
-  ${albumartwork}
+export default function UserAuthForm() {
+	const [selectedCode, setSelectedCode] = useState("");
+	const [name, setName] = useState("MusicPage");
 
-  // components/menu.tsx
-    ${menu}
+	const sections = [
+		{ name: "components/album-artwork", value: "components/album-artwork", path: "/examples/music/components/album-artwork.tsx.txt" },
+		{ name: "components/menu", value: "components/menu", path: "/examples/music/components/menu.tsx.txt" },
+		{ name: "components/podcast-empty-placeholder", value: "components/podcast-empty-placeholder", path: "/examples/music/components/podcast-empty-placeholder.tsx.txt" },
+		{ name: "components/sidebar", value: "components/sidebar", path: "/examples/music/components/sidebar.tsx.txt" },
+		{ name: "data/albums", value: "data/albums", path: "/examples/music/data/albums.ts.txt" },
+		{ name: "data/playlists", value: "data/playlists", path: "/examples/music/data/playlists.ts.txt" },
+		{ name: "MusicPage", value: "MusicPage", path: "/examples/music/MusicPage.tsx.txt" },
+	];
 
-  // components/podcast-empty-placeholder.tsx
-    ${podcastemptyplaceholder}
+	let viewSelected;
+	switch (name) {
+		case "MusicPage":
+			viewSelected = <MusicPage />;
+			break;
+		case "data/playlists":
+			viewSelected = <Scaffolding title={"data/playlists"} />;
+			break;
+		case "data/albums":
+			viewSelected = <Scaffolding title={"data/albums"} />;
+			break;
+		case "components/sidebar":
+			viewSelected = <Scaffolding title={"components/sidebar"} />;
+			break;
+		case "components/podcast-empty-placeholder":
+			viewSelected = <Scaffolding title={"components/podcast-empty-placeholder"} />;
+			break;
+		case "components/menu":
+			viewSelected = <Scaffolding title={"components/menu"} />;
+			break;
+		case "components/album-artwork":
+			viewSelected = <Scaffolding title={"components/album-artwork"} />;
+			break;
+		default:
+			viewSelected = <MusicPage />;
+			break;
+	}
+	useEffect(() => {
+		if (!selectedCode) return;
 
-  // components/sidebar.tsx
-    ${sidebar}
+		const loadHookCode = async (url) => {
+			try {
+				const response = await fetch(url);
+				if (!response.ok) throw new Error(`HTTP ${response.status}`);
+				const codeContent = await response.text();
+				setSelectedCode(codeContent);
+			} catch (error) {
+				console.error(`Failed to load ${url}:`, error);
+				setSelectedCode(`// Failed to load ${url}\n// Error: ${error.message}`);
+			}
+		};
 
-  // data/album.ts
-    ${album}
+		loadHookCode(selectedCode);
+	}, [selectedCode]);
 
-  // data/playlists.ts
-    ${playlists}`
 	return (
 		<div className="flex flex-col justify-center gap-4">
-			<MonacoEditor code={MusicPage} renderComp={<MusicPage />} />
-			<MonacoEditor code={ScaffoldingCode} renderComp={<Scaffolding />} />
+			<MonacoEditor code={selectedCode} sections={sections} setName={setName} name={name} viewSelected={viewSelected} />
 		</div>
 	);
 }
 
-export function Scaffolding() {
-	return (
-		<div className="bg-background rounded-[15px] m-[15px] overflow-hidden h-[calc(100vh-54px)] flex flex-col w-full justify-center items-center">
-			<div className="flex  py-[100px]  ">
-				<PageHeader>
-					<PageHeaderHeading className="max-w-4xl">Scaffolding</PageHeaderHeading>
-					<PageHeaderDescription>The remaining code in order to make it work.</PageHeaderDescription>
-				</PageHeader>
-			</div>
-		</div>
-	);
-}
+

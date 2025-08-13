@@ -1,0 +1,238 @@
+import { EditIcon, EyeIcon } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import MDEditor from "~/components/vscodeExt/md-editor"
+import MDRenderer from "~/components/vscodeExt/md-renderer"
+import { AppSidebar } from "~/components/vscodeExt/editor/app-sidebar"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "~/components/ui/breadcrumb"
+import { SidebarInset, SidebarProvider, SidebarTrigger, useSidebar as useRightSidebar } from "~/components/ui/rightSidebar"
+
+import { cn } from "~/components/ui/utils"
+import axios from "axios"
+import { toast } from "sonner"
+import { DEVSTACK_URL } from "~/components/shared"
+import { json } from "@remix-run/node"
+import { useLoaderData, useNavigate } from "@remix-run/react"
+import { LexicalEditor } from "~/components/vscodeExt/lexical-editor"
+import { useSidebar } from "~/components/ui/sidebar"
+
+export const loader: LoaderFunction = async ({ request, params }) => {
+  let option = params.option
+  let cmd
+  let toEdit
+  if (option === "create") {
+    cmd = null
+    toEdit = false
+    return json({ cmd, toEdit })
+  } else {
+    cmd = option
+    toEdit = true
+    return json({ cmd, toEdit })
+  }
+}
+
+
+export default function Page() {
+  const { cmd, toEdit } = useLoaderData()
+  const [isEditing, setIsEditing] = useState(Boolean(toEdit) || false)
+  const [markdown, setMarkdown] = useState("# Hello World\n\nType **Markdown** here...")
+  const [filename, setFilename] = useState(cmd || "")
+  const viewRef = useRef<EditorView | null>(null)
+
+  useEffect(() => {
+    async function initializeApp() {
+      try {
+        if (isEditing === true) {
+          const response = await fetch(`${DEVSTACK_URL}/api/md/file/get/file?filename=${encodeURIComponent(filename)}`)
+          const data = await response.json()
+
+          if (!response.ok) {
+            throw new Error(data.error || "Failed to fetch file")
+          }
+
+          if (data.success) {
+            setMarkdown(data.content)
+          } else {
+            console.error("Server returned unsuccessful response:", data.error)
+          }
+          if (data.filename) {
+            setFilename(data.filename)
+          }
+        }
+      } catch (error) {
+        console.error("Failed to load sidebar data:", error)
+      }
+      setIsLoading(false)
+    }
+    initializeApp()
+  }, [])
+
+  useEffect(() => {
+    const savedMarkdown = localStorage.getItem("markdown")
+    if (savedMarkdown) {
+      setMarkdown(savedMarkdown)
+    }
+  }, [])
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      try {
+        localStorage.setItem("markdown", markdown)
+      } catch (error) {
+        console.warn("Failed to save to localStorage:", error)
+      }
+    }, 500)
+
+    return () => clearTimeout(timeoutId)
+  }, [markdown])
+
+  const [isLoading, setIsLoading] = useState(true)
+  const [loadError, setLoadError] = useState(null)
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="text-lg font-medium text-gray-700">Loading md Editor...</div>
+          <div className="text-sm text-gray-500 mt-2">Settings things up...</div>
+        </div>
+      </div>
+    )
+  }
+  if (loadError) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center max-w-md">
+          <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+          <div className="text-lg font-medium text-foreground mb-2">Failed to Load Configuration</div>
+          <div className="text-sm text-muted-foreground mb-4">{loadError}</div>
+          <Button onClick={() => nav(0)} className="px-4 py-2 bg-primary hover:bg-primary/20 text-foreground rounded-lg transition-colors">
+            Retry
+          </Button>
+        </div>
+      </div>
+    )
+  }
+  return (
+    <SidebarProvider>
+      <SidebarInset>
+        <div className="flex flex-1 flex-col gap-4 ">
+          <EditorPage filename={filename} setFilename={setFilename} markdown={markdown} setMarkdown={setMarkdown} viewRef={viewRef} />
+        </div>
+      </SidebarInset>
+      <AppSidebar content={markdown} viewRef={viewRef} setMarkdown={setMarkdown} side="right" />
+    </SidebarProvider>
+  )
+}
+
+function EditorPage({ filename, setFilename, markdown, setMarkdown, viewRef }) {
+  const { setOpen } = useRightSidebar()
+  const [showPreview, setShowPreview] = useState(true)
+  const [whichEditor, setWhichEditor] = useState("split")
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const editorRef = useRef<HTMLDivElement>(null)
+  const { open } = useSidebar()
+  const togglePreview = () => {
+    setShowPreview((prev) => !prev)
+  }
+
+  const onSave = async () => {
+    await axios.post(DEVSTACK_URL + `/api/md/file/save/file`, {
+      filename: filename,
+      content: markdown,
+    })
+    toast.success(".md file saved")
+  }
+  const onExport = async () => {
+    const blob = new Blob([markdown], { type: "text/markdown" })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = `document.md`
+    a.click()
+
+    // Clean up
+    URL.revokeObjectURL(url)
+  }
+
+  const onOpen = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const file = e.target.files?.[0]
+      if (!file) return
+      if (!file.name.endsWith(".md")) {
+        alert("Please upload a .md file")
+        return
+      }
+
+      const contents = await file.text()
+
+      setMarkdown(contents)
+      const view = viewRef.current
+      if (!view) return
+
+      view.dispatch({
+        changes: {
+          from: 0,
+          to: view.state.doc.length,
+          insert: contents,
+        },
+      })
+    } catch (error) {
+      console.error("Error loading PDF:", error)
+    }
+  }
+  const onNew = async () => {
+    setMarkdown("New file...")
+    const view = viewRef.current
+    if (!view) return
+
+    view.dispatch({
+      changes: {
+        from: 0,
+        to: view.state.doc.length,
+        insert: "New file...",
+      },
+    })
+  }
+  return (
+    <div className="max-h-[95vh] h-full bg-background overflow-hidden rounded-[15px]">
+      {/* Mobile Toggle Button (hidden on lg+) */}
+      <button className="lg:hidden fixed bottom-4 right-4 z-10 bg-background text-foreground p-2 rounded-full shadow-lg" onClick={() => setShowPreview(!showPreview)}>
+        {showPreview ? (
+          <span className="flex items-center">
+            <EditIcon className="w-5 h-5 mr-1" /> Edit
+          </span>
+        ) : (
+          <span className="flex items-center">
+            <EyeIcon className="w-5 h-5 mr-1" /> Preview
+          </span>
+        )}
+      </button>
+
+      <div className="flex max-h-[90vh]  h-full">
+        {/* Editor Column (full width on mobile, 50% on lg+) */}
+        <div className={cn("p-4 max-h-[90vh]  h-full overflow-auto", showPreview ? "w-1/2 border-r border-border/50" : whichEditor === "inline" ? " w-full " : "w-full")}>
+          {whichEditor === "split" ? (
+            <>
+              <MDEditor initialValue={markdown} onChange={setMarkdown} togglePreview={togglePreview} onSave={onSave} setWhichEditor={setWhichEditor} setFilename={setFilename} filename={filename} setOpen={setOpen} setShowPreview={setShowPreview} onExport={onExport} fileInputRef={fileInputRef} onOpen={onOpen} editorRef={editorRef} viewRef={viewRef} onNew={onNew} open={open} />
+            </>
+          ) : whichEditor === "inline" ? (
+            <>
+              <LexicalEditor content={markdown} onChange={setMarkdown} onSave={onSave} setWhichEditor={setWhichEditor} setFilename={setFilename} filename={filename} setOpen={setOpen} setShowPreview={setShowPreview} onExport={onExport} fileInputRef={fileInputRef} setMarkdown={setMarkdown} open={open} />
+            </>
+          ) : null}
+        </div>
+
+        {/* Preview Column (hidden on mobile unless toggled) */}
+        {showPreview && (
+          <div className="w-1/2 p-4 overflow-auto  hidden lg:block">
+            <MDRenderer content={markdown} />
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export const meta: MetaFunction = () => {
+  return [{ title: "MD Editor - DevStack" }, { name: "description", content: "VSCode Extension" }]
+}

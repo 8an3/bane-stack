@@ -38,15 +38,15 @@ export function PageHeaderFunction({
   nav3To = '/login'
 }) {
   return (
-    <div className="flex  py-[100px]  ">
+    <div className="flex  py-[75px]  ">
       <PageHeader>
         <Announcement announcement={announcement} link={aLink} />
         <PageHeaderHeading className="max-w-4xl">{title}</PageHeaderHeading>
         <PageHeaderDescription>{description}</PageHeaderDescription>
         <PageActions>
-          <NavButton to={nav1To} className='text-muted-foreground'>{nav1}</NavButton>
-          <NavButton to={nav2To} className='text-muted-foreground'>{nav2}</NavButton>
-          <NavButton to={nav3To} className='text-muted-foreground'>{nav3}</NavButton>
+          <NavButton variant='outline' to={nav1To} className='text-muted-foreground'>{nav1}</NavButton>
+          <NavButton variant='outline' to={nav2To} className='text-muted-foreground'>{nav2}</NavButton>
+          <NavButton variant='outline' to={nav3To} className='text-muted-foreground'>{nav3}</NavButton>
         </PageActions>
       </PageHeader>
     </div>

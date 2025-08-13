@@ -1,39 +1,53 @@
 import ProductsPage from "~/components/blocks/products/products-01/page";
-import MonacoEditor from "../editor";
-import productstable from '~/components/blocks/products/products-01/components/products-table'
-
+import productstable from "~/components/blocks/products/products-01/components/products-table";
+import { useEffect, useState } from "react";
+import MonacoEditor from "../editor/components2";
 
 export const meta: MetaFunction = () => {
-	return [
-		{ title: "Products - 8an3/Bane" },
-		{ name: "description", content: "8an3/Bane Remix Stack" },
-	];
+	return [{ title: "Products - 8an3/Bane" }, { name: "description", content: "8an3/Bane Remix Stack" }];
 };
 
 export async function loader({ request }: LoaderArgs) {
-  return null
+	return null;
 }
 
+export default function DefaultPage() {
+	const [selectedCode, setSelectedCode] = useState("");
+	const [name, setName] = useState("ProductsPage");
 
-export default  function UserAuthForm() {
+	const sections = [
+		{ name: "ProductsPage", value: "ProductsPage", path: "/examples/table/page.tsx.txt" },
+		{ name: "productstable", value: "productstable", path: "/examples/table/products-table.tsx.txt" },
+	];
+	let viewSelected;
+	switch (name) {
+		case "ProductsPage":
+			viewSelected = <ProductsPage />;
+			break;
+		case "productstable":
+			viewSelected = <Scaffolding title="productstable" />;
+			break;
+	}
+	useEffect(() => {
+		if (!selectedCode) return;
 
-  return (
-    <div className="flex flex-col justify-center gap-4">
-      <MonacoEditor code={ProductsPage} renderComp={<ProductsPage />} />
-      <MonacoEditor code={productstable} renderComp={<Scaffolding />} />
-    </div>
-  );
-}
+		const loadHookCode = async (url) => {
+			try {
+				const response = await fetch(url);
+				if (!response.ok) throw new Error(`HTTP ${response.status}`);
+				const codeContent = await response.text();
+				setSelectedCode(codeContent);
+			} catch (error) {
+				console.error(`Failed to load ${url}:`, error);
+				setSelectedCode(`// Failed to load ${url}\n// Error: ${error.message}`);
+			}
+		};
 
-export function Scaffolding() {
-  return (
-    <div className="bg-background rounded-[15px] m-[15px] overflow-hidden h-[calc(100vh-54px)] flex flex-col w-full justify-center items-center">
-      <div className="flex  py-[100px]  ">
-        <PageHeader>
-          <PageHeaderHeading className="max-w-4xl">Scaffolding</PageHeaderHeading>
-          <PageHeaderDescription>The remaining code in order to make it work.</PageHeaderDescription>
-        </PageHeader>
-      </div>
-    </div>
-  );
+		loadHookCode(selectedCode);
+	}, [selectedCode]);
+	return (
+		<div className="flex flex-col justify-center gap-4">
+			<MonacoEditor viewSelected={viewSelected} code={selectedCode} sections={sections} setName={setName} name={name} />
+		</div>
+	);
 }

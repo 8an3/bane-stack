@@ -6,13 +6,15 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Button } from "~/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { CopyText } from "~/components/customUi/copyText";
+import { ExportFile } from "~/components/customUi/exportFile";
 
 // Lazy load Monaco Editor to avoid SSR issues
 const Editor = lazy(() => import("@monaco-editor/react"));
 
 export default function MonacoEditor() {
 	const [isClient, setIsClient] = useState(false);
-	const [selectedCode, setSelectedCode] = useState("");
+	const [selectedCode, setSelectedCode] = useState(null);
+	const [name, setName] = useState(null);
 	const [code, setCode] = useState("");
 	const [content, setContent] = useState(code);
 	const [language, setLanguage] = useState("markdown");
@@ -249,96 +251,111 @@ export default function MonacoEditor() {
 			</div>
 		);
 	};
-	const [renderer, setRenderer] = useState("editor"); // editor
 	const ButtonBar2 = () => {
 		return (
-			<div className="flex items-center space-x-2">
+			<div className="flex items-center space-x-4">
+				<ExportFile code={code} filename={`${name}.tsx`} />
 				<CopyText code={code} />
 			</div>
 		);
 	};
-	// add lofi
 	const sections = [
-		{ name: "use Copy To Clipboard", value: "useCopyToClipboardCode" },
-		{ name: "use Is Mobile", value: "useIsMobileCode" },
-		{ name: "use Mounted", value: "useMountedCode" },
-		{ name: "use Mutation Observer", value: "useMutationObserverCode" },
-		{ name: "use Fuzzy Search", value: "useFuzzySearchCode" },
-		{ name: "use Media Query", value: "useMediaQueryCode" },
-		{ name: "Login Page", value: "LoginPageCode" },
-		{ name: "Logout Page", value: "action" },
-		{ name: "tailwind", value: "tailwindCode" },
-		{ name: "Provider Route", value: "ProviderRoute" },
-		{ name: "Demo Cookie Settings", value: "DemoCookieSettings" },
-		{ name: "Demo Create Account", value: "DemoCreateAccount" },
-		{ name: "Demo Date Picker", value: "DemoDatePicker" },
-		{ name: "Demo Github", value: "DemoGithub" },
-		{ name: "Demo Notifications", value: "DemoNotifications" },
-		{ name: "Demo PaymentMethod", value: "DemoPaymentMethod" },
-		{ name: "Demo Report An Issue", value: "DemoReportAnIssue" },
-		{ name: "Demo Share Document", value: "DemoShareDocument" },
-		{ name: "Demo Team Members", value: "DemoTeamMembers" },
-		{ name: "prisma", value: "prisma" },
-		{ name: "auth Session Storage", value: "authSessionStorage" },
-		{ name: "authenticator", value: "authenticator" },
-		{ name: "Icons", value: "Icons" },
-		{ name: "Site Header", value: "SiteHeader" },
-		{ name: "lofi - accordian", value: "lofiAccordian" },
-		{ name: "lofi - alert", value: "lofialert" },
-		{ name: "lofi - atom", value: "lofiatom" },
-		{ name: "lofi - component", value: "loficomponent" },
-		{ name: "lofi - index", value: "lofiindex" },
-		{ name: "On page sidebar nav", value: "sidebarnav" },
-		{ name: "Sections Editor", value: "SectionsEditor" },
-		{ name: "comp Editor (the one currently on page)", value: "componentEditor" },
-		{ name: "formsLayout", value: "formsLayout" },
-        
+		{ name: "Hooks - use Copy To Clipboard", value: "useCopyToClipboardCode", path: "/examples/hooks/use-copy-to-clipboard.ts.txt" },
+		{ name: "Hooks - use Is Mobile", value: "useIsMobileCode", path: "/examples/hooks/use-mobile.ts.txt" },
+		{ name: "Hooks - use Mounted", value: "useMountedCode", path: "/examples/hooks/use-mounted.ts.txt" },
+		{ name: "Hooks - use Mutation Observer", value: "useMutationObserverCode", path: "/examples/hooks/use-mutation-observer.ts.txt" },
+		{ name: "Hooks - use Fuzzy Search", value: "useFuzzySearchCode", path: "/examples/hooks/useFuzzySearch.tsx.txt" },
+		{ name: "Hooks - use Media Query", value: "useMediaQueryCode", path: "/examples/hooks/useMediaQuery.tsx.txt" },
+		{ name: "Hooks - use Export Markdown", value: "useExportMarkdown", path: "/examples/hooks/useExportMarkdown.tsx.txt" },
+		{ name: "Hooks - use Export Tsx", value: "useExportTsx", path: "/examples/hooks/useExportTsx.tsx.txt" },
+
+		{ name: "Portal - Provider Route", value: "ProviderRoute", path: "/examples/pages/providorRoute.tsx.txt" },
+
+		{ name: "Custom UI - announcement", value: "announcement", path: "/examples/customUi/announcement" },
+		{ name: "Custom UI - app-sidebar", value: "app-sidebar", path: "/examples/customUi/app-sidebar" },
+		{ name: "Custom UI - ButtonStyled", value: "ButtonStyled", path: "/examples/customUi/ButtonStyled" },
+		{ name: "Custom UI - callout", value: "callout", path: "/examples/customUi/callout" },
+		{ name: "Custom UI - copyText", value: "copyText", path: "/examples/customUi/copyText" },
+		{ name: "Custom UI - data", value: "data", path: "/examples/customUi/data" },
+		{ name: "Custom UI - debouncedInput", value: "debouncedInput", path: "/examples/customUi/debouncedInput" },
+		{ name: "Custom UI - exportFile", value: "exportFile", path: "/examples/customUi/exportFile" },
+		{ name: "Custom UI - filter", value: "filter", path: "/examples/customUi/filter" },
+		{ name: "Custom UI - fuzzyFilter", value: "fuzzyFilter", path: "/examples/customUi/fuzzyFilter" },
+		{ name: "Custom UI - fuzzySort", value: "fuzzySort", path: "/examples/customUi/fuzzySort" },
+		{ name: "Custom UI - incId", value: "incId", path: "/examples/customUi/incId" },
+		{ name: "Custom UI - loadErrorPage", value: "loadErrorPage", path: "/examples/customUi/loadErrorPage" },
+		{ name: "Custom UI - loading", value: "loading", path: "/examples/customUi/loading" },
+		{ name: "Custom UI - loadingPage", value: "loadingPage", path: "/examples/customUi/loadingPage" },
+		{ name: "Custom UI - nav-main", value: "nav-main", path: "/examples/customUi/nav-main" },
+		{ name: "Custom UI - nav-projects", value: "nav-projects", path: "/examples/customUi/nav-projects" },
+		{ name: "Custom UI - nav-user", value: "nav-user", path: "/examples/customUi/nav-user" },
+		{ name: "Custom UI - NavButton", value: "NavButton", path: "/examples/customUi/NavButton" },
+		{ name: "Custom UI - NavButtonStyled", value: "NavButtonStyled", path: "/examples/customUi/NavButtonStyled" },
+		{ name: "Custom UI - option", value: "option", path: "/examples/customUi/option" },
+		{ name: "Custom UI - page-header", value: "page-header", path: "/examples/customUi/page-header" },
+		{ name: "Custom UI - PaginationButton", value: "PaginationButton", path: "/examples/customUi/PaginationButton" },
+		{ name: "Custom UI - smallTable", value: "smallTable", path: "/examples/customUi/smallTable" },
+		{ name: "Custom UI - team-switcher", value: "team-switcher", path: "/examples/customUi/team-switcher" },
+		{ name: "Custom UI - theme-selector", value: "theme-selector", path: "/examples/customUi/theme-selector" },
+		{ name: "Custom UI - tooltipButton", value: "tooltipButton", path: "/examples/customUi/tooltipButton" },
+
+		{ name: "Card - Demo Cookie Settings", value: "DemoCookieSettings", path: "/examples/other/cookie-settings.tsx.txt" },
+		{ name: "Card - Demo Create Account", value: "DemoCreateAccount", path: "/examples/other/create-account.tsx.txt" },
+		{ name: "Card - Demo Date Picker", value: "DemoDatePicker", path: "/examples/other/date-picker.tsx.txt" },
+		{ name: "Card - Demo Github", value: "DemoGithub", path: "/examples/other/github-card.tsx.txt" },
+		{ name: "Card - Demo Notifications", value: "DemoNotifications", path: "/examples/other/notifications.tsx.txt" },
+		{ name: "Card - Demo PaymentMethod", value: "DemoPaymentMethod", path: "/examples/other/payment-method.tsx.txt" },
+		{ name: "Card - Demo Report An Issue", value: "DemoReportAnIssue", path: "/examples/other/report-an-issue.tsx.txt" },
+		{ name: "Card - Demo Share Document", value: "DemoShareDocument", path: "/examples/other/share-document.tsx.txt" },
+		{ name: "Card - Demo Team Members", value: "DemoTeamMembers", path: "/examples/other/team-members.tsx.txt" },
+
+		{ name: "Login - auth Session Storage", value: "authSessionStorage", path: "/examples/other/auth_session.ts.txt" },
+		{ name: "Login - authenticator", value: "authenticator", path: "/examples/other/auth.ts.txt" },
+		{ name: "Login - Login Page", value: "LoginPageCode", path: "/examples/pages/login.tsx.txt" },
+		{ name: "Login - Logout Page", value: "logout", path: "/examples/pages/logout.tsx.txt" },
+
+		{ name: "lofi - accordian", value: "lofiAccordian", path: "/examples/lo-fi/accordion.tsx.txt" },
+		{ name: "lofi - alert", value: "lofialert", path: "/examples/lo-fi/alert.tsx.txt" },
+		{ name: "lofi - atom", value: "lofiatom", path: "/examples/lo-fi/atom.tsx.txt" },
+		{ name: "lofi - component", value: "loficomponent", path: "/examples/lo-fi/component.tsx.txt" },
+		{ name: "lofi - index", value: "lofiindex", path: "/examples/lo-fi/index.tsx.txt" },
+
+		{ name: "Tasks - columns", value: "lofiindex", path: "/examples/tasks/columns.tsx.txt" },
+		{ name: "Tasks - data-table-column-header", value: "data-table-column-header", path: "/examples/tasks/data-table-column-header.tsx.txt" },
+		{ name: "Tasks - data-table-faceted-filter", value: "data-table-faceted-filter", path: "/examples/tasks/data-table-faceted-filter.tsx.txt" },
+		{ name: "Tasks - data-table-pagination", value: "data-table-pagination", path: "/examples/tasks/data-table-pagination.tsx.txt" },
+		{ name: "Tasks - data-table-row-actions", value: "data-table-row-actions", path: "/examples/tasks/data-table-row-actions.tsx.txt" },
+		{ name: "Tasks - data-table-toolbar", value: "data-table-toolbar", path: "/examples/tasks/data-table-toolbar.tsx.txt" },
+		{ name: "Tasks - data-table-view-options", value: "data-table-view-options", path: "/examples/tasks/data-table-view-options.tsx.txt" },
+		{ name: "Tasks - data-table", value: "data-table", path: "/examples/tasks/data-table.tsx.txt" },
+		{ name: "Tasks - data", value: "data", path: "/examples/tasks/data.tsx.txt" },
+		{ name: "Tasks - TaskPage", value: "TaskPage", path: "/examples/tasks/TaskPage.tsx.txt" },
+		{ name: "Tasks - user-nav", value: "user-nav", path: "/examples/tasks/user-nav.tsx.txt" },
+
+		{ name: "Forms - sidebar nav", value: "sidebarnav", path: "/examples/other/sidebar-nav.tsx.txt" },
+		{ name: "Forms - Layout", value: "formsLayout", path: "/examples/pages/formsLayout.tsx.txt" },
+		{ name: "Forms - accout/account-form", value: "accout/account-form", path: "/examples/forms/account/account-form.tsx.txt" },
+		{ name: "Forms - accout/index", value: "accout/index", path: "/examples/forms/account/index.tsx.txt" },
+		{ name: "Forms - appearance/appearance-form", value: "appearance/appearance-form", path: "/examples/forms/appearance/appearance-form.tsx.txt" },
+		{ name: "Forms - appearance/index", value: "appearance/index", path: "/examples/forms/appearance/index.tsx.txt" },
+		{ name: "Forms - components/sidebar-nav", value: "components/sidebar-nav", path: "/examples/forms/components/sidebar-nav.tsx.txt" },
+		{ name: "Forms - display/display-form", value: "display/display-form", path: "/examples/forms/display/display-form.tsx.txt" },
+		{ name: "Forms - display/index", value: "display/index", path: "/examples/forms/display/index.tsx.txt" },
+		{ name: "Forms - notifications/index", value: "notifications/index", path: "/examples/forms/notifications/index.tsx.txt" },
+		{ name: "Forms - notifications/notifications-form", value: "notifications/notifications-form", path: "/examples/forms/notifications/notifications-form.tsx.txt" },
+		{ name: "Forms - profile", value: "profile", path: "/examples/forms/profile.tsx.txt" },
+
+		{ name: "Editor - Sections Editor", value: "SectionsEditor", path: "/examples/editor/SectionsEditor.tsx.txt" },
+		{ name: "Editor - Comp Editor (the one currently on page)", value: "componentEditor", path: "/examples/editor/componentEditor.tsx.txt" },
+		{ name: "Editor - md Editor from DevStack - Index", value: "componentEditor", path: "/examples/editor/editor.index.tsx" },
+		{ name: "Editor - codemirror-editor", value: "componentEditor", path: "/examples/editor/codemirror-editor.tsx" },
+		{ name: "Editor - lexical-editor", value: "componentEditor", path: "/examples/editor/lexical-editor.tsx" },
+
+		{ name: "Other - prisma", value: "prisma", path: "/examples/other/prisma.ts.txt" },
+		{ name: "Other - Icons", value: "Icons", path: "/examples/other/icons.tsx.txt" },
+		{ name: "Other - Site Header", value: "SiteHeader", path: "/examples/other/site-header.tsx.txt" },
+		{ name: "Other - tailwind", value: "tailwindCode", path: "/examples/css/tailwind.css.txt" },
 	];
-	const codePathMap = {
-		formsLayout: "/examples/pages/formsLayout.tsx.txt",
-		SectionsEditor: "/examples/editor/SectionsEditor.tsx.txt",
-		componentEditor: "/examples/editor/componentEditor.tsx.txt",
-		sidebarnav: "/examples/other/sidebar-nav.tsx.txt",
-		lofiAccordian: "/examples/lo-fi/accordion.tsx.txt",
-		lofialert: "/examples/lo-fi/alert.tsx.txt",
-		lofiatom: "/examples/lo-fi/atom.tsx.txt",
-		loficomponent: "/examples/lo-fi/component.tsx.txt",
-		lofiindex: "/examples/lo-fi/index.tsx.txt",
-		useIsMobileCode: "/examples/hooks/use-mobile.ts.txt",
-		useMountedCode: "/examples/hooks/use-mounted.ts.txt",
-		useMutationObserverCode: "/examples/hooks/use-mutation-observer.ts.txt",
-		useFuzzySearchCode: "/examples/hooks/useFuzzySearch.tsx.txt",
-		useMediaQueryCode: "/examples/hooks/useMediaQuery.tsx.txt",
-		LoginPageCode: "/examples/pages/login.tsx.txt",
-		useCopyToClipboardCode: "/examples/hooks/use-copy-to-clipboard.ts.txt",
-		tailwindCode: "/examples/css/tailwind.css.txt",
-		logoutCode: "/examples/pages/use-mobile.ts.txt",
-		action: "/examples/pages/logout.tsx.txt",
-		ProviderRoute: "/examples/pages/providorRoute.tsx.txt",
-		DemoCookieSettings: "/examples/other/cookie-settings.tsx.txt",
-		DemoCreateAccount: "/examples/other/create-account.tsx.txt",
-		DemoDatePicker: "/examples/other/date-picker.tsx.txt",
-		DemoGithub: "/examples/other/github-card.tsx.txt",
-		DemoNotifications: "/examples/other/notifications.tsx.txt",
-		DemoPaymentMethod: "/examples/other/payment-method.tsx.txt",
-		DemoReportAnIssue: "/examples/other/report-an-issue.tsx.txt",
-		DemoShareDocument: "/examples/other/share-document.tsx.txt",
-		DemoTeamMembers: "/examples/other/team-members.tsx.txt",
-		prisma: "/examples/other/prisma.ts.txt",
-		authSessionStorage: "/examples/other/auth_session.ts.txt",
-		authenticator: "/examples/other/auth.ts.txt",
-		Icons: "/examples/other/icons.tsx.txt",
-		SiteHeader: "/examples/other/site-header.tsx.txt",
-	};
-	const handleSelectionChange = (newSelection) => {
-		//setSel(newSelection);
-		const filePath = codePathMap[newSelection];
-		if (filePath) {
-			setSelectedCode(filePath);
-		} else {
-			setCode("// No code example available for this selection");
-		}
-	};
 	useEffect(() => {
 		if (!selectedCode) return;
 
@@ -369,7 +386,8 @@ export default function MonacoEditor() {
 									<CommandItem
 										key={index}
 										onSelect={() => {
-											handleSelectionChange(item.value);
+											setName(item.value);
+											setSelectedCode(item.path);
 										}}
 									>
 										{item.name}

@@ -18,7 +18,7 @@ const groups = [
     label: "Personal Account",
     teams: [
       {
-        label: "Alicia Koch",
+        label: "8an3/bane",
         value: "personal",
       },
     ],

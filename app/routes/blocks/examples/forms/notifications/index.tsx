@@ -1,23 +1,41 @@
-import MonacoEditor from "../../editor";
+import { useEffect, useState } from "react";
+import MonacoEditor from "../../editor/components2";
 import { NotificationsForm } from "./notifications-form"
 
-export default  function UserAuthForm() {
+
+ 
+
+export default function DefaultPage() {
+	const [selectedCode, setSelectedCode] = useState("");
+	const [name, setName] = useState("notifications-form");
+
+	const sections = [{ name: "notifications-form", value: "notifications-form", path: "/examples/forms/notifications/notifications-form.tsx.txt" }];
+	let viewSelected;
+	switch (name) {
+		case "notifications-form":
+			viewSelected = <NotificationsForm />;
+			break;
+	}
+	useEffect(() => {
+		if (!selectedCode) return;
+
+		const loadHookCode = async (url) => {
+			try {
+				const response = await fetch(url);
+				if (!response.ok) throw new Error(`HTTP ${response.status}`);
+				const codeContent = await response.text();
+				setSelectedCode(codeContent);
+			} catch (error) {
+				console.error(`Failed to load ${url}:`, error);
+				setSelectedCode(`// Failed to load ${url}\n// Error: ${error.message}`);
+			}
+		};
+
+		loadHookCode(selectedCode);
+	}, [selectedCode]);
 	return (
 		<div className="flex flex-col justify-center gap-4">
-			<MonacoEditor code={NotificationsForm} renderComp={<NotificationsForm />} />
-		</div>
-	);
-}
-
-export function Scaffolding() {
-	return (
-		<div className="bg-background rounded-[15px] m-[15px] overflow-hidden h-[calc(100vh-54px)] flex flex-col w-full justify-center items-center">
-			<div className="flex  py-[100px]  ">
-				<PageHeader>
-					<PageHeaderHeading className="max-w-4xl">Scaffolding</PageHeaderHeading>
-					<PageHeaderDescription>The remaining code in order to make it work.</PageHeaderDescription>
-				</PageHeader>
-			</div>
+			<MonacoEditor viewSelected={viewSelected} code={selectedCode} sections={sections} setName={setName} name={name} />
 		</div>
 	);
 }

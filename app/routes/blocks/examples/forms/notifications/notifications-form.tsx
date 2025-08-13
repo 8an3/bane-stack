@@ -7,6 +7,7 @@ import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
 import { Switch } from "~/components/ui/switch"
 import { RadioGroup, RadioGroupItem } from "~/components/ui/radio-group"
+import { Separator } from "~/components/ui"
 
 export function NotificationsForm() {
   const fetcher = useFetcher()
