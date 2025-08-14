@@ -2,7 +2,7 @@ import { cn } from "~/components/ui/utils";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
-import { Check, X, Zap } from "lucide-react";
+import { Check, Star, X, Zap } from "lucide-react";
 
 export function PricingSection1Card({
 	title = "Simple, Transparent Pricing",

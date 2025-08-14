@@ -22,17 +22,17 @@ export function FAQCenteredAccordion() {
   ];
 
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl divide-y divide-gray-900/10">
-          <h2 className="text-3xl font-bold leading-10 tracking-tight text-gray-900 text-center">
+          <h2 className="text-3xl font-bold leading-10 tracking-tight text-foreground text-center">
             Frequently asked questions
           </h2>
           <dl className="mt-10 space-y-6 divide-y divide-gray-900/10">
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-lg font-semibold leading-7 text-gray-900 py-6">
+                  <AccordionTrigger className="text-lg font-semibold leading-7 text-foreground py-6">
                     {faq.question}
                     <ChevronDown className="h-5 w-5 shrink-0 transition-transform duration-200" />
                   </AccordionTrigger>

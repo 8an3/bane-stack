@@ -19,19 +19,19 @@ export function GridLists() {
 
 	return (
 		<div className="p-8 max-w-7xl mx-auto">
-			<h2 className="text-2xl font-bold text-gray-900 mb-6">Projects</h2>
+			<h2 className="text-2xl font-bold text-foreground mb-6">Projects</h2>
 
 			{/* Basic Grid List */}
 			<div className="mb-12">
-				<h3 className="text-lg font-medium text-gray-900 mb-4">Basic Grid</h3>
+				<h3 className="text-lg font-medium text-foreground mb-4">Basic Grid</h3>
 				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 					{items.map((item) => (
 						<Card key={item.id}>
 							<CardHeader className="pb-0">
 								<div className="flex justify-between items-start">
 									<div>
-										<h3 className="text-lg font-medium text-gray-900">{item.name}</h3>
-										<p className="text-sm text-gray-500">{item.category}</p>
+										<h3 className="text-lg font-medium text-foreground">{item.name}</h3>
+										<p className="text-sm text-muted-foreground">{item.category}</p>
 									</div>
 									<DropdownMenu>
 										<DropdownMenuTrigger asChild>
@@ -50,7 +50,7 @@ export function GridLists() {
 							<CardContent className="mt-4">
 								<div className="flex items-center">
 									<Star className="h-5 w-5 text-yellow-400" />
-									<span className="ml-2 text-sm text-gray-700">{item.stars}</span>
+									<span className="ml-2 text-sm text-foreground">{item.stars}</span>
 								</div>
 							</CardContent>
 							<CardFooter>
@@ -78,7 +78,7 @@ export function GridListwithAvatars() {
 
 	return (
 		<div className="mb-12">
-			<h3 className="text-lg font-medium text-gray-900 mb-4">Team Members with Avatars</h3>
+			<h3 className="text-lg font-medium text-foreground mb-4">Team Members with Avatars</h3>
 			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 				{teamMembers.map((member) => (
 					<Card key={member.id}>
@@ -95,10 +95,10 @@ export function GridListwithAvatars() {
 								</Avatar>
 								<div className="space-y-1">
 									<h4 className="text-sm font-semibold">{member.name}</h4>
-									<p className="text-sm text-gray-500">{member.role}</p>
+									<p className="text-sm text-muted-foreground">{member.role}</p>
 									<div className="flex items-center">
 										<span className={`inline-block h-2 w-2 rounded-full mr-2 ${member.status === "active" ? "bg-green-500" : member.status === "away" ? "bg-yellow-500" : "bg-gray-500"}`} />
-										<span className="text-xs text-gray-500 capitalize">{member.status}</span>
+										<span className="text-xs text-muted-foreground capitalize">{member.status}</span>
 									</div>
 								</div>
 							</div>
@@ -131,7 +131,7 @@ export function GridListwithStatusIndicators() {
 	return (
 		// Add this section to your return statement
 		<div className="mb-12">
-			<h3 className="text-lg font-medium text-gray-900 mb-4">Tasks with Status Indicators</h3>
+			<h3 className="text-lg font-medium text-foreground mb-4">Tasks with Status Indicators</h3>
 			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 				{tasks.map((task) => {
 					const statusIcon = {
@@ -145,15 +145,15 @@ export function GridListwithStatusIndicators() {
 						<Card key={task.id}>
 							<CardHeader>
 								<div className="flex justify-between items-start">
-									<h3 className="text-lg font-medium text-gray-900">{task.title}</h3>
+									<h3 className="text-lg font-medium text-foreground">{task.title}</h3>
 									<div className="flex items-center">{statusIcon}</div>
 								</div>
-								<p className="text-sm text-gray-500">{task.project}</p>
+								<p className="text-sm text-muted-foreground">{task.project}</p>
 							</CardHeader>
 							<CardContent>
 								<div className="flex justify-between text-sm">
-									<span className="text-gray-500">Due date</span>
-									<span className={`font-medium ${task.status === "overdue" ? "text-red-500" : "text-gray-700"}`}>{new Date(task.due).toLocaleDateString()}</span>
+									<span className="text-muted-foreground">Due date</span>
+									<span className={`font-medium ${task.status === "overdue" ? "text-red-500" : "text-foreground"}`}>{new Date(task.due).toLocaleDateString()}</span>
 								</div>
 							</CardContent>
 							<CardFooter className="flex justify-between">

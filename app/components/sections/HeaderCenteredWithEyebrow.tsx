@@ -9,14 +9,14 @@ import { ArrowRight } from "lucide-react";
 
 export function HeaderCenteredWithEyebrow() {
 	return (
-		<div className="bg-white py-24 sm:py-32">
+		<div className="bg-background py-24 sm:py-32">
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
 				{/* Eyebrow */}
 				<div className="mx-auto max-w-2xl lg:max-w-none">
 					<p className="text-base font-semibold leading-7 text-primary">Boost your productivity</p>
 
 					{/* Main Title */}
-					<h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">A better way to ship projects</h1>
+					<h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">A better way to ship projects</h1>
 
 					{/* Description */}
 					<p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>

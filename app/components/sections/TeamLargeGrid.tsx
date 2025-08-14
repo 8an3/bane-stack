@@ -1,6 +1,6 @@
 import { cn } from "~/components/ui/utils"
 import { Badge } from "~/components/ui/badge"
-import { LinkedinIcon, TwitterIcon, MailIcon } from "lucide-react"
+import { LinkedinIcon, TwitterIcon, MailIcon, Twitter, Linkedin } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 
@@ -57,10 +57,10 @@ export function TeamLargeGrid() {
   ];
 
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our team</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Our team</h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
             Meet the amazing people behind our product.
           </p>
@@ -75,14 +75,14 @@ export function TeamLargeGrid() {
                 </Avatar>
               </div>
               <CardHeader className="mt-6">
-                <h3 className="text-xl font-semibold text-gray-900">{person.name}</h3>
+                <h3 className="text-xl font-semibold text-foreground">{person.name}</h3>
                 <p className="text-base text-muted-foreground">{person.role}</p>
               </CardHeader>
               <CardContent className="mt-2 flex gap-x-4">
-                <a href={person.twitter} className="text-gray-400 hover:text-gray-500">
+                <a href={person.twitter} className="text-muted-foreground hover:text-muted-foreground">
                   <Twitter className="h-5 w-5" />
                 </a>
-                <a href={person.linkedin} className="text-gray-400 hover:text-gray-500">
+                <a href={person.linkedin} className="text-muted-foreground hover:text-muted-foreground">
                   <Linkedin className="h-5 w-5" />
                 </a>
               </CardContent>

@@ -64,15 +64,15 @@ export function CartItem   ({ item, onUpdateQuantity, onRemove, onMoveToWishlist
 
   return (
     <div className={`flex gap-4 p-4 border-b ${!item.inStock ? 'opacity-60' : ''}`}>
-      <div className="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
+      <div className="flex-shrink-0 w-20 h-20 bg-background/70 rounded-lg flex items-center justify-center text-2xl">
         {item.image}
       </div>
       
       <div className="flex-1 min-w-0">
         <div className="flex justify-between items-start mb-2">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">{item.name}</h3>
-            <div className="flex gap-4 text-sm text-gray-600 mt-1">
+            <h3 className="text-lg font-semibold text-foreground">{item.name}</h3>
+            <div className="flex gap-4 text-sm text-muted-foreground mt-1">
               <span>Color: {item.color}</span>
               {item.size && <span>Size: {item.size}</span>}
             </div>
@@ -84,19 +84,19 @@ export function CartItem   ({ item, onUpdateQuantity, onRemove, onMoveToWishlist
           <div className="text-right">
             <div className="flex items-center gap-2">
               {item.originalPrice && (
-                <span className="text-sm text-gray-500 line-through">${item.originalPrice}</span>
+                <span className="text-sm text-muted-foreground line-through">${item.originalPrice}</span>
               )}
-              <span className="text-lg font-bold text-gray-900">${item.price}</span>
+              <span className="text-lg font-bold text-foreground">${item.price}</span>
             </div>
           </div>
         </div>
         
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex items-center border border-gray-300 rounded-lg">
+            <div className="flex items-center border border-border rounded-lg">
               <button
                 onClick={() => onUpdateQuantity(item.id, Math.max(0, item.quantity - 1))}
-                className="p-2 hover:bg-gray-100 disabled:opacity-50"
+                className="p-2 hover:bg-background/70 disabled:opacity-50"
                 disabled={!item.inStock}
               >
                 <Minus className="h-4 w-4" />
@@ -104,7 +104,7 @@ export function CartItem   ({ item, onUpdateQuantity, onRemove, onMoveToWishlist
               <span className="px-4 py-2 min-w-[3rem] text-center">{item.quantity}</span>
               <button
                 onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                className="p-2 hover:bg-gray-100 disabled:opacity-50"
+                className="p-2 hover:bg-background/70 disabled:opacity-50"
                 disabled={!item.inStock}
               >
                 <Plus className="h-4 w-4" />
@@ -115,14 +115,14 @@ export function CartItem   ({ item, onUpdateQuantity, onRemove, onMoveToWishlist
           <div className="flex items-center gap-2">
             <button
               onClick={() => onMoveToWishlist(item.id)}
-              className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+              className="p-2 text-muted-foreground hover:text-red-500 transition-colors"
               title="Move to wishlist"
             >
               <Heart className="h-4 w-4" />
             </button>
             <button
               onClick={() => onRemove(item.id)}
-              className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+              className="p-2 text-muted-foreground hover:text-red-600 transition-colors"
               title="Remove item"
             >
               <Trash2 className="h-4 w-4" />
@@ -143,8 +143,8 @@ export function OrderSummary  ({ items, showCheckoutButton = true, onCheckout })
   const total = subtotal + shipping + tax - discount;
 
   return (
-    <div className="bg-gray-50 rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
+    <div className="bg-background rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-foreground mb-4">Order Summary</h3>
       
       <div className="space-y-3 mb-6">
         <div className="flex justify-between text-sm">
@@ -181,7 +181,7 @@ export function OrderSummary  ({ items, showCheckoutButton = true, onCheckout })
         </button>
       )}
       
-      <div className="mt-4 space-y-2 text-xs text-gray-600">
+      <div className="mt-4 space-y-2 text-xs text-muted-foreground">
         <div className="flex items-center gap-2">
           <Shield className="h-4 w-4" />
           <span>Secure payment with SSL encryption</span>
@@ -207,8 +207,8 @@ export function PromoCode   ()   {
   };
 
   return (
-    <div className="bg-white border rounded-lg p-4">
-      <h3 className="text-sm font-medium text-gray-900 mb-3">Promo Code</h3>
+    <div className="bg-background border rounded-lg p-4">
+      <h3 className="text-sm font-medium text-foreground mb-3">Promo Code</h3>
       {!isApplied ? (
         <div className="flex gap-2">
           <input
@@ -216,7 +216,7 @@ export function PromoCode   ()   {
             placeholder="Enter promo code"
             value={promoCode}
             onChange={(e) => setPromoCode(e.target.value)}
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             onClick={handleApplyPromo}
@@ -253,16 +253,16 @@ export function RecommendedProducts  ()  {
   ];
 
   return (
-    <div className="bg-white border rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">You might also like</h3>
+    <div className="bg-background border rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-foreground mb-4">You might also like</h3>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {recommendations.map(product => (
           <div key={product.id} className="border rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer">
-            <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center text-2xl mb-2">
+            <div className="aspect-square bg-background/70 rounded-lg flex items-center justify-center text-2xl mb-2">
               {product.image}
             </div>
-            <h4 className="text-sm font-medium text-gray-900 mb-1">{product.name}</h4>
-            <p className="text-sm font-bold text-gray-900">${product.price}</p>
+            <h4 className="text-sm font-medium text-foreground mb-1">{product.name}</h4>
+            <p className="text-sm font-bold text-foreground">${product.price}</p>
             <button className="w-full mt-2 py-1 px-2 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors">
               Add to Cart
             </button>
@@ -301,12 +301,12 @@ export function ShoppingCartPage  ()   {
 
   if (cartItems.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-background py-12">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center">
             <ShoppingBag className="mx-auto h-24 w-24 text-gray-300" />
-            <h2 className="mt-6 text-2xl font-bold text-gray-900">Your cart is empty</h2>
-            <p className="mt-2 text-gray-600">Looks like you haven't added anything to your cart yet.</p>
+            <h2 className="mt-6 text-2xl font-bold text-foreground">Your cart is empty</h2>
+            <p className="mt-2 text-muted-foreground">Looks like you haven't added anything to your cart yet.</p>
             <button className="mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
               Continue Shopping
             </button>
@@ -317,16 +317,16 @@ export function ShoppingCartPage  ()   {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-background border-b">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-gray-100 rounded-lg">
+            <button className="p-2 hover:bg-background/70 rounded-lg">
               <ArrowLeft className="h-5 w-5" />
             </button>
-            <h1 className="text-2xl font-bold text-gray-900">Shopping Cart</h1>
-            <span className="text-sm text-gray-500">({cartItems.length} items)</span>
+            <h1 className="text-2xl font-bold text-foreground">Shopping Cart</h1>
+            <span className="text-sm text-muted-foreground">({cartItems.length} items)</span>
           </div>
         </div>
       </div>
@@ -335,7 +335,7 @@ export function ShoppingCartPage  ()   {
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg border overflow-hidden">
+            <div className="bg-background rounded-lg border overflow-hidden">
               <div className="divide-y divide-gray-200">
                 {cartItems.map(item => (
                   <CartItem
@@ -369,9 +369,9 @@ export function ShoppingCartPage  ()   {
               />
               
               {/* Trust Indicators */}
-              <div className="mt-6 bg-white border rounded-lg p-4">
-                <h3 className="text-sm font-medium text-gray-900 mb-3">Why shop with us?</h3>
-                <div className="space-y-2 text-sm text-gray-600">
+              <div className="mt-6 bg-background border rounded-lg p-4">
+                <h3 className="text-sm font-medium text-foreground mb-3">Why shop with us?</h3>
+                <div className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-green-500" />
                     <span>30-day money-back guarantee</span>
@@ -394,15 +394,15 @@ export function ShoppingCartPage  ()   {
       {/* Checkout Modal/Page Transition */}
       {showCheckout && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
+          <div className="bg-background rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">Ready to checkout?</h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-muted-foreground mb-6">
               You'll be redirected to our secure checkout page to complete your order.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setShowCheckout(false)}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="flex-1 px-4 py-2 border border-border rounded-lg hover:bg-background"
               >
                 Continue Shopping
               </button>

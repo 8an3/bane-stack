@@ -1,3 +1,6 @@
+import { Check, Info, Terminal } from "lucide-react";
+import { useState } from "react";
+import { Badge, Button, Separator } from "../ui";
 
 
 
@@ -50,7 +53,7 @@ export function TsxSection({ code, title = "TypeScript Code", note = null, noteI
                 <div className="border-t border-border bg-background/70 grid rounded-[0px] gap-3 p-3 w-full">
                     <div className='flex items-center gap-1 mt-3 ml-[35px] mb-3' >
                         <div className="flex-shrink-0">
-                            {icon ? icon : <Info />}
+                            {icon ? icon : <Info  />}
                         </div>
                         <h4 className="text-sm font-medium text-foreground ">{title ? title : 'NOTE'}</h4>
                     </div>

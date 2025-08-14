@@ -9,41 +9,41 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "~/co
 
 export   function HomePageSection() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Sidebar */}
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-        <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-border bg-background">
           <div className="flex h-16 flex-shrink-0 items-center px-4">
-            <h1 className="text-xl font-semibold text-gray-900">Acme Inc</h1>
+            <h1 className="text-xl font-semibold text-foreground">Acme Inc</h1>
           </div>
           <div className="flex flex-1 flex-col overflow-y-auto">
             <nav className="flex-1 space-y-1 px-2 py-4">
               <Link
                 to="#"
-                className="flex items-center rounded-md px-2 py-2 text-sm font-medium text-gray-900 bg-gray-100"
+                className="flex items-center rounded-md px-2 py-2 text-sm font-medium text-foreground bg-background/70"
               >
-                <Home className="mr-3 h-5 w-5 text-gray-500" />
+                <Home className="mr-3 h-5 w-5 text-muted-foreground" />
                 Dashboard
               </Link>
               <Link
                 to="#"
-                className="flex items-center rounded-md px-2 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                className="flex items-center rounded-md px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-background hover:text-foreground"
               >
-                <FileText className="mr-3 h-5 w-5 text-gray-400" />
+                <FileText className="mr-3 h-5 w-5 text-muted-foreground" />
                 Documents
               </Link>
               <Link
                 to="#"
-                className="flex items-center rounded-md px-2 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                className="flex items-center rounded-md px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-background hover:text-foreground"
               >
-                <Users className="mr-3 h-5 w-5 text-gray-400" />
+                <Users className="mr-3 h-5 w-5 text-muted-foreground" />
                 Team
               </Link>
               <Link
                 to="#"
-                className="flex items-center rounded-md px-2 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                className="flex items-center rounded-md px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-background hover:text-foreground"
               >
-                <Settings className="mr-3 h-5 w-5 text-gray-400" />
+                <Settings className="mr-3 h-5 w-5 text-muted-foreground" />
                 Settings
               </Link>
             </nav>
@@ -56,10 +56,10 @@ export   function HomePageSection() {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                  <p className="text-sm font-medium text-foreground group-hover:text-foreground">
                     John Doe
                   </p>
-                  <button className="text-xs font-medium text-gray-500 group-hover:text-gray-700 flex items-center">
+                  <button className="text-xs font-medium text-muted-foreground group-hover:text-foreground flex items-center">
                     View profile <ChevronDown className="ml-1 h-4 w-4" />
                   </button>
                 </div>
@@ -71,9 +71,9 @@ export   function HomePageSection() {
 
       {/* Mobile sidebar */}
       <div className="md:hidden">
-        <div className="flex items-center justify-between border-b border-gray-200 bg-white px-4 py-3">
+        <div className="flex items-center justify-between border-b border-border bg-background px-4 py-3">
           <div>
-            <h1 className="text-xl font-semibold text-gray-900">Acme Inc</h1>
+            <h1 className="text-xl font-semibold text-foreground">Acme Inc</h1>
           </div>
           <div>
             <Button variant="ghost" size="icon">
@@ -86,16 +86,16 @@ export   function HomePageSection() {
       {/* Main content */}
       <div className="flex flex-col md:pl-64">
         {/* Top navigation */}
-        <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+        <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-background shadow">
           <div className="flex flex-1 justify-between px-4">
             <div className="flex flex-1 items-center">
               <div className="flex w-full max-w-lg">
                 <div className="relative w-full">
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <Search className="h-5 w-5 text-gray-400" />
+                    <Search className="h-5 w-5 text-muted-foreground" />
                   </div>
                   <Input
-                    className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-background py-1.5 pl-10 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="Search"
                     type="search"
                   />
@@ -147,7 +147,7 @@ export   function HomePageSection() {
         <main className="flex-1">
           <div className="py-6">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-              <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+              <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
             </div>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
               <div className="py-4">

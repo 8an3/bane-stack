@@ -14,16 +14,16 @@ export function FooterFourColumnMission() {
               Making the world a better place through constructing elegant hierarchies.
             </p>
             <div className="mt-6 flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="text-muted-foreground hover:text-white">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="text-muted-foreground hover:text-white">
                 <Twitter className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="text-muted-foreground hover:text-white">
                 <Instagram className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="text-muted-foreground hover:text-white">
                 <Linkedin className="h-6 w-6" />
               </a>
             </div>
@@ -37,7 +37,7 @@ export function FooterFourColumnMission() {
             <ul className="mt-4 space-y-2">
               {['Marketing', 'Analytics', 'Commerce', 'Insights'].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-gray-400 hover:text-white">
+                  <a href="#" className="text-muted-foreground hover:text-white">
                     {item}
                   </a>
                 </li>
@@ -53,7 +53,7 @@ export function FooterFourColumnMission() {
             <ul className="mt-4 space-y-2">
               {['Pricing', 'Documentation', 'Guides', 'API Status'].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-gray-400 hover:text-white">
+                  <a href="#" className="text-muted-foreground hover:text-white">
                     {item}
                   </a>
                 </li>
@@ -69,7 +69,7 @@ export function FooterFourColumnMission() {
             <ul className="mt-4 space-y-2">
               {['Privacy', 'Terms', 'Cookie Policy', 'GDPR'].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-gray-400 hover:text-white">
+                  <a href="#" className="text-muted-foreground hover:text-white">
                     {item}
                   </a>
                 </li>
@@ -79,14 +79,14 @@ export function FooterFourColumnMission() {
         </div>
 
         <div className="mt-16 border-t border-gray-700 pt-8 flex justify-between">
-          <p className="text-gray-400">
+          <p className="text-muted-foreground">
             &copy; {new Date().getFullYear()} Company, Inc. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <a href="#" className="text-gray-400 hover:text-white">
+            <a href="#" className="text-muted-foreground hover:text-white">
               Terms
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
+            <a href="#" className="text-muted-foreground hover:text-white">
               Privacy
             </a>
           </div>

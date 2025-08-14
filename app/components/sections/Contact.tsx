@@ -10,7 +10,7 @@ import { useFetcher } from "@remix-run/react";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
-export function ContactSection({ 
+export function Contact({ 
   title = "Get in touch", 
   subtitle = "We'd love to hear from you. Send us a message and we'll respond as soon as possible.", 
   handleSubmit

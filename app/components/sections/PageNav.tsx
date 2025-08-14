@@ -1,6 +1,6 @@
 import { cn, } from "~/components/ui/utils";
-import { ExamplesNav } from "~/routes/blocks/examples/examples-nav";
 import { ThemeSelector } from "../customUi/theme-selector";
+import { ExamplesNav } from "../ui/examples-nav";
 
 export function PageNav({
   children,

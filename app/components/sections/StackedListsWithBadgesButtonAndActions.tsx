@@ -9,7 +9,7 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
 
   // 4. With badges, button, and actions menu
   export   const StackedListsWithBadgesButtonAndActions = () => (
-    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+    <div className="bg-background shadow overflow-hidden sm:rounded-md">
       <ul role="list" className="divide-y divide-gray-200">
         {users.map((user) => (
           <li key={user.id}>
@@ -24,12 +24,12 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
                   </div>
                   <div className="ml-4">
                     <div className="flex items-center space-x-2">
-                      <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                      <div className="text-sm font-medium text-foreground">{user.name}</div>
                       <Badge variant={user.role === 'Owner' ? 'default' : user.role === 'Admin' ? 'secondary' : 'outline'}>
                         {user.role}
                       </Badge>
                     </div>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-muted-foreground">
                       {user.title} • <MapPin className="inline h-3 w-3" /> {user.location}
                     </div>
                   </div>

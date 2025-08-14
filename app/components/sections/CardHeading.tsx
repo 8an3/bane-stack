@@ -3,7 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Button } from "~/components/ui/button";
 import { MoreVertical } from "lucide-react";
 
-export function CardHeadingWithAvatar() {
+export function CardHeading() {
   return (
     <div className="border rounded-lg shadow-sm">
       <div className="px-4 py-5 sm:px-6">
@@ -14,7 +14,7 @@ export function CardHeadingWithAvatar() {
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">John Doe</h3>
+              <h3 className="text-lg font-medium leading-6 text-foreground">John Doe</h3>
               <div className="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
                 <div className="mt-2 flex items-center text-sm text-muted-foreground">
                   <span>Software Engineer</span>

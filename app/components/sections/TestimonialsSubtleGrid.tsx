@@ -29,10 +29,10 @@ export function TestimonialsSubtleGrid() {
   ];
 
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Trusted by innovators
           </h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
@@ -42,7 +42,7 @@ export function TestimonialsSubtleGrid() {
         
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-gray-50/50">
+            <Card key={index} className="bg-background/50">
               <CardContent className="p-8">
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
@@ -53,14 +53,14 @@ export function TestimonialsSubtleGrid() {
                   ))}
                 </div>
                 <blockquote className="mt-8">
-                  <p className="text-lg leading-relaxed text-gray-900">
+                  <p className="text-lg leading-relaxed text-foreground">
                     "{testimonial.quote}"
                   </p>
                 </blockquote>
               </CardContent>
               <CardFooter className="border-t border-gray-100 px-8 py-5">
                 <div>
-                  <p className="font-semibold text-gray-900">{testimonial.author}</p>
+                  <p className="font-semibold text-foreground">{testimonial.author}</p>
                   <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </CardFooter>

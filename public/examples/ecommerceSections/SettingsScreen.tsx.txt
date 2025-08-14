@@ -16,7 +16,7 @@ export   function SettingsScreen() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-4">
-          <Link to="/dashboard" className="flex items-center text-sm font-medium text-gray-600 hover:text-gray-900">
+          <Link to="/dashboard" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
             <ChevronLeft className="h-5 w-5 mr-1" />
             Back
           </Link>
@@ -78,7 +78,7 @@ export   function SettingsScreen() {
                       </Avatar>
                       <div className="space-y-1">
                         <Button variant="outline">Change</Button>
-                        <p className="text-sm text-gray-500">JPG, GIF or PNG. Max size of 2MB</p>
+                        <p className="text-sm text-muted-foreground">JPG, GIF or PNG. Max size of 2MB</p>
                       </div>
                     </div>
 
@@ -133,7 +133,7 @@ export   function SettingsScreen() {
                   <div className="flex items-center justify-between space-x-4">
                     <div>
                       <Label htmlFor="email-notifications">Email notifications</Label>
-                      <p className="text-sm text-gray-500">Receive emails about your account activity</p>
+                      <p className="text-sm text-muted-foreground">Receive emails about your account activity</p>
                     </div>
                     <Switch id="email-notifications" defaultChecked />
                   </div>
@@ -141,7 +141,7 @@ export   function SettingsScreen() {
                   <div className="flex items-center justify-between space-x-4">
                     <div>
                       <Label htmlFor="push-notifications">Push notifications</Label>
-                      <p className="text-sm text-gray-500">Receive push notifications on your device</p>
+                      <p className="text-sm text-muted-foreground">Receive push notifications on your device</p>
                     </div>
                     <Switch id="push-notifications" />
                   </div>
@@ -149,7 +149,7 @@ export   function SettingsScreen() {
                   <div className="flex items-center justify-between space-x-4">
                     <div>
                       <Label htmlFor="marketing-emails">Marketing emails</Label>
-                      <p className="text-sm text-gray-500">Receive emails about new products and features</p>
+                      <p className="text-sm text-muted-foreground">Receive emails about new products and features</p>
                     </div>
                     <Switch id="marketing-emails" defaultChecked />
                   </div>
@@ -157,7 +157,7 @@ export   function SettingsScreen() {
                   <div className="flex items-center justify-between space-x-4">
                     <div>
                       <Label htmlFor="security-alerts">Security alerts</Label>
-                      <p className="text-sm text-gray-500">Receive emails about security changes</p>
+                      <p className="text-sm text-muted-foreground">Receive emails about security changes</p>
                     </div>
                     <Switch id="security-alerts" defaultChecked />
                   </div>
@@ -180,7 +180,7 @@ export   function SettingsScreen() {
                         </CardHeader>
                         <CardContent>
                           <p className="text-3xl font-bold">$15</p>
-                          <p className="text-sm text-gray-500">per month</p>
+                          <p className="text-sm text-muted-foreground">per month</p>
                           <Button className="w-full mt-4">Current plan</Button>
                         </CardContent>
                       </Card>
@@ -191,7 +191,7 @@ export   function SettingsScreen() {
                         </CardHeader>
                         <CardContent>
                           <p className="text-3xl font-bold">$0</p>
-                          <p className="text-sm text-gray-500">forever</p>
+                          <p className="text-sm text-muted-foreground">forever</p>
                           <Button variant="outline" className="w-full mt-4">
                             Downgrade
                           </Button>
@@ -204,7 +204,7 @@ export   function SettingsScreen() {
                         </CardHeader>
                         <CardContent>
                           <p className="text-3xl font-bold">$30</p>
-                          <p className="text-sm text-gray-500">per month</p>
+                          <p className="text-sm text-muted-foreground">per month</p>
                           <Button variant="outline" className="w-full mt-4">
                             Upgrade
                           </Button>
@@ -224,7 +224,7 @@ export   function SettingsScreen() {
                         <CreditCard className="h-6 w-6" />
                         <div>
                           <p className="font-medium">Visa ending in 4242</p>
-                          <p className="text-sm text-gray-500">Expires 12/2024</p>
+                          <p className="text-sm text-muted-foreground">Expires 12/2024</p>
                         </div>
                       </div>
                       <Button variant="ghost">Edit</Button>

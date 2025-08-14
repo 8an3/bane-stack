@@ -83,7 +83,7 @@ export default function OTPSignUp() {
 						</div>
 					</Form>
 					<div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary  ">No account? Once your a client you account will already be set up for you.</div>
-					<p className="text-center text-xs leading-relaxed text-gray-400">
+					<p className="text-center text-xs leading-relaxed text-muted-foreground">
 						By continuing, you agree to our <span className="clickable underline">Terms of Service</span>
 					</p>
 				</div>

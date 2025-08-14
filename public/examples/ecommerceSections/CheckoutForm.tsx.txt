@@ -83,17 +83,17 @@ export function CheckoutForm   ()   {
   ];
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Checkout</h2>
 
         <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
           <div>
             <div>
-              <h2 className="text-lg font-medium text-gray-900">Contact information</h2>
+              <h2 className="text-lg font-medium text-foreground">Contact information</h2>
 
               <div className="mt-4">
-                <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="email-address" className="block text-sm font-medium text-foreground">
                   Email address
                 </label>
                 <div className="mt-1">
@@ -104,18 +104,18 @@ export function CheckoutForm   ()   {
                     value={formData.email}
                     onChange={handleInputChange}
                     autoComplete="email"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="mt-10 border-t border-gray-200 pt-10">
-              <h2 className="text-lg font-medium text-gray-900">Shipping information</h2>
+            <div className="mt-10 border-t border-border pt-10">
+              <h2 className="text-lg font-medium text-foreground">Shipping information</h2>
 
               <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                 <div>
-                  <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="first-name" className="block text-sm font-medium text-foreground">
                     First name
                   </label>
                   <div className="mt-1">
@@ -126,13 +126,13 @@ export function CheckoutForm   ()   {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       autoComplete="given-name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="last-name" className="block text-sm font-medium text-foreground">
                     Last name
                   </label>
                   <div className="mt-1">
@@ -143,13 +143,13 @@ export function CheckoutForm   ()   {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       autoComplete="family-name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="company" className="block text-sm font-medium text-foreground">
                     Company
                   </label>
                   <div className="mt-1">
@@ -159,13 +159,13 @@ export function CheckoutForm   ()   {
                       id="company"
                       value={formData.company}
                       onChange={handleInputChange}
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="address" className="block text-sm font-medium text-foreground">
                     Address
                   </label>
                   <div className="mt-1">
@@ -176,13 +176,13 @@ export function CheckoutForm   ()   {
                       value={formData.address}
                       onChange={handleInputChange}
                       autoComplete="street-address"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label htmlFor="apartment" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="apartment" className="block text-sm font-medium text-foreground">
                     Apartment, suite, etc.
                   </label>
                   <div className="mt-1">
@@ -192,13 +192,13 @@ export function CheckoutForm   ()   {
                       id="apartment"
                       value={formData.apartment}
                       onChange={handleInputChange}
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="city" className="block text-sm font-medium text-foreground">
                     City
                   </label>
                   <div className="mt-1">
@@ -209,13 +209,13 @@ export function CheckoutForm   ()   {
                       value={formData.city}
                       onChange={handleInputChange}
                       autoComplete="address-level2"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="country" className="block text-sm font-medium text-foreground">
                     Country
                   </label>
                   <div className="mt-1">
@@ -225,7 +225,7 @@ export function CheckoutForm   ()   {
                       value={formData.country}
                       onChange={handleInputChange}
                       autoComplete="country-name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     >
                       <option>United States</option>
                       <option>Canada</option>
@@ -235,7 +235,7 @@ export function CheckoutForm   ()   {
                 </div>
 
                 <div>
-                  <label htmlFor="region" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="region" className="block text-sm font-medium text-foreground">
                     State / Province
                   </label>
                   <div className="mt-1">
@@ -245,7 +245,7 @@ export function CheckoutForm   ()   {
                       value={formData.state}
                       onChange={handleInputChange}
                       autoComplete="address-level1"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     >
                       <option value="">Select a state</option>
                       {states.map((state) => (
@@ -258,7 +258,7 @@ export function CheckoutForm   ()   {
                 </div>
 
                 <div>
-                  <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="postal-code" className="block text-sm font-medium text-foreground">
                     Postal code
                   </label>
                   <div className="mt-1">
@@ -269,13 +269,13 @@ export function CheckoutForm   ()   {
                       value={formData.postalCode}
                       onChange={handleInputChange}
                       autoComplete="postal-code"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="phone" className="block text-sm font-medium text-foreground">
                     Phone
                   </label>
                   <div className="mt-1">
@@ -286,18 +286,18 @@ export function CheckoutForm   ()   {
                       value={formData.phone}
                       onChange={handleInputChange}
                       autoComplete="tel"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-10 border-t border-gray-200 pt-10">
+            <div className="mt-10 border-t border-border pt-10">
               <fieldset>
-                <legend className="text-lg font-medium text-gray-900">Delivery method</legend>
+                <legend className="text-lg font-medium text-foreground">Delivery method</legend>
                 <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                  <label className="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
+                  <label className="relative flex cursor-pointer rounded-lg border bg-background p-4 shadow-sm focus:outline-none">
                     <input
                       type="radio"
                       name="delivery-method"
@@ -307,31 +307,31 @@ export function CheckoutForm   ()   {
                     />
                     <span className="flex flex-1">
                       <span className="flex flex-col">
-                        <span className="block text-sm font-medium text-gray-900">
+                        <span className="block text-sm font-medium text-foreground">
                           <Truck className="inline h-5 w-5 mr-2" />
                           Standard
                         </span>
-                        <span className="mt-1 flex items-center text-sm text-gray-500">
+                        <span className="mt-1 flex items-center text-sm text-muted-foreground">
                           4-10 business days
                         </span>
-                        <span className="mt-6 text-sm font-medium text-gray-900">$5.00</span>
+                        <span className="mt-6 text-sm font-medium text-foreground">$5.00</span>
                       </span>
                     </span>
-                    <div className="absolute -inset-px rounded-lg border-2 border-indigo-500 pointer-events-none" aria-hidden="true" />
+                    <div className="absolute -inset-px rounded-lg border-2 border-primary pointer-events-none" aria-hidden="true" />
                   </label>
 
-                  <label className="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
+                  <label className="relative flex cursor-pointer rounded-lg border bg-background p-4 shadow-sm focus:outline-none">
                     <input type="radio" name="delivery-method" value="Express" className="sr-only" />
                     <span className="flex flex-1">
                       <span className="flex flex-col">
-                        <span className="block text-sm font-medium text-gray-900">
+                        <span className="block text-sm font-medium text-foreground">
                           <Truck className="inline h-5 w-5 mr-2" />
                           Express
                         </span>
-                        <span className="mt-1 flex items-center text-sm text-gray-500">
+                        <span className="mt-1 flex items-center text-sm text-muted-foreground">
                           2-5 business days
                         </span>
-                        <span className="mt-6 text-sm font-medium text-gray-900">$16.00</span>
+                        <span className="mt-6 text-sm font-medium text-foreground">$16.00</span>
                       </span>
                     </span>
                   </label>
@@ -339,8 +339,8 @@ export function CheckoutForm   ()   {
               </fieldset>
             </div>
 
-            <div className="mt-10 border-t border-gray-200 pt-10">
-              <h2 className="text-lg font-medium text-gray-900">Payment</h2>
+            <div className="mt-10 border-t border-border pt-10">
+              <h2 className="text-lg font-medium text-foreground">Payment</h2>
 
               <fieldset className="mt-4">
                 <legend className="sr-only">Payment type</legend>
@@ -351,9 +351,9 @@ export function CheckoutForm   ()   {
                       name="payment-type"
                       type="radio"
                       defaultChecked
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-border text-primary focus:ring-primary"
                     />
-                    <label htmlFor="credit-card" className="ml-3 block text-sm font-medium text-gray-700">
+                    <label htmlFor="credit-card" className="ml-3 block text-sm font-medium text-foreground">
                       <CreditCard className="inline h-4 w-4 mr-1" />
                       Credit card
                     </label>
@@ -364,9 +364,9 @@ export function CheckoutForm   ()   {
                       id="paypal"
                       name="payment-type"
                       type="radio"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-border text-primary focus:ring-primary"
                     />
-                    <label htmlFor="paypal" className="ml-3 block text-sm font-medium text-gray-700">
+                    <label htmlFor="paypal" className="ml-3 block text-sm font-medium text-foreground">
                       PayPal
                     </label>
                   </div>
@@ -376,9 +376,9 @@ export function CheckoutForm   ()   {
                       id="etransfer"
                       name="payment-type"
                       type="radio"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-border text-primary focus:ring-primary"
                     />
-                    <label htmlFor="etransfer" className="ml-3 block text-sm font-medium text-gray-700">
+                    <label htmlFor="etransfer" className="ml-3 block text-sm font-medium text-foreground">
                       eTransfer
                     </label>
                   </div>
@@ -387,7 +387,7 @@ export function CheckoutForm   ()   {
 
               <div className="mt-6 grid grid-cols-4 gap-x-4 gap-y-6">
                 <div className="col-span-4">
-                  <label htmlFor="card-number" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="card-number" className="block text-sm font-medium text-foreground">
                     Card number
                   </label>
                   <div className="mt-1">
@@ -398,13 +398,13 @@ export function CheckoutForm   ()   {
                       value={formData.cardNumber}
                       onChange={handleInputChange}
                       autoComplete="cc-number"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div className="col-span-4">
-                  <label htmlFor="name-on-card" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="name-on-card" className="block text-sm font-medium text-foreground">
                     Name on card
                   </label>
                   <div className="mt-1">
@@ -415,13 +415,13 @@ export function CheckoutForm   ()   {
                       value={formData.nameOnCard}
                       onChange={handleInputChange}
                       autoComplete="cc-name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div className="col-span-3">
-                  <label htmlFor="expiration-date" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="expiration-date" className="block text-sm font-medium text-foreground">
                     Expiration date (MM/YY)
                   </label>
                   <div className="mt-1">
@@ -432,13 +432,13 @@ export function CheckoutForm   ()   {
                       value={formData.expirationDate}
                       onChange={handleInputChange}
                       autoComplete="cc-exp"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="cvc" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="cvc" className="block text-sm font-medium text-foreground">
                     CVC
                   </label>
                   <div className="mt-1">
@@ -449,15 +449,15 @@ export function CheckoutForm   ()   {
                       value={formData.cvc}
                       onChange={handleInputChange}
                       autoComplete="csc"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                     />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-10 border-t border-gray-200 pt-10">
-              <h2 className="text-lg font-medium text-gray-900">Billing information</h2>
+            <div className="mt-10 border-t border-border pt-10">
+              <h2 className="text-lg font-medium text-foreground">Billing information</h2>
 
               <div className="mt-4">
                 <div className="flex items-center">
@@ -468,9 +468,9 @@ export function CheckoutForm   ()   {
                     value="same"
                     checked={formData.billingAddress === 'same'}
                     onChange={handleInputChange}
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    className="h-4 w-4 border-border text-primary focus:ring-primary"
                   />
-                  <label htmlFor="same-as-shipping" className="ml-3 block text-sm font-medium text-gray-700">
+                  <label htmlFor="same-as-shipping" className="ml-3 block text-sm font-medium text-foreground">
                     Same as shipping information
                   </label>
                 </div>
@@ -482,9 +482,9 @@ export function CheckoutForm   ()   {
                     value="different"
                     checked={formData.billingAddress === 'different'}
                     onChange={handleInputChange}
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    className="h-4 w-4 border-border text-primary focus:ring-primary"
                   />
-                  <label htmlFor="different-billing" className="ml-3 block text-sm font-medium text-gray-700">
+                  <label htmlFor="different-billing" className="ml-3 block text-sm font-medium text-foreground">
                     Use a different billing address
                   </label>
                 </div>
@@ -494,9 +494,9 @@ export function CheckoutForm   ()   {
 
           {/* Order summary */}
           <div className="mt-10 lg:mt-0">
-            <h2 className="text-lg font-medium text-gray-900">Order summary</h2>
+            <h2 className="text-lg font-medium text-foreground">Order summary</h2>
 
-            <div className="mt-4 rounded-lg border border-gray-200 bg-white shadow-sm">
+            <div className="mt-4 rounded-lg border border-border bg-background shadow-sm">
               <h3 className="sr-only">Items in your cart</h3>
               <ul role="list" className="divide-y divide-gray-200">
                 {cartItems.map((product) => (
@@ -513,63 +513,63 @@ export function CheckoutForm   ()   {
                       <div className="flex">
                         <div className="min-w-0 flex-1">
                           <h4 className="text-sm">
-                            <span className="font-medium text-gray-700 hover:text-gray-800">
+                            <span className="font-medium text-foreground hover:text-gray-800">
                               {product.name}
                             </span>
                           </h4>
-                          <p className="mt-1 text-sm text-gray-500">{product.color}</p>
-                          <p className="mt-1 text-sm text-gray-500">{product.size}</p>
+                          <p className="mt-1 text-sm text-muted-foreground">{product.color}</p>
+                          <p className="mt-1 text-sm text-muted-foreground">{product.size}</p>
                         </div>
 
                         <div className="ml-4 flex-shrink-0 flow-root">
-                          <p className="text-sm font-medium text-gray-900">
+                          <p className="text-sm font-medium text-foreground">
                             ${product.price.toFixed(2)}
                           </p>
                         </div>
                       </div>
 
                       <div className="flex flex-1 items-end justify-between pt-2">
-                        <p className="mt-1 text-sm font-medium text-gray-900">Qty {product.quantity}</p>
+                        <p className="mt-1 text-sm font-medium text-foreground">Qty {product.quantity}</p>
                       </div>
                     </div>
                   </li>
                 ))}
               </ul>
 
-              <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+              <div className="border-t border-border px-4 py-6 sm:px-6">
                 <div className="flex items-center justify-between">
                   <dt className="text-sm">Subtotal</dt>
-                  <dd className="text-sm font-medium text-gray-900">${subtotal.toFixed(2)}</dd>
+                  <dd className="text-sm font-medium text-foreground">${subtotal.toFixed(2)}</dd>
                 </div>
-                <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                <div className="flex items-center justify-between border-t border-border pt-4">
                   <dt className="flex items-center text-sm">
                     <span>Shipping estimate</span>
-                    <Info className="ml-2 h-4 w-4 text-gray-400" />
+                    <Info className="ml-2 h-4 w-4 text-muted-foreground" />
                   </dt>
-                  <dd className="text-sm font-medium text-gray-900">${shipping.toFixed(2)}</dd>
+                  <dd className="text-sm font-medium text-foreground">${shipping.toFixed(2)}</dd>
                 </div>
-                <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                <div className="flex items-center justify-between border-t border-border pt-4">
                   <dt className="flex text-sm">
                     <span>Tax estimate</span>
-                    <Info className="ml-2 h-4 w-4 text-gray-400" />
+                    <Info className="ml-2 h-4 w-4 text-muted-foreground" />
                   </dt>
-                  <dd className="text-sm font-medium text-gray-900">${tax.toFixed(2)}</dd>
+                  <dd className="text-sm font-medium text-foreground">${tax.toFixed(2)}</dd>
                 </div>
                 {promoApplied && (
-                  <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                  <div className="flex items-center justify-between border-t border-border pt-4">
                     <dt className="flex text-sm">
                       <span>Discount (WELCOME10)</span>
                     </dt>
                     <dd className="text-sm font-medium text-green-600">-${discount.toFixed(2)}</dd>
                   </div>
                 )}
-                <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-                  <dt className="text-base font-medium text-gray-900">Order total</dt>
-                  <dd className="text-base font-medium text-gray-900">${total.toFixed(2)}</dd>
+                <div className="flex items-center justify-between border-t border-border pt-4">
+                  <dt className="text-base font-medium text-foreground">Order total</dt>
+                  <dd className="text-base font-medium text-foreground">${total.toFixed(2)}</dd>
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+              <div className="border-t border-border px-4 py-6 sm:px-6">
                 <div className="flex space-x-2">
                   <input
                     type="text"
@@ -578,7 +578,7 @@ export function CheckoutForm   ()   {
                     value={formData.promoCode}
                     onChange={handleInputChange}
                     placeholder="Promo code"
-                    className="block flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block flex-1 rounded-md border-border shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                   />
                   <Button
                     type="button"
@@ -595,7 +595,7 @@ export function CheckoutForm   ()   {
                 )}
               </div>
 
-              <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+              <div className="border-t border-border px-4 py-6 sm:px-6">
                 <Button
                   type="submit"
                   className="w-full flex items-center justify-center"
@@ -603,8 +603,8 @@ export function CheckoutForm   ()   {
                   <Lock className="mr-2 h-4 w-4" />
                   Complete order
                 </Button>
-                <p className="mt-6 flex justify-center text-sm font-medium text-gray-500">
-                  <Lock className="mr-1 h-5 w-5 text-gray-400" />
+                <p className="mt-6 flex justify-center text-sm font-medium text-muted-foreground">
+                  <Lock className="mr-1 h-5 w-5 text-muted-foreground" />
                   Your information is secure and encrypted
                 </p>
               </div>

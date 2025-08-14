@@ -7,7 +7,7 @@ import { ArrowRight, Star, Users, Zap, Shield, Play, CheckCircle} from 'lucide-r
 
 export function BorderedAppHero() {
     return (
-    <div className="relative bg-white overflow-hidden">
+    <div className="relative bg-background overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-cyan-50"></div>
       
@@ -16,8 +16,8 @@ export function BorderedAppHero() {
         <div className="pt-20 pb-16 text-center lg:pt-32">
           {/* Badge */}
           <div className="mx-auto flex items-center justify-center w-fit mb-8">
-            <div className="flex items-center gap-2 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 backdrop-blur-sm border border-indigo-200 rounded-full px-4 py-2">
-              <Star className="h-4 w-4 text-indigo-600" />
+            <div className="flex items-center gap-2 bg-gradient-to-r from-primary/10 to-purple-500/10 backdrop-blur-sm border border-indigo-200 rounded-full px-4 py-2">
+              <Star className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium text-indigo-700">
                 New: AI-powered features available
               </span>
@@ -25,9 +25,9 @@ export function BorderedAppHero() {
           </div>
 
           {/* Main heading */}
-          <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl">
+          <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-tight text-foregroundsm:text-7xl">
             Build your next
-            <span className="relative whitespace-nowrap text-indigo-600">
+            <span className="relative whitespace-nowrap text-primary">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 418 42"
@@ -42,7 +42,7 @@ export function BorderedAppHero() {
           </h1>
           
           {/* Subtitle */}
-          <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+          <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-foreground">
             The most intuitive way to build modern applications. Start with our powerful templates, 
             customize with ease, and deploy anywhere in just a few clicks.
           </p>
@@ -76,16 +76,16 @@ export function BorderedAppHero() {
         {/* App Screenshot with Border */}
         <div className="mt-16 flow-root sm:mt-24">
           <div className="relative -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-            <div className="relative rounded-md bg-white shadow-2xl ring-1 ring-gray-900/10">
+            <div className="relative rounded-md bg-background shadow-2xl ring-1 ring-gray-900/10">
               {/* Browser chrome */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-200">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-400"></div>
                   <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                   <div className="w-3 h-3 rounded-full bg-green-400"></div>
                 </div>
                 <div className="flex-1 mx-4">
-                  <div className="bg-gray-100 rounded-md px-3 py-1 text-sm text-gray-500 max-w-md">
+                  <div className="bg-background/70 rounded-md px-3 py-1 text-sm text-muted-foreground max-w-md">
                     https://app.example.com/dashboard
                   </div>
                 </div>
@@ -96,31 +96,31 @@ export function BorderedAppHero() {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-purple-600 flex items-center justify-center">
                       <Zap className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">Dashboard</h3>
-                      <p className="text-sm text-gray-500">Welcome back, Sarah</p>
+                      <h3 className="text-lg font-semibold text-foreground">Dashboard</h3>
+                      <p className="text-sm text-muted-foreground">Welcome back, Sarah</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <button className="p-2 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
-                      <Users className="w-4 h-4 text-gray-600" />
+                    <button className="p-2 rounded-lg bg-background border border-border hover:bg-background">
+                      <Users className="w-4 h-4 text-muted-foreground" />
                     </button>
-                    <button className="p-2 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
-                      <Shield className="w-4 h-4 text-gray-600" />
+                    <button className="p-2 rounded-lg bg-background border border-border hover:bg-background">
+                      <Shield className="w-4 h-4 text-muted-foreground" />
                     </button>
                   </div>
                 </div>
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                  <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <div className="bg-background rounded-xl p-6 shadow-sm border border-gray-100">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-gray-600">Total Revenue</p>
-                        <p className="text-2xl font-bold text-gray-900">$45,231.89</p>
+                        <p className="text-sm font-medium text-muted-foreground">Total Revenue</p>
+                        <p className="text-2xl font-bold text-foreground">$45,231.89</p>
                         <p className="text-sm text-green-600">+20.1% from last month</p>
                       </div>
                       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -129,11 +129,11 @@ export function BorderedAppHero() {
                     </div>
                   </div>
                   
-                  <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <div className="bg-background rounded-xl p-6 shadow-sm border border-gray-100">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-gray-600">Active Users</p>
-                        <p className="text-2xl font-bold text-gray-900">2,350</p>
+                        <p className="text-sm font-medium text-muted-foreground">Active Users</p>
+                        <p className="text-2xl font-bold text-foreground">2,350</p>
                         <p className="text-sm text-blue-600">+15.3% from last month</p>
                       </div>
                       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -142,11 +142,11 @@ export function BorderedAppHero() {
                     </div>
                   </div>
                   
-                  <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <div className="bg-background rounded-xl p-6 shadow-sm border border-gray-100">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-gray-600">Conversion</p>
-                        <p className="text-2xl font-bold text-gray-900">98.5%</p>
+                        <p className="text-sm font-medium text-muted-foreground">Conversion</p>
+                        <p className="text-2xl font-bold text-foreground">98.5%</p>
                         <p className="text-sm text-purple-600">+7% from last month</p>
                       </div>
                       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -157,14 +157,14 @@ export function BorderedAppHero() {
                 </div>
 
                 {/* Chart Area */}
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div className="bg-background rounded-xl p-6 shadow-sm border border-gray-100">
                   <div className="flex items-center justify-between mb-6">
-                    <h4 className="text-lg font-semibold text-gray-900">Analytics Overview</h4>
+                    <h4 className="text-lg font-semibold text-foreground">Analytics Overview</h4>
                     <div className="flex items-center gap-2">
                       <button className="px-3 py-1 text-sm bg-indigo-100 text-indigo-700 rounded-md font-medium">
                         7 days
                       </button>
-                      <button className="px-3 py-1 text-sm text-gray-500 rounded-md">
+                      <button className="px-3 py-1 text-sm text-muted-foreground rounded-md">
                         30 days
                       </button>
                     </div>
@@ -175,7 +175,7 @@ export function BorderedAppHero() {
                       {[40, 65, 45, 80, 55, 70, 85, 75, 90, 60, 95, 85].map((height, i) => (
                         <div
                           key={i}
-                          className="bg-gradient-to-t from-indigo-500 to-purple-500 rounded-sm flex-1 transition-all duration-300 hover:opacity-80"
+                          className="bg-gradient-to-t from-primary to-purple-500 rounded-sm flex-1 transition-all duration-300 hover:opacity-80"
                           style={{ height: `${height}%` }}
                         />
                       ))}

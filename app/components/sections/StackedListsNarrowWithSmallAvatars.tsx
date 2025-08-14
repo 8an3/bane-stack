@@ -8,7 +8,7 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
 
   // 2. Narrow with small avatars
   export   const StackedListsNarrowWithSmallAvatars = () => (
-    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+    <div className="bg-background shadow overflow-hidden sm:rounded-md">
       <ul role="list" className="divide-y divide-gray-200">
         {users.map((user) => (
           <li key={user.id}>
@@ -22,11 +22,11 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
                     </Avatar>
                   </div>
                   <div className="ml-3">
-                    <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                    <div className="text-sm font-medium text-foreground">{user.name}</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="text-sm text-gray-500">{user.lastActive}</div>
+                  <div className="text-sm text-muted-foreground">{user.lastActive}</div>
                   <div className={`h-2 w-2 rounded-full ${user.status === 'active' ? 'bg-green-400' : 'bg-gray-300'}`} />
                 </div>
               </div>

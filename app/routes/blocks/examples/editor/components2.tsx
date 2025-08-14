@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
-import { Save, FileText, Eye,Code as CodeLucide,EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor, X, Search } from "lucide-react";
+import { Save, FileText, Eye, Code as CodeLucide, EyeOff, Settings, Download, Upload, Moon, Sun, Split, Maximize2, Code, Component, Boxes, Puzzle, Monitor, X, Search, TextCursorInput } from "lucide-react";
 import { LoadingPage } from "~/components/customUi/loadingPage";
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "~/components/ui/command";
@@ -146,7 +146,7 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 					<p key={index} className="mb-3 leading-relaxed">
 						{parts.map((part, i) =>
 							i % 2 === 1 ? (
-								<code key={i} className="bg-gray-100 px-1 py-0.5 rounded text-sm">
+								<code key={i} className="bg-background/70 px-1 py-0.5 rounded text-sm">
 									{part}
 								</code>
 							) : (
@@ -209,6 +209,7 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 	};
 
 	const [showCommand, setShowCommand] = useState(true);
+	const [displayCmdInUi, setDisplayCmdInUi] = useState(false);
 	const [selectedItem, setSelectedItem] = useState(null);
 	const resetSelection = () => {
 		setShowCommand(true);
@@ -242,11 +243,23 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 				</Button>
 
 				<ExportFile code={code} filename={`${name}.tsx`} />
+
 				<CopyText code={code} />
-	<Button variant="ghost" size="icon" onClick={resetSelection} className="text-muted-foreground hover:text-foreground">
+
+				<Button
+					variant="ghost"
+					size="icon"
+					onClick={() => {
+						setDisplayCmdInUi((prev) => !prev);
+					}}
+					className="text-muted-foreground hover:text-foreground"
+				>
+					<TextCursorInput />
+				</Button>
+				<Button variant="ghost" size="icon" onClick={resetSelection} className="text-muted-foreground hover:text-foreground">
 					<Search className="h-4 w-4   " />
 				</Button>
-				<Button variant="outline" size="icon" onClick={toggleFullscreen}>
+				<Button variant="ghost" size="icon" onClick={toggleFullscreen}>
 					<Maximize2 className="h-4 w-4" />
 				</Button>
 				<Button variant="ghost" size="icon" onClick={resetSelection} className="text-muted-foreground hover:text-foreground">
@@ -289,43 +302,69 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 	}, []);
 
 	return (
-		<div className="flex flex-col justify-center gap-4">
-			{showCommand && (
-				<div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-					<div className="relative">
-						<Command className="rounded-lg border shadow-md md:min-w-[450px]">
-							<CommandInput placeholder="Search..." />
-							<CommandList>
-								<CommandEmpty>No results found.</CommandEmpty>
-								<CommandGroup heading="Components">
-									{sections.map((item, index) => {
-										return (
-											<CommandItem
-												key={index}
-												onSelect={() => {
-													setName(item.value);
-													setSelectedCode(item.path);
-													setShowCommand(false);
-												}}
-											>
-												{item.name}
-											</CommandItem>
-										);
-									})}
-								</CommandGroup>
-							</CommandList>
-						</Command>
-					</div>
+	<div className="flex flex-col justify-center gap-4">
+		{showCommand && (
+			<div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+				<div className="relative">
+					<Command className="rounded-lg border shadow-md md:min-w-[450px]">
+						<CommandInput placeholder="Search..." />
+						<CommandList>
+							<CommandEmpty>No results found.</CommandEmpty>
+							<CommandGroup heading="Components">
+								{sections.map((item, index) => {
+									return (
+										<CommandItem
+											key={index}
+											onSelect={() => {
+												setName(item.value);
+												setSelectedCode(item.path);
+												setShowCommand(false);
+											}}
+										>
+											{item.name}
+										</CommandItem>
+									);
+								})}
+							</CommandGroup>
+						</CommandList>
+					</Command>
 				</div>
-			)}
+			</div>
+		)}
+		{displayCmdInUi && (
+			<Command className="rounded-lg border shadow-md md:min-w-[450px]">
+				<CommandInput placeholder="Search..." />
+				<CommandList>
+					<CommandEmpty>No results found.</CommandEmpty>
+					<CommandGroup heading="Components">
+						{sections.map((item, index) => {
+							return (
+								<CommandItem
+									key={index}
+									onSelect={() => {
+										setName(item.value);
+										setSelectedCode(item.path);
+										setShowCommand(false);
+									}}
+								>
+									{item.name}
+								</CommandItem>
+							);
+						})}
+					</CommandGroup>
+				</CommandList>
+			</Command>
+		)}
 
-			<div className={`h-screen flex flex-col bg-background `}>
+		{/* Notepad Container with Border */}
+		<div className="h-screen p-4">
+			<div className={`h-full flex flex-col bg-background border-2 border-border rounded-lg shadow-lg overflow-hidden`}>
 				{/* Header */}
 				{!showCommand && (
-					<div className={`bg-background border-border  border-b px-4 py-2 flex items-center justify-between rounded-[15px]`}>
+					<div className={`bg-muted/50 border-b-2 border-border px-4 py-2 flex items-center justify-between`}>
 						<div className="flex items-center space-x-4">
-							<FileText className={`h-6 w-6 text-muted-foreground `} />
-							<span className={`font-medium text-foreground `}>Catalyst Editor</span>
+							<FileText className={`h-6 w-6 text-muted-foreground`} />
+							<span className={`font-medium text-foreground`}>Catalyst Editor</span>
 							{isDirty && <span className="text-sm text-destructive">● Unsaved changes</span>}
 							{isSaving && <span className="text-sm text-primary/80">Saving...</span>}
 							{lastSaved && !isDirty && <span className="text-sm text-primary/80">Saved {lastSaved.toLocaleTimeString()}</span>}
@@ -335,13 +374,14 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 					</div>
 				)}
 
+				{/* Main Content Area */}
 				{!showCommand && (
 					<div className="flex-1 flex">
 						{isSplitView ? (
 							// Split View
 							<>
 								<div className="flex-1 border-r border-border">{renderEditor()}</div>
-								<div className={`flex-1 overflow-auto  bg-background text-foreground `}>
+								<div className={`flex-1 overflow-auto bg-background text-foreground`}>
 									<div className="max-w-4xl mx-auto p-6 prose prose-lg">{renderPreview(content)}</div>
 								</div>
 							</>
@@ -351,15 +391,15 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 						) : (
 							// Preview Only
 							<div className={`flex-1 overflow-auto bg-background text-foreground`}>
-								<div className="  mx-auto p-6 prose prose-lg">{viewSelected}</div>
+								<div className="mx-auto p-6 prose prose-lg">{viewSelected}</div>
 							</div>
 						)}
 					</div>
 				)}
 
-				{/* Status Bar */}
+				{/* Status Bar with Top Border */}
 				{!showCommand && (
-					<div className={` bg-background/80 text-foreground px-4 py-1 flex items-center justify-between text-sm`}>
+					<div className={`bg-muted/30 border-t-2 border-border text-foreground px-4 py-2 flex items-center justify-between text-sm`}>
 						<div className="flex items-center space-x-4">
 							<span>Lines: {content.split("\n").length}</span>
 							<span>Characters: {content.length}</span>
@@ -378,6 +418,7 @@ export default function MonacoEditor({ code, sections, name = null, setName, vie
 				)}
 			</div>
 		</div>
+	</div>
 	);
 }
 

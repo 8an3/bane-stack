@@ -139,7 +139,7 @@ export   function FeaturesSection2({
                       </dt>{' '}
                       <dd className={cn(
                         "inline",
-                        isDark ? "text-gray-400" : "text-muted-foreground"
+                        isDark ? "text-muted-foreground" : "text-muted-foreground"
                       )}>
                         {feature.description}
                       </dd>
@@ -282,7 +282,7 @@ export function FeaturesGridSection({
                   </dt>
                   <dd className={cn(
                     "mt-4 flex flex-auto flex-col text-base/7",
-                    isDark ? "text-gray-400" : "text-muted-foreground"
+                    isDark ? "text-muted-foreground" : "text-muted-foreground"
                   )}>
                     <p className="flex-auto">{feature.description}</p>
                   </dd>

@@ -9,11 +9,11 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
 
   // 3. Full width with links
   export   const StackedListsFullWidthWithLinks = () => (
-    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+    <div className="bg-background shadow overflow-hidden sm:rounded-md">
       <ul role="list" className="divide-y divide-gray-200">
         {users.map((user) => (
           <li key={user.id}>
-            <a href={`#/users/${user.id}`} className="block hover:bg-gray-50">
+            <a href={`#/users/${user.id}`} className="block hover:bg-background">
               <div className="px-4 py-4 sm:px-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
@@ -24,15 +24,15 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
                       </Avatar>
                     </div>
                     <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm font-medium text-foreground">{user.name}</div>
+                      <div className="text-sm text-muted-foreground">
                         {user.title} • {user.department}
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="text-sm text-gray-500">{user.email}</div>
-                    <ExternalLink className="h-5 w-5 text-gray-400" />
+                    <div className="text-sm text-muted-foreground">{user.email}</div>
+                    <ExternalLink className="h-5 w-5 text-muted-foreground" />
                   </div>
                 </div>
               </div>

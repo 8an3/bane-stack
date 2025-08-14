@@ -11,44 +11,44 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 export default function StackedLayout() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Top navigation */}
-      <div className="bg-white shadow-sm">
+      <div className="bg-background shadow-sm">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
               <div className="flex items-center flex-shrink-0">
-                <h1 className="text-xl font-bold text-gray-900">Acme Inc</h1>
+                <h1 className="text-xl font-bold text-foreground">Acme Inc</h1>
               </div>
               <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                 <Link
                   to="/stacked"
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-indigo-500"
+                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-foreground border-b-2 border-primary"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/stacked/team"
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700"
+                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-muted-foreground border-b-2 border-transparent hover:border-border hover:text-foreground"
                 >
                   Team
                 </Link>
                 <Link
                   to="/stacked/projects"
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700"
+                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-muted-foreground border-b-2 border-transparent hover:border-border hover:text-foreground"
                 >
                   Projects
                 </Link>
                 <Link
                   to="/stacked/calendar"
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700"
+                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-muted-foreground border-b-2 border-transparent hover:border-border hover:text-foreground"
                 >
                   Calendar
                 </Link>
               </div>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:items-center">
-              <button className="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <button className="p-1 text-muted-foreground bg-background rounded-full hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                 <span className="sr-only">View notifications</span>
                 <Bell className="w-6 h-6" />
               </button>
@@ -56,7 +56,7 @@ export default function StackedLayout() {
               {/* Profile dropdown */}
               <div className="relative ml-3">
                 <div>
-                  <Button variant="ghost" className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <Button variant="ghost" className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                     <span className="sr-only">Open user menu</span>
                     <Avatar>
                       <AvatarImage src="https://github.com/shadcn.png" />
@@ -69,7 +69,7 @@ export default function StackedLayout() {
               </div>
             </div>
             <div className="flex items-center -mr-2 sm:hidden">
-              <button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <button className="inline-flex items-center justify-center p-2 text-muted-foreground bg-background rounded-md hover:text-muted-foreground hover:bg-background/70 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                 <span className="sr-only">Open main menu</span>
                 <Menu className="w-6 h-6" />
               </button>
@@ -81,7 +81,7 @@ export default function StackedLayout() {
       {/* Page content */}
       <div className="py-10">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+          <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
           <Outlet />
         </div>
       </div>
@@ -100,11 +100,11 @@ export default function Dashboard() {
         <Card className="p-6">
           <div className="flex items-center">
             <div className="p-3 rounded-md bg-indigo-50">
-              <Activity className="w-6 h-6 text-indigo-600" />
+              <Activity className="w-6 h-6 text-primary" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Total Subscribers</p>
-              <p className="text-2xl font-semibold text-gray-900">71,897</p>
+              <p className="text-sm font-medium text-muted-foreground">Total Subscribers</p>
+              <p className="text-2xl font-semibold text-foreground">71,897</p>
               <p className="flex items-center text-sm text-green-600">
                 <ArrowUp className="w-4 h-4" />
                 <span className="ml-1">12% from last month</span>
@@ -116,11 +116,11 @@ export default function Dashboard() {
         <Card className="p-6">
           <div className="flex items-center">
             <div className="p-3 rounded-md bg-indigo-50">
-              <Users className="w-6 h-6 text-indigo-600" />
+              <Users className="w-6 h-6 text-primary" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Avg. Open Rate</p>
-              <p className="text-2xl font-semibold text-gray-900">58.16%</p>
+              <p className="text-sm font-medium text-muted-foreground">Avg. Open Rate</p>
+              <p className="text-2xl font-semibold text-foreground">58.16%</p>
               <p className="flex items-center text-sm text-green-600">
                 <ArrowUp className="w-4 h-4" />
                 <span className="ml-1">2% from last month</span>
@@ -132,11 +132,11 @@ export default function Dashboard() {
         <Card className="p-6">
           <div className="flex items-center">
             <div className="p-3 rounded-md bg-indigo-50">
-              <CreditCard className="w-6 h-6 text-indigo-600" />
+              <CreditCard className="w-6 h-6 text-primary" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Avg. Click Rate</p>
-              <p className="text-2xl font-semibold text-gray-900">24.57%</p>
+              <p className="text-sm font-medium text-muted-foreground">Avg. Click Rate</p>
+              <p className="text-2xl font-semibold text-foreground">24.57%</p>
               <p className="flex items-center text-sm text-red-600">
                 <ArrowUp className="w-4 h-4 transform rotate-180" />
                 <span className="ml-1">4% from last month</span>
@@ -148,7 +148,7 @@ export default function Dashboard() {
 
       {/* Recent activity */}
       <Card className="p-6 mt-8">
-        <h2 className="text-lg font-medium text-gray-900">Recent activity</h2>
+        <h2 className="text-lg font-medium text-foreground">Recent activity</h2>
         {/* Activity content would go here */}
       </Card>
     </div>

@@ -8,7 +8,7 @@ export function BannerSection({
 		return (
 			<NavLink 
 				to="#" 
-				className="flex-none rounded-full bg-primary px-3.5 py-1 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+				className="flex-none rounded-full bg-primary px-3.5 py-1 text-sm font-semibold text-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
 			>
 				Register now <span aria-hidden="true">&rarr;</span>
 			</NavLink>

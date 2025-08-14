@@ -85,12 +85,12 @@ export function TestimonialSection({
               </div>
               <svg width={3} height={3} viewBox="0 0 2 2" aria-hidden="true" className={cn(
                 "fill-current",
-                isDark ? "text-gray-400" : "text-muted-foreground"
+                isDark ? "text-muted-foreground" : "text-muted-foreground"
               )}>
                 <circle r={1} cx={1} cy={1} />
               </svg>
               <div className={cn(
-                isDark ? "text-gray-400" : "text-muted-foreground"
+                isDark ? "text-muted-foreground" : "text-muted-foreground"
               )}>
                 {testimonial.author.title}
               </div>

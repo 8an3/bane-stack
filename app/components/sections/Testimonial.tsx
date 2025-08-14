@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 
-export function TestimonialSection({
+export function Testimonial({
   testimonial = {
     quote: "This platform has completely transformed how we work. The ease of use and powerful features have made our team more productive than ever before.",
     author: {
@@ -85,12 +85,12 @@ export function TestimonialSection({
               </div>
               <svg width={3} height={3} viewBox="0 0 2 2" aria-hidden="true" className={cn(
                 "fill-current",
-                isDark ? "text-gray-400" : "text-muted-foreground"
+                isDark ? "text-muted-foreground" : "text-muted-foreground"
               )}>
                 <circle r={1} cx={1} cy={1} />
               </svg>
               <div className={cn(
-                isDark ? "text-gray-400" : "text-muted-foreground"
+                isDark ? "text-muted-foreground" : "text-muted-foreground"
               )}>
                 {testimonial.author.title}
               </div>

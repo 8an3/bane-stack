@@ -269,7 +269,7 @@ export   function TeamSection({
                     {person.bio && (
                       <p className={cn(
                         "text-sm mt-1",
-                        isDark ? "text-gray-400" : "text-muted-foreground"
+                        isDark ? "text-muted-foreground" : "text-muted-foreground"
                       )}>
                         {person.bio}
                       </p>

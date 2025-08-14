@@ -10,7 +10,7 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
 
   // 5. With inline links and actions menu
   export   const StackedListsWithInlineLinksAndActions = () => (
-    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+    <div className="bg-background shadow overflow-hidden sm:rounded-md">
       <ul role="list" className="divide-y divide-gray-200">
         {users.map((user) => (
           <li key={user.id}>
@@ -24,14 +24,14 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
                     </Avatar>
                   </div>
                   <div className="ml-4">
-                    <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                    <div className="text-sm text-gray-500 flex items-center space-x-4">
+                    <div className="text-sm font-medium text-foreground">{user.name}</div>
+                    <div className="text-sm text-muted-foreground flex items-center space-x-4">
                       <span>{user.title}</span>
-                      <a href={`mailto:${user.email}`} className="text-indigo-600 hover:text-indigo-900 flex items-center">
+                      <a href={`mailto:${user.email}`} className="text-primary hover:text-indigo-900 flex items-center">
                         <Mail className="h-3 w-3 mr-1" />
                         Email
                       </a>
-                      <a href={`tel:${user.phone}`} className="text-indigo-600 hover:text-indigo-900 flex items-center">
+                      <a href={`tel:${user.phone}`} className="text-primary hover:text-indigo-900 flex items-center">
                         <Phone className="h-3 w-3 mr-1" />
                         Call
                       </a>

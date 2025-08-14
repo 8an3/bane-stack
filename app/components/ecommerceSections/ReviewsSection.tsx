@@ -100,16 +100,16 @@ export function ReviewsSection   ()   {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:px-8 lg:py-32">
         <div className="lg:col-span-4">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">Customer Reviews</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">Customer Reviews</h2>
 
           <div className="mt-3 flex items-center">
             <div>
               <div className="flex items-center">
                 <StarRating rating={Math.floor(overallRating.average)} size="lg" />
-                <p className="ml-2 text-sm text-gray-900">
+                <p className="ml-2 text-sm text-foreground">
                   Based on {overallRating.total} reviews
                 </p>
               </div>
@@ -120,7 +120,7 @@ export function ReviewsSection   ()   {
                   {overallRating.counts.map((count) => (
                     <div key={count.rating} className="flex items-center text-sm">
                       <dt className="flex flex-1 items-center">
-                        <p className="w-3 font-medium text-gray-900">
+                        <p className="w-3 font-medium text-foreground">
                           {count.rating}
                           <span className="sr-only"> star reviews</span>
                         </p>
@@ -128,7 +128,7 @@ export function ReviewsSection   ()   {
                           <Star className="h-4 w-4 flex-shrink-0 text-yellow-400 fill-current" />
                           <div className="ml-3 flex-1">
                             <div className="relative">
-                              <div className="h-3 rounded-full border border-gray-200 bg-gray-100" />
+                              <div className="h-3 rounded-full border border-border bg-background/70" />
                               <div
                                 className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
                                 style={{ width: `calc(${count.count} / ${overallRating.total} * 100%)` }}
@@ -137,7 +137,7 @@ export function ReviewsSection   ()   {
                           </div>
                         </div>
                       </dt>
-                      <dd className="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">
+                      <dd className="ml-3 w-10 text-right text-sm tabular-nums text-foreground">
                         {getPercentage(count.count, overallRating.total)}%
                       </dd>
                     </div>
@@ -148,12 +148,12 @@ export function ReviewsSection   ()   {
           </div>
 
           <div className="mt-10">
-            <h3 className="text-lg font-medium text-gray-900">Share your thoughts</h3>
-            <p className="mt-1 text-sm text-gray-600">
+            <h3 className="text-lg font-medium text-foreground">Share your thoughts</h3>
+            <p className="mt-1 text-sm text-muted-foreground">
               If you've used this product, share your thoughts with other customers
             </p>
 
-            <Button className="mt-6 inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full" variant="outline">
+            <Button className="mt-6 inline-flex w-full items-center justify-center rounded-md border border-border bg-background px-8 py-2 text-sm font-medium text-foreground hover:bg-background sm:w-auto lg:w-full" variant="outline">
               Write a review
             </Button>
           </div>
@@ -164,7 +164,7 @@ export function ReviewsSection   ()   {
 
           <div className="flow-root">
             <div className="flex items-center justify-between">
-              <h4 className="text-lg font-medium text-gray-900">{overallRating.total} reviews</h4>
+              <h4 className="text-lg font-medium text-foreground">{overallRating.total} reviews</h4>
               <div className="flex items-center space-x-4">
                 <Button
                   variant="outline"
@@ -178,7 +178,7 @@ export function ReviewsSection   ()   {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="rounded-md border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className="rounded-md border-border text-sm focus:border-primary focus:ring-primary"
                 >
                   <option value="most-helpful">Most Helpful</option>
                   <option value="newest">Newest</option>
@@ -199,7 +199,7 @@ export function ReviewsSection   ()   {
                       className="h-12 w-12 rounded-full"
                     />
                     <div className="ml-4">
-                      <h4 className="text-sm font-bold text-gray-900">{review.author}</h4>
+                      <h4 className="text-sm font-bold text-foreground">{review.author}</h4>
                       <div className="mt-1 flex items-center">
                         <StarRating rating={review.rating} />
                         {review.verified && (
@@ -211,8 +211,8 @@ export function ReviewsSection   ()   {
                     </div>
                   </div>
 
-                  <div className="mt-4 space-y-6 text-base italic text-gray-600">
-                    <h5 className="font-semibold not-italic text-gray-900">{review.title}</h5>
+                  <div className="mt-4 space-y-6 text-base italic text-muted-foreground">
+                    <h5 className="font-semibold not-italic text-foreground">{review.title}</h5>
                     <p className="not-italic">{review.content}</p>
                   </div>
 
@@ -220,10 +220,10 @@ export function ReviewsSection   ()   {
                     <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                       {review.pros.length > 0 && (
                         <div>
-                          <h6 className="text-sm font-medium text-gray-900">Pros</h6>
+                          <h6 className="text-sm font-medium text-foreground">Pros</h6>
                           <ul className="mt-2 space-y-1">
                             {review.pros.map((pro, index) => (
-                              <li key={index} className="text-sm text-gray-600">
+                              <li key={index} className="text-sm text-muted-foreground">
                                 • {pro}
                               </li>
                             ))}
@@ -232,10 +232,10 @@ export function ReviewsSection   ()   {
                       )}
                       {review.cons.length > 0 && (
                         <div>
-                          <h6 className="text-sm font-medium text-gray-900">Cons</h6>
+                          <h6 className="text-sm font-medium text-foreground">Cons</h6>
                           <ul className="mt-2 space-y-1">
                             {review.cons.map((con, index) => (
-                              <li key={index} className="text-sm text-gray-600">
+                              <li key={index} className="text-sm text-muted-foreground">
                                 • {con}
                               </li>
                             ))}
@@ -246,13 +246,13 @@ export function ReviewsSection   ()   {
                   )}
 
                   <div className="mt-6 flex items-center justify-between">
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       <time dateTime={review.date}>{review.date}</time>
                     </p>
                     <div className="flex items-center space-x-6">
                       <button
                         type="button"
-                        className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700"
+                        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
                       >
                         <ThumbsUp className="mr-2 h-4 w-4" />
                         Helpful ({review.helpful})
@@ -260,7 +260,7 @@ export function ReviewsSection   ()   {
                       <span className="text-gray-300">·</span>
                       <button
                         type="button"
-                        className="text-sm text-gray-500 hover:text-gray-700"
+                        className="text-sm text-muted-foreground hover:text-foreground"
                       >
                         Report
                       </button>

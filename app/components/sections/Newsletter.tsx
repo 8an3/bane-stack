@@ -10,7 +10,7 @@ desc1 = "Non laboris consequat cupidatat laborum magna. Eiusmod non irure cupida
 title2 ="No spam",
 desc2= "Officia excepteur ullamco ut sint duis proident non adipisicing. Voluptate incididunt anim."
 }) {
-  const fether = useFetcher()
+  const fetcher = useFetcher()
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -32,20 +32,20 @@ desc2= "Officia excepteur ullamco ut sint duis proident non adipisicing. Volupta
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
             <div className="flex flex-col items-start">
-              <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
+              <div className="rounded-md bg-background/5 p-2 ring-1 ring-white/10">
                 <Calendar1 aria-hidden="true" className="size-6 text-white" />
               </div>
               <dt className="mt-4 text-base font-semibold text-white">{title1}</dt>
-              <dd className="mt-2 text-base/7 text-gray-400">
+              <dd className="mt-2 text-base/7 text-muted-foreground">
                 {desc1}
               </dd>
             </div>
             <div className="flex flex-col items-start">
-              <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
+              <div className="rounded-md bg-background/5 p-2 ring-1 ring-white/10">
                 <Hand aria-hidden="true" className="size-6 text-white" />
               </div>
               <dt className="mt-4 text-base font-semibold text-white">{title2}</dt>
-              <dd className="mt-2 text-base/7 text-gray-400">
+              <dd className="mt-2 text-base/7 text-muted-foreground">
                 {desc2}
               </dd>
             </div>

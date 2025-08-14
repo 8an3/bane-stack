@@ -190,7 +190,7 @@ export   function LandingPageSection() {
             🎉 New: Advanced Analytics Dashboard
           </Badge>
           
-          <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl dark:text-slate-100">
+          <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-foregroundsm:text-7xl dark:text-slate-100">
             Build your next
             <span className="relative whitespace-nowrap text-primary">
               <span className="relative"> amazing project</span>
@@ -198,7 +198,7 @@ export   function LandingPageSection() {
             faster than ever
           </h1>
           
-          <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700 dark:text-slate-300">
+          <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-foreground dark:text-slate-300">
             The ultimate platform for developers and teams to build, deploy, and scale applications with unprecedented speed and reliability.
           </p>
           
@@ -217,7 +217,7 @@ export   function LandingPageSection() {
               <img
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                 alt="Product screenshot"
-                className="rounded-md bg-white shadow-2xl ring-1 ring-slate-900/10 dark:bg-slate-900 dark:ring-slate-100/10"
+                className="rounded-md bg-background shadow-2xl ring-1 ring-slate-900/10 dark:bg-slate-900 dark:ring-slate-100/10"
                 width="1824"
                 height="1080"
               />

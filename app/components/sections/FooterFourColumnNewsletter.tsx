@@ -6,13 +6,13 @@ import { Input } from "~/components/ui/input";
 
 export function FooterFourColumnNewsletter() {
   return (
-    <footer className="bg-gray-50">
+    <footer className="bg-background">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
         {/* 4-Column Section */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* About */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               About
             </h3>
             <ul className="mt-4 space-y-2">
@@ -28,7 +28,7 @@ export function FooterFourColumnNewsletter() {
 
           {/* Support */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Support
             </h3>
             <ul className="mt-4 space-y-2">
@@ -44,7 +44,7 @@ export function FooterFourColumnNewsletter() {
 
           {/* Legal */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Legal
             </h3>
             <ul className="mt-4 space-y-2">
@@ -60,20 +60,20 @@ export function FooterFourColumnNewsletter() {
 
           {/* Social */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Social
             </h3>
             <div className="mt-4 flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-gray-500">
+              <a href="#" className="text-muted-foreground hover:text-muted-foreground">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-gray-500">
+              <a href="#" className="text-muted-foreground hover:text-muted-foreground">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-gray-500">
+              <a href="#" className="text-muted-foreground hover:text-muted-foreground">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-gray-500">
+              <a href="#" className="text-muted-foreground hover:text-muted-foreground">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -81,8 +81,8 @@ export function FooterFourColumnNewsletter() {
         </div>
 
         {/* Newsletter Section */}
-        <div className="mt-16 border-t border-gray-200 pt-8">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900">
+        <div className="mt-16 border-t border-border pt-8">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
             Subscribe to our newsletter
           </h3>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -100,7 +100,7 @@ export function FooterFourColumnNewsletter() {
           </form>
         </div>
 
-        <div className="mt-8 border-t border-gray-200 pt-8">
+        <div className="mt-8 border-t border-border pt-8">
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Company, Inc. All rights reserved.
           </p>

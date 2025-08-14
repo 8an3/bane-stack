@@ -12,15 +12,15 @@ export function SectionHeadings() {
 		<div className="p-8 max-w-7xl mx-auto space-y-12">
 			{/* Basic Section Heading */}
 			<div>
-				<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-				<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+				<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+				<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 			</div>
 
 			{/* Section Heading with Actions */}
 			<div className="flex items-center justify-between">
 				<div>
-					<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-					<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+					<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+					<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 				</div>
 				<div className="flex space-x-3">
 					<Button variant="outline">Invite</Button>
@@ -32,8 +32,8 @@ export function SectionHeadings() {
 			<div className="space-y-6">
 				<div className="flex items-center justify-between">
 					<div>
-						<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-						<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+						<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+						<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 					</div>
 					<Button>New member</Button>
 				</div>
@@ -50,10 +50,10 @@ export function SectionHeadings() {
 			<div className="flex items-center justify-between">
 				<div>
 					<div className="flex items-center space-x-3">
-						<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-						<span className="inline-flex items-center rounded-md bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">12 members</span>
+						<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+						<span className="inline-flex items-center rounded-md bg-background/70 px-2 py-0.5 text-xs font-medium text-muted-foreground">12 members</span>
 					</div>
-					<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+					<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 				</div>
 				<Button variant="outline" className="flex items-center">
 					View all
@@ -84,8 +84,8 @@ export function SectionHeadings() {
 
 				<div className="flex items-center justify-between">
 					<div>
-						<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-						<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+						<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+						<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 					</div>
 					<Button>New member</Button>
 				</div>
@@ -99,8 +99,8 @@ export function BasicSectionHeading() {
 		<div className="p-8 max-w-7xl mx-auto space-y-12">
 			{/* Basic Section Heading */}
 			<div>
-				<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-				<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+				<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+				<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 			</div>
 		</div>
 	);
@@ -110,8 +110,8 @@ export function SectionHeadingwithActions() {
 	return (
 		<div className="flex items-center justify-between">
 			<div>
-				<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-				<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+				<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+				<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 			</div>
 			<div className="flex space-x-3">
 				<Button variant="outline">Invite</Button>
@@ -126,8 +126,8 @@ export function SectionHeadingwithTabs() {
 		<div className="space-y-6">
 			<div className="flex items-center justify-between">
 				<div>
-					<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-					<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+					<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+					<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 				</div>
 				<Button>New member</Button>
 			</div>
@@ -147,10 +147,10 @@ export function SectionHeadingwithMetaInformation() {
 		<div className="flex items-center justify-between">
 			<div>
 				<div className="flex items-center space-x-3">
-					<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-					<span className="inline-flex items-center rounded-md bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">12 members</span>
+					<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+					<span className="inline-flex items-center rounded-md bg-background/70 px-2 py-0.5 text-xs font-medium text-muted-foreground">12 members</span>
 				</div>
-				<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+				<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 			</div>
 			<Button variant="outline" className="flex items-center">
 				View all
@@ -184,8 +184,8 @@ export function SectionHeadingwithBreadcrumbs() {
 
 			<div className="flex items-center justify-between">
 				<div>
-					<h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-					<p className="mt-1 text-sm text-gray-500">Manage your team members and their account permissions here.</p>
+					<h2 className="text-lg font-semibold text-foreground">Team Members</h2>
+					<p className="mt-1 text-sm text-muted-foreground">Manage your team members and their account permissions here.</p>
 				</div>
 				<Button>New member</Button>
 			</div>

@@ -37,19 +37,19 @@ export function SimpleIncentives() {
   ]
 
   return (
-    <div className="bg-white py-16 sm:py-24">
+    <div className="bg-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-0">
           {incentives.map((incentive) => (
             <div key={incentive.name} className="text-center md:flex md:items-start md:text-left lg:block lg:text-center">
               <div className="md:flex-shrink-0">
                 <div className="flow-root">
-                  <incentive.icon className="mx-auto h-16 w-16 text-gray-400" aria-hidden="true" />
+                  <incentive.icon className="mx-auto h-16 w-16 text-muted-foreground" aria-hidden="true" />
                 </div>
               </div>
               <div className="mt-6 md:ml-4 md:mt-0 lg:ml-0 lg:mt-6">
-                <h3 className="text-base font-semibold text-gray-900">{incentive.name}</h3>
-                <p className="mt-3 text-sm text-gray-500">{incentive.description}</p>
+                <h3 className="text-base font-semibold text-foreground">{incentive.name}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">{incentive.description}</p>
               </div>
             </div>
           ))}
@@ -93,25 +93,25 @@ export function CardIncentives() {
   ]
 
   return (
-    <div className="bg-gray-50 py-16 sm:py-24">
+    <div className="bg-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Why shop with us?
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
             We're committed to providing you with the best shopping experience possible
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 xl:grid-cols-4">
           {incentives.map((incentive) => (
-            <div key={incentive.name} className="flex rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-900/10">
+            <div key={incentive.name} className="flex rounded-2xl bg-background p-8 shadow-sm ring-1 ring-gray-900/10">
               <div>
                 <div className={`inline-flex h-16 w-16 items-center justify-center rounded-lg ${incentive.bgColor}`}>
                   <incentive.icon className={`h-8 w-8 ${incentive.iconColor}`} aria-hidden="true" />
                 </div>
-                <h3 className="mt-6 text-lg font-semibold leading-8 text-gray-900">{incentive.name}</h3>
-                <p className="mt-2 text-sm leading-6 text-gray-600">{incentive.description}</p>
+                <h3 className="mt-6 text-lg font-semibold leading-8 text-foreground">{incentive.name}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{incentive.description}</p>
               </div>
             </div>
           ))}
@@ -196,14 +196,14 @@ export function FeatureIncentives() {
   ]
 
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">Everything you need</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-base font-semibold leading-7 text-primary">Everything you need</h2>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Shopping made simple
           </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
             We've built our reputation on providing exceptional service and quality products that exceed expectations.
           </p>
         </div>
@@ -211,18 +211,18 @@ export function FeatureIncentives() {
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
             {incentives.map((incentive) => (
               <div key={incentive.name} className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-foreground">
                   <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${
-                    incentive.featured ? 'bg-indigo-600' : 'bg-gray-100'
+                    incentive.featured ? 'bg-indigo-600' : 'bg-background/70'
                   }`}>
                     <incentive.icon 
-                      className={`h-6 w-6 ${incentive.featured ? 'text-white' : 'text-gray-600'}`} 
+                      className={`h-6 w-6 ${incentive.featured ? 'text-white' : 'text-muted-foreground'}`} 
                       aria-hidden="true" 
                     />
                   </div>
                   {incentive.name}
                 </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-muted-foreground">
                   <p className="flex-auto">{incentive.description}</p>
                 </dd>
               </div>
@@ -265,48 +265,48 @@ export   function IncentiveDemo() {
     <div className="space-y-0">
       <div className="py-8">
         <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Ecommerce Incentive Sections</h1>
-          <p className="text-gray-600 mb-8">Different styles of incentive sections to build trust and encourage purchases</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Ecommerce Incentive Sections</h1>
+          <p className="text-muted-foreground mb-8">Different styles of incentive sections to build trust and encourage purchases</p>
         </div>
       </div>
 
       <div className="space-y-16">
         <section>
           <div className="max-w-4xl mx-auto px-6 pb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Simple Grid Layout</h2>
-            <p className="text-gray-600 text-sm">Clean icons with minimal text in a responsive grid</p>
+            <h2 className="text-xl font-semibold text-foreground mb-4">Simple Grid Layout</h2>
+            <p className="text-muted-foreground text-sm">Clean icons with minimal text in a responsive grid</p>
           </div>
           <SimpleIncentives />
         </section>
 
         <section>
           <div className="max-w-4xl mx-auto px-6 pb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Card-Based Layout</h2>
-            <p className="text-gray-600 text-sm">Cards with colored backgrounds and detailed descriptions</p>
+            <h2 className="text-xl font-semibold text-foreground mb-4">Card-Based Layout</h2>
+            <p className="text-muted-foreground text-sm">Cards with colored backgrounds and detailed descriptions</p>
           </div>
           <CardIncentives />
         </section>
 
         <section>
           <div className="max-w-4xl mx-auto px-6 pb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Top Banner Style</h2>
-            <p className="text-gray-600 text-sm">Compact banner highlighting key incentives</p>
+            <h2 className="text-xl font-semibold text-foreground mb-4">Top Banner Style</h2>
+            <p className="text-muted-foreground text-sm">Compact banner highlighting key incentives</p>
           </div>
           <BannerIncentives />
         </section>
 
         <section>
           <div className="max-w-4xl mx-auto px-6 pb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Feature Grid</h2>
-            <p className="text-gray-600 text-sm">Detailed descriptions with featured highlights</p>
+            <h2 className="text-xl font-semibold text-foreground mb-4">Feature Grid</h2>
+            <p className="text-muted-foreground text-sm">Detailed descriptions with featured highlights</p>
           </div>
           <FeatureIncentives />
         </section>
 
         <section>
           <div className="max-w-4xl mx-auto px-6 pb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Compact Footer Style</h2>
-            <p className="text-gray-600 text-sm">Minimal horizontal layout perfect for footers</p>
+            <h2 className="text-xl font-semibold text-foreground mb-4">Compact Footer Style</h2>
+            <p className="text-muted-foreground text-sm">Minimal horizontal layout perfect for footers</p>
           </div>
           <CompactIncentives />
         </section>

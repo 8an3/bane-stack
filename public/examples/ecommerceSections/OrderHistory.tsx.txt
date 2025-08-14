@@ -75,7 +75,7 @@ export function OrderHistory   ()  {
       case 'processing':
         return <Clock className="h-5 w-5 text-yellow-500" />;
       default:
-        return <Package className="h-5 w-5 text-gray-400" />;
+        return <Package className="h-5 w-5 text-muted-foreground" />;
     }
   };
 
@@ -94,13 +94,13 @@ export function OrderHistory   ()  {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <div className="max-w-xl">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             Order history
           </h1>
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-muted-foreground">
             Check the status of recent orders, manage returns, and download invoices.
           </p>
         </div>
@@ -113,19 +113,19 @@ export function OrderHistory   ()  {
                   Order placed on <time dateTime={order.date}>{order.date}</time>
                 </h3>
 
-                <div className="bg-gray-50 px-4 py-6 sm:rounded-lg sm:p-6 md:flex md:items-center md:justify-between md:space-x-6 lg:space-x-8">
-                  <dl className="flex-auto space-y-4 divide-y divide-gray-200 text-sm text-gray-600 md:grid md:grid-cols-3 md:gap-x-6 md:space-y-0 md:divide-y-0 lg:w-1/2 lg:flex-none lg:gap-x-8">
+                <div className="bg-background px-4 py-6 sm:rounded-lg sm:p-6 md:flex md:items-center md:justify-between md:space-x-6 lg:space-x-8">
+                  <dl className="flex-auto space-y-4 divide-y divide-gray-200 text-sm text-muted-foreground md:grid md:grid-cols-3 md:gap-x-6 md:space-y-0 md:divide-y-0 lg:w-1/2 lg:flex-none lg:gap-x-8">
                     <div className="flex justify-between md:block">
-                      <dt className="font-medium text-gray-900">Order number</dt>
+                      <dt className="font-medium text-foreground">Order number</dt>
                       <dd className="md:mt-1">{order.id}</dd>
                     </div>
                     <div className="flex justify-between pt-4 md:block md:pt-0">
-                      <dt className="font-medium text-gray-900">Date placed</dt>
+                      <dt className="font-medium text-foreground">Date placed</dt>
                       <dd className="md:mt-1">
                         <time dateTime={order.date}>{order.date}</time>
                       </dd>
                     </div>
-                    <div className="flex justify-between pt-4 font-medium text-gray-900 md:block md:pt-0">
+                    <div className="flex justify-between pt-4 font-medium text-foreground md:block md:pt-0">
                       <dt>Total amount</dt>
                       <dd className="md:mt-1">{order.total}</dd>
                     </div>
@@ -154,20 +154,20 @@ export function OrderHistory   ()  {
                           <div className="lg:flex-1">
                             <div className="sm:flex">
                               <div>
-                                <h4 className="font-medium text-gray-900">
+                                <h4 className="font-medium text-foreground">
                                   {item.name}
                                 </h4>
-                                <p className="mt-2 hidden text-sm text-gray-500 sm:block">
+                                <p className="mt-2 hidden text-sm text-muted-foreground sm:block">
                                   {item.description}
                                 </p>
                               </div>
-                              <p className="mt-1 font-medium text-gray-900 sm:ml-6 sm:mt-0">
+                              <p className="mt-1 font-medium text-foreground sm:ml-6 sm:mt-0">
                                 {item.price}
                               </p>
                             </div>
                             <div className="mt-2 flex text-sm font-medium sm:mt-4">
-                              <span className="text-gray-500">Color: {item.color}</span>
-                              <span className="ml-4 border-l border-gray-200 pl-4 text-gray-500">
+                              <span className="text-muted-foreground">Color: {item.color}</span>
+                              <span className="ml-4 border-l border-border pl-4 text-muted-foreground">
                                 Size: {item.size}
                               </span>
                             </div>
@@ -183,7 +183,7 @@ export function OrderHistory   ()  {
                                 </Button>
                               </div>
                             ) : (
-                              <Button variant="link" className="p-0 h-auto text-indigo-600 hover:text-indigo-500">
+                              <Button variant="link" className="p-0 h-auto text-primary hover:text-primary">
                                 View product <ChevronRight className="ml-1 h-4 w-4" />
                               </Button>
                             )}
@@ -205,7 +205,7 @@ export function OrderHistory   ()  {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-gray-200 pt-6 text-center">
+        <div className="mt-16 border-t border-border pt-6 text-center">
           <Button variant="outline">
             View all orders
           </Button>

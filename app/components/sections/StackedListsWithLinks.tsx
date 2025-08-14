@@ -8,11 +8,11 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
 
   // 6. With links
   export const StackedListsWithLinks = () => (
-    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+    <div className="bg-background shadow overflow-hidden sm:rounded-md">
       <ul role="list" className="divide-y divide-gray-200">
         {users.map((user) => (
           <li key={user.id}>
-            <a href={`#/users/${user.id}`} className="block hover:bg-gray-50">
+            <a href={`#/users/${user.id}`} className="block hover:bg-background">
               <div className="px-4 py-4 sm:px-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
@@ -23,12 +23,12 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
                       </Avatar>
                     </div>
                     <div className="ml-4">
-                      <div className="text-sm font-medium text-indigo-600">{user.name}</div>
-                      <div className="text-sm text-gray-500">{user.title}</div>
-                      <div className="text-sm text-gray-500">{user.email}</div>
+                      <div className="text-sm font-medium text-primary">{user.name}</div>
+                      <div className="text-sm text-muted-foreground">{user.title}</div>
+                      <div className="text-sm text-muted-foreground">{user.email}</div>
                     </div>
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-muted-foreground">
                     Last active {user.lastActive}
                   </div>
                 </div>

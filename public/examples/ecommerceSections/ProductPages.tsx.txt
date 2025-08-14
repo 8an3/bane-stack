@@ -215,7 +215,7 @@ export   function ProductPage() {
             
             {/* Main Image */}
             <div className="relative">
-              <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+              <div className="aspect-square bg-background/70 rounded-lg overflow-hidden">
                 <img
                   src={product.images[selectedImage]}
                   alt={product.name}
@@ -226,13 +226,13 @@ export   function ProductPage() {
               {/* Image Navigation */}
               <button
                 onClick={() => handleImageChange('prev')}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg"
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background rounded-full p-2 shadow-lg"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={() => handleImageChange('next')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg"
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background rounded-full p-2 shadow-lg"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -244,7 +244,7 @@ export   function ProductPage() {
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 ${
+                  className={`aspect-square bg-background/70 rounded-lg overflow-hidden border-2 ${
                     selectedImage === index ? 'border-primary' : 'border-transparent'
                   }`}
                 >
@@ -325,7 +325,7 @@ export   function ProductPage() {
                     key={color.name}
                     onClick={() => setSelectedColor(color.name)}
                     className={`w-8 h-8 rounded-full border-2 ${
-                      selectedColor === color.name ? 'border-primary ring-2 ring-primary/20' : 'border-gray-300'
+                      selectedColor === color.name ? 'border-primary ring-2 ring-primary/20' : 'border-border'
                     }`}
                     style={{ backgroundColor: color.hex }}
                     title={color.label}
@@ -345,7 +345,7 @@ export   function ProductPage() {
                     className={`px-4 py-2 border rounded-md text-sm font-medium ${
                       selectedSize === size
                         ? 'border-primary bg-primary text-primary-foreground'
-                        : 'border-gray-300 bg-background hover:bg-gray-50'
+                        : 'border-border bg-background hover:bg-background'
                     }`}
                   >
                     {size}
@@ -360,7 +360,7 @@ export   function ProductPage() {
                 <div className="flex items-center border rounded-md">
                   <button
                     onClick={() => handleQuantityChange(-1)}
-                    className="p-2 hover:bg-gray-50"
+                    className="p-2 hover:bg-background"
                     disabled={quantity <= 1}
                   >
                     <Minus className="h-4 w-4" />
@@ -374,7 +374,7 @@ export   function ProductPage() {
                   />
                   <button
                     onClick={() => handleQuantityChange(1)}
-                    className="p-2 hover:bg-gray-50"
+                    className="p-2 hover:bg-background"
                   >
                     <Plus className="h-4 w-4" />
                   </button>
@@ -588,7 +588,7 @@ export   function ProductPage() {
             {relatedProducts.map((relatedProduct) => (
               <Card key={relatedProduct.id} className="group cursor-pointer hover:shadow-lg transition-shadow">
                 <CardContent className="p-0">
-                  <div className="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
+                  <div className="aspect-square bg-background/70 rounded-t-lg overflow-hidden">
                     <img
                       src={relatedProduct.image}
                       alt={relatedProduct.name}

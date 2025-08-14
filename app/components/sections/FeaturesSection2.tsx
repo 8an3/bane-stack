@@ -63,7 +63,7 @@ export function FeaturesSection2({
                                                 <IconComponent aria-hidden="true" className={cn("absolute top-1 left-1 size-5", isDark ? "text-primary" : "text-primary")} />
                                                 {feature.name}
                                             </dt>{" "}
-                                            <dd className={cn("inline", isDark ? "text-gray-400" : "text-muted-foreground")}>{feature.description}</dd>
+                                            <dd className={cn("inline", isDark ? "text-muted-foreground" : "text-muted-foreground")}>{feature.description}</dd>
                                         </div>
                                     );
                                 })}

@@ -8,7 +8,7 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
 // 1. Narrow with badges
 
   export  const StackedListsNarrowWithBadges = () => (
-    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+    <div className="bg-background shadow overflow-hidden sm:rounded-md">
       <ul role="list" className="divide-y divide-gray-200">
         {users.map((user) => (
           <li key={user.id}>
@@ -23,14 +23,14 @@ import { MoreHorizontal, Mail, Phone, ExternalLink, Edit, Trash2, Star, Calendar
                   </div>
                   <div className="ml-4">
                     <div className="flex items-center">
-                      <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                      <div className="text-sm font-medium text-foreground">{user.name}</div>
                       <div className="ml-2">
                         <Badge variant={user.status === 'active' ? 'default' : 'secondary'}>
                           {user.status}
                         </Badge>
                       </div>
                     </div>
-                    <div className="text-sm text-gray-500">{user.title}</div>
+                    <div className="text-sm text-muted-foreground">{user.title}</div>
                   </div>
                 </div>
                 <Badge variant="outline">{user.role}</Badge>

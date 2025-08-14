@@ -1,18 +1,17 @@
 import { React, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { NavLink, Outlet, useActionData, useFetcher, useLoaderData, useLocation, useNavigate, useNavigation, useParams, useRouteLoaderData, useSearchParams, useSubmit } from "@remix-run/react";
 import { eP } from "~/utils/ext";
-import { authSessionStorage } from "~/sessions/session";
 import { axios } from "axios";
 import { ActionArgs, defer, json, redirect, type ActionArgs, type LoaderArgs } from "@remix-run/node";
 import { PageHeaderFunction } from "~/components/customUi/page-header";
 import { AlertNotificationDemo } from "~/components/sections/Alerts";
 import { BannerSection } from "~/components/sections/Banner";
 import { BentoDemo } from "~/components/sections/BentoGrid";
-import { BlogSection } from "~/components/sections/Blog";
+import { Blog } from "~/components/sections/Blog";
 import { ChangelogDemo } from "~/components/sections/Changelog";
 import { ConfigDemo } from "~/components/sections/ConfigSection";
-import { ContactSection } from "~/components/sections/Contact";
-import { CTASection } from "~/components/sections/CTA";
+import { Contact, ContactSection } from "~/components/sections/Contact";
+import { CTA, CTASection } from "~/components/sections/CTA";
 import { DescriptionList } from "~/components/sections/DescriptionList";
 import { DisplayCodeDemo } from "~/components/sections/DisplayCode";
 import { DisplayGithubInstall } from "~/components/sections/DisplayGithubInstall";
@@ -32,7 +31,7 @@ import { PricingSection1Card } from "~/components/sections/Pricing";
 import { SectionTitle } from "~/components/sections/SectionTitle";
 import { Stats } from "~/components/sections/Stats";
 import { TeamSection } from "~/components/sections/Team";
-import { TestimonialSection } from "~/components/sections/Testimonial";
+import { Testimonial } from "~/components/sections/Testimonial";
 import { TsxFunctionDemo } from "~/components/sections/TsxSection";
 import { UseSectionDemo } from "~/components/sections/UsageSection";
 import { StackedLayoutsSection } from "~/components/ecommerceSections/StackedLayouts";
@@ -41,12 +40,12 @@ import { UseageSectionNoDashDemo } from "~/components/sections/UsageSectionNoDas
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "~/components/ui/command";
 import MonacoEditor from "../editor/components2";
 import { Atom } from "~/components/lo-fi/atom";
-import { AlertLoFi } from "~/components/lo-fi/alert";
-import { ButtonLoFi } from "~/components/lo-fi/button";
-import { DropdownLoFi } from "~/components/lo-fi/dropdown";
-import { InputLoFi } from "~/components/lo-fi/input";
-import { TabsLoFi } from "~/components/lo-fi/tabs";
-import { ToggleLoFi } from "~/components/lo-fi/toggle";
+import { AlertLoFi } from "~/components/lo-fi/components/alert";
+import { ButtonLoFi } from "~/components/lo-fi/components/button";
+import { DropdownLoFi } from "~/components/lo-fi/components/dropdown";
+import { InputLoFi } from "~/components/lo-fi/components/input";
+import { TabsLoFi } from "~/components/lo-fi/components/tabs";
+import { ToggleLoFi } from "~/components/lo-fi/components/toggle";
 import { FeaturesGridSection } from "~/components/sections/FeaturesGridSection";
 import { HeroStatsSection } from "~/components/sections/HeroStatsSection";
 import { HeroCTASection } from "~/components/sections/HeroCTASection";
@@ -55,8 +54,8 @@ import { PricingSection3Cards } from "~/components/sections/PricingSection3Cards
 import { StatsCardSection } from "~/components/sections/StatsCardSection";
 import { TestimonialsGridSection } from "~/components/sections/TestimonialsGridSection";
 import { StatsSection } from "~/components/sections/StatsSection";
-import { CardLoFi } from "~/components/lo-fi/card";
-import { AccordionLoFi } from "~/components/lo-fi/accordion";
+import { CardLoFi } from "~/components/lo-fi/components/card";
+import { AccordionLoFi } from "~/components/lo-fi/components/accordion";
 import { BentoGridTwoRowSecondRow } from "~/components/sections/BentoGridTwoRowSecondRow";
 import { AlertSuccessSectionWithDismissalButton } from "~/components/sections/AlertSuccessSectionWithDismissalButton";
 import { TestimonialsSubtleGrid } from "~/components/sections/TestimonialsSubtleGrid";
@@ -97,6 +96,11 @@ import { AlertSuccessSection } from "~/components/sections/AlertSuccessSection";
 import { AlertInfoSection } from "~/components/sections/AlertInfoSection";
 import { AlertErrorSection } from "~/components/sections/AlertErrorSection";
 import { AlertAttentionSectionWithAccent } from "~/components/sections/AlertAttentionSectionWithAccent";
+import { Component } from "~/components/lo-fi/component";
+import { PricingSinglePriceDetails } from "~/components/sections/PricingSinglePriceDetails";
+import { PricingThreeTiersAndFeatureComparison } from "~/components/sections/PricingThreeTiersAndFeatureComparison";
+import { CardHeading } from "~/components/sections/CardHeading";
+import { Content } from "~/components/sections/Content";
 
 export default function Dashboard() {
 	const [selectedCode, setSelectedCode] = useState("");
@@ -235,7 +239,7 @@ export default function Dashboard() {
 			viewSelected = <ButtonLoFi />;
 			break;
 		case "Lofi - Component":
-			viewSelected = <ComponentLoFi />;
+			viewSelected = <Component />;
 			break;
 		case "Lofi - Dropdown":
 			viewSelected = <DropdownLoFi />;
@@ -422,9 +426,7 @@ export default function Dashboard() {
 		case "FeaturesGridSection":
 			viewSelected = <FeaturesGridSection />;
 			break;
-		case "FeatureSection":
-			viewSelected = <FeatureSection />;
-			break;
+
 		case "FeedListMultipleItemTypes":
 			viewSelected = <FeedListMultipleItemTypes />;
 			break;
@@ -454,9 +456,7 @@ export default function Dashboard() {
 		case "HeroCTASection":
 			viewSelected = <HeroCTASection />;
 			break;
-		case "HeroSection":
-			viewSelected = <HeroSection />;
-			break;
+	
 		case "HeroSectionBorderedApp":
 			viewSelected = <HeroSectionBorderedApp />;
 			break;

@@ -95,7 +95,7 @@ export function TextLead({
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={cn("text-xl text-slate-700 dark:text-slate-400", className)}
+      className={cn("text-xl text-foreground dark:text-slate-400", className)}
       {...props}
     >
       {children}

@@ -66,13 +66,13 @@ export   function StackedListsSection() {
             />
             <div className="min-w-0 flex-auto">
               <p className="text-sm/6 font-semibold text-white">{person.name}</p>
-              <p className="mt-1 truncate text-xs/5 text-gray-400">{person.email}</p>
+              <p className="mt-1 truncate text-xs/5 text-muted-foreground">{person.email}</p>
             </div>
           </div>
           <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
             <p className="text-sm/6 text-white">{person.role}</p>
             {person.lastSeen ? (
-              <p className="mt-1 text-xs/5 text-gray-400">
+              <p className="mt-1 text-xs/5 text-muted-foreground">
                 Last seen <time dateTime={person.lastSeenDateTime}>{person.lastSeen}</time>
               </p>
             ) : (
@@ -80,7 +80,7 @@ export   function StackedListsSection() {
                 <div className="flex-none rounded-full bg-emerald-500/30 p-1">
                   <div className="size-1.5 rounded-full bg-emerald-500" />
                 </div>
-                <p className="text-xs/5 text-gray-400">Online</p>
+                <p className="text-xs/5 text-muted-foreground">Online</p>
               </div>
             )}
           </div>

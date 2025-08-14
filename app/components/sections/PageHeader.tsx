@@ -1,4 +1,7 @@
 import { cn } from "~/components/ui/utils"
+import { Announcement } from "../customUi/announcement"
+import { Button } from "../ui"
+import { NavLink } from "@remix-run/react"
 
 function PageHeader({
   className,
@@ -71,10 +74,10 @@ export function UseHeader({
         <PageHeaderDescription>{description}</PageHeaderDescription>
         <PageActions>
           <Button asChild size="sm">
-            <Link href="/docs/installation">Get Started</Link>
+            <NavLink href="/docs/installation">Get Started</NavLink>
           </Button>
           <Button asChild size="sm" variant="ghost">
-            <Link href="/docs/components">View Components</Link>
+            <NavLink href="/docs/components">View Components</NavLink>
           </Button>
         </PageActions>
       </PageHeader>

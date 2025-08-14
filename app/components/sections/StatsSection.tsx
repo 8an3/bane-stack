@@ -83,7 +83,7 @@ export function StatsSection({
             )}>
               <dt className={cn(
                 "text-base/7",
-                isDark ? "text-gray-400" : "text-muted-foreground"
+                isDark ? "text-muted-foreground" : "text-muted-foreground"
               )}>
                 {stat.name}
               </dt>

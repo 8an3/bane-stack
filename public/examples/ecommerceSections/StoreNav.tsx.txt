@@ -130,12 +130,12 @@ export   function StoreNavSection() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       {/* Mobile menu */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-xs h-full p-0">
           <div className="flex px-4 pb-2 pt-5">
-            <DialogClose className="relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400">
+            <DialogClose className="relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-muted-foreground">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Close menu</span>
               <X className="h-6 w-6" />
@@ -144,13 +144,13 @@ export   function StoreNavSection() {
 
           {/* Links */}
           <Tabs defaultValue="women" className="mt-2">
-            <div className="border-b border-gray-200">
-              <TabsList className="-mb-px flex space-x-8 px-4 bg-white">
+            <div className="border-b border-border">
+              <TabsList className="-mb-px flex space-x-8 px-4 bg-background">
                 {navigation.categories.map((category) => (
                   <TabsTrigger
                     key={category.name}
                     value={category.id}
-                    className="flex-1 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-base font-medium text-gray-900 data-[state=active]:border-indigo-600 data-[state=active]:text-indigo-600"
+                    className="flex-1 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-base font-medium text-foreground data-[state=active]:border-indigo-600 data-[state=active]:text-primary"
                   >
                     {category.name}
                   </TabsTrigger>
@@ -165,9 +165,9 @@ export   function StoreNavSection() {
                       <img
                         alt={item.imageAlt}
                         src={item.imageSrc}
-                        className="aspect-square w-full rounded-lg bg-gray-100 object-cover group-hover:opacity-75"
+                        className="aspect-square w-full rounded-lg bg-background/70 object-cover group-hover:opacity-75"
                       />
-                      <a href={item.href} className="mt-6 block font-medium text-gray-900">
+                      <a href={item.href} className="mt-6 block font-medium text-foreground">
                         <span aria-hidden="true" className="absolute inset-0 z-10" />
                         {item.name}
                       </a>
@@ -179,7 +179,7 @@ export   function StoreNavSection() {
                 </div>
                 {category.sections.map((section) => (
                   <div key={section.name}>
-                    <p id={`${category.id}-${section.id}-heading-mobile`} className="font-medium text-gray-900">
+                    <p id={`${category.id}-${section.id}-heading-mobile`} className="font-medium text-foreground">
                       {section.name}
                     </p>
                     <ul
@@ -189,7 +189,7 @@ export   function StoreNavSection() {
                     >
                       {section.items.map((item) => (
                         <li key={item.name} className="flow-root">
-                          <a href={item.href} className="-m-2 block p-2 text-gray-500">
+                          <a href={item.href} className="-m-2 block p-2 text-muted-foreground">
                             {item.name}
                           </a>
                         </li>
@@ -201,55 +201,55 @@ export   function StoreNavSection() {
             ))}
           </Tabs>
 
-          <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+          <div className="space-y-6 border-t border-border px-4 py-6">
             {navigation.pages.map((page) => (
               <div key={page.name} className="flow-root">
-                <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
+                <a href={page.href} className="-m-2 block p-2 font-medium text-foreground">
                   {page.name}
                 </a>
               </div>
             ))}
           </div>
 
-          <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+          <div className="space-y-6 border-t border-border px-4 py-6">
             <div className="flow-root">
-              <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+              <a href="#" className="-m-2 block p-2 font-medium text-foreground">
                 Sign in
               </a>
             </div>
             <div className="flow-root">
-              <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+              <a href="#" className="-m-2 block p-2 font-medium text-foreground">
                 Create account
               </a>
             </div>
           </div>
 
-          <div className="border-t border-gray-200 px-4 py-6">
+          <div className="border-t border-border px-4 py-6">
             <a href="#" className="-m-2 flex items-center p-2">
               <img
                 alt=""
                 src="https://tailwindcss.com/plus-assets/img/flags/flag-canada.svg"
                 className="block h-auto w-5 shrink-0"
               />
-              <span className="ml-3 block text-base font-medium text-gray-900">CAD</span>
+              <span className="ml-3 block text-base font-medium text-foreground">CAD</span>
               <span className="sr-only">, change currency</span>
             </a>
           </div>
         </DialogContent>
       </Dialog>
 
-      <header className="relative bg-white">
+      <header className="relative bg-background">
         <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over $100
         </p>
 
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="border-b border-gray-200">
+          <div className="border-b border-border">
             <div className="flex h-16 items-center">
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="relative rounded-md bg-white p-2 text-gray-400 lg:hidden"
+                className="relative rounded-md bg-background p-2 text-muted-foreground lg:hidden"
               >
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open menu</span>
@@ -273,7 +273,7 @@ export   function StoreNavSection() {
                 <div className="flex h-full space-x-8">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name}>
-                      <PopoverTrigger className="group relative flex items-center justify-center text-sm font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-800 data-[state=open]:text-indigo-600">
+                      <PopoverTrigger className="group relative flex items-center justify-center text-sm font-medium text-foreground transition-colors duration-200 ease-out hover:text-gray-800 data-[state=open]:text-primary">
                         {category.name}
                         <span
                           aria-hidden="true"
@@ -281,11 +281,11 @@ export   function StoreNavSection() {
                         />
                       </PopoverTrigger>
                       <PopoverContent
-                        className="absolute inset-x-0 top-full z-20 w-full bg-white text-sm text-gray-500"
+                        className="absolute inset-x-0 top-full z-20 w-full bg-background text-sm text-muted-foreground"
                         sideOffset={-10}
                       >
-                        <div aria-hidden="true" className="absolute inset-0 top-1/2 bg-white shadow" />
-                        <div className="relative bg-white">
+                        <div aria-hidden="true" className="absolute inset-0 top-1/2 bg-background shadow" />
+                        <div className="relative bg-background">
                           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
                               <div className="col-start-2 grid grid-cols-2 gap-x-8">
@@ -294,9 +294,9 @@ export   function StoreNavSection() {
                                     <img
                                       alt={item.imageAlt}
                                       src={item.imageSrc}
-                                      className="aspect-square w-full rounded-lg bg-gray-100 object-cover group-hover:opacity-75"
+                                      className="aspect-square w-full rounded-lg bg-background/70 object-cover group-hover:opacity-75"
                                     />
-                                    <a href={item.href} className="mt-6 block font-medium text-gray-900">
+                                    <a href={item.href} className="mt-6 block font-medium text-foreground">
                                       <span aria-hidden="true" className="absolute inset-0 z-10" />
                                       {item.name}
                                     </a>
@@ -309,7 +309,7 @@ export   function StoreNavSection() {
                               <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
                                 {category.sections.map((section) => (
                                   <div key={section.name}>
-                                    <p id={`${section.name}-heading`} className="font-medium text-gray-900">
+                                    <p id={`${section.name}-heading`} className="font-medium text-foreground">
                                       {section.name}
                                     </p>
                                     <ul
@@ -338,7 +338,7 @@ export   function StoreNavSection() {
                     <a
                       key={page.name}
                       href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                      className="flex items-center text-sm font-medium text-foreground hover:text-gray-800"
                     >
                       {page.name}
                     </a>
@@ -348,17 +348,17 @@ export   function StoreNavSection() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                  <a href="#" className="text-sm font-medium text-foreground hover:text-gray-800">
                     Sign in
                   </a>
                   <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                  <a href="#" className="text-sm font-medium text-foreground hover:text-gray-800">
                     Create account
                   </a>
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
-                  <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
+                  <a href="#" className="flex items-center text-foreground hover:text-gray-800">
                     <img
                       alt=""
                       src="https://tailwindcss.com/plus-assets/img/flags/flag-canada.svg"
@@ -371,7 +371,7 @@ export   function StoreNavSection() {
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
+                  <a href="#" className="p-2 text-muted-foreground hover:text-muted-foreground">
                     <span className="sr-only">Search</span>
                     <Search className="h-6 w-6" />
                   </a>
@@ -381,9 +381,9 @@ export   function StoreNavSection() {
                 <div className="ml-4 flow-root lg:ml-6">
                   <a href="#" className="group -m-2 flex items-center p-2">
                     <ShoppingBag
-                      className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-gray-500"
+                      className="h-6 w-6 shrink-0 text-muted-foreground group-hover:text-primary"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                    <span className="ml-2 text-sm font-medium text-foreground group-hover:text-gray-800">0</span>
                     <span className="sr-only">items in cart, view bag</span>
                   </a>
                 </div>

@@ -51,7 +51,7 @@ export   function DetailsScreen() {
     <div className="p-6 max-w-7xl mx-auto">
       {/* Header with back button and actions */}
       <div className="flex items-center justify-between mb-6">
-        <Link to="/projects" className="flex items-center text-sm font-medium text-gray-600 hover:text-gray-900">
+        <Link to="/projects" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
           <ChevronLeft className="h-5 w-5 mr-1" />
           Back to projects
         </Link>
@@ -81,16 +81,16 @@ export   function DetailsScreen() {
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center space-x-4">
-                <h1 className="text-2xl font-bold text-gray-900">{project.title}</h1>
+                <h1 className="text-2xl font-bold text-foreground">{project.title}</h1>
                 <Badge variant={project.status === "completed" ? "default" : project.status === "in-progress" ? "secondary" : "destructive"}>
                   {project.status.split('-').join(' ')}
                 </Badge>
               </div>
-              <p className="mt-2 text-gray-600">{project.description}</p>
+              <p className="mt-2 text-muted-foreground">{project.description}</p>
             </div>
             <div className="flex items-center space-x-2">
               {statusIcon}
-              <span className="text-sm font-medium text-gray-700">
+              <span className="text-sm font-medium text-foreground">
                 Due {new Date(project.dueDate).toLocaleDateString()}
               </span>
             </div>
@@ -113,7 +113,7 @@ export   function DetailsScreen() {
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Card>
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium text-gray-500">Progress</CardTitle>
+                      <CardTitle className="text-sm font-medium text-muted-foreground">Progress</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">
@@ -125,7 +125,7 @@ export   function DetailsScreen() {
                           style={{ width: `${Math.round((project.stats.tasksCompleted / project.stats.totalTasks) * 100)}%` }}
                         />
                       </div>
-                      <p className="mt-2 text-sm text-gray-500">
+                      <p className="mt-2 text-sm text-muted-foreground">
                         {project.stats.tasksCompleted} of {project.stats.totalTasks} tasks completed
                       </p>
                     </CardContent>
@@ -133,11 +133,11 @@ export   function DetailsScreen() {
 
                   <Card>
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium text-gray-500">Budget</CardTitle>
+                      <CardTitle className="text-sm font-medium text-muted-foreground">Budget</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">{project.stats.budgetUsed}</div>
-                      <p className="mt-2 text-sm text-gray-500">
+                      <p className="mt-2 text-sm text-muted-foreground">
                         of {project.stats.totalBudget} total
                       </p>
                     </CardContent>
@@ -153,24 +153,24 @@ export   function DetailsScreen() {
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div className="space-y-4">
                         <div>
-                          <h3 className="text-sm font-medium text-gray-500">Client</h3>
-                          <p className="mt-1 text-sm text-gray-900">{project.details.client}</p>
+                          <h3 className="text-sm font-medium text-muted-foreground">Client</h3>
+                          <p className="mt-1 text-sm text-foreground">{project.details.client}</p>
                         </div>
                         <div>
-                          <h3 className="text-sm font-medium text-gray-500">Priority</h3>
-                          <p className="mt-1 text-sm text-gray-900">{project.details.priority}</p>
+                          <h3 className="text-sm font-medium text-muted-foreground">Priority</h3>
+                          <p className="mt-1 text-sm text-foreground">{project.details.priority}</p>
                         </div>
                       </div>
                       <div className="space-y-4">
                         <div>
-                          <h3 className="text-sm font-medium text-gray-500">Start Date</h3>
-                          <p className="mt-1 text-sm text-gray-900">
+                          <h3 className="text-sm font-medium text-muted-foreground">Start Date</h3>
+                          <p className="mt-1 text-sm text-foreground">
                             {new Date(project.details.startDate).toLocaleDateString()}
                           </p>
                         </div>
                         <div>
-                          <h3 className="text-sm font-medium text-gray-500">Due Date</h3>
-                          <p className="mt-1 text-sm text-gray-900">
+                          <h3 className="text-sm font-medium text-muted-foreground">Due Date</h3>
+                          <p className="mt-1 text-sm text-foreground">
                             {new Date(project.dueDate).toLocaleDateString()}
                           </p>
                         </div>
@@ -198,7 +198,7 @@ export   function DetailsScreen() {
                 </Avatar>
                 <div>
                   <h3 className="font-medium">{project.owner.name}</h3>
-                  <p className="text-sm text-gray-500">{project.owner.role}</p>
+                  <p className="text-sm text-muted-foreground">{project.owner.role}</p>
                 </div>
               </div>
               <div className="mt-4 space-y-3">
@@ -230,7 +230,7 @@ export   function DetailsScreen() {
                       </Avatar>
                       <div>
                         <h3 className="text-sm font-medium">{member.name}</h3>
-                        <p className="text-sm text-gray-500">{member.role}</p>
+                        <p className="text-sm text-muted-foreground">{member.role}</p>
                       </div>
                     </div>
                     <Button variant="ghost" size="icon">
@@ -253,19 +253,19 @@ export   function DetailsScreen() {
             <CardContent>
               <div className="space-y-3">
                 <div className="flex items-center">
-                  <Mail className="h-4 w-4 text-gray-500 mr-3" />
+                  <Mail className="h-4 w-4 text-muted-foreground mr-3" />
                   <span className="text-sm">contact@acme.com</span>
                 </div>
                 <div className="flex items-center">
-                  <Phone className="h-4 w-4 text-gray-500 mr-3" />
+                  <Phone className="h-4 w-4 text-muted-foreground mr-3" />
                   <span className="text-sm">(555) 123-4567</span>
                 </div>
                 <div className="flex items-center">
-                  <MapPin className="h-4 w-4 text-gray-500 mr-3" />
+                  <MapPin className="h-4 w-4 text-muted-foreground mr-3" />
                   <span className="text-sm">123 Business Ave, San Francisco</span>
                 </div>
                 <div className="flex items-center">
-                  <LinkIcon className="h-4 w-4 text-gray-500 mr-3" />
+                  <LinkIcon className="h-4 w-4 text-muted-foreground mr-3" />
                   <a href="#" className="text-sm text-blue-600 hover:underline">acme.com</a>
                 </div>
               </div>

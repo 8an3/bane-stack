@@ -39,19 +39,9 @@ export function FeatureSectionWithScreenshot() {
 	];
 
 	return (
-		<div className="relative overflow-hidden bg-white py-24 sm:py-32">
+		<div className="relative overflow-hidden bg-background py-24 sm:py-32">
 			{/* Background decoration */}
-			<div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
-			<div className="absolute left-1/2 top-0 ml-3 h-[25rem] w-[50rem] -translate-x-1/2 stroke-gray-300/70 [mask-image:linear-gradient(to_bottom,white_20%,transparent_75%)] sm:ml-0 lg:ml-20 xl:ml-32">
-				<svg className="absolute inset-0 h-full w-full" aria-hidden="true">
-					<defs>
-						<pattern id="54f88622-e7f8-4f1d-aaf9-c2f5e46dd1f2" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
-							<path d="M100 200V.5M.5 .5H200" fill="none" strokeWidth="1" />
-						</pattern>
-					</defs>
-					<rect width="100%" height="100%" strokeWidth="0" fill="url(#54f88622-e7f8-4f1d-aaf9-c2f5e46dd1f2)" />
-				</svg>
-			</div>
+	
 
 			<div className="relative mx-auto max-w-7xl px-6 lg:px-8">
 				<div className="mx-auto max-w-2xl lg:mx-0">
@@ -62,11 +52,11 @@ export function FeatureSectionWithScreenshot() {
 					</div>
 
 					{/* Section heading */}
-					<h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+					<h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
 						Everything you need to
 						<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"> scale your business</span>
 					</h2>
-					<p className="mt-6 text-lg leading-8 text-gray-600">Our comprehensive platform provides all the tools and features you need to build, grow, and manage your business efficiently. From analytics to security, we've got you covered.</p>
+					<p className="mt-6 text-lg leading-8 text-muted-foreground">Our comprehensive platform provides all the tools and features you need to build, grow, and manage your business efficiently. From analytics to security, we've got you covered.</p>
 				</div>
 
 				{/* Main content grid */}
@@ -83,8 +73,8 @@ export function FeatureSectionWithScreenshot() {
 												<IconComponent className="h-6 w-6 text-white" aria-hidden="true" />
 											</div>
 											<div>
-												<h3 className="text-lg font-semibold leading-7 text-gray-900">{feature.title}</h3>
-												<p className="mt-2 text-base leading-7 text-gray-600">{feature.description}</p>
+												<h3 className="text-lg font-semibold leading-7 text-foreground">{feature.title}</h3>
+												<p className="mt-2 text-base leading-7 text-muted-foreground">{feature.description}</p>
 											</div>
 										</div>
 									);
@@ -100,7 +90,7 @@ export function FeatureSectionWithScreenshot() {
 							</div>
 
 							{/* Trust indicators */}
-							<div className="mt-8 flex items-center space-x-6 text-sm text-gray-500">
+							<div className="mt-8 flex items-center space-x-6 text-sm text-muted-foreground">
 								<div className="flex items-center">
 									<CheckCircle className="mr-2 h-4 w-4 text-green-500" />
 									Free 14-day trial
@@ -121,19 +111,19 @@ export function FeatureSectionWithScreenshot() {
 							{/* Offset container */}
 							<div className="relative lg:ml-8 xl:ml-16">
 								{/* Decorative border/shadow */}
-								<div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-75 blur-lg"></div>
+								<div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-primary via-purple-500 to-pink-500 opacity-75 blur-lg"></div>
 
 								{/* Main screenshot container */}
-								<div className="relative rounded-xl border border-gray-200 bg-white shadow-2xl">
+								<div className="relative rounded-xl border border-border bg-background shadow-2xl">
 									{/* Browser chrome */}
-									<div className="flex items-center gap-2 border-b border-gray-200 px-4 py-3">
+									<div className="flex items-center gap-2 border-b border-border px-4 py-3">
 										<div className="flex space-x-1.5">
 											<div className="h-3 w-3 rounded-full bg-red-400"></div>
 											<div className="h-3 w-3 rounded-full bg-yellow-400"></div>
 											<div className="h-3 w-3 rounded-full bg-green-400"></div>
 										</div>
 										<div className="flex-1 mx-4">
-											<div className="h-6 rounded bg-gray-100 px-3 flex items-center text-sm text-gray-500">https://yourapp.com/dashboard</div>
+											<div className="h-6 rounded bg-background/70 px-3 flex items-center text-sm text-muted-foreground">https://yourapp.com/dashboard</div>
 										</div>
 									</div>
 
@@ -143,18 +133,18 @@ export function FeatureSectionWithScreenshot() {
 										<div className="flex items-center justify-between mb-6">
 											<div className="flex items-center space-x-4">
 												<div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-													<BarChart3 className="w-6 h-6 text-indigo-600" />
+													<BarChart3 className="w-6 h-6 text-primary" />
 												</div>
 												<div>
-													<h3 className="text-lg font-semibold text-gray-900">Dashboard Overview</h3>
-													<p className="text-sm text-gray-500">Welcome back, Sarah!</p>
+													<h3 className="text-lg font-semibold text-foreground">Dashboard Overview</h3>
+													<p className="text-sm text-muted-foreground">Welcome back, Sarah!</p>
 												</div>
 											</div>
 											<div className="flex items-center space-x-2">
 												<div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
 													<div className="w-2 h-2 bg-green-500 rounded-full"></div>
 												</div>
-												<span className="text-sm font-medium text-gray-700">Online</span>
+												<span className="text-sm font-medium text-foreground">Online</span>
 											</div>
 										</div>
 
@@ -165,20 +155,20 @@ export function FeatureSectionWithScreenshot() {
 												{ label: "Revenue", value: "$128K", change: "+8%" },
 												{ label: "Growth", value: "34.2%", change: "+2.1%" },
 											].map((stat, index) => (
-												<div key={index} className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-													<div className="text-sm font-medium text-gray-600 mb-1">{stat.label}</div>
-													<div className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
+												<div key={index} className="bg-background p-4 rounded-lg shadow-sm border border-gray-100">
+													<div className="text-sm font-medium text-muted-foreground mb-1">{stat.label}</div>
+													<div className="text-2xl font-bold text-foreground mb-1">{stat.value}</div>
 													<div className="text-sm text-green-600 font-medium">{stat.change}</div>
 												</div>
 											))}
 										</div>
 
 										{/* Chart area mockup */}
-										<div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 mb-6">
+										<div className="bg-background rounded-lg shadow-sm border border-gray-100 p-6 mb-6">
 											<div className="flex items-center justify-between mb-4">
-												<h4 className="text-lg font-semibold text-gray-900">Analytics Overview</h4>
+												<h4 className="text-lg font-semibold text-foreground">Analytics Overview</h4>
 												<div className="flex space-x-2">
-													<div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+													<div className="w-2 h-2 bg-primary rounded-full"></div>
 													<div className="w-2 h-2 bg-purple-500 rounded-full"></div>
 													<div className="w-2 h-2 bg-pink-500 rounded-full"></div>
 												</div>
@@ -193,13 +183,13 @@ export function FeatureSectionWithScreenshot() {
 										</div>
 
 										{/* Activity list */}
-										<div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4">
-											<h4 className="text-sm font-semibold text-gray-900 mb-3">Recent Activity</h4>
+										<div className="bg-background rounded-lg shadow-sm border border-gray-100 p-4">
+											<h4 className="text-sm font-semibold text-foreground mb-3">Recent Activity</h4>
 											<div className="space-y-3">
 												{["New user registration from California", "Payment received: $2,400", "System backup completed successfully"].map((activity, index) => (
 													<div key={index} className="flex items-center space-x-3">
 														<div className="w-2 h-2 bg-indigo-400 rounded-full"></div>
-														<span className="text-sm text-gray-600">{activity}</span>
+														<span className="text-sm text-muted-foreground">{activity}</span>
 													</div>
 												))}
 											</div>

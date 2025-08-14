@@ -70,7 +70,7 @@ export function FeaturesGridSection({
 										<IconComponent aria-hidden="true" className={cn("size-5 flex-none", isDark ? "text-primary" : "text-primary")} />
 										{feature.name}
 									</dt>
-									<dd className={cn("mt-4 flex flex-auto flex-col text-base/7", isDark ? "text-gray-400" : "text-muted-foreground")}>
+									<dd className={cn("mt-4 flex flex-auto flex-col text-base/7", isDark ? "text-muted-foreground" : "text-muted-foreground")}>
 										<p className="flex-auto">{feature.description}</p>
 									</dd>
 								</div>

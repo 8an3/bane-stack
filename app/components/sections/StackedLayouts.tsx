@@ -3,7 +3,7 @@ import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuL
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, } from "~/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger, } from "~/components/ui/sheet";
 import { Button, } from "~/components/ui/button";
-import { cn, } from "~/lib/utils";
+import { cn, } from "~/components/ui/utils";
 
 const user = {
   name: 'Tom Cook',
@@ -53,7 +53,7 @@ export function StackedLayoutsSection() {
                           className={cn(
                             item.current 
                               ? 'bg-gray-900 text-white' 
-                              : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                              : 'text-gray-300 hover:bg-background/5 hover:text-white',
                             'rounded-md px-3 py-2 text-sm font-medium'
                           )}
                         >
@@ -69,7 +69,7 @@ export function StackedLayoutsSection() {
             {/* Desktop User Menu */}
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
-                <Button variant="ghost" size="icon" className="rounded-full text-gray-400 hover:text-white">
+                <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white">
                   <span className="sr-only">View notifications</span>
                   <Bell className="size-6" />
                 </Button>
@@ -103,7 +103,7 @@ export function StackedLayoutsSection() {
             <div className="-mr-2 flex md:hidden">
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                  <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-white">
                     <span className="sr-only">Open main menu</span>
                     <Menu className="block size-6" />
                   </Button>
@@ -118,7 +118,7 @@ export function StackedLayoutsSection() {
                           className={cn(
                             item.current 
                               ? 'bg-gray-900 text-white' 
-                              : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                              : 'text-gray-300 hover:bg-background/5 hover:text-white',
                             'block rounded-md px-3 py-2 text-base font-medium'
                           )}
                         >
@@ -137,9 +137,9 @@ export function StackedLayoutsSection() {
                         </div>
                         <div className="ml-3">
                           <div className="text-base font-medium text-white">{user.name}</div>
-                          <div className="text-sm font-medium text-gray-400">{user.email}</div>
+                          <div className="text-sm font-medium text-muted-foreground">{user.email}</div>
                         </div>
-                        <Button variant="ghost" size="icon" className="ml-auto text-gray-400 hover:text-white">
+                        <Button variant="ghost" size="icon" className="ml-auto text-muted-foreground hover:text-white">
                           <span className="sr-only">View notifications</span>
                           <Bell className="size-6" />
                         </Button>
@@ -149,7 +149,7 @@ export function StackedLayoutsSection() {
                           <a
                             key={item.name}
                             href={item.href}
-                            className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white"
+                            className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-background/5 hover:text-white"
                           >
                             {item.name}
                           </a>
@@ -165,9 +165,9 @@ export function StackedLayoutsSection() {
       </nav>
 
       {/* Page Header */}
-      <header className="bg-white shadow">
+      <header className="bg-background shadow">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
         </div>
       </header>
 
@@ -175,7 +175,7 @@ export function StackedLayoutsSection() {
       <main>
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           {/* Your content */}
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Content</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Content</h1>
 
         </div>
       </main>

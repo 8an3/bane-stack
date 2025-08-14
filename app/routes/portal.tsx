@@ -35,6 +35,14 @@ export const navItems = {
 					url: "/blocks/examples/cards",
 				},
 				{
+					title: "Car Service Dashboard",
+					url: "/blocks/examples/carService",
+				},
+				{
+					title: "Client",
+					url: "/blocks/examples/client/checkoutForm",
+				},
+				{
 					title: "Dashboard",
 					url: "/blocks/examples/dashboard",
 				},

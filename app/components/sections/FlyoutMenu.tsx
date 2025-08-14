@@ -19,37 +19,36 @@ export   function FlyoutMenu() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="inline-flex items-center gap-x-1 text-sm font-semibold text-gray-900 bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
+          <NavigationMenuTrigger className="inline-flex items-center gap-x-1 text-sm font-semibold text-foreground bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
             <span>Solutions</span>
-            <ChevronDown aria-hidden="true" className="h-5 w-5" />
           </NavigationMenuTrigger>
           
           <NavigationMenuContent className="left-1/2 -translate-x-1/2">
-            <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm shadow-lg border border-gray-200">
+            <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-background text-sm shadow-lg border border-border">
               <div className="p-4">
                 {solutions.map((item) => (
-                  <div key={item.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-                    <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <item.icon aria-hidden="true" className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" />
+                  <div key={item.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-background">
+                    <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-background group-hover:bg-background">
+                      <item.icon aria-hidden="true" className="h-6 w-6 text-muted-foreground group-hover:text-primary" />
                     </div>
                     <div>
-                      <a href={item.href} className="font-semibold text-gray-900">
+                      <a href={item.href} className="font-semibold text-foreground">
                         {item.name}
                         <span className="absolute inset-0" />
                       </a>
-                      <p className="mt-1 text-gray-600">{item.description}</p>
+                      <p className="mt-1 text-muted-foreground">{item.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+              <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-background">
                 {callsToAction.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100"
+                    className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-foreground hover:bg-background/70"
                   >
-                    <item.icon aria-hidden="true" className="h-5 w-5 flex-none text-gray-400" />
+                    <item.icon aria-hidden="true" className="h-5 w-5 flex-none text-muted-foreground" />
                     {item.name}
                   </a>
                 ))}

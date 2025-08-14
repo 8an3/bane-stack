@@ -37,7 +37,7 @@ export function RemixNavLinkText({ to, children, disabled, className }: Props) {
     <RemixNavLink
       to={to}
       className={cn(
-        "flex items-center text-lg font-semibold text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-100 dark:hover:text-gray-300 sm:text-sm",
+        "flex items-center text-lg font-semibold text-muted-foreground transition-colors hover:text-foreground dark:text-gray-100 dark:hover:text-gray-300 sm:text-sm",
         disabled && "cursor-not-allowed opacity-80",
         className
       )}

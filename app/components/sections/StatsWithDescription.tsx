@@ -8,12 +8,12 @@ import { Activity, Clock, CreditCard, UserCheck } from "lucide-react";
 
 export function StatsWithDescription() {
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-none">
           {/* Header with description */}
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Trusted by creators worldwide
             </h2>
             <p className="mt-4 text-lg leading-8 text-muted-foreground">
@@ -32,7 +32,7 @@ export function StatsWithDescription() {
                 <Users className="h-5 w-5 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-semibold tracking-tight text-gray-900">
+                <p className="text-3xl font-semibold tracking-tight text-foreground">
                   10,000+
                 </p>
                 <div className="mt-2 flex items-center text-sm font-medium text-green-600">
@@ -51,7 +51,7 @@ export function StatsWithDescription() {
                 <Database className="h-5 w-5 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-semibold tracking-tight text-gray-900">
+                <p className="text-3xl font-semibold tracking-tight text-foreground">
                   15TB
                 </p>
                 <div className="mt-2 flex items-center text-sm font-medium text-green-600">
@@ -70,7 +70,7 @@ export function StatsWithDescription() {
                 <Zap className="h-5 w-5 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-semibold tracking-tight text-gray-900">
+                <p className="text-3xl font-semibold tracking-tight text-foreground">
                   99.9%
                 </p>
                 <div className="mt-2 flex items-center text-sm font-medium text-green-600">
@@ -89,7 +89,7 @@ export function StatsWithDescription() {
                 <Globe className="h-5 w-5 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-semibold tracking-tight text-gray-900">
+                <p className="text-3xl font-semibold tracking-tight text-foreground">
                   12
                 </p>
                 <div className="mt-2 flex items-center text-sm font-medium text-green-600">

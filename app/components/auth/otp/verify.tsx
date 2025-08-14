@@ -123,7 +123,7 @@ export default function OTPVerify() {
 							{authEmail && authError && <span className="font-semibold text-red-400">{authError?.message}</span>} */}
 						</div>
 					</div>
-					<p className="text-center text-xs leading-relaxed text-gray-400">
+					<p className="text-center text-xs leading-relaxed text-muted-foreground">
 						By continuing, you agree to our <span className="clickable underline">Terms of Service</span>
 					</p>
 				</div>

@@ -151,7 +151,7 @@ export default function MonacoEditor() {
 					<p key={index} className="mb-3 leading-relaxed">
 						{parts.map((part, i) =>
 							i % 2 === 1 ? (
-								<code key={i} className="bg-gray-100 px-1 py-0.5 rounded text-sm">
+								<code key={i} className="bg-background/70 px-1 py-0.5 rounded text-sm">
 									{part}
 								</code>
 							) : (

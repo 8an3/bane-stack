@@ -86,7 +86,7 @@ const authError = false
 						<span>No account?</span>
 						<NavLink to="client/auth/signup">Sign Up</NavLink>
 					</div>
-					<p className="text-center text-xs leading-relaxed text-gray-400">
+					<p className="text-center text-xs leading-relaxed text-muted-foreground">
 						By continuing, you agree to our <span className="clickable underline">Terms of Service</span>
 					</p>
 				</div>

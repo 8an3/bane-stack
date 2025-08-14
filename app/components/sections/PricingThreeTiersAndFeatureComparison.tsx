@@ -7,7 +7,7 @@ import { Check, X, Zap } from "lucide-react";
 
 
 
-export function ThreeTiersAndFeatureComparison() {
+export function PricingThreeTiersAndFeatureComparison() {
 	return (
 		<div className="py-12 sm:py-24">
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -44,7 +44,7 @@ export function ThreeTiersAndFeatureComparison() {
 									<span className="ml-3">Basic analytics</span>
 								</li>
 								<li className="flex items-center">
-									<X className="h-5 w-5 text-gray-400" />
+									<X className="h-5 w-5 text-muted-foreground" />
 									<span className="ml-3 line-through text-muted-foreground">48-hour support response time</span>
 								</li>
 							</ul>
@@ -163,23 +163,23 @@ export function ThreeTiersAndFeatureComparison() {
 					<h3 className="text-center text-2xl font-bold">Compare plans</h3>
 					<div className="mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
 						<table className="min-w-full divide-y divide-gray-300">
-							<thead className="bg-gray-50">
+							<thead className="bg-background">
 								<tr>
-									<th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+									<th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-foreground sm:pl-6">
 										Feature
 									</th>
-									<th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
+									<th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-foreground">
 										Basic
 									</th>
-									<th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
+									<th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-foreground">
 										Pro
 									</th>
-									<th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
+									<th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-foreground">
 										Enterprise
 									</th>
 								</tr>
 							</thead>
-							<tbody className="divide-y divide-gray-200 bg-white">
+							<tbody className="divide-y divide-gray-200 bg-background">
 								{[
 									{ feature: "Users", basic: "1", pro: "5", enterprise: "Unlimited" },
 									{ feature: "Subscribers", basic: "Up to 1,000", pro: "Up to 10,000", enterprise: "Unlimited" },
@@ -189,15 +189,15 @@ export function ThreeTiersAndFeatureComparison() {
 									{ feature: "Custom Domain", basic: false, pro: true, enterprise: true },
 								].map((row, rowIdx) => (
 									<tr key={row.feature}>
-										<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{row.feature}</td>
-										<td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-											{typeof row.basic === "boolean" ? row.basic ? <Check className="mx-auto h-5 w-5 text-green-500" /> : <X className="mx-auto h-5 w-5 text-gray-400" /> : row.basic}
+										<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-foreground sm:pl-6">{row.feature}</td>
+										<td className="whitespace-nowrap px-3 py-4 text-center text-sm text-muted-foreground">
+											{typeof row.basic === "boolean" ? row.basic ? <Check className="mx-auto h-5 w-5 text-green-500" /> : <X className="mx-auto h-5 w-5 text-muted-foreground" /> : row.basic}
 										</td>
-										<td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-											{typeof row.pro === "boolean" ? row.pro ? <Check className="mx-auto h-5 w-5 text-green-500" /> : <X className="mx-auto h-5 w-5 text-gray-400" /> : row.pro}
+										<td className="whitespace-nowrap px-3 py-4 text-center text-sm text-muted-foreground">
+											{typeof row.pro === "boolean" ? row.pro ? <Check className="mx-auto h-5 w-5 text-green-500" /> : <X className="mx-auto h-5 w-5 text-muted-foreground" /> : row.pro}
 										</td>
-										<td className="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-											{typeof row.enterprise === "boolean" ? row.enterprise ? <Check className="mx-auto h-5 w-5 text-green-500" /> : <X className="mx-auto h-5 w-5 text-gray-400" /> : row.enterprise}
+										<td className="whitespace-nowrap px-3 py-4 text-center text-sm text-muted-foreground">
+											{typeof row.enterprise === "boolean" ? row.enterprise ? <Check className="mx-auto h-5 w-5 text-green-500" /> : <X className="mx-auto h-5 w-5 text-muted-foreground" /> : row.enterprise}
 										</td>
 									</tr>
 								))}

@@ -50,7 +50,7 @@ export function StackedLayoutsSection() {
                           href={item.href}
                           aria-current={item.current ? 'page' : undefined}
                           className={cn(
-                            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-background/5 hover:text-white',
                             'rounded-md px-3 py-2 text-sm font-medium',
                           )}
                         >
@@ -67,7 +67,7 @@ export function StackedLayoutsSection() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="relative rounded-full text-gray-400 hover:text-white focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
+                  className="relative rounded-full text-muted-foreground hover:text-white focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
@@ -80,7 +80,7 @@ export function StackedLayoutsSection() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="relative flex max-w-xs items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                      className="relative flex max-w-xs items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     >
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
@@ -94,13 +94,13 @@ export function StackedLayoutsSection() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="end"
-                    className="w-48 rounded-md bg-white py-1 shadow-lg outline outline-1 outline-black/5"
+                    className="w-48 rounded-md bg-background py-1 shadow-lg outline outline-1 outline-black/5"
                   >
                     {userNavigation.map((item) => (
                       <DropdownMenuItem key={item.name} asChild>
                         <a
                           href={item.href}
-                          className="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-none"
+                          className="block px-4 py-2 text-sm text-foreground focus:bg-background/70 focus:outline-none"
                         >
                           {item.name}
                         </a>
@@ -117,7 +117,7 @@ export function StackedLayoutsSection() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
+                    className="group relative inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-background/5 hover:text-white focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary"
                   >
                     <span className="absolute -inset-0.5" />
                     <span className="sr-only">Open main menu</span>
@@ -133,7 +133,7 @@ export function StackedLayoutsSection() {
                         href={item.href}
                         aria-current={item.current ? 'page' : undefined}
                         className={cn(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-background/5 hover:text-white',
                           'block rounded-md px-3 py-2 text-base font-medium',
                         )}
                       >
@@ -153,12 +153,12 @@ export function StackedLayoutsSection() {
                       </div>
                       <div className="ml-3">
                         <div className="text-base/5 font-medium text-white">{user.name}</div>
-                        <div className="text-sm font-medium text-gray-400">{user.email}</div>
+                        <div className="text-sm font-medium text-muted-foreground">{user.email}</div>
                       </div>
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="relative ml-auto shrink-0 rounded-full p-1 text-gray-400 hover:text-white focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
+                        className="relative ml-auto shrink-0 rounded-full p-1 text-muted-foreground hover:text-white focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary"
                       >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">View notifications</span>
@@ -170,7 +170,7 @@ export function StackedLayoutsSection() {
                         <a
                           key={item.name}
                           href={item.href}
-                          className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white"
+                          className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-background/5 hover:text-white"
                         >
                           {item.name}
                         </a>
@@ -184,9 +184,9 @@ export function StackedLayoutsSection() {
         </div>
       </nav>
 
-      <header className="relative bg-white shadow">
+      <header className="relative bg-background shadow">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
         </div>
       </header>
       <main>

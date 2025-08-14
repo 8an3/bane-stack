@@ -1,7 +1,7 @@
 import { cn } from "~/components/ui/utils"
 import { Button } from "~/components/ui/button"
 
-export   function CTASection({
+export   function CTA({
   title = "Boost your productivity. Start using our app today.",
   description = "Transform your workflow with our powerful tools designed to help you achieve more in less time.",
   primaryCTA = { text: "Get started", href: "#" },
@@ -72,7 +72,7 @@ export   function CTASection({
               "mt-10 flex items-center gap-x-6",
               layout === "side-by-side" ? "justify-center lg:justify-start" : "justify-center"
             )}>
-              <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
+              <Button size="lg" className="bg-background text-foreground hover:bg-background/70" asChild>
                 <a href={primaryCTA.href}>
                   {primaryCTA.text}
                 </a>
@@ -98,7 +98,7 @@ export   function CTASection({
                 width={image.width}
                 height={image.height}
                 className={cn(
-                  "absolute top-0 left-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10",
+                  "absolute top-0 left-0 w-[57rem] max-w-none rounded-md bg-background/5 ring-1 ring-white/10",
                   imageClassName
                 )}
               />
@@ -114,7 +114,7 @@ export   function CTASection({
                 width={image.width}
                 height={image.height}
                 className={cn(
-                  "mx-auto max-w-2xl rounded-lg bg-white/5 ring-1 ring-white/10 shadow-2xl",
+                  "mx-auto max-w-2xl rounded-lg bg-background/5 ring-1 ring-white/10 shadow-2xl",
                   imageClassName
                 )}
               />
