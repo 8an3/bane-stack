@@ -27,6 +27,10 @@ export const navItems = {
 			url: "#",
 			items: [
 				{
+					title: "Blocks/Home",
+					url: "/blocks/examples/home/sections",
+				},
+				{
 					title: "Authentication",
 					url: "/blocks/examples/authentication",
 				},

@@ -3,6 +3,8 @@ import { NavLink, Outlet, useActionData, useFetcher, useLoaderData, useLocation,
 import { eP } from "~/utils/ext";
 import { axios } from "axios";
 import { ActionArgs, defer, json, redirect, type ActionArgs, type LoaderArgs } from "@remix-run/node";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "~/components/ui/command";
+
 import { PageHeaderFunction } from "~/components/customUi/page-header";
 import { AlertNotificationDemo } from "~/components/sections/Alerts";
 import { BannerSection } from "~/components/sections/Banner";
@@ -10,8 +12,8 @@ import { BentoDemo } from "~/components/sections/BentoGrid";
 import { Blog } from "~/components/sections/Blog";
 import { ChangelogDemo } from "~/components/sections/Changelog";
 import { ConfigDemo } from "~/components/sections/ConfigSection";
-import { Contact, ContactSection } from "~/components/sections/Contact";
-import { CTA, CTASection } from "~/components/sections/CTA";
+import { Contact, } from "~/components/sections/Contact";
+import { CTA,  } from "~/components/sections/CTA";
 import { DescriptionList } from "~/components/sections/DescriptionList";
 import { DisplayCodeDemo } from "~/components/sections/DisplayCode";
 import { DisplayGithubInstall } from "~/components/sections/DisplayGithubInstall";
@@ -37,15 +39,14 @@ import { UseSectionDemo } from "~/components/sections/UsageSection";
 import { StackedLayoutsSection } from "~/components/ecommerceSections/StackedLayouts";
 import { LoFi } from "~/components/lo-fi";
 import { UseageSectionNoDashDemo } from "~/components/sections/UsageSectionNoDash";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "~/components/ui/command";
 import MonacoEditor from "../editor/components2";
 import { Atom } from "~/components/lo-fi/atom";
-import { AlertLoFi } from "~/components/lo-fi/components/alert";
-import { ButtonLoFi } from "~/components/lo-fi/components/button";
-import { DropdownLoFi } from "~/components/lo-fi/components/dropdown";
-import { InputLoFi } from "~/components/lo-fi/components/input";
-import { TabsLoFi } from "~/components/lo-fi/components/tabs";
-import { ToggleLoFi } from "~/components/lo-fi/components/toggle";
+import { AlertLoFi } from "~/components/lo-fi/alert";
+import { ButtonLoFi } from "~/components/lo-fi/button";
+import { DropdownLoFi } from "~/components/lo-fi/dropdown";
+import { InputLoFi } from "~/components/lo-fi/input";
+import { TabsLoFi } from "~/components/lo-fi/tabs";
+import { ToggleLoFi } from "~/components/lo-fi/toggle";
 import { FeaturesGridSection } from "~/components/sections/FeaturesGridSection";
 import { HeroStatsSection } from "~/components/sections/HeroStatsSection";
 import { HeroCTASection } from "~/components/sections/HeroCTASection";
@@ -54,8 +55,8 @@ import { PricingSection3Cards } from "~/components/sections/PricingSection3Cards
 import { StatsCardSection } from "~/components/sections/StatsCardSection";
 import { TestimonialsGridSection } from "~/components/sections/TestimonialsGridSection";
 import { StatsSection } from "~/components/sections/StatsSection";
-import { CardLoFi } from "~/components/lo-fi/components/card";
-import { AccordionLoFi } from "~/components/lo-fi/components/accordion";
+import { CardLoFi } from "~/components/lo-fi/card";
+import { AccordionLoFi } from "~/components/lo-fi/accordion";
 import { BentoGridTwoRowSecondRow } from "~/components/sections/BentoGridTwoRowSecondRow";
 import { AlertSuccessSectionWithDismissalButton } from "~/components/sections/AlertSuccessSectionWithDismissalButton";
 import { TestimonialsSubtleGrid } from "~/components/sections/TestimonialsSubtleGrid";
@@ -101,8 +102,9 @@ import { PricingSinglePriceDetails } from "~/components/sections/PricingSinglePr
 import { PricingThreeTiersAndFeatureComparison } from "~/components/sections/PricingThreeTiersAndFeatureComparison";
 import { CardHeading } from "~/components/sections/CardHeading";
 import { Content } from "~/components/sections/Content";
+import { CTASectionLoFi } from "~/components/lo-fi/sections/cta-section";
 
-export default function Dashboard() {
+export default function SectionsViewer() {
 	const [selectedCode, setSelectedCode] = useState("");
 	const [code, setCode] = useState("");
 	const [name, setName] = useState("AlertNotificationDemo");
@@ -124,87 +126,88 @@ export default function Dashboard() {
 		{ name: "Bento Grid", value: "BentoGrid", path: "/examples/sections/BentoGrid.tsx.txt" },
 		{ name: "Bento Grid Two Row Second Row", value: "BentoGridTwoRowSecondRow", path: "/examples/sections/BentoGridTwoRowSecondRow.tsx.txt" },
 		{ name: "Feature Section", value: "FeatureSection", path: "/examples/sections/FeatureSection.tsx.txt" },
-		{ name: "FeatureSectionOffset", value: "FeatureSectionOffset", path: "/examples/sections/FeatureSectionOffset.tsx.txt" },
-		{ name: "FeatureSectionWithScreenshot 3", value: "FeatureSectionWithScreenshot", path: "/examples/sections/FeatureSectionWithScreenshot.tsx.txt" },
-		{ name: "FeaturesGridSection", value: "FeaturesGridSection", path: "/examples/sections/FeaturesGridSection.tsx.txt" },
-		{ name: "FeatureSection", value: "FeatureSection", path: "/examples/sections/FeatureSection.tsx.txt" },
+		{ name: "Feature SectionOffset", value: "FeatureSectionOffset", path: "/examples/sections/FeatureSectionOffset.tsx.txt" },
+		{ name: "Feature SectionWithScreenshot 3", value: "FeatureSectionWithScreenshot", path: "/examples/sections/FeatureSectionWithScreenshot.tsx.txt" },
+		{ name: "Features GridSection", value: "FeaturesGridSection", path: "/examples/sections/FeaturesGridSection.tsx.txt" },
+		{ name: "Feature Section", value: "FeatureSection", path: "/examples/sections/FeatureSection.tsx.txt" },
 		{ name: "Hero CTA Section", value: "HeroCTASection", path: "/examples/sections/HeroCTASection.tsx.txt" },
 		{ name: "Hero Section", value: "HeroSection", path: "/examples/sections/HeroSection.tsx.txt" },
 		{ name: "Hero Stats Section", value: "HeroStatsSection", path: "/examples/sections/HeroStatsSection.tsx.txt" },
 		{ name: "Hero With App Screen Shot", value: "HeroWithAppScreenShot", path: "/examples/sections/HeroWithAppScreenShot.tsx.txt" },
 		{ name: "Hero Section Bordered App", value: "HeroSectionBorderedApp", path: "/examples/sections/HeroSectionBorderedApp.tsx.txt" },
 		{ name: "Pricing", value: "Pricing", path: "/examples/sections/Pricing.tsx.txt" },
-		{ name: "PricingComparison", value: "PricingComparison", path: "/examples/sections/PricingComparison.tsx.txt" },
-		{ name: "PricingSection2Cards", value: "PricingSection2Cards", path: "/examples/sections/PricingSection2Cards.tsx.txt" },
-		{ name: "PricingSection3Cards", value: "PricingSection3Cards", path: "/examples/sections/PricingSection3Cards.tsx.txt" },
-		{ name: "PricingSinglePriceDetails", value: "PricingSinglePriceDetails", path: "/examples/sections/PricingSinglePriceDetails.tsx.txt" },
-		{ name: "PricingThreeTiersAndFeatureComparison", value: "PricingThreeTiersAndFeatureComparison", path: "/examples/sections/PricingThreeTiersAndFeatureComparison.tsx.txt" },
+		{ name: "Pricing Comparison", value: "PricingComparison", path: "/examples/sections/PricingComparison.tsx.txt" },
+		{ name: "Pricing Section 2 Cards", value: "PricingSection2Cards", path: "/examples/sections/PricingSection2Cards.tsx.txt" },
+		{ name: "Pricing Section 3 Cards", value: "PricingSection3Cards", path: "/examples/sections/PricingSection3Cards.tsx.txt" },
+		{ name: "Pricing Single PriceDetails", value: "PricingSinglePriceDetails", path: "/examples/sections/PricingSinglePriceDetails.tsx.txt" },
+		{ name: "Pricing Three Tiers And Feature Comparison", value: "PricingThreeTiersAndFeatureComparison", path: "/examples/sections/PricingThreeTiersAndFeatureComparison.tsx.txt" },
 		{ name: "Headers", value: "Headers", path: "/examples/sections/Headers.tsx.txt" },
 		{ name: "Header Centered With Eyebrow", value: "HeaderCenteredWithEyebrow", path: "/examples/sections/Headers.tsx.txt" },
 		{ name: "Header Simple", value: "HeaderSimple", path: "/examples/sections/HeaderSimple.tsx.txt" },
 		{ name: "Stats", value: "Stats", path: "/examples/sections/Stats.tsx.txt" },
-		{ name: "StatsCardSection", value: "StatsCardSection", path: "/examples/sections/StatsCardSection.tsx.txt" },
-		{ name: "StatsSection", value: "StatsSection", path: "/examples/sections/StatsSection.tsx.txt" },
-		{ name: "StatsSimpleGrid", value: "StatsSimpleGrid", path: "/examples/sections/StatsSimpleGrid.tsx.txt" },
-		{ name: "StatsWithDescription", value: "StatsWithDescription", path: "/examples/sections/StatsWithDescription.tsx.txt" },
+		{ name: "Stats CardSection", value: "StatsCardSection", path: "/examples/sections/StatsCardSection.tsx.txt" },
+		{ name: "Stats Section", value: "StatsSection", path: "/examples/sections/StatsSection.tsx.txt" },
+		{ name: "Stats Simple Grid", value: "StatsSimpleGrid", path: "/examples/sections/StatsSimpleGrid.tsx.txt" },
+		{ name: "Stats With Description", value: "StatsWithDescription", path: "/examples/sections/StatsWithDescription.tsx.txt" },
 
-		{ name: "AlertAttentionSectionWithAccent", value: "AlertAttentionSectionWithAccent", path: "/examples/sections/AlertAttentionSectionWithAccent.tsx.txt" },
-		{ name: "AlertErrorSection", value: "AlertErrorSection", path: "/examples/sections/AlertErrorSection.tsx.txt" },
-		{ name: "AlertInfoSection", value: "AlertInfoSection", path: "/examples/sections/AlertInfoSection.tsx.txt" },
+		{ name: "Alert Attention Section With Accent", value: "AlertAttentionSectionWithAccent", path: "/examples/sections/AlertAttentionSectionWithAccent.tsx.txt" },
+		{ name: "Alert Error Section", value: "AlertErrorSection", path: "/examples/sections/AlertErrorSection.tsx.txt" },
+		{ name: "Alert Info Section", value: "AlertInfoSection", path: "/examples/sections/AlertInfoSection.tsx.txt" },
 		{ name: "Alerts", value: "Alerts", path: "/examples/sections/Alerts.tsx.txt" },
-		{ name: "AlertSuccessSection", value: "AlertSuccessSection", path: "/examples/sections/AlertSuccessSection.tsx.txt" },
-		{ name: "AlertSuccessSectionWithDismissalButton", value: "AlertSuccessSectionWithDismissalButton", path: "/examples/sections/AlertSuccessSectionWithDismissalButton.tsx.txt" },
+		{ name: "Alert Success Section", value: "AlertSuccessSection", path: "/examples/sections/AlertSuccessSection.tsx.txt" },
+		{ name: "Alert Success Section With Dismissal Button", value: "AlertSuccessSectionWithDismissalButton", path: "/examples/sections/AlertSuccessSectionWithDismissalButton.tsx.txt" },
 		{ name: "Blog", value: "Blog", path: "/examples/sections/Blog.tsx.txt" },
-		{ name: "BlogSingleColumn", value: "BlogSingleColumn", path: "/examples/sections/BlogSingleColumn.tsx.txt" },
-		{ name: "BlogThreeColumnWithImages", value: "BlogThreeColumnWithImages", path: "/examples/sections/BlogThreeColumnWithImages.tsx.txt" },
+		{ name: "Blog Singl eColumn", value: "BlogSingleColumn", path: "/examples/sections/BlogSingleColumn.tsx.txt" },
+		{ name: "Blog Three Column With Images", value: "BlogThreeColumnWithImages", path: "/examples/sections/BlogThreeColumnWithImages.tsx.txt" },
 		{ name: "BlogWithFeaturedPost", value: "BlogWithFeaturedPost", path: "/examples/sections/BlogWithFeaturedPost.tsx.txt" },
-		{ name: "CardHeading", value: "CardHeading", path: "/examples/sections/CardHeading.tsx.txt" },
-		{ name: "CardHeadingWithDescription", value: "CardHeadingWithDescription", path: "/examples/sections/CardHeadingWithDescription.tsx.txt" },
+		{ name: "Card Heading", value: "CardHeading", path: "/examples/sections/CardHeading.tsx.txt" },
+		{ name: "Card Heading With Description", value: "CardHeadingWithDescription", path: "/examples/sections/CardHeadingWithDescription.tsx.txt" },
 		{ name: "Contact", value: "Contact", path: "/examples/sections/Contact.tsx.txt" },
-		{ name: "ContactFourColumnSection", value: "ContactFourColumnSection", path: "/examples/sections/ContactFourColumnSection.tsx.txt" },
+		{ name: "Contact Four Column Section", value: "ContactFourColumnSection", path: "/examples/sections/ContactFourColumnSection.tsx.txt" },
 		{ name: "Content", value: "Content", path: "/examples/sections/Content.tsx.txt" },
-		{ name: "ContentCentered", value: "ContentCentered", path: "/examples/sections/ContentCentered.tsx.txt" },
-		{ name: "ContentSplitWithImage", value: "ContentSplitWithImage", path: "/examples/sections/ContentSplitWithImage.tsx.txt" },
-		{ name: "ContentTwoColumnWithScreenshot", value: "ContentTwoColumnWithScreenshot", path: "/examples/sections/ContentTwoColumnWithScreenshot.tsx.txt" },
+		{ name: "Content Centered", value: "ContentCentered", path: "/examples/sections/ContentCentered.tsx.txt" },
+		{ name: "Content Split With Image", value: "ContentSplitWithImage", path: "/examples/sections/ContentSplitWithImage.tsx.txt" },
+		{ name: "Content Two Column With Screenshot", value: "ContentTwoColumnWithScreenshot", path: "/examples/sections/ContentTwoColumnWithScreenshot.tsx.txt" },
 		{ name: "CTA", value: "CTA", path: "/examples/sections/CTA.tsx.txt" },
-		{ name: "CTASimpleSection", value: "CTASimpleSection", path: "/examples/sections/CTASimpleSection.tsx.txt" },
-		{ name: "DescriptionListNarrow", value: "DescriptionListNarrow", path: "/examples/sections/DescriptionListNarrow.tsx.txt" },
-		{ name: "DescriptionList", value: "DescriptionList", path: "/examples/sections/DescriptionList.tsx.txt" },
-		{ name: "FAQThreeColumn", value: "FAQThreeColumn", path: "/examples/sections/FAQThreeColumn.tsx.txt" },
-		{ name: "FAQSideBySide", value: "FAQSideBySide", path: "/examples/sections/FAQSideBySide.tsx.txt" },
-		{ name: "FeedListMultipleItemTypes", value: "FeedListMultipleItemTypes", path: "/examples/sections/FeedListMultipleItemTypes.tsx.txt" },
-		{ name: "FeedLists", value: "FeedLists", path: "/examples/sections/FeedLists.tsx.txt" },
-		{ name: "FooterFourColumnMission", value: "FooterFourColumnMission", path: "/examples/sections/FooterFourColumnMission.tsx.txt" },
-		{ name: "FooterFourColumnNewsletter", value: "FooterFourColumnNewsletter", path: "/examples/sections/FooterFourColumnNewsletter.tsx.txt" },
-		{ name: "FooterFourColumnSimple", value: "FooterFourColumnSimple", path: "/examples/sections/FooterFourColumnSimple.tsx.txt" },
-		{ name: "FooterSimpleCentered", value: "FooterSimpleCentered", path: "/examples/sections/FooterSimpleCentered.tsx.txt" },
-		{ name: "SectionHeadingWithDescription", value: "SectionHeadingWithDescription", path: "/examples/sections/SectionHeadingWithDescription.tsx.txt" },
-		{ name: "SectionHeadingWithInputGroup", value: "SectionHeadingWithInputGroup", path: "/examples/sections/SectionHeadingWithInputGroup.tsx.txt" },
+		{ name: "CTA Simple Section", value: "CTASimpleSection", path: "/examples/sections/CTASimpleSection.tsx.txt" },
+		{ name: "Description ListNarrow", value: "DescriptionListNarrow", path: "/examples/sections/DescriptionListNarrow.tsx.txt" },
+		{ name: "Description List", value: "DescriptionList", path: "/examples/sections/DescriptionList.tsx.txt" },
+		{ name: "FAQ Three Column", value: "FAQThreeColumn", path: "/examples/sections/FAQThreeColumn.tsx.txt" },
+		{ name: "FAQ Side By Side", value: "FAQSideBySide", path: "/examples/sections/FAQSideBySide.tsx.txt" },
+		{ name: "Feed List Multiple Item Types", value: "FeedListMultipleItemTypes", path: "/examples/sections/FeedListMultipleItemTypes.tsx.txt" },
+		{ name: "Feed Lists", value: "FeedLists", path: "/examples/sections/FeedLists.tsx.txt" },
+		{ name: "Footer Four Column Mission", value: "FooterFourColumnMission", path: "/examples/sections/FooterFourColumnMission.tsx.txt" },
+		{ name: "Footer Four Column Newsletter", value: "FooterFourColumnNewsletter", path: "/examples/sections/FooterFourColumnNewsletter.tsx.txt" },
+		{ name: "Footer Four Column Simple", value: "FooterFourColumnSimple", path: "/examples/sections/FooterFourColumnSimple.tsx.txt" },
+		{ name: "Footer Simple Centered", value: "FooterSimpleCentered", path: "/examples/sections/FooterSimpleCentered.tsx.txt" },
+		{ name: "Section Heading With Description", value: "SectionHeadingWithDescription", path: "/examples/sections/SectionHeadingWithDescription.tsx.txt" },
+		{ name: "Section Heading With Input Group", value: "SectionHeadingWithInputGroup", path: "/examples/sections/SectionHeadingWithInputGroup.tsx.txt" },
 		{ name: "Team", value: "Team", path: "/examples/sections/Team.tsx.txt" },
-		{ name: "TeamLargeGrid", value: "TeamLargeGrid", path: "/examples/sections/TeamLargeGrid.tsx.txt" },
-		{ name: "TeamMembersSection", value: "TeamMembersSection", path: "/examples/sections/TeamMembersSection.tsx.txt" },
-		{ name: "TeamWithLargeImages", value: "TeamWithLargeImages", path: "/examples/sections/TeamWithLargeImages.tsx.txt" },
-		{ name: "TeamWithMediumImages", value: "TeamWithMediumImages", path: "/examples/sections/TeamWithMediumImages.tsx.txt" },
-		{ name: "TeamWithRoundImages", value: "TeamWithRoundImages", path: "/examples/sections/TeamWithRoundImages.tsx.txt" },
+		{ name: "Team Large Grid", value: "TeamLargeGrid", path: "/examples/sections/TeamLargeGrid.tsx.txt" },
+		{ name: "Team Members Section", value: "TeamMembersSection", path: "/examples/sections/TeamMembersSection.tsx.txt" },
+		{ name: "Team With Large Images", value: "TeamWithLargeImages", path: "/examples/sections/TeamWithLargeImages.tsx.txt" },
+		{ name: "Team With Medium Images", value: "TeamWithMediumImages", path: "/examples/sections/TeamWithMediumImages.tsx.txt" },
+		{ name: "Team With Round Images", value: "TeamWithRoundImages", path: "/examples/sections/TeamWithRoundImages.tsx.txt" },
 		{ name: "Testimonial", value: "Testimonial", path: "/examples/sections/Testimonial.tsx.txt" },
-		{ name: "TestimonialsGrid", value: "TestimonialsGrid", path: "/examples/sections/TestimonialsGrid.tsx.txt" },
-		{ name: "TestimonialsGridSection", value: "TestimonialsGridSection", path: "/examples/sections/TestimonialsGridSection.tsx.txt" },
-		{ name: "TestimonialsSubtleGrid", value: "TestimonialsSubtleGrid", path: "/examples/sections/TestimonialsSubtleGrid.tsx.txt" },
+		{ name: "Testimonials Grid", value: "TestimonialsGrid", path: "/examples/sections/TestimonialsGrid.tsx.txt" },
+		{ name: "Testimonials Grid Section", value: "TestimonialsGridSection", path: "/examples/sections/TestimonialsGridSection.tsx.txt" },
+		{ name: "Testimonials Subtle Grid", value: "TestimonialsSubtleGrid", path: "/examples/sections/TestimonialsSubtleGrid.tsx.txt" },
 
 		{ name: "Newsletter", value: "Newsletter", path: "/examples/sections/Newsletter.tsx.txt" },
-		{ name: "PageHeader", value: "PageHeader", path: "/examples/sections/PageHeader.tsx.txt" },
-		{ name: "PageNav", value: "PageNav", path: "/examples/sections/PageNav.tsx.txt" },
-		{ name: "PageHeaderFunction", value: "PageHeaderFunction", path: "/examples/sections/" },
+		{ name: "Page Header", value: "PageHeader", path: "/examples/sections/PageHeader.tsx.txt" },
+		{ name: "Page Nav", value: "PageNav", path: "/examples/sections/PageNav.tsx.txt" },
+		{ name: "Page Header Function", value: "PageHeaderFunction", path: "/examples/sections/" },
 
-		{ name: "StackedLayouts", value: "StackedLayouts", path: "/examples/sections/StackedLayouts.tsx.txt" },
-
+		{ name: "Contact Section", value: "ContactSection", path: "/examples/sections/ContactSection.tsx.txt" },
+		{ name: "CTA Section", value: "CTASection", path: "/examples/sections/CTASection.tsx.txt" },
+		{ name: "Stacked Layouts", value: "StackedLayouts", path: "/examples/sections/StackedLayouts.tsx.txt" },
 		{ name: "Note Section", value: "NoteSection", path: "/examples/sections/NoteSection.tsx.txt" },
-		{ name: "SectionTitle", value: "SectionTitle", path: "/examples/sections/SectionTitle.tsx.txt" },
+		{ name: "Section Title", value: "SectionTitle", path: "/examples/sections/SectionTitle.tsx.txt" },
 		{ name: "Image Section", value: "ImageSection", path: "/examples/sections/ImageSection.tsx.txt" },
 		{ name: "Json Section", value: "JsonSection", path: "/examples/sections/JsonSection.tsx.txt" },
-		{ name: "TsxSection", value: "TsxSection", path: "/examples/sections/TsxSection.tsx.txt" },
-		{ name: "UsageSection", value: "UsageSection", path: "/examples/sections/UsageSection.tsx.txt" },
-		{ name: "UsageSectionNoDash", value: "UsageSectionNoDash", path: "/examples/sections/UsageSectionNoDash.tsx.txt" },
+		{ name: "Tsx Section", value: "TsxSection", path: "/examples/sections/TsxSection.tsx.txt" },
+		{ name: "Usage Section", value: "UsageSection", path: "/examples/sections/UsageSection.tsx.txt" },
+		{ name: "Usage Section No Dash", value: "UsageSectionNoDash", path: "/examples/sections/UsageSectionNoDash.tsx.txt" },
 		{ name: "Changelog", value: "Changelog", path: "/examples/sections/Changelog.tsx.txt" },
 		{ name: "Config Section", value: "ConfigSection", path: "/examples/sections/ConfigSection.tsx.txt" },
 		{ name: "Display Code", value: "DisplayCode", path: "/examples/sections/DisplayCode.tsx.txt" },
@@ -214,6 +217,11 @@ export default function Dashboard() {
 	];
 	let viewSelected;
 	switch (name) {
+ 
+
+case "UseageSectionNoDashDemo":
+			viewSelected = <UseageSectionNoDashDemo />;
+			break;
 		case "Alerts":
 			viewSelected = <AlertNotificationDemo />;
 			break;
@@ -299,9 +307,9 @@ export default function Dashboard() {
 		case "PageHeaderFunction":
 			viewSelected = <PageHeaderFunction />;
 			break;
-		case "HeroSection":
-			viewSelected = <HeroStatsSection />;
-			break;
+				case "HeroSection":
+			viewSelected = <HeroSection />;
+
 		case "HeroSection3":
 			viewSelected = <HeroCTASection />;
 			break;

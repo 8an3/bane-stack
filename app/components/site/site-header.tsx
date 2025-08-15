@@ -15,7 +15,6 @@ export function SiteHeader() {
 			<div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6 ">
 				<SidebarTrigger className="-ml-5 -mt-2" />
 				<Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4  -mt-3" />
-				{p.includes("blocks/examples") && <ExamplesNav className='-mt-2 z-75' />}
 				<div className="ml-auto flex items-center gap-2">
 					<div className="flex items-center space-x-3 -mt-2 mb-2">
 						<span className="text-2xl font-bold text-muted-foreground ">8an3/Bane</span>

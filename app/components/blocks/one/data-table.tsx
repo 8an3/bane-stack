@@ -143,7 +143,7 @@ import Calendar07 from "../calendars/calendar-07";
 import Calendar06 from "../calendars/calendar-06";
 import Calendar05 from "../calendars/calendar-05";
 import Calendar04 from "../calendars/calendar-04";
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 
 export const schema = z.object({
 	id: z.number(),
@@ -320,7 +320,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
 ];
 
 function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
-	const { transform, transition, setNodeRef, isDragging } = useSortable({ id: row.original.id, });
+	const { transform, transition, setNodeRef, isDragging } = useSortable({ id: row.original.id });
 
 	return (
 		<TableRow
@@ -346,7 +346,7 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [sorting, setSorting] = useState<SortingState>([]);
-	const [pagination, setPagination] =  useState({
+	const [pagination, setPagination] = useState({
 		pageIndex: 0,
 		pageSize: 10,
 	});
@@ -404,16 +404,16 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
 		case "Login1":
 			viewLogin = <Login1 />;
 			break;
-      	case "Login2":
+		case "Login2":
 			viewLogin = <Login2 />;
 			break;
-      	case "Login3":
+		case "Login3":
 			viewLogin = <Login3 />;
 			break;
-      	case "Login4":
+		case "Login4":
 			viewLogin = <Login4 />;
 			break;
-      	case "Login5":
+		case "Login5":
 			viewLogin = <Login5 />;
 			break;
 		default:
@@ -423,430 +423,430 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
 
 	const [selChart, setSelChart] = useState("chart-area-axes");
 	const chartSections = [
-    {name: "chart-area-axes", value: "chart-area-axes"},
-{name: "chart-area-default", value: "chart-area-default"},
-{name: "chart-area-gradient", value: "chart-area-gradient"},
-{name: "chart-area-icons", value: "chart-area-icons"},
-{name: "chart-area-interactive", value: "chart-area-interactive"},
-{name: "chart-area-legend", value: "chart-area-legend"},
-{name: "chart-area-linear", value: "chart-area-linear"},
-{name: "chart-area-stacked-expand", value: "chart-area-stacked-expand"},
-{name: "chart-area-stacked", value: "chart-area-stacked"},
-{name: "chart-area-step", value: "chart-area-step"},
-{name: "chart-bar-active", value: "chart-bar-active"},
-{name: "chart-bar-default", value: "chart-bar-default"},
-{name: "chart-bar-horizontal", value: "chart-bar-horizontal"},
-{name: "chart-bar-interactive", value: "chart-bar-interactive"},
-{name: "chart-bar-label-custom", value: "chart-bar-label-custom"},
-{name: "chart-bar-label", value: "chart-bar-label"},
-{name: "chart-bar-mixed", value: "chart-bar-mixed"},
-{name: "chart-bar-multiple", value: "chart-bar-multiple"},
-{name: "chart-bar-negative", value: "chart-bar-negative"},
-{name: "chart-bar-stacked", value: "chart-bar-stacked"},
-{name: "chart-line-default", value: "chart-line-default"},
-{name: "chart-line-dots-colors", value: "chart-line-dots-colors"},
-{name: "chart-line-dots-custom", value: "chart-line-dots-custom"},
-{name: "chart-line-dots", value: "chart-line-dots"},
-{name: "chart-line-interactive", value: "chart-line-interactive"},
-{name: "chart-line-label-custom", value: "chart-line-label-custom"},
-{name: "chart-line-label", value: "chart-line-label"},
-{name: "chart-line-linear", value: "chart-line-linear"},
-{name: "chart-line-multiple", value: "chart-line-multiple"},
-{name: "chart-line-step", value: "chart-line-step"},
-{name: "chart-pie-donut-active", value: "chart-pie-donut-active"},
-{name: "chart-pie-donut-text", value: "chart-pie-donut-text"},
-{name: "chart-pie-donut", value: "chart-pie-donut"},
-{name: "chart-pie-interactive", value: "chart-pie-interactive"},
-{name: "chart-pie-label-custom", value: "chart-pie-label-custom"},
-{name: "chart-pie-label-list", value: "chart-pie-label-list"},
-{name: "chart-pie-label", value: "chart-pie-label"},
-{name: "chart-pie-legend", value: "chart-pie-legend"},
-{name: "chart-pie-separator-none", value: "chart-pie-separator-none"},
-{name: "chart-pie-simple", value: "chart-pie-simple"},
-{name: "chart-pie-stacked", value: "chart-pie-stacked"},
-{name: "chart-radar-default", value: "chart-radar-default"},
-{name: "chart-radar-dots", value: "chart-radar-dots"},
-{name: "chart-radar-grid-circle-fill", value: "chart-radar-grid-circle-fill"},
-{name: "chart-radar-grid-circle-no-lines", value: "chart-radar-grid-circle-no-lines"},
-{name: "chart-radar-grid-circle", value: "chart-radar-grid-circle"},
-{name: "chart-radar-grid-custom", value: "chart-radar-grid-custom"},
-{name: "chart-radar-grid-fill", value: "chart-radar-grid-fill"},
-{name: "chart-radar-grid-none", value: "chart-radar-grid-none"},
-{name: "chart-radar-icons", value: "chart-radar-icons"},
-{name: "chart-radar-label-custom", value: "chart-radar-label-custom"},
-{name: "chart-radar-legend", value: "chart-radar-legend"},
-{name: "chart-radar-lines-only", value: "chart-radar-lines-only"},
-{name: "chart-radar-multiple", value: "chart-radar-multiple"},
-{name: "chart-radar-radius", value: "chart-radar-radius"},
-{name: "chart-radial-grid", value: "chart-radial-grid"},
-{name: "chart-radial-label", value: "chart-radial-label"},
-{name: "chart-radial-shape", value: "chart-radial-shape"},
-{name: "chart-radial-simple", value: "chart-radial-simple"},
-{name: "chart-radial-stacked", value: "chart-radial-stacked"},
-{name: "chart-radial-text", value: "chart-radial-text"},
-{name: "chart-tooltip-advanced", value: "chart-tooltip-advanced"},
-{name: "chart-tooltip-default", value: "chart-tooltip-default"},
-{name: "chart-tooltip-formatter", value: "chart-tooltip-formatter"},
-{name: "chart-tooltip-icons", value: "chart-tooltip-icons"},
-{name: "chart-tooltip-indicator-line", value: "chart-tooltip-indicator-line"},
-{name: "chart-tooltip-indicator-none", value: "chart-tooltip-indicator-none"},
-{name: "chart-tooltip-label-custom", value: "chart-tooltip-label-custom"},
-{name: "chart-tooltip-label-formatter", value: "chart-tooltip-label-formatter"},
-{name: "chart-tooltip-label-none", value: "chart-tooltip-label-none"},
-  ];
-let viewChart;
-switch (selChart) {
-  case "chart-area-axes":
-    viewChart = <ChartAreaAxes />;
-    break;
-  case "chart-area-default":
-    viewChart = <ChartAreaDefault />;
-    break;
-  case "chart-area-gradient":
-    viewChart = <ChartAreaGradient />;
-    break;
-  case "chart-area-icons":
-    viewChart = <ChartAreaIcons />;
-    break;
-  case "chart-area-interactive":
-    viewChart = <ChartAreaInteractive />;
-    break;
-  case "chart-area-legend":
-    viewChart = <ChartAreaLegend />;
-    break;
-  case "chart-area-linear":
-    viewChart = <ChartAreaLinear />;
-    break;
-  case "chart-area-stacked-expand":
-    viewChart = <ChartAreaStackedExpand />;
-    break;
-  case "chart-area-stacked":
-    viewChart = <ChartAreaStacked />;
-    break;
-  case "chart-area-step":
-    viewChart = <ChartAreaStep />;
-    break;
-  case "chart-bar-active":
-    viewChart = <ChartBarActive />;
-    break;
-  case "chart-bar-default":
-    viewChart = <ChartBarDefault />;
-    break;
-  case "chart-bar-horizontal":
-    viewChart = <ChartBarHorizontal />;
-    break;
-  case "chart-bar-interactive":
-    viewChart = <ChartBarInteractive />;
-    break;
-  case "chart-bar-label-custom":
-    viewChart = <ChartBarLabelCustom />;
-    break;
-  case "chart-bar-label":
-    viewChart = <ChartBarLabel />;
-    break;
-  case "chart-bar-mixed":
-    viewChart = <ChartBarMixed />;
-    break;
-  case "chart-bar-multiple":
-    viewChart = <ChartBarMultiple />;
-    break;
-  case "chart-bar-negative":
-    viewChart = <ChartBarNegative />;
-    break;
-  case "chart-bar-stacked":
-    viewChart = <ChartBarStacked />;
-    break;
-  case "chart-line-default":
-    viewChart = <ChartLineDefault />;
-    break;
-  case "chart-line-dots-colors":
-    viewChart = <ChartLineDotsColors />;
-    break;
-  case "chart-line-dots-custom":
-    viewChart = <ChartLineDotsCustom />;
-    break;
-  case "chart-line-dots":
-    viewChart = <ChartLineDots />;
-    break;
-  case "chart-line-interactive":
-    viewChart = <ChartLineInteractive />;
-    break;
-  case "chart-line-label-custom":
-    viewChart = <ChartLineLabelCustom />;
-    break;
-  case "chart-line-label":
-    viewChart = <ChartLineLabel />;
-    break;
-  case "chart-line-linear":
-    viewChart = <ChartLineLinear />;
-    break;
-  case "chart-line-multiple":
-    viewChart = <ChartLineMultiple />;
-    break;
-  case "chart-line-step":
-    viewChart = <ChartLineStep />;
-    break;
-  case "chart-pie-donut-active":
-    viewChart = <ChartPieDonutActive />;
-    break;
-  case "chart-pie-donut-text":
-    viewChart = <ChartPieDonutText />;
-    break;
-  case "chart-pie-donut":
-    viewChart = <ChartPieDonut />;
-    break;
-  case "chart-pie-interactive":
-    viewChart = <ChartPieInteractive />;
-    break;
-  case "chart-pie-label-custom":
-    viewChart = <ChartPieLabelCustom />;
-    break;
-  case "chart-pie-label-list":
-    viewChart = <ChartPieLabelList />;
-    break;
-  case "chart-pie-label":
-    viewChart = <ChartPieLabel />;
-    break;
-  case "chart-pie-legend":
-    viewChart = <ChartPieLegend />;
-    break;
-  case "chart-pie-separator-none":
-    viewChart = <ChartPieSeparatorNone />;
-    break;
-  case "chart-pie-simple":
-    viewChart = <ChartPieSimple />;
-    break;
-  case "chart-pie-stacked":
-    viewChart = <ChartPieStacked />;
-    break;
-  case "chart-radar-default":
-    viewChart = <ChartRadarDefault />;
-    break;
-  case "chart-radar-dots":
-    viewChart = <ChartRadarDots />;
-    break;
-  case "chart-radar-grid-circle-fill":
-    viewChart = <ChartRadarGridCircleFill />;
-    break;
-  case "chart-radar-grid-circle-no-lines":
-    viewChart = <ChartRadarGridCircleNoLines />;
-    break;
-  case "chart-radar-grid-circle":
-    viewChart = <ChartRadarGridCircle />;
-    break;
-  case "chart-radar-grid-custom":
-    viewChart = <ChartRadarGridCustom />;
-    break;
-  case "chart-radar-grid-fill":
-    viewChart = <ChartRadarGridFill />;
-    break;
-  case "chart-radar-grid-none":
-    viewChart = <ChartRadarGridNone />;
-    break;
-  case "chart-radar-icons":
-    viewChart = <ChartRadarIcons />;
-    break;
-  case "chart-radar-label-custom":
-    viewChart = <ChartRadarLabelCustom />;
-    break;
-  case "chart-radar-legend":
-    viewChart = <ChartRadarLegend />;
-    break;
-  case "chart-radar-lines-only":
-    viewChart = <ChartRadarLinesOnly />;
-    break;
-  case "chart-radar-multiple":
-    viewChart = <ChartRadarMultiple />;
-    break;
-  case "chart-radar-radius":
-    viewChart = <ChartRadarRadius />;
-    break;
-  case "chart-radial-grid":
-    viewChart = <ChartRadialGrid />;
-    break;
-  case "chart-radial-label":
-    viewChart = <ChartRadialLabel />;
-    break;
-  case "chart-radial-shape":
-    viewChart = <ChartRadialShape />;
-    break;
-  case "chart-radial-simple":
-    viewChart = <ChartRadialSimple />;
-    break;
-  case "chart-radial-stacked":
-    viewChart = <ChartRadialStacked />;
-    break;
-  case "chart-radial-text":
-    viewChart = <ChartRadialText />;
-    break;
-  case "chart-tooltip-advanced":
-    viewChart = <ChartTooltipAdvanced />;
-    break;
-  case "chart-tooltip-default":
-    viewChart = <ChartTooltipDefault />;
-    break;
-  case "chart-tooltip-formatter":
-    viewChart = <ChartTooltipFormatter />;
-    break;
-  case "chart-tooltip-icons":
-    viewChart = <ChartTooltipIcons />;
-    break;
-  case "chart-tooltip-indicator-line":
-    viewChart = <ChartTooltipIndicatorLine />;
-    break;
-  case "chart-tooltip-indicator-none":
-    viewChart = <ChartTooltipIndicatorNone />;
-    break;
-  case "chart-tooltip-label-custom":
-    viewChart = <ChartTooltipLabelCustom />;
-    break;
-  case "chart-tooltip-label-formatter":
-    viewChart = <ChartTooltipLabelFormatter />;
-    break;
-  case "chart-tooltip-label-none":
-    viewChart = <ChartTooltipLabelNone />;
-    break;
-  default:
-    viewChart = <ChartAreaDefault />;
-    break;
-}
-  	const [selCalendar, setSelCalendar] = useState("chart-area-axes");
+		{ name: "chart-area-axes", value: "chart-area-axes" },
+		{ name: "chart-area-default", value: "chart-area-default" },
+		{ name: "chart-area-gradient", value: "chart-area-gradient" },
+		{ name: "chart-area-icons", value: "chart-area-icons" },
+		{ name: "chart-area-interactive", value: "chart-area-interactive" },
+		{ name: "chart-area-legend", value: "chart-area-legend" },
+		{ name: "chart-area-linear", value: "chart-area-linear" },
+		{ name: "chart-area-stacked-expand", value: "chart-area-stacked-expand" },
+		{ name: "chart-area-stacked", value: "chart-area-stacked" },
+		{ name: "chart-area-step", value: "chart-area-step" },
+		{ name: "chart-bar-active", value: "chart-bar-active" },
+		{ name: "chart-bar-default", value: "chart-bar-default" },
+		{ name: "chart-bar-horizontal", value: "chart-bar-horizontal" },
+		{ name: "chart-bar-interactive", value: "chart-bar-interactive" },
+		{ name: "chart-bar-label-custom", value: "chart-bar-label-custom" },
+		{ name: "chart-bar-label", value: "chart-bar-label" },
+		{ name: "chart-bar-mixed", value: "chart-bar-mixed" },
+		{ name: "chart-bar-multiple", value: "chart-bar-multiple" },
+		{ name: "chart-bar-negative", value: "chart-bar-negative" },
+		{ name: "chart-bar-stacked", value: "chart-bar-stacked" },
+		{ name: "chart-line-default", value: "chart-line-default" },
+		{ name: "chart-line-dots-colors", value: "chart-line-dots-colors" },
+		{ name: "chart-line-dots-custom", value: "chart-line-dots-custom" },
+		{ name: "chart-line-dots", value: "chart-line-dots" },
+		{ name: "chart-line-interactive", value: "chart-line-interactive" },
+		{ name: "chart-line-label-custom", value: "chart-line-label-custom" },
+		{ name: "chart-line-label", value: "chart-line-label" },
+		{ name: "chart-line-linear", value: "chart-line-linear" },
+		{ name: "chart-line-multiple", value: "chart-line-multiple" },
+		{ name: "chart-line-step", value: "chart-line-step" },
+		{ name: "chart-pie-donut-active", value: "chart-pie-donut-active" },
+		{ name: "chart-pie-donut-text", value: "chart-pie-donut-text" },
+		{ name: "chart-pie-donut", value: "chart-pie-donut" },
+		{ name: "chart-pie-interactive", value: "chart-pie-interactive" },
+		{ name: "chart-pie-label-custom", value: "chart-pie-label-custom" },
+		{ name: "chart-pie-label-list", value: "chart-pie-label-list" },
+		{ name: "chart-pie-label", value: "chart-pie-label" },
+		{ name: "chart-pie-legend", value: "chart-pie-legend" },
+		{ name: "chart-pie-separator-none", value: "chart-pie-separator-none" },
+		{ name: "chart-pie-simple", value: "chart-pie-simple" },
+		{ name: "chart-pie-stacked", value: "chart-pie-stacked" },
+		{ name: "chart-radar-default", value: "chart-radar-default" },
+		{ name: "chart-radar-dots", value: "chart-radar-dots" },
+		{ name: "chart-radar-grid-circle-fill", value: "chart-radar-grid-circle-fill" },
+		{ name: "chart-radar-grid-circle-no-lines", value: "chart-radar-grid-circle-no-lines" },
+		{ name: "chart-radar-grid-circle", value: "chart-radar-grid-circle" },
+		{ name: "chart-radar-grid-custom", value: "chart-radar-grid-custom" },
+		{ name: "chart-radar-grid-fill", value: "chart-radar-grid-fill" },
+		{ name: "chart-radar-grid-none", value: "chart-radar-grid-none" },
+		{ name: "chart-radar-icons", value: "chart-radar-icons" },
+		{ name: "chart-radar-label-custom", value: "chart-radar-label-custom" },
+		{ name: "chart-radar-legend", value: "chart-radar-legend" },
+		{ name: "chart-radar-lines-only", value: "chart-radar-lines-only" },
+		{ name: "chart-radar-multiple", value: "chart-radar-multiple" },
+		{ name: "chart-radar-radius", value: "chart-radar-radius" },
+		{ name: "chart-radial-grid", value: "chart-radial-grid" },
+		{ name: "chart-radial-label", value: "chart-radial-label" },
+		{ name: "chart-radial-shape", value: "chart-radial-shape" },
+		{ name: "chart-radial-simple", value: "chart-radial-simple" },
+		{ name: "chart-radial-stacked", value: "chart-radial-stacked" },
+		{ name: "chart-radial-text", value: "chart-radial-text" },
+		{ name: "chart-tooltip-advanced", value: "chart-tooltip-advanced" },
+		{ name: "chart-tooltip-default", value: "chart-tooltip-default" },
+		{ name: "chart-tooltip-formatter", value: "chart-tooltip-formatter" },
+		{ name: "chart-tooltip-icons", value: "chart-tooltip-icons" },
+		{ name: "chart-tooltip-indicator-line", value: "chart-tooltip-indicator-line" },
+		{ name: "chart-tooltip-indicator-none", value: "chart-tooltip-indicator-none" },
+		{ name: "chart-tooltip-label-custom", value: "chart-tooltip-label-custom" },
+		{ name: "chart-tooltip-label-formatter", value: "chart-tooltip-label-formatter" },
+		{ name: "chart-tooltip-label-none", value: "chart-tooltip-label-none" },
+	];
+	let viewChart;
+	switch (selChart) {
+		case "chart-area-axes":
+			viewChart = <ChartAreaAxes />;
+			break;
+		case "chart-area-default":
+			viewChart = <ChartAreaDefault />;
+			break;
+		case "chart-area-gradient":
+			viewChart = <ChartAreaGradient />;
+			break;
+		case "chart-area-icons":
+			viewChart = <ChartAreaIcons />;
+			break;
+		case "chart-area-interactive":
+			viewChart = <ChartAreaInteractive />;
+			break;
+		case "chart-area-legend":
+			viewChart = <ChartAreaLegend />;
+			break;
+		case "chart-area-linear":
+			viewChart = <ChartAreaLinear />;
+			break;
+		case "chart-area-stacked-expand":
+			viewChart = <ChartAreaStackedExpand />;
+			break;
+		case "chart-area-stacked":
+			viewChart = <ChartAreaStacked />;
+			break;
+		case "chart-area-step":
+			viewChart = <ChartAreaStep />;
+			break;
+		case "chart-bar-active":
+			viewChart = <ChartBarActive />;
+			break;
+		case "chart-bar-default":
+			viewChart = <ChartBarDefault />;
+			break;
+		case "chart-bar-horizontal":
+			viewChart = <ChartBarHorizontal />;
+			break;
+		case "chart-bar-interactive":
+			viewChart = <ChartBarInteractive />;
+			break;
+		case "chart-bar-label-custom":
+			viewChart = <ChartBarLabelCustom />;
+			break;
+		case "chart-bar-label":
+			viewChart = <ChartBarLabel />;
+			break;
+		case "chart-bar-mixed":
+			viewChart = <ChartBarMixed />;
+			break;
+		case "chart-bar-multiple":
+			viewChart = <ChartBarMultiple />;
+			break;
+		case "chart-bar-negative":
+			viewChart = <ChartBarNegative />;
+			break;
+		case "chart-bar-stacked":
+			viewChart = <ChartBarStacked />;
+			break;
+		case "chart-line-default":
+			viewChart = <ChartLineDefault />;
+			break;
+		case "chart-line-dots-colors":
+			viewChart = <ChartLineDotsColors />;
+			break;
+		case "chart-line-dots-custom":
+			viewChart = <ChartLineDotsCustom />;
+			break;
+		case "chart-line-dots":
+			viewChart = <ChartLineDots />;
+			break;
+		case "chart-line-interactive":
+			viewChart = <ChartLineInteractive />;
+			break;
+		case "chart-line-label-custom":
+			viewChart = <ChartLineLabelCustom />;
+			break;
+		case "chart-line-label":
+			viewChart = <ChartLineLabel />;
+			break;
+		case "chart-line-linear":
+			viewChart = <ChartLineLinear />;
+			break;
+		case "chart-line-multiple":
+			viewChart = <ChartLineMultiple />;
+			break;
+		case "chart-line-step":
+			viewChart = <ChartLineStep />;
+			break;
+		case "chart-pie-donut-active":
+			viewChart = <ChartPieDonutActive />;
+			break;
+		case "chart-pie-donut-text":
+			viewChart = <ChartPieDonutText />;
+			break;
+		case "chart-pie-donut":
+			viewChart = <ChartPieDonut />;
+			break;
+		case "chart-pie-interactive":
+			viewChart = <ChartPieInteractive />;
+			break;
+		case "chart-pie-label-custom":
+			viewChart = <ChartPieLabelCustom />;
+			break;
+		case "chart-pie-label-list":
+			viewChart = <ChartPieLabelList />;
+			break;
+		case "chart-pie-label":
+			viewChart = <ChartPieLabel />;
+			break;
+		case "chart-pie-legend":
+			viewChart = <ChartPieLegend />;
+			break;
+		case "chart-pie-separator-none":
+			viewChart = <ChartPieSeparatorNone />;
+			break;
+		case "chart-pie-simple":
+			viewChart = <ChartPieSimple />;
+			break;
+		case "chart-pie-stacked":
+			viewChart = <ChartPieStacked />;
+			break;
+		case "chart-radar-default":
+			viewChart = <ChartRadarDefault />;
+			break;
+		case "chart-radar-dots":
+			viewChart = <ChartRadarDots />;
+			break;
+		case "chart-radar-grid-circle-fill":
+			viewChart = <ChartRadarGridCircleFill />;
+			break;
+		case "chart-radar-grid-circle-no-lines":
+			viewChart = <ChartRadarGridCircleNoLines />;
+			break;
+		case "chart-radar-grid-circle":
+			viewChart = <ChartRadarGridCircle />;
+			break;
+		case "chart-radar-grid-custom":
+			viewChart = <ChartRadarGridCustom />;
+			break;
+		case "chart-radar-grid-fill":
+			viewChart = <ChartRadarGridFill />;
+			break;
+		case "chart-radar-grid-none":
+			viewChart = <ChartRadarGridNone />;
+			break;
+		case "chart-radar-icons":
+			viewChart = <ChartRadarIcons />;
+			break;
+		case "chart-radar-label-custom":
+			viewChart = <ChartRadarLabelCustom />;
+			break;
+		case "chart-radar-legend":
+			viewChart = <ChartRadarLegend />;
+			break;
+		case "chart-radar-lines-only":
+			viewChart = <ChartRadarLinesOnly />;
+			break;
+		case "chart-radar-multiple":
+			viewChart = <ChartRadarMultiple />;
+			break;
+		case "chart-radar-radius":
+			viewChart = <ChartRadarRadius />;
+			break;
+		case "chart-radial-grid":
+			viewChart = <ChartRadialGrid />;
+			break;
+		case "chart-radial-label":
+			viewChart = <ChartRadialLabel />;
+			break;
+		case "chart-radial-shape":
+			viewChart = <ChartRadialShape />;
+			break;
+		case "chart-radial-simple":
+			viewChart = <ChartRadialSimple />;
+			break;
+		case "chart-radial-stacked":
+			viewChart = <ChartRadialStacked />;
+			break;
+		case "chart-radial-text":
+			viewChart = <ChartRadialText />;
+			break;
+		case "chart-tooltip-advanced":
+			viewChart = <ChartTooltipAdvanced />;
+			break;
+		case "chart-tooltip-default":
+			viewChart = <ChartTooltipDefault />;
+			break;
+		case "chart-tooltip-formatter":
+			viewChart = <ChartTooltipFormatter />;
+			break;
+		case "chart-tooltip-icons":
+			viewChart = <ChartTooltipIcons />;
+			break;
+		case "chart-tooltip-indicator-line":
+			viewChart = <ChartTooltipIndicatorLine />;
+			break;
+		case "chart-tooltip-indicator-none":
+			viewChart = <ChartTooltipIndicatorNone />;
+			break;
+		case "chart-tooltip-label-custom":
+			viewChart = <ChartTooltipLabelCustom />;
+			break;
+		case "chart-tooltip-label-formatter":
+			viewChart = <ChartTooltipLabelFormatter />;
+			break;
+		case "chart-tooltip-label-none":
+			viewChart = <ChartTooltipLabelNone />;
+			break;
+		default:
+			viewChart = <ChartAreaDefault />;
+			break;
+	}
+	const [selCalendar, setSelCalendar] = useState("chart-area-axes");
 	const calendarSections = [
-{ name: "calendar-01", value: "calendar-01"},
-{ name: "calendar-02", value: "calendar-02"},
-{ name: "calendar-03", value: "calendar-03"},
-{ name: "calendar-04", value: "calendar-04"},
-{ name: "calendar-05", value: "calendar-05"},
-{ name: "calendar-06", value: "calendar-06"},
-{ name: "calendar-07", value: "calendar-07"},
-{ name: "calendar-08", value: "calendar-08"},
-{ name: "calendar-09", value: "calendar-09"},
-{ name: "calendar-10", value: "calendar-10"},
-{ name: "calendar-11", value: "calendar-11"},
-{ name: "calendar-12", value: "calendar-12"},
-{ name: "calendar-13", value: "calendar-13"},
-{ name: "calendar-14", value: "calendar-14"},
-{ name: "calendar-15", value: "calendar-15"},
-{ name: "calendar-16", value: "calendar-16"},
-{ name: "calendar-17", value: "calendar-17"},
-{ name: "calendar-18", value: "calendar-18"},
-{ name: "calendar-19", value: "calendar-19"},
-{ name: "calendar-20", value: "calendar-20"},
-{ name: "calendar-21", value: "calendar-21"},
-{ name: "calendar-22", value: "calendar-22"},
-{ name: "calendar-23", value: "calendar-23"},
-{ name: "calendar-24", value: "calendar-24"},
-{ name: "calendar-25", value: "calendar-25"},
-{ name: "calendar-26", value: "calendar-26"},
-{ name: "calendar-27", value: "calendar-27"},
-{ name: "calendar-28", value: "calendar-28"},
-{ name: "calendar-29", value: "calendar-29"},
-{ name: "calendar-30", value: "calendar-30"},
-{ name: "calendar-31", value: "calendar-31"},
-{ name: "calendar-32", value: "calendar-32"},
-  ];
-let viewCalendar;
-switch (selCalendar) {
-  case "calendar-01":
-    viewCalendar = <Calendar01 />;
-    break;
-  case "calendar-02":
-    viewCalendar = <Calendar02 />;
-    break;
-  case "calendar-03":
-    viewCalendar = <Calendar03 />;
-    break;
-  case "calendar-04":
-    viewCalendar = <Calendar04 />;
-    break;
-  case "calendar-05":
-    viewCalendar = <Calendar05 />;
-    break;
-  case "calendar-06":
-    viewCalendar = <Calendar06 />;
-    break;
-  case "calendar-07":
-    viewCalendar = <Calendar07 />;
-    break;
-  case "calendar-08":
-    viewCalendar = <Calendar08 />;
-    break;
-  case "calendar-09":
-    viewCalendar = <Calendar09 />;
-    break;
-  case "calendar-10":
-    viewCalendar = <Calendar10 />;
-    break;
-  case "calendar-11":
-    viewCalendar = <Calendar11 />;
-    break;
-  case "calendar-12":
-    viewCalendar = <Calendar12 />;
-    break;
-  case "calendar-13":
-    viewCalendar = <Calendar13 />;
-    break;
-  case "calendar-14":
-    viewCalendar = <Calendar14 />;
-    break;
-  case "calendar-15":
-    viewCalendar = <Calendar15 />;
-    break;
-  case "calendar-16":
-    viewCalendar = <Calendar16 />;
-    break;
-  case "calendar-17":
-    viewCalendar = <Calendar17 />;
-    break;
-  case "calendar-18":
-    viewCalendar = <Calendar18 />;
-    break;
-  case "calendar-19":
-    viewCalendar = <Calendar19 />;
-    break;
-  case "calendar-20":
-    viewCalendar = <Calendar20 />;
-    break;
-  case "calendar-21":
-    viewCalendar = <Calendar21 />;
-    break;
-  case "calendar-22":
-    viewCalendar = <Calendar22 />;
-    break;
-  case "calendar-23":
-    viewCalendar = <Calendar23 />;
-    break;
-  case "calendar-24":
-    viewCalendar = <Calendar24 />;
-    break;
-  case "calendar-25":
-    viewCalendar = <Calendar25 />;
-    break;
-  case "calendar-26":
-    viewCalendar = <Calendar26 />;
-    break;
-  case "calendar-27":
-    viewCalendar = <Calendar27 />;
-    break;
-  case "calendar-28":
-    viewCalendar = <Calendar28 />;
-    break;
-  case "calendar-29":
-    viewCalendar = <Calendar29 />;
-    break;
-  case "calendar-30":
-    viewCalendar = <Calendar30 />;
-    break;
-  case "calendar-31":
-    viewCalendar = <Calendar31 />;
-    break;
-  case "calendar-32":
-    viewCalendar = <Calendar32 />;
-    break;
-  default:
-    viewCalendar = <Calendar01 />;
-    break;
-}
+		{ name: "calendar-01", value: "calendar-01" },
+		{ name: "calendar-02", value: "calendar-02" },
+		{ name: "calendar-03", value: "calendar-03" },
+		{ name: "calendar-04", value: "calendar-04" },
+		{ name: "calendar-05", value: "calendar-05" },
+		{ name: "calendar-06", value: "calendar-06" },
+		{ name: "calendar-07", value: "calendar-07" },
+		{ name: "calendar-08", value: "calendar-08" },
+		{ name: "calendar-09", value: "calendar-09" },
+		{ name: "calendar-10", value: "calendar-10" },
+		{ name: "calendar-11", value: "calendar-11" },
+		{ name: "calendar-12", value: "calendar-12" },
+		{ name: "calendar-13", value: "calendar-13" },
+		{ name: "calendar-14", value: "calendar-14" },
+		{ name: "calendar-15", value: "calendar-15" },
+		{ name: "calendar-16", value: "calendar-16" },
+		{ name: "calendar-17", value: "calendar-17" },
+		{ name: "calendar-18", value: "calendar-18" },
+		{ name: "calendar-19", value: "calendar-19" },
+		{ name: "calendar-20", value: "calendar-20" },
+		{ name: "calendar-21", value: "calendar-21" },
+		{ name: "calendar-22", value: "calendar-22" },
+		{ name: "calendar-23", value: "calendar-23" },
+		{ name: "calendar-24", value: "calendar-24" },
+		{ name: "calendar-25", value: "calendar-25" },
+		{ name: "calendar-26", value: "calendar-26" },
+		{ name: "calendar-27", value: "calendar-27" },
+		{ name: "calendar-28", value: "calendar-28" },
+		{ name: "calendar-29", value: "calendar-29" },
+		{ name: "calendar-30", value: "calendar-30" },
+		{ name: "calendar-31", value: "calendar-31" },
+		{ name: "calendar-32", value: "calendar-32" },
+	];
+	let viewCalendar;
+	switch (selCalendar) {
+		case "calendar-01":
+			viewCalendar = <Calendar01 />;
+			break;
+		case "calendar-02":
+			viewCalendar = <Calendar02 />;
+			break;
+		case "calendar-03":
+			viewCalendar = <Calendar03 />;
+			break;
+		case "calendar-04":
+			viewCalendar = <Calendar04 />;
+			break;
+		case "calendar-05":
+			viewCalendar = <Calendar05 />;
+			break;
+		case "calendar-06":
+			viewCalendar = <Calendar06 />;
+			break;
+		case "calendar-07":
+			viewCalendar = <Calendar07 />;
+			break;
+		case "calendar-08":
+			viewCalendar = <Calendar08 />;
+			break;
+		case "calendar-09":
+			viewCalendar = <Calendar09 />;
+			break;
+		case "calendar-10":
+			viewCalendar = <Calendar10 />;
+			break;
+		case "calendar-11":
+			viewCalendar = <Calendar11 />;
+			break;
+		case "calendar-12":
+			viewCalendar = <Calendar12 />;
+			break;
+		case "calendar-13":
+			viewCalendar = <Calendar13 />;
+			break;
+		case "calendar-14":
+			viewCalendar = <Calendar14 />;
+			break;
+		case "calendar-15":
+			viewCalendar = <Calendar15 />;
+			break;
+		case "calendar-16":
+			viewCalendar = <Calendar16 />;
+			break;
+		case "calendar-17":
+			viewCalendar = <Calendar17 />;
+			break;
+		case "calendar-18":
+			viewCalendar = <Calendar18 />;
+			break;
+		case "calendar-19":
+			viewCalendar = <Calendar19 />;
+			break;
+		case "calendar-20":
+			viewCalendar = <Calendar20 />;
+			break;
+		case "calendar-21":
+			viewCalendar = <Calendar21 />;
+			break;
+		case "calendar-22":
+			viewCalendar = <Calendar22 />;
+			break;
+		case "calendar-23":
+			viewCalendar = <Calendar23 />;
+			break;
+		case "calendar-24":
+			viewCalendar = <Calendar24 />;
+			break;
+		case "calendar-25":
+			viewCalendar = <Calendar25 />;
+			break;
+		case "calendar-26":
+			viewCalendar = <Calendar26 />;
+			break;
+		case "calendar-27":
+			viewCalendar = <Calendar27 />;
+			break;
+		case "calendar-28":
+			viewCalendar = <Calendar28 />;
+			break;
+		case "calendar-29":
+			viewCalendar = <Calendar29 />;
+			break;
+		case "calendar-30":
+			viewCalendar = <Calendar30 />;
+			break;
+		case "calendar-31":
+			viewCalendar = <Calendar31 />;
+			break;
+		case "calendar-32":
+			viewCalendar = <Calendar32 />;
+			break;
+		default:
+			viewCalendar = <Calendar01 />;
+			break;
+	}
 	useEffect(() => {
 		if (!selectedCode) return;
 
@@ -1045,28 +1045,18 @@ switch (selCalendar) {
 						<div className="container-wrapper">
 							<div className="container py-4 flex justify-center">
 								<Command className="rounded-lg border shadow-md md:min-w-[450px]">
-  <CommandInput 
-    placeholder="Chart search..." 
-    aria-label="Search chart types"
-  />
-  <CommandList>
-    <CommandEmpty>No results found.</CommandEmpty>
-    <CommandGroup heading="Chart Sections">
-      {chartSections.map((item) => (
-        <CommandItem 
-          key={item.value}
-          value={item.value}
-          onSelect={() => setSelChart(item.value)}
-          className="cursor-pointer aria-selected:bg-accent aria-selected:text-accent-foreground"
-        >
-          <span className="capitalize">
-            {item.name.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}
-          </span>
-        </CommandItem>
-      ))}
-    </CommandGroup>
-  </CommandList>
-</Command>
+									<CommandInput placeholder="Chart search..." aria-label="Search chart types" />
+									<CommandList>
+										<CommandEmpty>No results found.</CommandEmpty>
+										<CommandGroup heading="Chart Sections">
+											{chartSections.map((item) => (
+												<CommandItem key={item.value} value={item.value} onSelect={() => setSelChart(item.value)} className="cursor-pointer aria-selected:bg-accent aria-selected:text-accent-foreground">
+													<span className="capitalize">{item.name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())}</span>
+												</CommandItem>
+											))}
+										</CommandGroup>
+									</CommandList>
+								</Command>
 							</div>
 						</div>
 					</div>
@@ -1082,23 +1072,19 @@ switch (selCalendar) {
 					<div className="border-grid border-b">
 						<div className="container-wrapper">
 							<div className="container py-4 flex justify-center">
-							 <Command className="rounded-lg border shadow-md md:min-w-[450px]">
-        <CommandInput placeholder="Calendar search..." />
-        <CommandList>
-          <CommandEmpty>No calendars found.</CommandEmpty>
-          <CommandGroup heading="Calendar Components">
-            {calendarSections.map((item) => (
-              <CommandItem 
-                key={item.value}
-                value={item.value}
-                onSelect={() => setSelCalendar(item.value)}
-              >
-                {item.name.replace('calendar-', 'Calendar ')}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </CommandList>
-      </Command>
+								<Command className="rounded-lg border shadow-md md:min-w-[450px]">
+									<CommandInput placeholder="Calendar search..." />
+									<CommandList>
+										<CommandEmpty>No calendars found.</CommandEmpty>
+										<CommandGroup heading="Calendar Components">
+											{calendarSections.map((item) => (
+												<CommandItem key={item.value} value={item.value} onSelect={() => setSelCalendar(item.value)}>
+													{item.name.replace("calendar-", "Calendar ")}
+												</CommandItem>
+											))}
+										</CommandGroup>
+									</CommandList>
+								</Command>
 							</div>
 						</div>
 					</div>

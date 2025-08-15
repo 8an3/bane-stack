@@ -11,7 +11,6 @@ import { DetailsScreen } from "~/components/ecommerceSections/DetailsScreen";
 import { FeedsDemo } from "~/components/ecommerceSections/FeedComponents";
 import { GridLists, GridListwithAvatars, GridListwithStatusIndicators } from "~/components/ecommerceSections/GridLists";
 import { HomePageSection } from "~/components/ecommerceSections/HomeScreen";
-import { IncentiveDemo } from "~/components/ecommerceSections/IncentiveSection";
 import { OrderDetailsPage } from "~/components/ecommerceSections/OrderDetailsPage";
 import { OrderHistory } from "~/components/ecommerceSections/OrderHistory";
 import { OrderSummaries } from "~/components/ecommerceSections/OrderSummaries";
@@ -110,9 +109,6 @@ export default function Dashboard() {
 			break;
 		case "HomeScreen":
 			viewSelected = <HomePageSection />;
-			break;
-		case "IncentiveSection":
-			viewSelected = <IncentiveDemo />;
 			break;
 		case "LandingPage":
 			viewSelected = <LandingPageSection />;

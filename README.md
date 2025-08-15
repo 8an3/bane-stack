@@ -64,9 +64,19 @@ Editor Useage
 
 >You can either stand the project up on a personal deployment and visit whenever you like, adding your own code to build upon your resource ( or send it to me and I'll build a users folder within examples ), or if you have devStack, this will be on there as well since I treat that as a personal deployment. I should get back to one of my clients projects, but I'll probably just bang that out right now, as it should be pretty clear cut, with copy / paste
 
-
-
 ## Blocks Route
+
+>Note: I made a second version of the blocks home page, because the first didn't have that "look/feel" people have come to expect when coming to a page like this. I like the first one more personally due to how quickly you can go through the components, one by one. 
+>The second version, Blocks/home is accessible via the heros block button on the landing page or go to '/blocks/examples/home', the second style is accessible via the sidebar. The second version also has its own way of displaying the function as it displays on a page and providing its corresponding code at 'blocks/examples/code/$name.tsx' providing a copy and export button instead of an editor
+>Didn't think there would be so much content to put up, lofi's got to the point where they now have their own page ( 118 of them lol ), and if im going to be using this as a components library now... I might as well add shadcn, which with my tools took less than an hour to finish which isn't bad because it will save more time ( in the long run ) since you will already be on the site
+
+- blocks/examples/home pages
+  - sections
+  - ecommerce
+  - exmaples/pages
+  - shadcn
+  - custom ui
+  - lofi
 
 >Examples and sidebar are there for you to view, along with their children examples. Each section will either have 1 or many code examples to view. The following items code is in components/blocks
 
@@ -209,11 +219,53 @@ Editor Useage
 
 ---
 
-#### Still needs completing
+## portal Route
+- Dashbord
+- Default template route
+
+---
+
+## __auth Route
+- login
+- logout
+
+---
+
+## __client Route
+- client
+  - login ( using otp )
+  - logout
+  - dashboard
+
+---
+
+## Auth
+
+>user: johnwick@thecontinental.com
+>password: daisy
+
+- Remix auth login ( this one is being used as the current auth config )
+- Remix auth logout ( ^ )
+- Sessions and authenticator configuration
+  - /components/auth/remix
+  - /modules/auth
+- OTP Login
+- OTP Logout
+- email & authenticating functionality
+- with its own sessions within the otp folder
+  - /components/auth/otp
+  - /modules/otp
+ 
+
+## Dev
+- categories that will get more content 
+  - ecommerce
+  - hooks 
+- still have one project to transfer content from, so there will more pages coming in for ecommerce, and other content derived from a CRM
+- convert any sections into reusable components 
 - sidebars, instead of creating 23 side bars, create 4 ( theres only 4 base variants ), in each of the 4 place the variety of layout / nav configs just so your not wasting time or space 
 - the right sidebar will also have a left side bar showcasing that ui
-- As for the editor and copying / exporting the code, it will not follow what is on the ui, like the rest of the sections, to make it easier for you, each sidebar config will be its own sidebar so you don't have to deconstruct and waste time on the ones I built. That way your not trying to figure out which nav menu / layout is what
-
+- As for the code portion for sidebars, it will not follow what is on the ui, like the rest of the sections, to make it easier for you, each sidebar config will be its own sidebar so you don't have to deconstruct and waste time on the ones I built. That way your not trying to figure out which nav menu / layout is what
 
 - sidebar configs
   - email 
@@ -251,51 +303,6 @@ Editor Useage
       - A sidebar with collapsible submenus
       - A sidebar that collapses to icons
       - An inset sidebar with secondary navigation
-      - 
----
-## portal Route
-- Dashbord
-- Default template route
-
----
-## __auth Route
-- login
-- logout
-
----
-## __client Route
-- client
-  - login ( using otp )
-  - logout
-  - dashboard
-
----
-
-## Auth
-
->user: johnwick@thecontinental.com
->password: daisy
-
-- Remix auth login ( this one is being used as the current auth config )
-- Remix auth logout ( ^ )
-- Sessions and authenticator configuration
-  - /components/auth/remix
-  - /modules/auth
-- OTP Login
-- OTP Logout
-- email & authenticating functionality
-- with its own sessions within the otp folder
-  - /components/auth/otp
-  - /modules/otp
- 
-
-## Dev
-- categories that will get more content 
-  - lofi - done just need to fix some of the sizing
-  - ecommerce
-  - hooks 
-- still have one project to transfer content from, so there will more pages coming in for ecommerce, and other content derived from a CRM
-- convert any sections into reusable components 
 
 >Added to project, have not added to UI
 
@@ -334,3 +341,4 @@ Editor Useage
 
 ## Acknowledgments
 >To shadcn and tailwind
+

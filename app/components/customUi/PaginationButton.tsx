@@ -1,6 +1,6 @@
 import { NavLink, useLocation, useNavigation, useResolvedPath } from "@remix-run/react";
 import { cn } from "~/components/ui/utils";
-import { Button, buttonVariants } from "./button";
+import { Button, buttonVariants } from "~/components/ui/button";
 
 
 

@@ -11,7 +11,7 @@ import { ExportFile } from "~/components/customUi/exportFile";
 // Lazy load Monaco Editor to avoid SSR issues
 const Editor = lazy(() => import("@monaco-editor/react"));
 
-export default function MonacoEditor() {
+export default function CustomUiViewer() {
 	const [isClient, setIsClient] = useState(false);
 	const [selectedCode, setSelectedCode] = useState(null);
 	const [name, setName] = useState(null);

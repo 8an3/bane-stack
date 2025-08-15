@@ -5,8 +5,8 @@ import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGrou
 import { NavUser } from "./nav-user"
 import { TeamSwitcher } from "./team-switcher"
 import { NavLink } from "@remix-run/react"
-import { NavMain } from "~/components/ui/sidebar/nav-main"
-import { NavProjects } from "~/components/ui/sidebar/nav-projects"
+import { NavMain } from "./nav-main"
+import { NavProjects } from "./nav-projects"
 
 export function AppSidebar({ data, user, URLS, ...props }: React.ComponentProps<typeof Sidebar>) {
 
