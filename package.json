@@ -122,6 +122,6 @@
   },
   "version": "0.0.19",
   "prisma": {
-    "seed": "tsx prisma/seed.cjs"
+    "seed": "tsx prisma/seed.ts"
   }
 }

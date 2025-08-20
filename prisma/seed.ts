@@ -1,6 +1,8 @@
-const bcrypt = require('bcryptjs');
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+import chalk from "chalk";
+import { prisma } from "../app/modules/libs/prisma";
+import * as dotenv from "dotenv";
+import { faker } from "@faker-js/faker";
+import bcrypt from "bcryptjs";
 
 async function seed() {
     console.log('🌱 Seeding database...');
