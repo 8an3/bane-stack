@@ -1,6 +1,6 @@
 import { createCookieSessionStorage } from "@remix-run/node";
 
-const sessionSecret = import.meta.env.VITE_SESSION_SECRET;
+const sessionSecret = process.env.VITE_SESSION_SECRET;
 if (!sessionSecret) { throw new Error("VITE_SESSION_SECRET must be set"); }
 
 export const authSessionStorage = createCookieSessionStorage({
